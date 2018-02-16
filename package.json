@@ -4,11 +4,15 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build --prod",
-    "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e"
+    "start": "npm run lint && ng serve --verbose --progress --extract-css true --open true",
+    "build": "npm run test:unit && npm run lint && ng build --no-progress",
+    "build:prod": "npm run lint && ng build --environment=prod",
+    "test": "npm run test:unit && npm run e2e",
+    "test:unit": "ng test --progress",
+    "lint": "ng lint --type-check true --format verbose",
+    "e2e": "ng e2e",
+    "doc": "ng doc",
+    "help": "ng help"
   },
   "private": true,
   "dependencies": {
