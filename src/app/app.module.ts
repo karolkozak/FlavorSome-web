@@ -4,6 +4,7 @@ import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 import {NavbarsModule} from './navbars/navbars.module';
+import {SharedModule} from './shared/shared.module';
 
 
 @NgModule({
@@ -13,6 +14,7 @@ import {NavbarsModule} from './navbars/navbars.module';
   imports: [
     AppRoutingModule,
     BrowserModule,
+    SharedModule,
     NavbarsModule
   ],
   providers: [],

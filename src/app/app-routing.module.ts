@@ -1,10 +1,10 @@
 import {NgModule} from '@angular/core';
-import {RouterModule} from '@angular/router';
+import {RouterModule, Routes} from '@angular/router';
 import {HomePageComponent} from './layouts/components/home-page/home-page.component';
 import {LayoutsModule} from './layouts/layouts.module';
 
-const appRoutes = [
-  {path: '', component: HomePageComponent}
+const appRoutes: Routes = [
+  {path: '', component: HomePageComponent, pathMatch: 'full'}
 ];
 
 @NgModule({
