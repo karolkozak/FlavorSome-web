@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ConfigService} from '../../../shared/services/config.service';
 
 @Component({
   selector: 'un-home-page',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePageComponent implements OnInit {
 
-  constructor() { }
+  placeTypes: string[] = [];
 
-  ngOnInit() {
+  constructor(private configService: ConfigService) {
   }
 
+  ngOnInit() {
+    this.configService.getAvailablePlaceTypes().subscribe(v => this.placeTypes = v);
+  }
 }
