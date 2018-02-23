@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthService as SocialAuthService, FacebookLoginProvider, SocialUser} from 'angular5-social-login';
 import {LoginService} from '../../services/login.service';
+import {FacebookLoginProvider} from '../../libs/angular5-social-login';
+import {SocialUser} from '../../libs/angular5-social-login/entities';
+import {AuthService as SocialAuthService} from '../../libs/angular5-social-login';
 
 @Component({
   selector: 'un-facebook-login',

@@ -1,7 +1,7 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {FacebookLoginComponent} from './facebook-login.component';
-import {AuthService, SocialLoginModule} from 'angular5-social-login';
+import {AuthService, SocialLoginModule} from '../../libs/angular5-social-login';
 
 describe('FacebookLoginComponent', () => {
   let component: FacebookLoginComponent;
