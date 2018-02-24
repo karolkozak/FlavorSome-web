@@ -4,7 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 
 @Injectable()
-export class LoginService {
+export class AuthenticationService {
 
   private baseUrl: string;
 
@@ -18,15 +18,18 @@ export class LoginService {
   }
 
   public setTokenInStorage(token: string) {
-    // save token to the local storage
+    localStorage.setItem('access_token', token);
+  }
+
+  public getToken(): string {
+    return localStorage.getItem('access_token');
   }
 
   public removeTokenFromStorage() {
-    // remove token from the local storage
+    localStorage.removeItem('access_token');
   }
 
   public isLoggedIn(): boolean {
-    // if token in local storage ? true : false
-    return true;
+    return !!this.getToken();
   }
 }

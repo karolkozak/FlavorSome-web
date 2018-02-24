@@ -5,6 +5,8 @@ import {HttpClientTestingModule, HttpTestingController} from '@angular/common/ht
 import {HttpClient, HttpRequest} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 import {SharedModule} from '../shared.module';
+import {AuthenticationService} from '../../security/services/authentication.service';
+import {RouterTestingModule} from '@angular/router/testing';
 
 describe('ConfigService', () => {
   let httpClient: HttpClient;
@@ -14,8 +16,8 @@ describe('ConfigService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, SharedModule],
-      providers: [ConfigService]
+      imports: [HttpClientTestingModule, SharedModule, RouterTestingModule],
+      providers: [ConfigService, AuthenticationService]
     });
     httpClient = TestBed.get(HttpClient);
     httpTestingController = TestBed.get(HttpTestingController);

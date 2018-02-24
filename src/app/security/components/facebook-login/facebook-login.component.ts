@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {LoginService} from '../../services/login.service';
+import {AuthenticationService} from '../../services/authentication.service';
 import {FacebookLoginProvider} from '../../libs/angular5-social-login';
 import {SocialUser} from '../../libs/angular5-social-login/entities';
 import {AuthService as SocialAuthService} from '../../libs/angular5-social-login';
@@ -11,7 +11,7 @@ import {AuthService as SocialAuthService} from '../../libs/angular5-social-login
 })
 export class FacebookLoginComponent implements OnInit {
 
-  constructor(private socialAuthService: SocialAuthService, private loginService: LoginService) {
+  constructor(private socialAuthService: SocialAuthService, private authenticationService: AuthenticationService) {
   }
 
   ngOnInit() {
@@ -21,10 +21,10 @@ export class FacebookLoginComponent implements OnInit {
     const socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
     this.socialAuthService.signIn(socialPlatformProvider)
       .then((socialUser: SocialUser) => {
-        this.loginService.loginWithFacebook(socialUser.token)
+        this.authenticationService.loginWithFacebook(socialUser.token)
           .subscribe(response => {
             console.warn(response);  // warn, 'cause tslint pass (for developer purposes only!)
-            this.loginService.setTokenInStorage(response['token']);
+            this.authenticationService.setTokenInStorage(response['token']);
           });
       })
       .catch(error => {
@@ -36,7 +36,7 @@ export class FacebookLoginComponent implements OnInit {
     this.socialAuthService.signOut()
       .then(() => {
         console.warn('logged out');
-        this.loginService.removeTokenFromStorage();
+        this.authenticationService.removeTokenFromStorage();
       })
       .catch(error => {
         // display notification

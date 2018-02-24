@@ -3,7 +3,7 @@ import {CommonModule} from '@angular/common';
 import {LoginComponent} from './components/login/login.component';
 import {getAuthServiceConfig} from './components/config/social-login-onfig';
 import { FacebookLoginComponent } from './components/facebook-login/facebook-login.component';
-import {LoginService} from './services/login.service';
+import {AuthenticationService} from './services/authentication.service';
 import {HttpClientModule} from '@angular/common/http';
 import {AuthServiceConfig, SocialLoginModule} from './libs/angular5-social-login';
 
@@ -15,7 +15,7 @@ import {AuthServiceConfig, SocialLoginModule} from './libs/angular5-social-login
   ],
   providers: [
     {provide: AuthServiceConfig, useFactory: getAuthServiceConfig},
-    LoginService,
+    AuthenticationService,
   ],
   declarations: [LoginComponent, FacebookLoginComponent]
 })
