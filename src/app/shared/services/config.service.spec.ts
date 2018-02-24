@@ -5,6 +5,8 @@ import {HttpClientTestingModule, HttpTestingController} from '@angular/common/ht
 import {HttpClient, HttpRequest} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 import {SharedModule} from '../shared.module';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {SimpleNotificationsModule} from 'angular2-notifications';
 
 describe('ConfigService', () => {
   let httpClient: HttpClient;
@@ -14,7 +16,11 @@ describe('ConfigService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, SharedModule],
+      imports: [
+        HttpClientTestingModule,
+        SharedModule,
+        BrowserAnimationsModule,
+        SimpleNotificationsModule.forRoot()],
       providers: [ConfigService]
     });
     httpClient = TestBed.get(HttpClient);

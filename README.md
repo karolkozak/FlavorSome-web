@@ -13,9 +13,6 @@ https://github.com/angular/angular-cli
 npm install 
 # how to serve app on default localhost:4200 
 npm start
-# if you add new dependencies to package.json remember to update package-lock.json
-# Warning npm install will not update package-lock.json
-npm update
 
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.28.3.
 
