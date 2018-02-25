@@ -6,6 +6,8 @@ import {AppRoutingModule} from './app-routing.module';
 import {NavbarsModule} from './navbars/navbars.module';
 import {SharedModule} from './shared/shared.module';
 import {SecurityModule} from './security/security.module';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {SimpleNotificationsModule} from 'angular2-notifications';
 
 
 @NgModule({
@@ -18,6 +20,8 @@ import {SecurityModule} from './security/security.module';
     SharedModule,
     NavbarsModule,
     SecurityModule,
+    BrowserAnimationsModule,
+    SimpleNotificationsModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
