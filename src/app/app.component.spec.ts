@@ -5,6 +5,7 @@ import {NavbarsModule} from './navbars/navbars.module';
 import {SharedModule} from './shared/shared.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SimpleNotificationsModule} from 'angular2-notifications';
+import {SecurityModule} from './security/security.module';
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -12,6 +13,7 @@ describe('AppComponent', () => {
         RouterTestingModule,
         SharedModule,
         NavbarsModule,
+        SecurityModule,
         BrowserAnimationsModule,
         SimpleNotificationsModule.forRoot()
       ],

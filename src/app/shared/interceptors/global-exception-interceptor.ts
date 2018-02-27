@@ -10,18 +10,16 @@ import {AuthenticationService} from '../../security/services/authentication.serv
 @Injectable()
 export class GlobalExceptionInterceptor implements HttpInterceptor {
 
-  constructor(
-    private router: Router,
-    private authenticationService: AuthenticationService,
-    private notificationService: NotificationsService
-  ) {
+  constructor(private router: Router,
+              private authenticationService: AuthenticationService,
+              private notificationService: NotificationsService) {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(req)
       .catch((error: any) => {
         if (error.status === 401) {
-          this.authenticationService.removeTokenFromStorage();
+          this.authenticationService.removeTokenDataFromStorage();
           this.router.navigate(['/login']);
         }
         this.notificationService.error(`Exception - ${error.status}`, error.error.message, {timeOut: 100000});

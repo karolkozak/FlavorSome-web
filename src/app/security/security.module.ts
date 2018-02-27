@@ -6,6 +6,7 @@ import { FacebookLoginComponent } from './components/facebook-login/facebook-log
 import {AuthenticationService} from './services/authentication.service';
 import {HttpClientModule} from '@angular/common/http';
 import {AuthServiceConfig, SocialLoginModule} from './libs/angular5-social-login';
+import {FacebookAuthService} from './services/facebook-auth.service';
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import {AuthServiceConfig, SocialLoginModule} from './libs/angular5-social-login
   providers: [
     {provide: AuthServiceConfig, useFactory: getAuthServiceConfig},
     AuthenticationService,
+    FacebookAuthService
   ],
   declarations: [LoginComponent, FacebookLoginComponent]
 })

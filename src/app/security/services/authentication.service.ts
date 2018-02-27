@@ -17,7 +17,7 @@ export class AuthenticationService {
     return this.httpClient.post(endpoint, facebookToken);
   }
 
-  public setTokenInStorage(token: string) {
+  public setTokenDataInStorage(token: string) {
     localStorage.setItem('access_token', token);
   }
 
@@ -25,7 +25,7 @@ export class AuthenticationService {
     return localStorage.getItem('access_token');
   }
 
-  public removeTokenFromStorage() {
+  public removeTokenDataFromStorage() {
     localStorage.removeItem('access_token');
   }
 

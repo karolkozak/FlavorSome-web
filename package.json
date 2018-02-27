@@ -5,7 +5,8 @@
   "scripts": {
     "ng": "ng",
     "start": "npm run lint && ng serve --verbose --progress --extract-css true --open true",
-    "build": "npm run lint && npm run test:unit -- --single-run && ng build",
+    "build": "npm run lint && ng build",
+    "build-test": "npm run lint && npm run test:unit -- --single-run && ng build",
     "test": "npm run test:unit && npm run e2e",
     "test:unit": "ng test --progress",
     "lint": "ng lint --type-check true --format verbose",

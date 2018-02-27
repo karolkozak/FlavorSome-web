@@ -2,6 +2,7 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {FacebookLoginComponent} from './facebook-login.component';
 import {AuthService, SocialLoginModule} from '../../libs/angular5-social-login';
+import {RouterTestingModule} from '@angular/router/testing';
 
 describe('FacebookLoginComponent', () => {
   let component: FacebookLoginComponent;
@@ -9,7 +10,7 @@ describe('FacebookLoginComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [SocialLoginModule, AuthService],
+      imports: [SocialLoginModule, AuthService, RouterTestingModule],
       declarations: [FacebookLoginComponent]
     })
       .compileComponents();
