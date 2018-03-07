@@ -8,9 +8,8 @@ import {FacebookAuthService} from '../../services/facebook-auth.service';
 })
 export class FacebookLoginComponent {
 
-  constructor(
-    private facebookAuthService: FacebookAuthService,
-  ) {}
+  constructor(private facebookAuthService: FacebookAuthService) {
+  }
 
   public facebookLogin() {
     this.facebookAuthService.facebookLogin();
