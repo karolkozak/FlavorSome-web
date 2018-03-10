@@ -1,18 +1,20 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {LoginComponent} from './components/login/login.component';
-import {getAuthServiceConfig} from './components/config/social-login-onfig';
-import { FacebookLoginComponent } from './components/facebook-login/facebook-login.component';
-import {AuthenticationService} from './services/authentication.service';
 import {HttpClientModule} from '@angular/common/http';
 import {AuthServiceConfig, SocialLoginModule} from './libs/angular5-social-login';
+import {getAuthServiceConfig} from './components/config/social-login-onfig';
+import { FacebookLoginComponent } from './components/facebook-login/facebook-login.component';
+import {LoginComponent} from './components/login/login.component';
+import {AuthenticationService} from './services/authentication.service';
 import {FacebookAuthService} from './services/facebook-auth.service';
+import {SharedModule} from '../shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    SocialLoginModule,
     HttpClientModule,
+    SocialLoginModule,
+    SharedModule,
   ],
   providers: [
     {provide: AuthServiceConfig, useFactory: getAuthServiceConfig},
