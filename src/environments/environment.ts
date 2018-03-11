@@ -14,6 +14,10 @@ export const environment = {
   configPath: 'config/',
   placeTypesPath: 'places/types/',
 
+  availableLanguages: ['pl', 'en'],
+  availableCultureLanguages: ['pl', 'en-GB'],
+  defaultLanguage: 'en',
+
   facebookAppId: '209464289792135',
   facebookSecret: 'f47826dc3bcbbafa2052b1c5f91b157f',
 };
