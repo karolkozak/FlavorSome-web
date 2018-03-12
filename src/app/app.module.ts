@@ -4,13 +4,13 @@ import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
+import {HttpClient} from '@angular/common/http';
 import {NavbarsModule} from './navbars/navbars.module';
 import {SecurityModule} from './security/security.module';
 import {SimpleNotificationsModule} from 'angular2-notifications';
 import {SharedModule} from './shared/shared.module';
-import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
-import {HttpClient} from '@angular/common/http';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 
 
 export function customTranslateLoader(http: HttpClient) {

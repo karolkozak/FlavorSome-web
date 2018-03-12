@@ -4,7 +4,7 @@
 <mat-menu #menu>
   <button *ngFor="let language of availableCultureLanguages" mat-menu-item (click)="changeLanguage(language)">
     <span class="flag-icon flag-icon-{{language | flagCultureLang}}"></span>
-    <span>{{language | flagLang | upperCase}}</span>
+    <span>{{language | flagLang | uppercase}}</span>
   </button>
 </mat-menu>
 

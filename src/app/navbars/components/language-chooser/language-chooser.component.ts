@@ -21,8 +21,7 @@ export class LanguageChooserComponent implements OnInit {
   }
 
   changeLanguage(language: string) {
-    console.warn(language);
-    language = language.split('-')[0];
+    [language] = language.split('-');
     this.customTranslateService.changeLanguage(language);
   }
 }
