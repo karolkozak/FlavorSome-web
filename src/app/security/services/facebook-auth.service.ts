@@ -26,9 +26,9 @@ export class FacebookAuthService extends AuthenticationService {
     return this.httpClient.post(endpoint, facebookToken);
   }
 
-  public facebookLogin() {
+  public facebookLogin(): Promise<boolean> {
     const socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
-    this.socialAuthService.signIn(socialPlatformProvider)
+    return this.socialAuthService.signIn(socialPlatformProvider)
       .then((socialUser: SocialUser) => {
         this.loginWithFacebook(socialUser.token)
           .subscribe(response => {
@@ -37,6 +37,7 @@ export class FacebookAuthService extends AuthenticationService {
         return true;
       })
       .catch(error => {
+        console.error(error);
         this.notificationsService.error('Facebook log in', 'Unable to log in via Facebook, try again later');
         return false;
       });

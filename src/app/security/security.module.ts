@@ -8,6 +8,8 @@ import {LoginComponent} from './components/login/login.component';
 import {AuthenticationService} from './services/authentication.service';
 import {FacebookAuthService} from './services/facebook-auth.service';
 import {SharedModule} from '../shared/shared.module';
+import {AuthGuardService} from './services/guards/auth-guard.service';
+import {LoginPageGuardService} from './services/guards/login-page-guard.service';
 
 @NgModule({
   imports: [
@@ -19,7 +21,9 @@ import {SharedModule} from '../shared/shared.module';
   providers: [
     {provide: AuthServiceConfig, useFactory: getAuthServiceConfig},
     AuthenticationService,
-    FacebookAuthService
+    AuthGuardService,
+    FacebookAuthService,
+    LoginPageGuardService,
   ],
   declarations: [LoginComponent, FacebookLoginComponent]
 })
