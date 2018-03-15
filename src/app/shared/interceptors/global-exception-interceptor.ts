@@ -6,13 +6,18 @@ import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/catch';
 import {Router} from '@angular/router';
 import {AuthenticationService} from '../../security/services/authentication.service';
+import {CustomTranslateService} from '../services/custom-translate.service';
 
 @Injectable()
 export class GlobalExceptionInterceptor implements HttpInterceptor {
 
+  private titleMessage: string;
+  private errorMessage: string;
+
   constructor(private router: Router,
               private authenticationService: AuthenticationService,
-              private notificationService: NotificationsService) {
+              private notificationsService: NotificationsService,
+              private customTranslateService: CustomTranslateService) {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -22,7 +27,11 @@ export class GlobalExceptionInterceptor implements HttpInterceptor {
           this.authenticationService.removeTokenDataFromStorage();
           this.router.navigate(['/login']);
         }
-        this.notificationService.error(`Exception - ${error.status}`, error.error.message, {timeOut: 100000});
+        this.customTranslateService.getTranslation('Exception').subscribe(result => this.titleMessage = result);
+        this.customTranslateService
+          .getTranslation(error.error.message ? error.error.message : 'Unexpected exception')
+          .subscribe(result => this.errorMessage = result);
+        this.notificationsService.error(`${this.titleMessage} - ${error.status}`, this.errorMessage, {timeOut: 100000});
         return Observable.throw(error);
       }) as any;
   }
