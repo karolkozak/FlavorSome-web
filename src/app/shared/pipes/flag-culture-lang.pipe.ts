@@ -6,7 +6,7 @@ import {Pipe, PipeTransform} from '@angular/core';
 export class FlagCultureLangPipe implements PipeTransform {
 
   transform(value: string, args?: any): string {
-    const [language, cultureLanguage] = value.split('-');
-    return cultureLanguage.toLowerCase();
+    const [, language] = value.split('-');
+    return language.toLowerCase();
   }
 }
