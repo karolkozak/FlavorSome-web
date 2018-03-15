@@ -1,3 +1,6 @@
-<p>
-  header works! -> application header
-</p>
+<mat-toolbar color="primary">
+  <span>Unnamed Logo Placeholder</span>
+  <span class="un-header-fill"></span>
+  <un-language-chooser></un-language-chooser>
+  <button mat-button color="link" *ngIf="isLoggedIn" (click)="logout()">{{"Logout" | translate}}</button>
+</mat-toolbar>

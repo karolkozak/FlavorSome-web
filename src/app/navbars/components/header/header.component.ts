@@ -1,15 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import {Component} from '@angular/core';
+import {FacebookAuthService} from '../../../security/services/facebook-auth.service';
 
 @Component({
   selector: 'un-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor(private facebookAuthService: FacebookAuthService) {
   }
 
+  public logout() {
+    this.facebookAuthService.facebookLogout();
+  }
+
+  get isLoggedIn(): boolean {
+    return this.facebookAuthService.isLoggedIn();
+  }
 }

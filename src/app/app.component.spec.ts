@@ -5,6 +5,11 @@ import {NavbarsModule} from './navbars/navbars.module';
 import {SharedModule} from './shared/shared.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SimpleNotificationsModule} from 'angular2-notifications';
+import {SecurityModule} from './security/security.module';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {customTranslateLoader} from './app.module';
+import {HttpClient} from '@angular/common/http';
+
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -12,8 +17,16 @@ describe('AppComponent', () => {
         RouterTestingModule,
         SharedModule,
         NavbarsModule,
+        SecurityModule,
         BrowserAnimationsModule,
-        SimpleNotificationsModule.forRoot()
+        SimpleNotificationsModule.forRoot(),
+        TranslateModule.forRoot({
+          loader: {
+            provide: TranslateLoader,
+            useFactory: (customTranslateLoader),
+            deps: [HttpClient]
+          }
+        }),
       ],
       declarations: [
         AppComponent
@@ -25,7 +38,7 @@ describe('AppComponent', () => {
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   }));
-  it(`should have as title 'un'`, async(() => {
+  it(`should have as title 'un'`, (() => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app.title).toEqual('un');
