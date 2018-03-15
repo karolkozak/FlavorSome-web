@@ -1,0 +1,10 @@
+<button mat-button [matMenuTriggerFor]="menu">
+  <span class="flag-icon flag-icon-{{currentLanguage | flagCultureLang}}"></span>
+</button>
+<mat-menu #menu>
+  <button *ngFor="let language of availableCultureLanguages" mat-menu-item (click)="changeLanguage(language)">
+    <span class="flag-icon flag-icon-{{language | flagCultureLang}}"></span>
+    <span>{{language | flagLang | uppercase}}</span>
+  </button>
+</mat-menu>
+
