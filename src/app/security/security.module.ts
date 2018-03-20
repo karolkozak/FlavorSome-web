@@ -10,6 +10,7 @@ import {FacebookAuthService} from './services/facebook-auth.service';
 import {SharedModule} from '../shared/shared.module';
 import {AuthGuardService} from './services/guards/auth-guard.service';
 import {LoginPageGuardService} from './services/guards/login-page-guard.service';
+import {AdminRoleGuardService} from './services/guards/admin-role-guard.service';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import {LoginPageGuardService} from './services/guards/login-page-guard.service'
   ],
   providers: [
     {provide: AuthServiceConfig, useFactory: getAuthServiceConfig},
+    AdminRoleGuardService,
     AuthenticationService,
     AuthGuardService,
     FacebookAuthService,

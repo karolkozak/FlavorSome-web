@@ -8,6 +8,7 @@ import {TranslateModule} from '@ngx-translate/core';
 import {CustomTranslateService} from './services/custom-translate.service';
 import {FlagCultureLangPipe} from './pipes/flag-culture-lang.pipe';
 import {FlagLangPipe} from './pipes/flag-lang.pipe';
+import {UserService} from './services/user.service';
 
 @NgModule({
   imports: [
@@ -27,6 +28,7 @@ import {FlagLangPipe} from './pipes/flag-lang.pipe';
     ConfigService,
     CustomTranslateService,
     httpInterceptorProviders,
+    UserService,
   ],
   declarations: [FlagCultureLangPipe, FlagLangPipe]
 })

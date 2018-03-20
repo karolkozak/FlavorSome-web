@@ -9,6 +9,9 @@ export const environment = {
   configPath: 'config/',
   placeTypesPath: 'places/types/',
 
+  usersPath: 'users/',
+  current: 'current/',
+
   availableLanguages: ['pl', 'en'],
   availableCultureLanguages: ['pl-PL', 'en-GB'],
   defaultLanguage: 'en',
