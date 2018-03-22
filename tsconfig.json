@@ -8,6 +8,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "noImplicitAny": false,
+    "noUnusedLocals": true,
     "skipLibCheck": true,
     "target": "es5",
     "typeRoots": [
