@@ -21,4 +21,8 @@ export class ConfigService {
     const endpoint = this.baseUrl + environment.placeTypesPath;
     return this.httpClient.get<string[]>(endpoint);
   }
+
+  setAvailablePlaceTypes(placeTypes: string[]) {
+    this.placeTypes = placeTypes;
+  }
 }
