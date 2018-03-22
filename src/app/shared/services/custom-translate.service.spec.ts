@@ -1,8 +1,7 @@
-import {TestBed, inject} from '@angular/core/testing';
+import {inject, TestBed} from '@angular/core/testing';
 
 import {CustomTranslateService} from './custom-translate.service';
-import {TranslateLoader, TranslateModule, TranslateService} from '@ngx-translate/core';
-import {TranslateStore} from '@ngx-translate/core/src/translate.store';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {HttpClient} from '@angular/common/http';
 import {customTranslateLoader} from '../../app.module';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
