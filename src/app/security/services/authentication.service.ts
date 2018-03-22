@@ -41,4 +41,8 @@ export class AuthenticationService {
   public getRedirectUrl(): string {
     return this.redirectUrl;
   }
+
+  public unsetRedirectUrl() {
+    this.redirectUrl = undefined;
+  }
 }

@@ -14,7 +14,8 @@ export class LoginComponent {
 
   loginSuccess() {
     return () => {
-      const redirectUrl = this.authenticationService.getRedirectUrl() ? this.authenticationService.getRedirectUrl() : '';
+      const redirectUrl = this.authenticationService.getRedirectUrl() || '';
+      this.authenticationService.unsetRedirectUrl();
       this.router.navigate([redirectUrl]);
     };
   }

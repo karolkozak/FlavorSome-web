@@ -9,10 +9,10 @@ export class LoginPageGuardService implements CanActivate {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    if (!this.authenticationService.isLoggedIn()) {
-      return true;
+    if (this.authenticationService.isLoggedIn()) {
+      this.router.navigate(['']);
+      return false;
     }
-    this.router.navigate(['']);
-    return false;
+    return true;
   }
 }

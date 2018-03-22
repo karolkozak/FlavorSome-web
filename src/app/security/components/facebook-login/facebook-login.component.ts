@@ -13,8 +13,8 @@ export class FacebookLoginComponent {
   }
 
   public facebookLogin() {
-    this.facebookAuthService.facebookLogin().then(v => {
-      if (v) {
+    this.facebookAuthService.facebookLogin().then(loginSuccess => {
+      if (loginSuccess) {
         this.loginSuccess();
       }
     });
