@@ -30,15 +30,14 @@ export class FacebookAuthService extends AuthenticationService {
     return this.httpClient.post(endpoint, facebookToken);
   }
 
-  public facebookLogin() {
+  public facebookLogin(): Promise<boolean> {
     const socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
-    this.socialAuthService.signIn(socialPlatformProvider)
+    return this.socialAuthService.signIn(socialPlatformProvider)
       .then((socialUser: SocialUser) => {
-        this.loginWithFacebook(socialUser.token)
-          .subscribe(response => {
+        return this.loginWithFacebook(socialUser.token).toPromise().then(response => {
             this.setTokenDataInStorage(response['token']);
+            return true;
           });
-        return true;
       })
       .catch(error => {
         console.error(error);

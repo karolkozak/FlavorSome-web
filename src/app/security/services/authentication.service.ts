@@ -4,6 +4,11 @@ import {Injectable} from '@angular/core';
 export class AuthenticationService {
 
   private token: string;
+  private redirectUrl: string;
+
+  public isLoggedIn(): boolean {
+    return !!this.getToken();
+  }
 
   public setTokenDataInStorage(token: string) {
     try {
@@ -29,7 +34,15 @@ export class AuthenticationService {
     }
   }
 
-  public isLoggedIn(): boolean {
-    return !!this.getToken();
+  public setRedirectUrl(url: string) {
+    this.redirectUrl = url;
+  }
+
+  public getRedirectUrl(): string {
+    return this.redirectUrl;
+  }
+
+  public unsetRedirectUrl() {
+    this.redirectUrl = undefined;
   }
 }
