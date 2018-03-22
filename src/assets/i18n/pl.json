@@ -3,5 +3,11 @@
   "Login with facebook": "Zaloguj przez facebooka",
   "Logout": "Wyloguj",
   "Here it will be all layouts, views. In this place router works. navs are static": "Tutaj zostana wyswietlone layouty. W tym miejscu pracuje router, navbarsy sa na stale",
-  "Error 404": "Błąd 404, adres {{url}} nie został znaleziony"
+  "Exception": "Błąd",
+  "Error 404": "Błąd 404, adres {{url}} nie został znaleziony",
+  "Facebook log in": "Logowanie przez facebooka",
+  "Unable to log in via Facebook, try again later": "Błąd podczas logowania, spróbuj później",
+  "Facebook log out": "Wylogowanie z facebooka",
+  "Unable to log out, try again later": "Błąd podczas wylogowania, spróbuj później",
+  "Unexpected exception": "Nieoczekiwany błąd"
 }
