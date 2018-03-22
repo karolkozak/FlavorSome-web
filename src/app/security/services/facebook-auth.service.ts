@@ -7,16 +7,20 @@ import {NotificationsService} from 'angular2-notifications';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 import {Observable} from 'rxjs/Observable';
+import {CustomTranslateService} from '../../shared/services/custom-translate.service';
 
 @Injectable()
 export class FacebookAuthService extends AuthenticationService {
 
   private baseUrl: string;
+  private titleMessage: string;
+  private errorMessage: string;
 
   constructor(private httpClient: HttpClient,
               private router: Router,
               private socialAuthService: SocialAuthService,
-              private notificationsService: NotificationsService) {
+              private notificationsService: NotificationsService,
+              private customTranslateService: CustomTranslateService) {
     super();
     this.baseUrl = environment.unnamedMicroserviceUrl + environment.authPath;
   }
@@ -38,7 +42,10 @@ export class FacebookAuthService extends AuthenticationService {
       })
       .catch(error => {
         console.error(error);
-        this.notificationsService.error('Facebook log in', 'Unable to log in via Facebook, try again later');
+        this.customTranslateService.getTranslation('Facebook log in').subscribe(result => this.titleMessage = result);
+        this.customTranslateService.getTranslation('Unable to log in via Facebook, try again later')
+          .subscribe(result => this.errorMessage = result);
+        this.notificationsService.error(this.titleMessage, this.errorMessage);
         return false;
       });
   }
@@ -52,7 +59,10 @@ export class FacebookAuthService extends AuthenticationService {
       })
       .catch(error => {
         console.error(error);
-        this.notificationsService.error('Facebook log out', 'Unable to log out, try again later');
+        this.customTranslateService.getTranslation('Facebook log out').subscribe(result => this.titleMessage = result);
+        this.customTranslateService.getTranslation('Unable to log out, try again later')
+          .subscribe(result => this.errorMessage = result);
+        this.notificationsService.error(this.titleMessage, this.errorMessage);
         return false;
       });
   }
