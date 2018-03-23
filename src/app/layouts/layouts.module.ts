@@ -4,15 +4,18 @@ import {HomePageComponent} from './components/home-page/home-page.component';
 import {RouterModule} from '@angular/router';
 import {SharedModule} from '../shared/shared.module';
 import {NotFoundComponent} from './components/error-page/not-found/not-found.component';
+import {LoginPageComponent} from './components/login-page/login-page.component';
+import {SecurityModule} from '../security/security.module';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
+    SecurityModule,
     SharedModule,
   ],
-  declarations: [HomePageComponent, NotFoundComponent],
-  exports: [HomePageComponent, NotFoundComponent]
+  declarations: [HomePageComponent, LoginPageComponent, NotFoundComponent],
+  exports: [HomePageComponent, LoginPageComponent, NotFoundComponent]
 })
 export class LayoutsModule {
 }

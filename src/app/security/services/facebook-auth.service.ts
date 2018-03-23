@@ -16,21 +16,21 @@ export class FacebookAuthService extends AuthenticationService {
   private titleMessage: string;
   private errorMessage: string;
 
-  constructor(private httpClient: HttpClient,
-              private router: Router,
+  constructor(router: Router,
+              private httpClient: HttpClient,
               private socialAuthService: SocialAuthService,
               private notificationsService: NotificationsService,
               private customTranslateService: CustomTranslateService) {
-    super();
+    super(router);
     this.baseUrl = environment.unnamedMicroserviceUrl + environment.authPath;
   }
 
   private loginWithFacebook(facebookToken: string): Observable<Object> {
-    const endpoint = this.baseUrl + environment.facebookPath + environment.loginPath;
+    const endpoint = this.baseUrl + environment.loginPath + environment.facebookPath;
     return this.httpClient.post(endpoint, facebookToken);
   }
 
-  public facebookLogin(): Promise<boolean> {
+  public login(): Promise<boolean> {
     const socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
     return this.socialAuthService.signIn(socialPlatformProvider)
       .then((socialUser: SocialUser) => {
@@ -52,8 +52,7 @@ export class FacebookAuthService extends AuthenticationService {
   public facebookLogout() {
     this.socialAuthService.signOut()
       .then(() => {
-        this.removeTokenDataFromStorage();
-        this.router.navigate(['']);
+        this.logout();
         return true;
       })
       .catch(error => {
