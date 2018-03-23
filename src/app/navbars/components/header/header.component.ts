@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {AuthenticationService} from '../../../security/services/authentication.service';
 import {FacebookAuthService} from '../../../security/services/facebook-auth.service';
 
 @Component({
@@ -8,14 +9,18 @@ import {FacebookAuthService} from '../../../security/services/facebook-auth.serv
 })
 export class HeaderComponent {
 
-  constructor(private facebookAuthService: FacebookAuthService) {
+  constructor(private authenticationService: AuthenticationService, private facebookAuthService: FacebookAuthService) {
   }
 
   public logout() {
-    this.facebookAuthService.facebookLogout();
+    if (this.authenticationService.isFbAuthenticated()) {
+      this.facebookAuthService.facebookLogout();
+    } else {
+      this.authenticationService.logout();
+    }
   }
 
   get isLoggedIn(): boolean {
-    return this.facebookAuthService.isLoggedIn();
+    return this.authenticationService.isLoggedIn();
   }
 }
