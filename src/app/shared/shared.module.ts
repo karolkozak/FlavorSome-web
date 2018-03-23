@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {CommonModule, UpperCasePipe} from '@angular/common';
 import {HttpClientModule} from '@angular/common/http';
-import {MatButtonModule, MatFormFieldModule, MatInputModule, MatMenuModule, MatToolbarModule} from '@angular/material';
+import {MatButtonModule, MatCardModule, MatFormFieldModule, MatInputModule, MatMenuModule, MatToolbarModule} from '@angular/material';
 import {httpInterceptorProviders} from './interceptors/http-interceptors';
 import {ConfigService} from './services/config.service';
 import {TranslateModule} from '@ngx-translate/core';
@@ -20,6 +20,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     FlagCultureLangPipe,
     FlagLangPipe,
     FormsModule,
+    MatCardModule,
     MatFormFieldModule,
     MatButtonModule,
     MatInputModule,

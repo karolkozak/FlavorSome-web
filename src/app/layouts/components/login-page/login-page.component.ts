@@ -4,7 +4,7 @@ import {Router} from '@angular/router';
 import {AuthenticationService} from '../../../security/services/authentication.service';
 
 @Component({
-  selector: 'un-login',
+  selector: 'un-login-page',
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.scss']
 })
