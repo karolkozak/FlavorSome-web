@@ -23,6 +23,6 @@ export class AppComponent implements OnInit {
   }
 
   private fetchConfig() {
-    this.configService.getAvailablePlaceTypes().subscribe(placeTypes => this.configService.setAvailablePlaceTypes(placeTypes));
+    this.configService.getAvailablePlaceTypes().subscribe();
   }
 }
