@@ -24,8 +24,8 @@ export class CustomAuthService extends AuthenticationService {
 
   login(userData: any): Promise<boolean> {
     const endpoint = this.baseUrl + environment.loginPath;
-    return this.httpClient.post(endpoint, userData).toPromise().then(response => {
-      this.setTokenDataInStorage(response['token']);
+    return this.httpClient.post<string>(endpoint, userData, {responseType: 'text'} as any as {}).toPromise().then(response => {
+      this.setTokenDataInStorage(response);
       return true;
     }).catch(error => {
       console.error(error);
