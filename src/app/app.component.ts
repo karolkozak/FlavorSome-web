@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {ConfigService} from './shared/services/config.service';
-import {CustomTranslateService} from './shared/services/custom-translate.service';
+import {ConfigService} from './core/services/config.service';
+import {CustomTranslateService} from './core/services/custom-translate.service';
 
 @Component({
   selector: 'un-root',

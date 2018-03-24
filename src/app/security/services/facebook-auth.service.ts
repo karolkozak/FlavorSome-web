@@ -7,7 +7,7 @@ import {NotificationsService} from 'angular2-notifications';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 import {Observable} from 'rxjs/Observable';
-import {CustomTranslateService} from '../../shared/services/custom-translate.service';
+import {CustomTranslateService} from '../../core/services/custom-translate.service';
 
 @Injectable()
 export class FacebookAuthService extends AuthenticationService {

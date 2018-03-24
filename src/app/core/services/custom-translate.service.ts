@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {environment} from '../../../environments/environment';
 import {TranslateService} from '@ngx-translate/core';
-import {inArray} from '../utils/array-utils';
+import {inArray} from '../../shared/utils/array-utils';
 import {Observable} from 'rxjs/Observable';
 
 @Injectable()

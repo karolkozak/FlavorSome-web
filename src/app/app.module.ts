@@ -1,16 +1,17 @@
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {BrowserModule} from '@angular/platform-browser';
+import {HttpClient} from '@angular/common/http';
 import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {SimpleNotificationsModule} from 'angular2-notifications';
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
-import {HttpClient} from '@angular/common/http';
+import {CoreModule} from './core/core.module';
 import {NavbarsModule} from './navbars/navbars.module';
 import {SecurityModule} from './security/security.module';
-import {SimpleNotificationsModule} from 'angular2-notifications';
 import {SharedModule} from './shared/shared.module';
-import {TranslateHttpLoader} from '@ngx-translate/http-loader';
-import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 
 
 export function customTranslateLoader(http: HttpClient) {
@@ -25,6 +26,7 @@ export function customTranslateLoader(http: HttpClient) {
     AppRoutingModule,
     BrowserAnimationsModule,
     BrowserModule,
+    CoreModule.forRoot(),
     NavbarsModule,
     SecurityModule,
     SimpleNotificationsModule.forRoot(),
