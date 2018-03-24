@@ -25,9 +25,9 @@ export class FacebookAuthService extends AuthenticationService {
     this.baseUrl = environment.unnamedMicroserviceUrl + environment.authPath;
   }
 
-  private loginWithFacebook(facebookToken: string): Observable<Object> {
+  private loginWithFacebook(facebookToken: string): Observable<string> {
     const endpoint = this.baseUrl + environment.loginPath + environment.facebookPath;
-    return this.httpClient.post(endpoint, facebookToken);
+    return this.httpClient.post<string>(endpoint, facebookToken, {responseType: 'text'} as any as {});
   }
 
   public facebookLogin(): Promise<boolean> {
@@ -35,9 +35,9 @@ export class FacebookAuthService extends AuthenticationService {
     return this.socialAuthService.signIn(socialPlatformProvider)
       .then((socialUser: SocialUser) => {
         return this.loginWithFacebook(socialUser.token).toPromise().then(response => {
-            this.setTokenDataInStorage(response['token']);
-            return true;
-          });
+          this.setTokenDataInStorage(response);
+          return true;
+        });
       })
       .catch(error => {
         console.error(error);
