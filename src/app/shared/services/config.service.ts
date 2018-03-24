@@ -1,8 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
-import {environment} from '../../../environments/environment';
 import {of} from 'rxjs/observable/of';
+import {tap} from 'rxjs/operators';
+import {environment} from '../../../environments/environment';
 
 @Injectable()
 export class ConfigService {
@@ -19,6 +20,8 @@ export class ConfigService {
       return of(this.placeTypes);
     }
     const endpoint = this.baseUrl + environment.placeTypesPath;
-    return this.httpClient.get<string[]>(endpoint);
+    return this.httpClient.get<string[]>(endpoint).pipe(
+      tap(placeTypes => this.placeTypes = placeTypes)
+    );
   }
 }
