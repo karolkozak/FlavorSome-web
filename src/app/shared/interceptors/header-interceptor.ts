@@ -1,7 +1,7 @@
-import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
+import {HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest} from '@angular/common/http';
+import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {AuthenticationService} from '../../security/services/authentication.service';
-import {Injectable} from '@angular/core';
 
 @Injectable()
 export class HeaderInterceptor implements HttpInterceptor {
@@ -10,9 +10,17 @@ export class HeaderInterceptor implements HttpInterceptor {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const headers = req.headers;
-    headers.append('Content-Type', 'application/json');
-    headers.append('Authorization', `Bearer ${this.authenticationService.getToken()}`);
+    const headerSettings: {[name: string]: string | string[]; } = {};
+    for (const key of req.headers.keys()) {
+      headerSettings[key] = req.headers.getAll(key);
+    }
+    const token = this.authenticationService.getToken();
+    if (token) {
+      headerSettings['Authorization'] = `Bearer ${token}`;
+    }
+    headerSettings['Content-Type'] = 'application/json';
+
+    const headers = new HttpHeaders(headerSettings);
     const clonedRequest = req.clone({headers});
     return next.handle(clonedRequest);
   }
