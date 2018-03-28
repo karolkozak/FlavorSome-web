@@ -1,0 +1,14 @@
+<form [formGroup]="registrationUserForm" (ngSubmit)="registerUser()">
+  <mat-form-field>
+    <input matInput formControlName="email" placeholder="{{'email' | translate}}">
+  </mat-form-field>
+  <div formGroupName="passwordGroup">
+    <mat-form-field>
+      <input matInput type="password" formControlName="password" placeholder="{{'password' | translate}}" >
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="password" formControlName="repeatedPassword" placeholder="{{'repeat password' | translate}}" >
+    </mat-form-field>
+  </div>
+  <button mat-raised-button color="accent" type="submit">{{'Create account' | translate}}</button>
+</form>
