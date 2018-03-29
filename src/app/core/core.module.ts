@@ -1,10 +1,28 @@
 import {ModuleWithProviders, NgModule, Optional, SkipSelf} from '@angular/core';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {ConfigService} from './services/config.service';
 import {CustomTranslateService} from './services/custom-translate.service';
 import {UserService} from './services/user.service';
 import {httpInterceptorProviders} from './interceptors/http-interceptors';
 
-@NgModule({})
+export function customTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
+
+@NgModule({
+  imports: [
+    HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (customTranslateLoader),
+        deps: [HttpClient]
+      }
+    }),
+  ]
+})
 export class CoreModule {
   static forRoot(): ModuleWithProviders {
     return {
@@ -18,8 +36,8 @@ export class CoreModule {
     };
   }
 
-  constructor (@Optional() @SkipSelf() parentModule: CoreModule) {
-    if (parentModule) {
+  constructor (@Optional() @SkipSelf() coreModule: CoreModule) {
+    if (coreModule) {
       throw new Error('CoreModule is already loaded. Import it in the AppModule only');
     }
   }
