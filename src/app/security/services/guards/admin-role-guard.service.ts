@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
-import {UserService} from '../../../core/services/user.service';
 import {ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
-import {UserRole} from '../../../shared/models/user';
+import {UserService} from '@app/core/services/user.service';
+import {UserRole} from '@app/shared/models/user';
 
 @Injectable()
 export class AdminRoleGuardService implements CanActivate {

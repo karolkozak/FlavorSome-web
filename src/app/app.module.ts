@@ -5,9 +5,10 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SimpleNotificationsModule} from 'angular2-notifications';
 import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
-import {CoreModule} from './core/core.module';
-import {NavbarsModule} from './navbars/navbars.module';
-import {SecurityModule} from './security/security.module';
+import {CoreModule} from '@app/core/core.module';
+import {NavbarsModule} from '@app/navbars/navbars.module';
+import {SecurityModule} from '@app/security/security.module';
+
 
 
 @NgModule({

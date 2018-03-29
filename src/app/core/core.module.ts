@@ -2,10 +2,10 @@ import {ModuleWithProviders, NgModule, Optional, SkipSelf} from '@angular/core';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {httpInterceptorProviders} from './interceptors/http-interceptors';
 import {ConfigService} from './services/config.service';
 import {CustomTranslateService} from './services/custom-translate.service';
 import {UserService} from './services/user.service';
-import {httpInterceptorProviders} from './interceptors/http-interceptors';
 
 export function customTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');

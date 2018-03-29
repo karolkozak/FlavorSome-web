@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {FacebookAuthService} from '../../../security/services/facebook-auth.service';
+import {FacebookAuthService} from '@app/security/services/facebook-auth.service';
 
 @Component({
   selector: 'un-header',
