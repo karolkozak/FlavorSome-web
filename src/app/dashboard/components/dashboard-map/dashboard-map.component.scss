@@ -1,3 +1,7 @@
-agm-map {
-  height: 500px;
+:host {
+  height: 700px;
+
+  agm-map {
+    height: 700px;
+  }
 }
