@@ -17,10 +17,14 @@ export class RegistrationComponent implements OnInit {
 
   ngOnInit() {
     this.registrationUserForm = this.formBuilder.group({
-      email: ['', Validators.compose([
+      firstname: new FormControl('', Validators.compose([
+        Validators.required
+      ])),
+      lastname: new FormControl(''),
+      email: new FormControl('', Validators.compose([
         Validators.required,
         Validators.email
-      ])],
+      ])),
       passwordGroup: new FormGroup({
         password: new FormControl('', Validators.compose([
           Validators.required,
