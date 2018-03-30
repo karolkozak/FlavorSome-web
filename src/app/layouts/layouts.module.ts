@@ -16,7 +16,7 @@ import {RegistrationPageComponent} from '@app/layouts/components/registration-pa
     SharedModule,
   ],
   declarations: [HomePageComponent, LoginPageComponent, NotFoundComponent, RegistrationPageComponent],
-  exports: [HomePageComponent, LoginPageComponent, NotFoundComponent]
+  exports: [HomePageComponent, LoginPageComponent, NotFoundComponent, RegistrationPageComponent]
 })
 export class LayoutsModule {
 }

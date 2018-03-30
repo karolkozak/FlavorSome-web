@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {Router} from '@angular/router';
-import {AuthenticationService} from '../../../security/services/authentication.service';
+import {AuthenticationService} from '@app/security/services/authentication.service';
+
 
 @Component({
   selector: 'un-registration-page',

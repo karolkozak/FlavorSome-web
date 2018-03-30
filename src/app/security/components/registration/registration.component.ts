@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {CustomAuthService} from '../../services/custom-auth.service';
 import {RegistrationFormValidator} from '../../validators/RegistrationFormValidator';
+import {flatten} from '@app/shared/utils/object-utils';
 
 @Component({
   selector: 'un-registration',
@@ -9,7 +10,7 @@ import {RegistrationFormValidator} from '../../validators/RegistrationFormValida
   styleUrls: ['./registration.component.scss']
 })
 export class RegistrationComponent implements OnInit {
-  @Input() loginSuccess: () => void;
+  @Input() registrationSuccess: () => void;
   registrationUserForm: FormGroup;
 
   constructor(private customAuthService: CustomAuthService, private formBuilder: FormBuilder) {
@@ -39,7 +40,12 @@ export class RegistrationComponent implements OnInit {
 
   registerUser() {
     if (this.registrationUserForm.valid) {
-      this.customAuthService.login(this.registrationUserForm.value);
+      const userData = flatten(this.registrationUserForm.value);
+      this.customAuthService.registerUser(userData).then(loginSuccess => {
+        if (loginSuccess) {
+          this.registerUser();
+        }
+      });
     }
   }
 }
