@@ -1,9 +1,10 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
+import {FooterComponent} from './components/footer/footer.component';
 import {HeaderComponent} from './components/header/header.component';
 import {LanguageChooserComponent} from './components/language-chooser/language-chooser.component';
-import {FooterComponent} from './components/footer/footer.component';
-import {SharedModule} from '../shared/shared.module';
+import {SharedModule} from '@app/shared/shared.module';
+
 
 @NgModule({
   imports: [

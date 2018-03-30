@@ -3,8 +3,8 @@ import {inject, TestBed} from '@angular/core/testing';
 import {CustomTranslateService} from './custom-translate.service';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {HttpClient} from '@angular/common/http';
-import {customTranslateLoader} from '../../app.module';
 import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {customTranslateLoader} from '../core.module';
 
 describe('CustomTranslateService', () => {
   beforeEach(() => {
