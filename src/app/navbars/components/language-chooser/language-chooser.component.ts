@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {CustomTranslateService} from '../../../shared/services/custom-translate.service';
+import {CustomTranslateService} from '@app/core/services/custom-translate.service';
 
 @Component({
   selector: 'un-language-chooser',

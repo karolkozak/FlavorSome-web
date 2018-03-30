@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {of} from 'rxjs/observable/of';
 import {tap} from 'rxjs/operators';
-import {environment} from '../../../environments/environment';
+import {environment} from '@env/environment';
 
 @Injectable()
 export class ConfigService {
