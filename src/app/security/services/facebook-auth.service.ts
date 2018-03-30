@@ -1,13 +1,13 @@
+import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
+import {Router} from '@angular/router';
+import {NotificationsService} from 'angular2-notifications';
+import {Observable} from 'rxjs/Observable';
 import {SocialUser} from '../libs/angular5-social-login/entities';
 import {AuthService as SocialAuthService, FacebookLoginProvider} from '../libs/angular5-social-login';
-import {Router} from '@angular/router';
+import {environment} from '@env/environment';
+import {CustomTranslateService} from '@app/core/services/custom-translate.service';
 import {AuthenticationService} from './authentication.service';
-import {NotificationsService} from 'angular2-notifications';
-import {HttpClient} from '@angular/common/http';
-import {environment} from '../../../environments/environment';
-import {Observable} from 'rxjs/Observable';
-import {CustomTranslateService} from '../../shared/services/custom-translate.service';
 
 @Injectable()
 export class FacebookAuthService extends AuthenticationService {

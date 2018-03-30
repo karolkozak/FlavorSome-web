@@ -5,7 +5,7 @@ import {NotificationsService} from 'angular2-notifications';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/catch';
 import {Router} from '@angular/router';
-import {AuthenticationService} from '../../security/services/authentication.service';
+import {AuthenticationService} from '@app/security/services/authentication.service';
 import {CustomTranslateService} from '../services/custom-translate.service';
 
 @Injectable()

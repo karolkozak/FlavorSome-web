@@ -1,5 +1,5 @@
-import {environment} from '../../../environments/environment';
 import {AuthServiceConfig, FacebookLoginProvider} from '../libs/angular5-social-login/index';
+import {environment} from '@env/environment';
 
 export function getAuthServiceConfig() {
   return new AuthServiceConfig([
