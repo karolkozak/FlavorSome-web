@@ -9,6 +9,7 @@
   "Login": "Zaloguj",
   "email": "e-mail",
   "password": "hasło",
+  "User not found": "Nie znaleziono użytkownika",
   "Unable to log in, try again later": "Błąd podczas logowania, spróbuj później",
   "Facebook log in": "Logowanie przez facebooka",
   "Unable to log in via Facebook, try again later": "Błąd podczas logowania, spróbuj później",
