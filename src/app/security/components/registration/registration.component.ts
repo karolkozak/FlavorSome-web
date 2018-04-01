@@ -12,16 +12,23 @@ import {flatten} from '@app/shared/utils/object-utils';
 export class RegistrationComponent implements OnInit {
   @Input() registrationSuccess: () => void;
   registrationUserForm: FormGroup;
+  registrationError = '';
 
   constructor(private customAuthService: CustomAuthService, private formBuilder: FormBuilder) {
   }
 
   ngOnInit() {
+    this.initForm();
+  }
+
+  private initForm() {
     this.registrationUserForm = this.formBuilder.group({
       firstname: new FormControl('', Validators.compose([
         Validators.required
       ])),
-      lastname: new FormControl(''),
+      lastname: new FormControl('', Validators.compose([
+        Validators.required
+      ])),
       email: new FormControl('', Validators.compose([
         Validators.required,
         Validators.email
@@ -38,14 +45,32 @@ export class RegistrationComponent implements OnInit {
     });
   }
 
+  get passwordIncorrect(): boolean {
+    const passwordInputControl = this.registrationUserForm.get('passwordGroup').get('password');
+    return passwordInputControl.invalid && passwordInputControl.dirty;
+  }
+
+  get passwordsNotEquals(): boolean {
+    const passwords = this.registrationUserForm.get('passwordGroup');
+    return passwords.invalid && passwords.dirty;
+  }
+
+  get formIncorrect(): boolean {
+    return this.registrationUserForm.invalid && this.registrationUserForm.touched;
+  }
+
   registerUser() {
     if (this.registrationUserForm.valid) {
       const userData = flatten(this.registrationUserForm.value);
-      this.customAuthService.registerUser(userData).then(loginSuccess => {
-        if (loginSuccess) {
-          this.registerUser();
+      this.customAuthService.registerUser(userData).subscribe(
+        loginSuccess => {
+          this.registrationSuccess();
+        },
+        loginError => {
+          console.error(loginError);
+          this.registrationError = loginError.error.message;
         }
-      });
+      );
     }
   }
 }

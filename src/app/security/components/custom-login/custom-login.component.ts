@@ -47,7 +47,8 @@ export class CustomLoginComponent implements OnInit {
             return;
           }
           this.userNotFoundError = true;
-        });
+        }
+      );
     }
   }
 }
