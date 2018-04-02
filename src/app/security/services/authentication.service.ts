@@ -1,4 +1,6 @@
 import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs/Observable';
+import {Subject} from 'rxjs/Subject';
 
 @Injectable()
 export class AuthenticationService {
@@ -6,8 +8,15 @@ export class AuthenticationService {
   private token: string;
   private redirectUrl: string;
 
+  private loginAnnounceSource: Subject<string> = new Subject<string>();
+  public readonly loginAnnounce: Observable<string> = this.loginAnnounceSource.asObservable();
+
   public isLoggedIn(): boolean {
     return !!this.getToken();
+  }
+
+  announceLogin() {
+    this.loginAnnounceSource.next();
   }
 
   public setTokenDataInStorage(token: string) {
