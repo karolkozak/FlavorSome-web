@@ -36,6 +36,7 @@ export class FacebookAuthService extends AuthenticationService {
       .then((socialUser: SocialUser) => {
         return this.loginWithFacebook(socialUser.token).toPromise().then(response => {
           this.setTokenDataInStorage(response);
+          this.setFBAuthenticated(true);
           return true;
         });
       })
@@ -53,6 +54,7 @@ export class FacebookAuthService extends AuthenticationService {
     this.socialAuthService.signOut()
       .then(() => {
         this.logout();
+        this.setFBAuthenticated(false);
         return true;
       })
       .catch(error => {
