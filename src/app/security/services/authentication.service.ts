@@ -1,13 +1,26 @@
 import {Injectable} from '@angular/core';
+import {Router} from '@angular/router';
 
 @Injectable()
 export class AuthenticationService {
 
   private token: string;
   private redirectUrl: string;
+  private fbAuthenticated = false;
+
+  constructor(private router: Router) {
+  }
 
   public isLoggedIn(): boolean {
     return !!this.getToken();
+  }
+
+  public setFBAuthenticated(flag: boolean) {
+    this.fbAuthenticated = flag;
+  }
+
+  public isFbAuthenticated(): boolean {
+    return this.fbAuthenticated;
   }
 
   public setTokenDataInStorage(token: string) {
@@ -24,6 +37,11 @@ export class AuthenticationService {
     } catch (e) {
       return this.token;
     }
+  }
+
+  logout() {
+    this.removeTokenDataFromStorage();
+    this.router.navigate(['']);
   }
 
   public removeTokenDataFromStorage() {

@@ -5,12 +5,13 @@ import {SharedModule} from '@app/shared/shared.module';
 import {AuthServiceConfig, SocialLoginModule} from './libs/angular5-social-login';
 import {getAuthServiceConfig} from './config/social-login-config';
 import {FacebookLoginComponent} from './components/facebook-login/facebook-login.component';
-import {LoginComponent} from './components/login/login.component';
 import {AuthenticationService} from './services/authentication.service';
 import {FacebookAuthService} from './services/facebook-auth.service';
 import {AuthGuardService} from './services/guards/auth-guard.service';
 import {LoginPageGuardService} from './services/guards/login-page-guard.service';
 import {AdminRoleGuardService} from './services/guards/admin-role-guard.service';
+import {CustomLoginComponent} from './components/custom-login/custom-login.component';
+import {CustomAuthService} from './services/custom-auth.service';
 
 @NgModule({
   imports: [
@@ -24,10 +25,18 @@ import {AdminRoleGuardService} from './services/guards/admin-role-guard.service'
     AdminRoleGuardService,
     AuthenticationService,
     AuthGuardService,
+    CustomAuthService,
     FacebookAuthService,
     LoginPageGuardService,
   ],
-  declarations: [LoginComponent, FacebookLoginComponent]
+  declarations: [
+    CustomLoginComponent,
+    FacebookLoginComponent,
+  ],
+  exports: [
+    CustomLoginComponent,
+    FacebookLoginComponent,
+  ]
 })
 export class SecurityModule {
 }
