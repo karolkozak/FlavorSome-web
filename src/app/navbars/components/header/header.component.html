@@ -1,7 +1,8 @@
 <mat-toolbar color="primary">
-  <span>Unnamed Logo Placeholder</span>
+  <span class="un-app-name" [routerLink]="['/']">Unnamed Logo Placeholder</span>
   <span class="un-header-fill"></span>
   <un-language-chooser></un-language-chooser>
   <button mat-button color="link" *ngIf="currentUser">{{userDisplayName}}</button>
+  <button mat-button color="link" *ngIf="!isLoggedIn" [routerLink]="['/login']">{{"Login" | translate}}</button>
   <button mat-button color="link" *ngIf="isLoggedIn" (click)="logout()">{{"Logout" | translate}}</button>
 </mat-toolbar>

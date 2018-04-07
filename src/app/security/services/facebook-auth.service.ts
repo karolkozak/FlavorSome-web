@@ -16,12 +16,12 @@ export class FacebookAuthService extends AuthenticationService {
   private titleMessage: string;
   private errorMessage: string;
 
-  constructor(private httpClient: HttpClient,
-              private router: Router,
+  constructor(router: Router,
+              private httpClient: HttpClient,
               private socialAuthService: SocialAuthService,
               private notificationsService: NotificationsService,
               private customTranslateService: CustomTranslateService) {
-    super();
+    super(router);
     this.baseUrl = environment.unnamedMicroserviceUrl + environment.authPath;
   }
 
@@ -36,6 +36,7 @@ export class FacebookAuthService extends AuthenticationService {
       .then((socialUser: SocialUser) => {
         return this.loginWithFacebook(socialUser.token).toPromise().then(response => {
           this.setTokenDataInStorage(response);
+          this.setFBAuthenticated(true);
           return true;
         });
       })
@@ -52,8 +53,8 @@ export class FacebookAuthService extends AuthenticationService {
   public facebookLogout() {
     this.socialAuthService.signOut()
       .then(() => {
-        this.removeTokenDataFromStorage();
-        this.router.navigate(['']);
+        this.logout();
+        this.setFBAuthenticated(false);
         return true;
       })
       .catch(error => {
