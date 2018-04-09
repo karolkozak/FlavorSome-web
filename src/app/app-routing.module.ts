@@ -5,10 +5,12 @@ import {LoginPageComponent} from '@app/layouts/components/login-page/login-page.
 import {LoginPageGuardService} from '@app/security/services/guards/login-page-guard.service';
 import {NotFoundComponent} from '@app/layouts/components/error-page/not-found/not-found.component';
 import {LayoutsModule} from '@app/layouts/layouts.module';
+import {PlaceDetailsPageComponent} from '@app/layouts/components/place-details-page/place-details-page.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomePageComponent, pathMatch: 'full'},
   {path: 'login', component: LoginPageComponent, canActivate: [LoginPageGuardService]},
+  {path: 'place-details/:id', component: PlaceDetailsPageComponent, canActivate: []},
   {path: '**', component: NotFoundComponent},
 ];
 
