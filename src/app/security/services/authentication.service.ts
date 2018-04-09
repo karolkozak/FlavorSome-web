@@ -6,13 +6,17 @@ export class AuthenticationService {
 
   private token: string;
   private redirectUrl: string;
-  private fbAuthenticated: boolean;
+  private fbAuthenticated = false;
 
   constructor(private router: Router) {
   }
 
   public isLoggedIn(): boolean {
     return !!this.getToken();
+  }
+
+  public setFBAuthenticated(flag: boolean) {
+    this.fbAuthenticated = flag;
   }
 
   public isFbAuthenticated(): boolean {

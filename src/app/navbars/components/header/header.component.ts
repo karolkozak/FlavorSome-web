@@ -13,11 +13,9 @@ export class HeaderComponent {
   }
 
   public logout() {
-    if (this.authenticationService.isFbAuthenticated()) {
-      this.facebookAuthService.facebookLogout();
-    } else {
-      this.authenticationService.logout();
-    }
+    this.facebookAuthService.isFbAuthenticated()
+      ? this.facebookAuthService.facebookLogout()
+      : this.authenticationService.logout();
   }
 
   get isLoggedIn(): boolean {
