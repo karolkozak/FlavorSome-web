@@ -5,6 +5,6 @@
   <mat-form-field>
     <input matInput type="password" formControlName="password" placeholder="{{'password' | translate}}" >
   </mat-form-field>
-  {{userNotFoundError ? 'User not found' : '' | translate}}
+  {{errorMessage?.message | translate}}
   <button mat-raised-button color="accent" type="submit">{{'Login' | translate}}</button>
 </form>

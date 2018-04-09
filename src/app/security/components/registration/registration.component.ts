@@ -23,10 +23,10 @@ export class RegistrationComponent implements OnInit {
 
   private initForm() {
     this.registrationUserForm = this.formBuilder.group({
-      firstname: new FormControl('', Validators.compose([
+      firstName: new FormControl('', Validators.compose([
         Validators.required
       ])),
-      lastname: new FormControl('', Validators.compose([
+      lastName: new FormControl('', Validators.compose([
         Validators.required
       ])),
       email: new FormControl('', Validators.compose([
@@ -68,7 +68,7 @@ export class RegistrationComponent implements OnInit {
         },
         loginError => {
           console.error(loginError);
-          this.registrationError = loginError.error.message;
+          this.registrationError = loginError.error;
         }
       );
     }

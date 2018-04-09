@@ -1,9 +1,9 @@
 <form [formGroup]="registrationUserForm" (ngSubmit)="registerUser()">
   <mat-form-field>
-    <input matInput formControlName="firstname" placeholder="{{'first name' | translate}}">
+    <input matInput formControlName="firstName" placeholder="{{'first name' | translate}}">
   </mat-form-field>
   <mat-form-field>
-    <input matInput formControlName="lastname" placeholder="{{'last name' | translate}}">
+    <input matInput formControlName="lastName" placeholder="{{'last name' | translate}}">
   </mat-form-field>
   <mat-form-field>
     <input matInput formControlName="email" placeholder="{{'email' | translate}}">
@@ -29,5 +29,5 @@
     {{'Some of fields have errors' | translate}}
   </span>
   <button mat-raised-button color="accent" type="submit">{{'Create account' | translate}}</button>
+  {{registrationError | translate}}
 </form>
-{{registrationError | translate}}
