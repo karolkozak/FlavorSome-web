@@ -4,7 +4,6 @@ export const environment = {
   unnamedMicroserviceUrl: 'http://127.0.0.3:8080/api/',
   authPath: 'auth/',
   facebookPath: 'facebook/',
-  unnamedPath: 'unnamed/',
   loginPath: 'login/',
   logoutPath: 'logout/',
   registration: 'register/',

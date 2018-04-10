@@ -18,7 +18,7 @@ export class CustomAuthService extends AuthenticationService {
   }
 
   login(userData: any): Observable<string> {
-    const endpoint = this.baseUrl + environment.loginPath + environment.unnamedPath;
+    const endpoint = this.baseUrl + environment.loginPath;
     return this.makeRequest(userData, endpoint);
   }
 

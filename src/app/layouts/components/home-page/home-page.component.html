@@ -1,4 +1,4 @@
 <p>
   {{"Here it will be all layouts, views. In this place router works. navs are static" | translate}}
 </p>
-<button mat-raised-button color="primary" [routerLink]="['/login']">{{"Login Page" | translate}}</button>
+<button *ngIf="!isLoggedIn()" mat-raised-button color="primary" [routerLink]="['/login']">{{"Login Page" | translate}}</button>
