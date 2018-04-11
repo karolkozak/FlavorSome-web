@@ -46,7 +46,7 @@ export class CustomLoginComponent implements OnInit {
               .subscribe(result => errorMessage = result);
             this.notificationsService.error(`${titleMessage} - ${loginError.status}`, errorMessage);
           }
-          this.errorMessage = {...JSON.parse(loginError.error)};
+          this.errorMessage = JSON.parse(loginError.error);
         }
       );
     }

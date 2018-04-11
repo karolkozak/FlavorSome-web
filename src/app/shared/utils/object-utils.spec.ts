@@ -1,9 +1,9 @@
 import {inArray} from './array-utils';
-import {flatten} from '@app/shared/utils/object-utils';
+import {squash} from '@app/shared/utils/object-utils';
 
 describe('object-utils', () => {
   describe(inArray.name, () => {
-    it('flatten correct', () => {
+    it('squash correct', () => {
       const object = {
         firstname: 'john',
         lastname: 'doe',
@@ -18,7 +18,7 @@ describe('object-utils', () => {
         street: 'downhill',
         city: 'LA'
       };
-      expect(flatten(object)).toEqual(expectedObject);
+      expect(squash(object)).toEqual(expectedObject);
     });
   });
 });

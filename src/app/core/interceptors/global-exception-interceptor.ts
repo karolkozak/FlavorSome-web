@@ -29,9 +29,9 @@ export class GlobalExceptionInterceptor implements HttpInterceptor {
           this.router.navigate(['/login']);
         }
         this.customTranslateService.getTranslation('Exception').subscribe(result => this.titleMessage = result);
-        const errorMessage: ApiResponseBody = {...JSON.parse(error.error)};
+        const errorMessage: ApiResponseBody = JSON.parse(error.error);
         this.customTranslateService
-          .getTranslation(errorMessage.message ? errorMessage.message : 'Unexpected exception')
+          .getTranslation(errorMessage.message || 'Unexpected exception')
           .subscribe(result => this.errorMessage = result);
         this.notificationsService.error(`${this.titleMessage} - ${error.status}`, this.errorMessage, {timeOut: 100000});
         return Observable.throw(error);
