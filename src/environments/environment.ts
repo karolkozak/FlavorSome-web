@@ -14,6 +14,9 @@ export const environment = {
   configPath: 'config/',
   placeTypesPath: 'places/types/',
 
+  placesPath: 'places/',
+  menuPath: 'menu/',
+
   usersPath: 'users/',
   current: 'current/',
 

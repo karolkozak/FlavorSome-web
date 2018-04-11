@@ -1,2 +1,15 @@
-<span>{{placeDetails?.name}}</span>
-<un-place-details [placeDetails]="placeDetails"></un-place-details>
+<mat-grid-list cols="2" rowHeight="5:1">
+  <mat-grid-tile [colspan]="2" [rowspan]="1">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer bibendum ex non varius facilisis.
+    Donec scelerisque nisi non magna egestas, finibus sollicitudin tortor euismod. Curabitur quis nibh quis erat volutpat tempor.
+    Ut ac nibh laoreet, elementum lorem in, dictum ex. In turpis massa, tristique eu scelerisque at, bibendum sit amet metus.
+    In hac habitasse platea dictumst. Mauris gravida, odio at efficitur maximus, tortor ipsum malesuada metus, sed venenatis eros elit eget metus.
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <span>{{placeDetails?.name}}</span>
+    <un-place-details [placeDetails]="placeDetails"></un-place-details>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <un-place-menu [menu]="placeMenu"></un-place-menu>
+  </mat-grid-tile>
+</mat-grid-list>
