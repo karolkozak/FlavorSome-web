@@ -6,6 +6,7 @@ import {LoginPageComponent} from './components/login-page/login-page.component';
 import {SecurityModule} from '@app/security/security.module';
 import {HomePageComponent} from './components/home-page/home-page.component';
 import {SharedModule} from '@app/shared/shared.module';
+import {RegistrationPageComponent} from '@app/layouts/components/registration-page/registration-page.component';
 
 @NgModule({
   imports: [
@@ -14,8 +15,8 @@ import {SharedModule} from '@app/shared/shared.module';
     SecurityModule,
     SharedModule,
   ],
-  declarations: [HomePageComponent, LoginPageComponent, NotFoundComponent],
-  exports: [HomePageComponent, LoginPageComponent, NotFoundComponent]
+  declarations: [HomePageComponent, LoginPageComponent, NotFoundComponent, RegistrationPageComponent],
+  exports: [HomePageComponent, LoginPageComponent, NotFoundComponent, RegistrationPageComponent]
 })
 export class LayoutsModule {
 }

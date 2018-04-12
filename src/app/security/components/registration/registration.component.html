@@ -1,0 +1,33 @@
+<form [formGroup]="registrationUserForm" (ngSubmit)="registerUser()">
+  <mat-form-field>
+    <input matInput formControlName="firstName" placeholder="{{'first name' | translate}}">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput formControlName="lastName" placeholder="{{'last name' | translate}}">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput formControlName="email" placeholder="{{'email' | translate}}">
+  </mat-form-field>
+  <div formGroupName="passwordGroup">
+    <mat-form-field>
+      <input matInput type="password" formControlName="password" placeholder="{{'password' | translate}}"
+             matTooltip="{{'Minimum 8 signs, at least upper case, digit and one from !@#$%^&*)(+=._-' | translate}}"
+             [matTooltipPosition]="'right'">
+    </mat-form-field>
+    <span *ngIf="passwordIncorrect">
+      {{'Password is incorrect' | translate}}
+    </span>
+    <mat-form-field>
+      <input matInput type="password" formControlName="repeatedPassword"
+             placeholder="{{'repeat password' | translate}}">
+    </mat-form-field>
+    <span *ngIf="passwordsNotEquals">
+      {{'Passwords must match' | translate}}
+    </span>
+  </div>
+  <span *ngIf="formIncorrect">
+    {{'Some of fields have errors' | translate}}
+  </span>
+  <button mat-raised-button color="accent" type="submit">{{'Create account' | translate}}</button>
+  {{registrationError | translate}}
+</form>

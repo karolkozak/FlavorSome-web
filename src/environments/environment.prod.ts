@@ -6,6 +6,7 @@ export const environment = {
   facebookPath: 'facebook/',
   loginPath: 'login/',
   logoutPath: 'logout/',
+  registration: 'register/',
   configPath: 'config/',
   placeTypesPath: 'places/types/',
 

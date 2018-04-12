@@ -19,10 +19,17 @@ export class CustomAuthService extends AuthenticationService {
 
   login(userData: any): Observable<string> {
     const endpoint = this.baseUrl + environment.loginPath;
+    return this.makeRequest(userData, endpoint);
+  }
+
+  registerUser(userData: any): Observable<string> {
+    const endpoint = this.baseUrl + environment.registration;
+    return this.makeRequest(userData, endpoint);
+  }
+
+  private makeRequest(userData: any, endpoint: string): Observable<string> {
     return this.httpClient.post<string>(endpoint, userData, {responseType: 'text'} as any as {}).pipe(
-      tap(response => {
-        this.setTokenDataInStorage(response);
-      })
+      tap(response => this.setTokenDataInStorage(response))
     );
   }
 }

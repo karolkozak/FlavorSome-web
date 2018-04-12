@@ -7,6 +7,7 @@ import 'rxjs/add/operator/catch';
 import {Router} from '@angular/router';
 import {AuthenticationService} from '@app/security/services/authentication.service';
 import {CustomTranslateService} from '../services/custom-translate.service';
+import {ApiResponseBody} from '@app/security/models/api-response-body';
 
 @Injectable()
 export class GlobalExceptionInterceptor implements HttpInterceptor {
@@ -28,8 +29,9 @@ export class GlobalExceptionInterceptor implements HttpInterceptor {
           this.router.navigate(['/login']);
         }
         this.customTranslateService.getTranslation('Exception').subscribe(result => this.titleMessage = result);
+        const errorMessage: ApiResponseBody = JSON.parse(error.error);
         this.customTranslateService
-          .getTranslation(error.error.message ? error.error.message : 'Unexpected exception')
+          .getTranslation(errorMessage.message || 'Unexpected exception')
           .subscribe(result => this.errorMessage = result);
         this.notificationsService.error(`${this.titleMessage} - ${error.status}`, this.errorMessage, {timeOut: 100000});
         return Observable.throw(error);

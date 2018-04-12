@@ -3,6 +3,7 @@ import {CustomAuthService} from '../../services/custom-auth.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {CustomTranslateService} from '@app/core/services/custom-translate.service';
 import {NotificationsService} from 'angular2-notifications';
+import {ApiResponseBody} from '@app/security/models/api-response-body';
 
 @Component({
   selector: 'un-custom-login',
@@ -12,7 +13,7 @@ import {NotificationsService} from 'angular2-notifications';
 export class CustomLoginComponent implements OnInit {
   @Input() loginSuccess: () => void;
   loginUserForm: FormGroup;
-  userNotFoundError = false;
+  errorMessage: ApiResponseBody;
 
   constructor(private customAuthService: CustomAuthService,
               private formBuilder: FormBuilder,
@@ -44,10 +45,10 @@ export class CustomLoginComponent implements OnInit {
             this.customTranslateService.getTranslation('Unable to log in, try again later')
               .subscribe(result => errorMessage = result);
             this.notificationsService.error(`${titleMessage} - ${loginError.status}`, errorMessage);
-            return;
           }
-          this.userNotFoundError = true;
-        });
+          this.errorMessage = JSON.parse(loginError.error);
+        }
+      );
     }
   }
 }
