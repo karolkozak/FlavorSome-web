@@ -16,6 +16,7 @@ export class LoginPageComponent {
   loginSuccess() {
     return () => {
       this.userService.getCurrentUser().subscribe();
+      this.authenticationService.announceLogin();
       const redirectUrl = this.authenticationService.getRedirectUrl() || '';
       this.authenticationService.unsetRedirectUrl();
       this.router.navigate([redirectUrl]);
