@@ -25,6 +25,10 @@
       {{'Passwords must match' | translate}}
     </span>
   </div>
+  <div class="un-re-captcha">
+    <jhi-re-captcha formControlName="gRecaptchaResponse" [site_key]="googleReCaptchaKey"
+                    [language]="currentLanguage | flagCultureLang | lowercase"></jhi-re-captcha>
+  </div>
   <span *ngIf="formIncorrect">
     {{'Some of fields have errors' | translate}}
   </span>

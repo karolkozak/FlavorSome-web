@@ -19,4 +19,5 @@ export const environment = {
 
   facebookAppId: '209464289792135',
   facebookSecret: 'f47826dc3bcbbafa2052b1c5f91b157f',
+  googleReCaptchaKey: '6LfaQlAUAAAAAC2husiZGVe0gCLEGiNyt71svf4Y',
 };

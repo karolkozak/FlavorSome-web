@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {CustomAuthService} from '../../services/custom-auth.service';
 import {RegistrationFormValidator} from '../../validators/RegistrationFormValidator';
@@ -6,6 +6,8 @@ import {squash} from '@app/shared/utils/object-utils';
 import {NotificationsService} from 'angular2-notifications';
 import {CustomTranslateService} from '@app/core/services/custom-translate.service';
 import {ApiResponseBody} from '@app/security/models/api-response-body';
+import {environment} from '@env/environment';
+import {ReCaptchaComponent} from 'angular5-recaptcha';
 
 @Component({
   selector: 'un-registration',
@@ -14,8 +16,12 @@ import {ApiResponseBody} from '@app/security/models/api-response-body';
 })
 export class RegistrationComponent implements OnInit {
   @Input() registrationSuccess: () => void;
+  @ViewChild(ReCaptchaComponent) captcha: ReCaptchaComponent;
+
   registrationUserForm: FormGroup;
   registrationError: ApiResponseBody;
+  googleReCaptchaKey: string;
+  availableCultureLanguages: Array<string>;
 
   constructor(private customAuthService: CustomAuthService,
               private formBuilder: FormBuilder,
@@ -24,6 +30,8 @@ export class RegistrationComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.googleReCaptchaKey = environment.googleReCaptchaKey;
+    this.availableCultureLanguages = this.customTranslateService.getAvailableCultureLanguages();
     this.initForm();
   }
 
@@ -42,13 +50,21 @@ export class RegistrationComponent implements OnInit {
       passwordGroup: new FormGroup({
         password: new FormControl('', Validators.compose([
           Validators.required,
-          Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*!@#$%^&*\)\(+=._-)[a-zA-Z\d!@#$%^&*)(+=._-]{8,}$/)
+          // Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*!@#$%^&*\)\(+=._-)[a-zA-Z\d!@#$%^&*)(+=._-]{8,50}$/)
+          Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,50}$/)
         ])),
         repeatedPassword: new FormControl('', Validators.compose([
           Validators.required
         ]))
-      }, RegistrationFormValidator.equalPasswordsRequired)
+      }, RegistrationFormValidator.equalPasswordsRequired),
+      gRecaptchaResponse: new FormControl(null, Validators.compose([
+        Validators.required
+      ]))
     });
+  }
+
+  get currentLanguage(): string {
+    return this.availableCultureLanguages.find(v => v.startsWith(this.customTranslateService.getCurrentLanguage()));
   }
 
   get passwordIncorrect(): boolean {
@@ -66,7 +82,7 @@ export class RegistrationComponent implements OnInit {
   }
 
   registerUser() {
-    if (this.registrationUserForm.valid) {
+    if (this.registrationUserForm.valid && this.captcha.getResponse()) {
       const userData = squash(this.registrationUserForm.value);
       this.customAuthService.registerUser(userData).subscribe(
         loginSuccess => {
