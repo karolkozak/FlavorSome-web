@@ -9,6 +9,7 @@ import {SharedModule} from '@app/shared/shared.module';
 import { PlaceDetailsPageComponent } from './components/place-details-page/place-details-page.component';
 import {PlacesModule} from '@app/places/places.module';
 import {CoreModule} from '@app/core/core.module';
+import { PlacesListPageComponent } from './components/places-list-page/places-list-page.component';
 
 @NgModule({
   imports: [
@@ -19,8 +20,20 @@ import {CoreModule} from '@app/core/core.module';
     SecurityModule,
     SharedModule,
   ],
-  declarations: [HomePageComponent, LoginPageComponent, NotFoundComponent, PlaceDetailsPageComponent],
-  exports: [HomePageComponent, LoginPageComponent, NotFoundComponent, PlaceDetailsPageComponent]
+  declarations: [
+    HomePageComponent,
+    LoginPageComponent,
+    NotFoundComponent,
+    PlaceDetailsPageComponent,
+    PlacesListPageComponent,
+  ],
+  exports: [
+    HomePageComponent,
+    LoginPageComponent,
+    NotFoundComponent,
+    PlaceDetailsPageComponent,
+    PlacesListPageComponent,
+  ]
 })
 export class LayoutsModule {
 }

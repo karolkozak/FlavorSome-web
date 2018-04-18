@@ -4,7 +4,7 @@ import {FlagCultureLangPipe} from '@app/shared/pipes/flag-culture-lang.pipe';
 import {FlagLangPipe} from '@app/shared/pipes/flag-lang.pipe';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {
-  MatButtonModule, MatCardModule, MatFormFieldModule, MatGridListModule, MatInputModule, MatMenuModule,
+  MatButtonModule, MatCardModule, MatFormFieldModule, MatGridListModule, MatInputModule, MatListModule, MatMenuModule,
   MatToolbarModule
 } from '@angular/material';
 import {TranslateModule} from '@ngx-translate/core';
@@ -22,6 +22,7 @@ import {TranslateModule} from '@ngx-translate/core';
     MatButtonModule,
     MatInputModule,
     MatGridListModule,
+    MatListModule,
     MatMenuModule,
     MatToolbarModule,
     ReactiveFormsModule,
