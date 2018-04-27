@@ -3,7 +3,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {CustomAuthService} from '../../services/custom-auth.service';
 import {RegistrationFormValidator} from '../../validators/RegistrationFormValidator';
 import {squash} from '@app/shared/utils/object-utils';
-import {NotificationsService} from 'angular2-notifications';
+import {ToastrService} from 'ngx-toastr';
 import {CustomTranslateService} from '@app/core/services/custom-translate.service';
 import {ApiResponseBody} from '@app/security/models/api-response-body';
 
@@ -19,7 +19,7 @@ export class RegistrationComponent implements OnInit {
 
   constructor(private customAuthService: CustomAuthService,
               private formBuilder: FormBuilder,
-              private notificationsService: NotificationsService,
+              private toastr: ToastrService,
               private customTranslateService: CustomTranslateService) {
   }
 
@@ -79,7 +79,7 @@ export class RegistrationComponent implements OnInit {
           if (loginError.status !== 404) {
             this.customTranslateService.getTranslation('Unable to register, try again later')
               .subscribe(result => errorMessage = result);
-            this.notificationsService.error(`${titleMessage} - ${loginError.status}`, errorMessage);
+            this.toastr.error(`${titleMessage} - ${loginError.status}`, errorMessage);
           }
           this.registrationError = JSON.parse(loginError.error);
         }

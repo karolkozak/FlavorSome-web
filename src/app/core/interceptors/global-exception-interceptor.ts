@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
-import {NotificationsService} from 'angular2-notifications';
+import {ToastrService} from 'ngx-toastr';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/catch';
 import {Router} from '@angular/router';
@@ -17,7 +17,7 @@ export class GlobalExceptionInterceptor implements HttpInterceptor {
 
   constructor(private router: Router,
               private authenticationService: AuthenticationService,
-              private notificationsService: NotificationsService,
+              private toastr: ToastrService,
               private customTranslateService: CustomTranslateService) {
   }
 
@@ -33,7 +33,7 @@ export class GlobalExceptionInterceptor implements HttpInterceptor {
         this.customTranslateService
           .getTranslation(errorMessage.message || 'Unexpected exception')
           .subscribe(result => this.errorMessage = result);
-        this.notificationsService.error(`${this.titleMessage} - ${error.status}`, this.errorMessage, {timeOut: 100000});
+        this.toastr.error(`${this.titleMessage} - ${error.status}`, this.errorMessage);
         return Observable.throw(error);
       }) as any;
   }

@@ -4,10 +4,9 @@ import { AppComponent } from './app.component';
 import {NavbarsModule} from './navbars/navbars.module';
 import {SharedModule} from './shared/shared.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {SimpleNotificationsModule} from 'angular2-notifications';
 import {SecurityModule} from './security/security.module';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
-import {customTranslateLoader} from './app.module';
+// import {customTranslateLoader} from './app.module';
 import {HttpClient} from '@angular/common/http';
 
 describe('AppComponent', () => {
@@ -19,7 +18,6 @@ describe('AppComponent', () => {
         NavbarsModule,
         SecurityModule,
         BrowserAnimationsModule,
-        SimpleNotificationsModule.forRoot(),
         TranslateModule.forRoot({
           loader: {
             provide: TranslateLoader,

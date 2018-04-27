@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {CustomAuthService} from '../../services/custom-auth.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {CustomTranslateService} from '@app/core/services/custom-translate.service';
-import {NotificationsService} from 'angular2-notifications';
+import {ToastrService} from 'ngx-toastr';
 import {ApiResponseBody} from '@app/security/models/api-response-body';
 
 @Component({
@@ -17,7 +17,7 @@ export class CustomLoginComponent implements OnInit {
 
   constructor(private customAuthService: CustomAuthService,
               private formBuilder: FormBuilder,
-              private notificationsService: NotificationsService,
+              private toastr: ToastrService,
               private customTranslateService: CustomTranslateService) {
   }
 
@@ -44,7 +44,7 @@ export class CustomLoginComponent implements OnInit {
           if (loginError.status !== 404) {
             this.customTranslateService.getTranslation('Unable to log in, try again later')
               .subscribe(result => errorMessage = result);
-            this.notificationsService.error(`${titleMessage} - ${loginError.status}`, errorMessage);
+            this.toastr.error(`${titleMessage} - ${loginError.status}`, errorMessage);
           }
           this.errorMessage = JSON.parse(loginError.error);
         }
