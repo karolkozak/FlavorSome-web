@@ -8,7 +8,7 @@ import {SharedModule} from '@app/shared/shared.module';
 import {AuthenticationService} from '@app/security/services/authentication.service';
 import {RouterTestingModule} from '@angular/router/testing';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {SimpleNotificationsModule} from 'angular2-notifications';
+import {ToastrModule} from 'ngx-toastr';
 
 describe('ConfigService', () => {
   let httpClient: HttpClient;
@@ -23,7 +23,7 @@ describe('ConfigService', () => {
         SharedModule,
         RouterTestingModule,
         BrowserAnimationsModule,
-        SimpleNotificationsModule.forRoot()
+        ToastrModule.forRoot(),
       ],
       providers: [ConfigService, AuthenticationService]
     });
