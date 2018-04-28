@@ -14,7 +14,7 @@
   "repeat password": "powtórz hasło",
   "Password is incorrect": "Niepoprawne hasło",
   "Passwords must match": "Hasła muszą się zgadzać",
-  "Minimum 8 signs, at least upper case, digit and one from !@#$%^&*)(+=._-": "Minimum 8 znaków, minimum jedna duża litera i jedna cyfra oraz jeden z !@#$%^&*)(+=._-",
+  "Minimum 8 signs, at least upper case and digit": "Minimum 8 znaków, minimum jedna duża litera i jedna cyfra",
   "Some of fields have errors": "Niektóre pola są błędne",
   "Create account": "Utwórz konto",
   "Registration": "Rejestracja",

@@ -50,7 +50,6 @@ export class RegistrationComponent implements OnInit {
       passwordGroup: new FormGroup({
         password: new FormControl('', Validators.compose([
           Validators.required,
-          // Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*!@#$%^&*\)\(+=._-)[a-zA-Z\d!@#$%^&*)(+=._-]{8,50}$/)
           Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,50}$/)
         ])),
         repeatedPassword: new FormControl('', Validators.compose([

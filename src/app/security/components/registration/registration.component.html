@@ -11,7 +11,7 @@
   <div formGroupName="passwordGroup">
     <mat-form-field>
       <input matInput type="password" formControlName="password" placeholder="{{'password' | translate}}"
-             matTooltip="{{'Minimum 8 signs, at least upper case, digit and one from !@#$%^&*)(+=._-' | translate}}"
+             matTooltip="{{'Minimum 8 signs, at least upper case and digit' | translate}}"
              [matTooltipPosition]="'right'">
     </mat-form-field>
     <span *ngIf="passwordIncorrect">
