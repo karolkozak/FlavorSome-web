@@ -6,8 +6,8 @@ import {SharedModule} from './shared/shared.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SecurityModule} from './security/security.module';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
-// import {customTranslateLoader} from './app.module';
 import {HttpClient} from '@angular/common/http';
+import {customTranslateLoader} from '@app/core/core.module';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
