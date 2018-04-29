@@ -1,0 +1,11 @@
+<form [formGroup]="searchFormGroup" (ngSubmit)="onSubmit()">
+  <mat-form-field>
+    <input type="text" matInput placeholder="{{'Search for places' | translate }}" formControlName="searchForm" [matAutocomplete]="auto">
+  </mat-form-field>
+</form>
+<mat-autocomplete #auto="matAutocomplete">
+  <mat-option *ngFor="let option of options">
+    <a [routerLink]="['/places', option.id]" >{{ option.name }}</a>
+  </mat-option>
+</mat-autocomplete>
+<div id="fakeMap"></div>

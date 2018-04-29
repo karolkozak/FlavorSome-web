@@ -13,6 +13,8 @@ export const environment = {
   logoutPath: 'logout/',
   configPath: 'config/',
   placeTypesPath: 'places/types/',
+  placesPath: 'places/',
+
 
   availableLanguages: ['pl', 'en'],
   availableCultureLanguages: ['pl-PL', 'en-GB'],
@@ -20,4 +22,6 @@ export const environment = {
 
   facebookAppId: '209464289792135',
   facebookSecret: 'f47826dc3bcbbafa2052b1c5f91b157f',
+
+  gooogleAPIKey: 'AIzaSyC9sBR6fDjfqbKDPJ_AX8y45G9L4E7pFOg',
 };

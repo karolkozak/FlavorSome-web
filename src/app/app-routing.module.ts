@@ -6,7 +6,9 @@ import {LoginComponent} from './security/components/login/login.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomePageComponent, pathMatch: 'full'},
-  {path: 'login', component: LoginComponent}
+  {path: 'login', component: LoginComponent},
+  {path: 'places', component: LoginComponent},
+  {path: 'places/:placeId', component: LoginComponent}
 ];
 
 @NgModule({
