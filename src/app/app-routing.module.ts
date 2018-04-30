@@ -12,7 +12,7 @@ const appRoutes: Routes = [
   {path: 'login', component: LoginPageComponent, canActivate: [LoginPageGuardService]},
   {path: 'registration', component: RegistrationPageComponent, canActivate: [LoginPageGuardService]},
   {path: 'places', component: LoginPageComponent},
-  {path: 'places/:placeId', component: LoginPageComponent},
+  {path: 'places/:id', component: LoginPageComponent},
   {path: '**', component: NotFoundComponent},
 ];
 

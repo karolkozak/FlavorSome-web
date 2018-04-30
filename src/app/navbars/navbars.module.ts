@@ -23,7 +23,7 @@ import {LanguageChooserComponent} from '@app/navbars/components/language-chooser
     RouterModule
   ],
   declarations: [HeaderComponent, FooterComponent, LanguageChooserComponent, PlaceSearcherComponent],
-  exports: [HeaderComponent, FooterComponent, PlaceSearcherComponent]
+  exports: [HeaderComponent, FooterComponent]
 })
 export class NavbarsModule {
 }

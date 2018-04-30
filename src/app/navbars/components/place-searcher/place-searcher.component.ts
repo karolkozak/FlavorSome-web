@@ -3,8 +3,6 @@ import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
 import {MapsAPILoader} from '@agm/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {Router} from '@angular/router';
-import PlaceResult = google.maps.places.PlaceResult;
-import {} from '@types/googlemaps';
 
 
 @Component({
@@ -12,84 +10,79 @@ import {} from '@types/googlemaps';
   templateUrl: './place-searcher.component.html',
   styleUrls: ['./place-searcher.component.scss']
 })
-
 export class PlaceSearcherComponent implements OnInit {
 
-
   private placesService: google.maps.places.PlacesService;
-  options: PlaceResult[] = [];
-  searchFormGroup = new FormGroup({
-    searchForm: new FormControl()
-  });
+  places: google.maps.places.PlaceResult[] = [];
+  searchForm: FormGroup;
 
   constructor(private mapsAPILoader: MapsAPILoader, private router: Router) {
   }
 
-
   ngOnInit() {
-    this.mapsAPILoader.load().then(() => {
-      this.placesService = new google.maps.places.PlacesService(new google.maps.Map(document.getElementById('fakeMap')));
+    this.searchForm = new FormGroup({
+      searchInput: new FormControl()
     });
-
+    this.mapsAPILoader.load().then(() => {
+      this.placesService = new google.maps.places.PlacesService(document.createElement('div'));
+    });
     this.initializeSearch();
   }
 
-  onSubmit() {
-    this.router.navigate(['/places'], {queryParams: {query: this.searchFormGroup.get('searchForm').value}});
+  searchPlaces() {
+    this.router.navigate(['/places'], {queryParams: {query: this.searchForm.get('searchInput').value}});
   }
 
   private initializeSearch() {
-    this.searchFormGroup.valueChanges
+    this.searchForm.valueChanges
       .pipe(
         debounceTime(744),
         distinctUntilChanged()
       )
-      .subscribe(searchTerm => {
-        if (searchTerm.searchForm.length < 3) {
-          this.options = [];
+      .subscribe(searchForm => {
+        if (searchForm.searchInput.length < 3) {
+          this.places = [];
           return;
         }
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(
-            this.geolocationCallback(searchTerm.searchForm),
-            this.geolocationError(searchTerm.searchForm),
+            this.geolocationCallback(searchForm.searchInput),
+            this.geolocationError(searchForm.searchInput),
             {timeout: 2000});
         } else {
-          this.textSearch({query: searchTerm.searchForm});
+          const textSearchRequest: google.maps.places.TextSearchRequest = {query: searchForm.searchInput};
+          this.textSearch(textSearchRequest);
         }
       });
   }
 
-  private textSearch(request) {
+  private textSearch(request: google.maps.places.TextSearchRequest) {
     this.placesService.textSearch(request, (results, status) => {
       if (status === google.maps.places.PlacesServiceStatus.OK) {
-        this.options = results.slice(0, 5);
+        this.places = results.slice(0, 4);
       } else if (status === google.maps.places.PlacesServiceStatus.ZERO_RESULTS) {
-        this.options = [];
+        this.places = [];
       }
     });
-
   }
 
-  private geolocationCallback(search: string) {
+  private geolocationCallback(searchForm: string) {
     return (position: Position) => {
-      const request = {
-        query: search,
+      const request: google.maps.places.TextSearchRequest = {
+        query: searchForm,
         location: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
         radius: 10000
       };
       this.textSearch(request);
     };
-
   }
 
   private geolocationError(searchForm: string) {
-    const request = {
+    const request: google.maps.places.TextSearchRequest = {
       query: searchForm
     };
     return (error: PositionError) => {
       this.textSearch(request);
     };
   }
-
 }

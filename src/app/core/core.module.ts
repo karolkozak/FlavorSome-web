@@ -6,6 +6,9 @@ import {httpInterceptorProviders} from './interceptors/http-interceptors';
 import {ConfigService} from './services/config.service';
 import {CustomTranslateService} from './services/custom-translate.service';
 import {UserService} from './services/user.service';
+import {environment} from '@env/environment';
+import {AgmCoreModule} from '@agm/core';
+import {} from 'googlemaps';  // it should stay in order to correct google namespace use. Be careful with ctrl + alt + o
 
 export function customTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -13,6 +16,10 @@ export function customTranslateLoader(http: HttpClient) {
 
 @NgModule({
   imports: [
+    AgmCoreModule.forRoot({
+      apiKey: environment.gooogleApiKey,
+      libraries: ['places']
+    }),
     HttpClientModule,
     TranslateModule.forRoot({
       loader: {

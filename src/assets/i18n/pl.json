@@ -4,6 +4,8 @@
   "Logout": "Wyloguj",
   "Here it will be all layouts, views. In this place router works. navs are static": "Tutaj zostana wyswietlone layouty. W tym miejscu pracuje router, navbarsy sa na stale",
   "Search for places": "Szukaj miejsca",
+  "Advanced search": "Zaawansowane wyszukiwanie",
+  "More results": "Więcej wyników",
   "Exception": "Błąd",
   "Error 404": "Błąd 404, adres {{url}} nie został znaleziony",
   "Log in": "Logowanie",
