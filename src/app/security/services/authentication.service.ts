@@ -1,4 +1,6 @@
 import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs/Observable';
+import {Subject} from 'rxjs/Subject';
 import {Router} from '@angular/router';
 
 @Injectable()
@@ -11,10 +13,16 @@ export class AuthenticationService {
   constructor(private router: Router) {
   }
 
+  private loginAnnounceSource: Subject<string> = new Subject<string>();
+  public readonly loginAnnounce: Observable<string> = this.loginAnnounceSource.asObservable();
+
   public isLoggedIn(): boolean {
     return !!this.getToken();
   }
 
+  announceLogin() {
+    this.loginAnnounceSource.next();
+  }
   public setFBAuthenticated(flag: boolean) {
     this.fbAuthenticated = flag;
   }
