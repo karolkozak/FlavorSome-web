@@ -1,7 +1,7 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
-import {NotificationsService} from 'angular2-notifications';
+import {ToastrService} from 'ngx-toastr';
 import {Observable} from 'rxjs/Observable';
 import {SocialUser} from '../libs/angular5-social-login/entities';
 import {AuthService as SocialAuthService, FacebookLoginProvider} from '../libs/angular5-social-login';
@@ -19,7 +19,7 @@ export class FacebookAuthService extends AuthenticationService {
   constructor(router: Router,
               private httpClient: HttpClient,
               private socialAuthService: SocialAuthService,
-              private notificationsService: NotificationsService,
+              private toastr: ToastrService,
               private customTranslateService: CustomTranslateService) {
     super(router);
     this.baseUrl = environment.unnamedMicroserviceUrl + environment.authPath;
@@ -45,7 +45,7 @@ export class FacebookAuthService extends AuthenticationService {
         this.customTranslateService.getTranslation('Facebook log in').subscribe(result => this.titleMessage = result);
         this.customTranslateService.getTranslation('Unable to log in via Facebook, try again later')
           .subscribe(result => this.errorMessage = result);
-        this.notificationsService.error(this.titleMessage, this.errorMessage);
+        this.toastr.error(this.titleMessage, this.errorMessage);
         return false;
       });
   }
@@ -62,7 +62,7 @@ export class FacebookAuthService extends AuthenticationService {
         this.customTranslateService.getTranslation('Facebook log out').subscribe(result => this.titleMessage = result);
         this.customTranslateService.getTranslation('Unable to log out, try again later')
           .subscribe(result => this.errorMessage = result);
-        this.notificationsService.error(this.titleMessage, this.errorMessage);
+        this.toastr.error(this.titleMessage, this.errorMessage);
         return false;
       });
   }

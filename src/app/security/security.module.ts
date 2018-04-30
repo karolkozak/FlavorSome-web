@@ -12,6 +12,7 @@ import {LoginPageGuardService} from './services/guards/login-page-guard.service'
 import {AdminRoleGuardService} from './services/guards/admin-role-guard.service';
 import {CustomLoginComponent} from './components/custom-login/custom-login.component';
 import {CustomAuthService} from './services/custom-auth.service';
+import { RegistrationComponent } from './components/registration/registration.component';
 
 @NgModule({
   imports: [
@@ -32,10 +33,12 @@ import {CustomAuthService} from './services/custom-auth.service';
   declarations: [
     CustomLoginComponent,
     FacebookLoginComponent,
+    RegistrationComponent,
   ],
   exports: [
     CustomLoginComponent,
     FacebookLoginComponent,
+    RegistrationComponent,
   ]
 })
 export class SecurityModule {

@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {AuthenticationService} from '@app/security/services/authentication.service';
 
 @Component({
   selector: 'un-home-page',
@@ -6,4 +7,10 @@ import {Component} from '@angular/core';
   styleUrls: ['./home-page.component.scss']
 })
 export class HomePageComponent {
+  constructor(private authenticationService: AuthenticationService) {
+  }
+
+  public isLoggedIn(): boolean {
+    return this.authenticationService.isLoggedIn();
+  }
 }

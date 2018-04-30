@@ -5,7 +5,7 @@ import {FlagLangPipe} from '@app/shared/pipes/flag-lang.pipe';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {
   MatButtonModule, MatCardModule, MatFormFieldModule, MatGridListModule, MatInputModule, MatListModule, MatMenuModule,
-  MatToolbarModule
+  MatToolbarModule, MatTooltipModule
 } from '@angular/material';
 import {TranslateModule} from '@ngx-translate/core';
 
@@ -25,6 +25,7 @@ import {TranslateModule} from '@ngx-translate/core';
     MatListModule,
     MatMenuModule,
     MatToolbarModule,
+    MatTooltipModule,
     ReactiveFormsModule,
     TranslateModule,
     UpperCasePipe,

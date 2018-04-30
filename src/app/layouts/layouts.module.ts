@@ -6,10 +6,11 @@ import {LoginPageComponent} from './components/login-page/login-page.component';
 import {SecurityModule} from '@app/security/security.module';
 import {HomePageComponent} from './components/home-page/home-page.component';
 import {SharedModule} from '@app/shared/shared.module';
-import { PlaceDetailsPageComponent } from './components/place-details-page/place-details-page.component';
 import {PlacesModule} from '@app/places/places.module';
 import {CoreModule} from '@app/core/core.module';
-import { PlacesListPageComponent } from './components/places-list-page/places-list-page.component';
+import {PlacesListPageComponent} from './components/places-list-page/places-list-page.component';
+import {RegistrationPageComponent} from '@app/layouts/components/registration-page/registration-page.component';
+import {PlaceDetailsPageComponent} from '@app/layouts/components/place-details-page/place-details-page.component';
 
 @NgModule({
   imports: [
@@ -26,6 +27,7 @@ import { PlacesListPageComponent } from './components/places-list-page/places-li
     NotFoundComponent,
     PlaceDetailsPageComponent,
     PlacesListPageComponent,
+    RegistrationPageComponent,
   ],
   exports: [
     HomePageComponent,
@@ -33,6 +35,7 @@ import { PlacesListPageComponent } from './components/places-list-page/places-li
     NotFoundComponent,
     PlaceDetailsPageComponent,
     PlacesListPageComponent,
+    RegistrationPageComponent,
   ]
 })
 export class LayoutsModule {
