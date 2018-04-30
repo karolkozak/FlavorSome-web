@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {MapsAPILoader} from '@agm/core';
 import {PlacesService} from '@app/places/services/places.service';
+import {AuthenticationService} from '@app/security/services/authentication.service';
 
 @Component({
   selector: 'un-place-details-page',
@@ -16,7 +17,11 @@ export class PlaceDetailsPageComponent implements OnInit, OnDestroy {
   placeDetails: google.maps.places.PlaceResult;
   placeMenu: StringMap<number>;
 
-  constructor(private route: ActivatedRoute, private mapsAPILoader: MapsAPILoader, private placesService: PlacesService) {
+  constructor(private route: ActivatedRoute,
+              private authenticationService: AuthenticationService,
+              private mapsAPILoader: MapsAPILoader,
+              private placesService: PlacesService
+  ) {
   }
 
   ngOnInit() {
@@ -25,7 +30,9 @@ export class PlaceDetailsPageComponent implements OnInit, OnDestroy {
       this.subscription =
         this.route.params.subscribe(params => {
           this.placeId = params['id'];
-          this.placesService.getMenu(this.placeId).subscribe(menu => this.placeMenu = menu);
+          if (this.authenticationService.isLoggedIn()) {
+            this.placesService.getMenu(this.placeId).subscribe(menu => this.placeMenu = menu);
+          }
           this.fetchPlaceDetails(this.placeId);
         });
     });
