@@ -1,15 +1,15 @@
-import { TestBed, inject } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { FacebookAuthService } from './facebook-auth.service';
+import {FacebookAuthService} from './facebook-auth.service';
 import {RouterTestingModule} from '@angular/router/testing';
-import {NotificationsService, SimpleNotificationsModule} from 'angular2-notifications';
+import {ToastrService, ToastrModule} from 'ngx-toastr';
 import {AuthService, AuthServiceConfig} from '../libs/angular5-social-login';
 
 describe('FacebookAuthService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule, SimpleNotificationsModule, AuthServiceConfig],
-      providers: [FacebookAuthService, NotificationsService, AuthService]
+      imports: [RouterTestingModule, ToastrModule, AuthServiceConfig],
+      providers: [FacebookAuthService, ToastrService, AuthService]
     });
   });
 

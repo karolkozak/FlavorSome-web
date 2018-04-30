@@ -3,12 +3,12 @@ import {inject, TestBed} from '@angular/core/testing';
 import {ConfigService} from './config.service';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 import {HttpClient, HttpRequest} from '@angular/common/http';
-import {environment} from '../../../environments/environment';
-import {SharedModule} from '../shared.module';
-import {AuthenticationService} from '../../security/services/authentication.service';
+import {environment} from '@env/environment';
+import {SharedModule} from '@app/shared/shared.module';
+import {AuthenticationService} from '@app/security/services/authentication.service';
 import {RouterTestingModule} from '@angular/router/testing';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {SimpleNotificationsModule} from 'angular2-notifications';
+import {ToastrModule} from 'ngx-toastr';
 
 describe('ConfigService', () => {
   let httpClient: HttpClient;
@@ -23,7 +23,7 @@ describe('ConfigService', () => {
         SharedModule,
         RouterTestingModule,
         BrowserAnimationsModule,
-        SimpleNotificationsModule.forRoot()
+        ToastrModule.forRoot(),
       ],
       providers: [ConfigService, AuthenticationService]
     });

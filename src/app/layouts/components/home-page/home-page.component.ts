@@ -1,19 +1,16 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ConfigService} from '../../../shared/services/config.service';
+import {Component} from '@angular/core';
+import {AuthenticationService} from '@app/security/services/authentication.service';
 
 @Component({
   selector: 'un-home-page',
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.scss']
 })
-export class HomePageComponent implements OnInit {
-
-  placeTypes: string[] = [];
-
-  constructor(private configService: ConfigService) {
+export class HomePageComponent {
+  constructor(private authenticationService: AuthenticationService) {
   }
 
-  ngOnInit() {
-    this.configService.getAvailablePlaceTypes().subscribe(v => this.placeTypes = v);
+  public isLoggedIn(): boolean {
+    return this.authenticationService.isLoggedIn();
   }
 }

@@ -1,43 +1,51 @@
+import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
+import {Router} from '@angular/router';
+import {ToastrService} from 'ngx-toastr';
+import {Observable} from 'rxjs/Observable';
 import {SocialUser} from '../libs/angular5-social-login/entities';
 import {AuthService as SocialAuthService, FacebookLoginProvider} from '../libs/angular5-social-login';
-import {Router} from '@angular/router';
+import {environment} from '@env/environment';
+import {CustomTranslateService} from '@app/core/services/custom-translate.service';
 import {AuthenticationService} from './authentication.service';
-import {NotificationsService} from 'angular2-notifications';
-import {HttpClient} from '@angular/common/http';
-import {environment} from '../../../environments/environment';
-import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class FacebookAuthService extends AuthenticationService {
 
   private baseUrl: string;
+  private titleMessage: string;
+  private errorMessage: string;
 
-  constructor(private httpClient: HttpClient,
-              private router: Router,
+  constructor(router: Router,
+              private httpClient: HttpClient,
               private socialAuthService: SocialAuthService,
-              private notificationsService: NotificationsService) {
-    super();
+              private toastr: ToastrService,
+              private customTranslateService: CustomTranslateService) {
+    super(router);
     this.baseUrl = environment.unnamedMicroserviceUrl + environment.authPath;
   }
 
-  private loginWithFacebook(facebookToken: string): Observable<Object> {
-    const endpoint = this.baseUrl + environment.facebookPath + environment.loginPath;
-    return this.httpClient.post(endpoint, facebookToken);
+  private loginWithFacebook(facebookToken: string): Observable<string> {
+    const endpoint = this.baseUrl + environment.loginPath + environment.facebookPath;
+    return this.httpClient.post<string>(endpoint, facebookToken, {responseType: 'text'} as any as {});
   }
 
-  public facebookLogin() {
+  public facebookLogin(): Promise<boolean> {
     const socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
-    this.socialAuthService.signIn(socialPlatformProvider)
+    return this.socialAuthService.signIn(socialPlatformProvider)
       .then((socialUser: SocialUser) => {
-        this.loginWithFacebook(socialUser.token)
-          .subscribe(response => {
-            this.setTokenDataInStorage(response['token']);
-          });
-        return true;
+        return this.loginWithFacebook(socialUser.token).toPromise().then(response => {
+          this.setTokenDataInStorage(response);
+          this.setFBAuthenticated(true);
+          return true;
+        });
       })
       .catch(error => {
-        this.notificationsService.error('Facebook log in', 'Unable to log in via Facebook, try again later');
+        console.error(error);
+        this.customTranslateService.getTranslation('Facebook log in').subscribe(result => this.titleMessage = result);
+        this.customTranslateService.getTranslation('Unable to log in via Facebook, try again later')
+          .subscribe(result => this.errorMessage = result);
+        this.toastr.error(this.titleMessage, this.errorMessage);
         return false;
       });
   }
@@ -45,13 +53,16 @@ export class FacebookAuthService extends AuthenticationService {
   public facebookLogout() {
     this.socialAuthService.signOut()
       .then(() => {
-        this.removeTokenDataFromStorage();
-        this.router.navigate(['']);
+        this.logout();
+        this.setFBAuthenticated(false);
         return true;
       })
       .catch(error => {
         console.error(error);
-        this.notificationsService.error('Facebook log out', 'Unable to log out, try again later');
+        this.customTranslateService.getTranslation('Facebook log out').subscribe(result => this.titleMessage = result);
+        this.customTranslateService.getTranslation('Unable to log out, try again later')
+          .subscribe(result => this.errorMessage = result);
+        this.toastr.error(this.titleMessage, this.errorMessage);
         return false;
       });
   }

@@ -1,7 +1,7 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {HomePageComponent} from './home-page.component';
-import {ConfigService} from '../../../shared/services/config.service';
+import {ConfigService} from '../../../core/services/config.service';
 import {SharedModule} from '../../../shared/shared.module';
 import {of} from 'rxjs/observable/of';
 
