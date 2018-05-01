@@ -1,3 +1,3 @@
-<p>
-  places-list-item works!
-</p>
+<a [routerLink]="['/places', place.place_id]"><h3 mat-line><b>{{place.name}}</b></h3></a>
+<p mat-line>{{place.formatted_address}}</p>
+<span *ngFor="let type of filterAvailableTypes(place.types)">#{{type}} </span>

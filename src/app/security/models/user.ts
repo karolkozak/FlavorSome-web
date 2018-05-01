@@ -1,5 +1,5 @@
-import {Survey} from './survey';
-import {Place} from './place';
+import {Survey} from '@app/places/models/survey';
+import {Place} from '@app/places/models/place';
 
 export interface User {
   facebookId: string;
