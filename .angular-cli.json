@@ -22,6 +22,11 @@
         "styles/styles.scss",
         "../node_modules/ngx-toastr/toastr.css"
       ],
+      "stylePreprocessorOptions": {
+        "includePaths": [
+          "styles"
+        ]
+      },
       "scripts": [
         "../node_modules/bootstrap/dist/js/bootstrap.js"
       ],
