@@ -10,7 +10,6 @@ import {NavbarsModule} from '@app/navbars/navbars.module';
 import {SecurityModule} from '@app/security/security.module';
 
 
-
 @NgModule({
   declarations: [
     AppComponent

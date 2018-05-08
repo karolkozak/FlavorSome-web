@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {CommonModule, UpperCasePipe} from '@angular/common';
+import {CommonModule, LowerCasePipe, UpperCasePipe} from '@angular/common';
 import {FlagCultureLangPipe} from '@app/shared/pipes/flag-culture-lang.pipe';
 import {FlagLangPipe} from '@app/shared/pipes/flag-lang.pipe';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -17,6 +17,7 @@ import {TranslateModule} from '@ngx-translate/core';
     FlagCultureLangPipe,
     FlagLangPipe,
     FormsModule,
+    LowerCasePipe,
     MatCardModule,
     MatFormFieldModule,
     MatButtonModule,

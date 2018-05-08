@@ -25,4 +25,8 @@ export class UserService {
       tap(user => this.currentUser = {...user})
     );
   }
+
+  removeCurrentUser() {
+    this.currentUser = undefined;
+  }
 }
