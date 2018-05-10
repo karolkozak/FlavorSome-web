@@ -6,17 +6,17 @@
 export const environment = {
   production: false,
 
-  unnamedMicroserviceUrl: 'http://127.0.0.3:8080/api/',
-  authPath: 'auth/',
-  facebookPath: 'facebook/',
-  loginPath: 'login/',
-  logoutPath: 'logout/',
-  registration: 'register/',
-  configPath: 'config/',
-  placeTypesPath: 'places/types/',
+  unnamedMicroserviceUrl: 'http://127.0.0.3:8080/api',
+  authPath: '/auth',
+  facebookPath: '/facebook',
+  loginPath: '/login',
+  logoutPath: '/logout',
+  registration: '/register',
+  configPath: '/config',
+  placeTypesPath: '/places/types',
 
-  usersPath: 'users/',
-  current: 'current/',
+  usersPath: '/users',
+  current: '/current',
 
   availableLanguages: ['pl', 'en'],
   availableCultureLanguages: ['pl-PL', 'en-GB'],
