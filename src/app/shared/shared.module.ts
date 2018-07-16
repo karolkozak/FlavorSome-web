@@ -4,6 +4,7 @@ import {FlagCultureLangPipe} from '@app/shared/pipes/flag-culture-lang.pipe';
 import {FlagLangPipe} from '@app/shared/pipes/flag-lang.pipe';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {
+  MatAutocompleteModule,
   MatButtonModule,
   MatCardModule,
   MatFormFieldModule,
@@ -23,6 +24,7 @@ import {TranslateModule} from '@ngx-translate/core';
     FlagCultureLangPipe,
     FlagLangPipe,
     FormsModule,
+    MatAutocompleteModule,
     MatCardModule,
     MatFormFieldModule,
     MatButtonModule,
