@@ -4,14 +4,27 @@ import {PlaceDetailsComponent} from './components/place-details/place-details.co
 import {PlaceMenuComponent} from './components/place-menu/place-menu.component';
 import {PlacesService} from '@app/places/services/places.service';
 import {SharedModule} from '@app/shared/shared.module';
+import {PlacesListComponent} from './components/places-list/places-list.component';
+import {PlacesListItemComponent} from './components/places-list-item/places-list-item.component';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
   imports: [
     CommonModule,
-    SharedModule
+    RouterModule,
+    SharedModule,
   ],
-  declarations: [PlaceDetailsComponent, PlaceMenuComponent],
-  exports: [PlaceDetailsComponent, PlaceMenuComponent],
+  declarations: [
+    PlaceDetailsComponent,
+    PlaceMenuComponent,
+    PlacesListComponent,
+    PlacesListItemComponent,
+  ],
+  exports: [
+    PlaceDetailsComponent,
+    PlaceMenuComponent,
+    PlacesListComponent,
+  ],
   providers: [PlacesService]
 })
 export class PlacesModule {

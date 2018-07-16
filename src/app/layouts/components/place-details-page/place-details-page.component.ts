@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {MapsAPILoader} from '@agm/core';
 import {PlacesService} from '@app/places/services/places.service';
+import {Subscription} from 'rxjs/Subscription';
 import {AuthenticationService} from '@app/security/services/authentication.service';
 
 @Component({
@@ -10,7 +11,7 @@ import {AuthenticationService} from '@app/security/services/authentication.servi
   styleUrls: ['./place-details-page.component.scss']
 })
 export class PlaceDetailsPageComponent implements OnInit, OnDestroy {
-  private subscription: any;
+  private subscription: Subscription;
   private googlePlacesService: google.maps.places.PlacesService;
 
   placeId: string;

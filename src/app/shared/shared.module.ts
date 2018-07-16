@@ -8,6 +8,7 @@ import {
   MatCardModule,
   MatFormFieldModule,
   MatInputModule,
+  MatListModule,
   MatMenuModule,
   MatToolbarModule,
   MatTooltipModule
@@ -26,6 +27,7 @@ import {TranslateModule} from '@ngx-translate/core';
     MatFormFieldModule,
     MatButtonModule,
     MatInputModule,
+    MatListModule,
     MatMenuModule,
     MatToolbarModule,
     MatTooltipModule,
