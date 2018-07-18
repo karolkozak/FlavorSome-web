@@ -6,20 +6,20 @@
 export const environment = {
   production: false,
 
-  unnamedMicroserviceUrl: 'http://127.0.0.3:8080/api/',
-  authPath: 'auth/',
-  facebookPath: 'facebook/',
-  loginPath: 'login/',
-  logoutPath: 'logout/',
-  registration: 'register/',
-  configPath: 'config/',
-  placeTypesPath: 'places/types/',
+  unnamedMicroserviceUrl: 'http://127.0.0.3:8080/api',
+  authPath: '/auth',
+  facebookPath: '/facebook',
+  loginPath: '/login',
+  logoutPath: '/logout',
+  registration: '/register',
+  configPath: '/config',
+  placeTypesPath: '/places/types',
 
-  placesPath: 'places/',
-  menuPath: 'menu/',
+  placesPath: '/places',
+  menuPath: '/menu',
 
-  usersPath: 'users/',
-  current: 'current/',
+  usersPath: '/users',
+  current: '/current',
 
   availableLanguages: ['pl', 'en'],
   availableCultureLanguages: ['pl-PL', 'en-GB'],
@@ -29,4 +29,5 @@ export const environment = {
   facebookSecret: 'f47826dc3bcbbafa2052b1c5f91b157f',
 
   googleApiKey: 'AIzaSyC9sBR6fDjfqbKDPJ_AX8y45G9L4E7pFOg',
+  googleReCaptchaKey: '6LfaQlAUAAAAAC2husiZGVe0gCLEGiNyt71svf4Y',
 };

@@ -12,7 +12,7 @@ export class PlacesService {
   }
 
   public getMenu(id: string): Observable<StringMap<number>> {
-    const endpoint = this.baseUrl + `${id}/${environment.menuPath}`;
+    const endpoint = this.baseUrl + `${id}${environment.menuPath}`;
     return this.httpClient.get<StringMap<number>>(endpoint);
   }
 }
