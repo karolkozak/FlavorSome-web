@@ -1,0 +1,8 @@
+<div *ngIf="menu">
+  <span>{{'Menu' | translate}}</span>
+  <ul>
+    <li *ngFor="let item of menu">
+      {{item}}
+    </li>
+  </ul>
+</div>

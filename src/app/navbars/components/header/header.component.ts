@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AuthenticationService} from '@app/security/services/authentication.service';
 import {FacebookAuthService} from '@app/security/services/facebook-auth.service';
 import {UserService} from '@app/core/services/user.service';
-import {User} from '@app/shared/models/user';
+import {User} from '@app/security/models/user';
 import {Subscription} from 'rxjs/Subscription';
 
 @Component({

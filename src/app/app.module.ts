@@ -4,11 +4,10 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {ToastrModule} from 'ngx-toastr';
 import {AppComponent} from './app.component';
-import {AppRoutingModule} from './app-routing.module';
+import {SecurityModule} from './security/security.module';
 import {CoreModule} from '@app/core/core.module';
+import {AppRoutingModule} from '@app/app-routing.module';
 import {NavbarsModule} from '@app/navbars/navbars.module';
-import {SecurityModule} from '@app/security/security.module';
-
 
 @NgModule({
   declarations: [
