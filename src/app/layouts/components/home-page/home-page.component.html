@@ -2,3 +2,5 @@
   {{"Here it will be all layouts, views. In this place router works. navs are static" | translate}}
 </p>
 <button *ngIf="!isLoggedIn()" mat-raised-button color="primary" [routerLink]="['/login']">{{"Login Page" | translate}}</button>
+<a [routerLink]="['/places', 'ChIJ0QIxIxBbFkcRzdl4v6nUZKs']">Sample place 1</a>
+<a [routerLink]="['/places', 'ChIJ0Xmhfg5bFkcRtO0Wx-b-AMw']">Sample place 2</a>

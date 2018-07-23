@@ -16,7 +16,7 @@ export class PlaceDetailsPageComponent implements OnInit, OnDestroy {
 
   placeId: string;
   placeDetails: google.maps.places.PlaceResult;
-  placeMenu: StringMap<number>;
+  placeMenu: StringMap<number> = {};
 
   constructor(private route: ActivatedRoute,
               private authenticationService: AuthenticationService,
@@ -31,7 +31,7 @@ export class PlaceDetailsPageComponent implements OnInit, OnDestroy {
       this.subscription =
         this.route.params.subscribe(params => {
           this.placeId = params['id'];
-          if (this.authenticationService.isLoggedIn()) {
+          if (this.isLoggedIn) {
             this.placesService.getMenu(this.placeId).subscribe(menu => this.placeMenu = menu);
           }
           this.fetchPlaceDetails(this.placeId);
@@ -46,6 +46,14 @@ export class PlaceDetailsPageComponent implements OnInit, OnDestroy {
         this.placeDetails = {...result};
       }
     });
+  }
+
+  get isLoggedIn(): boolean {
+    return this.authenticationService.isLoggedIn();
+  }
+
+  get placeMenuExists(): boolean {
+    return this.placeMenu && !!Object.keys(this.placeMenu).length;
   }
 
   ngOnDestroy() {

@@ -15,12 +15,17 @@ import {
   MatTooltipModule
 } from '@angular/material';
 import {TranslateModule} from '@ngx-translate/core';
+import {PaginationComponent} from './components/pagination/pagination/pagination.component';
+import {DatePipe} from './pipes/date.pipe';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    MatButtonModule,
+    TranslateModule,
   ],
   exports: [
+    DatePipe,
     FlagCultureLangPipe,
     FlagLangPipe,
     FormsModule,
@@ -34,11 +39,12 @@ import {TranslateModule} from '@ngx-translate/core';
     MatMenuModule,
     MatToolbarModule,
     MatTooltipModule,
+    PaginationComponent,
     ReactiveFormsModule,
     TranslateModule,
     UpperCasePipe,
   ],
-  declarations: [FlagCultureLangPipe, FlagLangPipe]
+  declarations: [FlagCultureLangPipe, FlagLangPipe, PaginationComponent, DatePipe]
 })
 export class SharedModule {
 }

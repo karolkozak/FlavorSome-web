@@ -1,6 +1,6 @@
 <div *ngIf="menu">
-  <span>{{'Menu' | translate}}</span>
-  <ul>
+  <h1>{{'Menu' | translate}}</h1>
+  <ul *ngIf="menu">
     <li *ngFor="let item of menu">
       {{item}}
     </li>

@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="col-md-12">
+    <div *ngIf="isLoggedIn()">
+      <un-rate-form (rateAdded)="addRate($event)"></un-rate-form>
+    </div>
+    <span *ngIf="!isLoggedIn()">{{"You must be logged in to rate place" | translate}}.</span>
+    <un-rates-list [rates]="pageableRates?.content"
+                   (pageableParamsChanged)="fetchRateList($event)"
+                   [pageableParams]="pageableParams"></un-rates-list>
+    <un-pagination (dataChanged)="fetchRateList($event)"
+                   [pageableParams]="pageableParams"
+                   [first]="pageableRates?.first"
+                   [last]="pageableRates?.last"></un-pagination>
+  </div>
+</div>
