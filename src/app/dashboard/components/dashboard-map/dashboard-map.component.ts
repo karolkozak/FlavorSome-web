@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {environment} from '../../../../environments/environment';
+import {environment} from '@env/environment';
 
 @Component({
   selector: 'un-dashboard-map',
@@ -7,8 +7,8 @@ import {environment} from '../../../../environments/environment';
   styleUrls: ['./dashboard-map.component.scss']
 })
 export class DashboardMapComponent implements OnInit {
-  public mapCenter: {lat: number, lng: number};
-  public zoom: number;
+  mapCenter: {lat: number, lng: number};
+  zoom: number;
 
   constructor() { }
 

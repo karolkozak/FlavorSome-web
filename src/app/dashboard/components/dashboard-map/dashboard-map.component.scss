@@ -1,7 +1,16 @@
-:host {
-  height: 700px;
+.un-map-container-wrapper {
+  min-height: 100%;
+  position: relative;
 
-  agm-map {
-    height: 700px;
+  .un-map-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    agm-map {
+      height: 100%;
+    }
   }
 }
