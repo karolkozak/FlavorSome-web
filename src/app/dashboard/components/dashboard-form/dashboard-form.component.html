@@ -17,23 +17,13 @@
 
   <mat-form-field>
     <mat-select placeholder="{{'Place type' | translate}}">
-      <mat-option *ngFor="let place of placeTypes" value="place.name">{{place.name}}</mat-option>
+      <mat-option *ngFor="let place of placeTypes" value="place">{{place}}</mat-option>
     </mat-select>
   </mat-form-field>
 
   <mat-form-field>
     <input matInput formControlName="preferences" placeholder="{{'Preferences' | translate}}">
   </mat-form-field>
-
-  <div>
-    <label>{{'Price' | translate}}</label>
-    <mat-slider [value]="price"></mat-slider>
-  </div>
-
-  <div>
-    <label>{{'Rating' | translate}}</label>
-    <mat-slider [value]="rating"></mat-slider>
-  </div>
 
   <div>
     <button mat-raised-button color="primary" type="submit">

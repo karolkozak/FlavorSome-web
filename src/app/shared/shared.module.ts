@@ -13,6 +13,7 @@ import {
   MatTabsModule,
   MatMenuModule,
   MatProgressSpinnerModule,
+  MatSelectModule,
   MatToolbarModule,
   MatTooltipModule
 } from '@angular/material';
@@ -41,6 +42,7 @@ import {DatePipe} from './pipes/date.pipe';
     MatMenuModule,
     MatTabsModule,
     MatProgressSpinnerModule,
+    MatSelectModule,
     MatToolbarModule,
     MatTooltipModule,
     PaginationComponent,

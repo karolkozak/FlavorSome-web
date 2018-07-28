@@ -1,8 +1,10 @@
-<mat-grid-list cols="12" rowHeight="700px">
-  <mat-grid-tile [colspan]="2" [rowspan]="1" [style.background]="'#9f9f9f'">
-    <un-dashboard-form></un-dashboard-form>
-  </mat-grid-tile>
-  <mat-grid-tile [colspan]="10" [rowspan]="1">
-    <un-dashboard-map></un-dashboard-map>
-  </mat-grid-tile>
-</mat-grid-list>
+<div class="container-fluid">
+  <div class="row col-md-12">
+    <div class="col-sm-12 col-md-2">
+      <un-dashboard-form></un-dashboard-form>
+    </div>
+    <div class="col-sm-12 col-md-10">
+      <un-dashboard-map></un-dashboard-map>
+    </div>
+  </div>
+</div>

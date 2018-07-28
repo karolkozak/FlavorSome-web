@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {ConfigService} from '@app/core/services/config.service';
 
 @Component({
   selector: 'un-dashboard-form',
@@ -8,18 +9,17 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 })
 export class DashboardFormComponent implements OnInit {
   placesSearchForm: FormGroup;
-  placeTypes = [
-    {name: 'Restaurant'},
-    {name: 'Cafe'},
-    {name: 'Pub'},
-    {name: 'FastFood'},
-  ];
+  placeTypes: string[] = [];
   price = 50;
   rating = 100;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private configService: ConfigService) { }
 
   ngOnInit() {
+    this.configService.getAvailablePlaceTypes().subscribe(
+      placeTypes => this.placeTypes = placeTypes
+    );
+
     this.placesSearchForm = this.formBuilder.group({
       location: [''],
       range: ['', Validators.compose([
