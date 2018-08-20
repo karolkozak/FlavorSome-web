@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Rate} from '@app/places/models/rate';
-import {PageableParams} from '@app/places/models/pageable';
 import {RatesSorting, ratesSortingOptions} from '@app/places/models/rates-sorting';
+import {PageableParams} from '@app/places/models/pageable-params';
 
 @Component({
   selector: 'un-rates-list',

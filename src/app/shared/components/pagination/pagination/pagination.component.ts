@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {PageableParams} from '@app/places/models/pageable';
+import {PageableParams} from '@app/places/models/pageable-params';
 
 @Component({
   selector: 'un-pagination',

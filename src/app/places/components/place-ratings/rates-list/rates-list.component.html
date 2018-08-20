@@ -1,5 +1,5 @@
-<span *ngIf="!rates?.length">{{"No ratings yet. Be the first to rate this place!" | translate}}</span>
-<div *ngIf="rates?.length">
+<span *ngIf="!rates?.length; else ratingList">{{"No ratings yet. Be the first to rate this place!" | translate}}</span>
+<ng-template #ratingList>
   <button mat-button [matMenuTriggerFor]="menu">
     <span>{{currentSorting.sortName | translate}}</span>
   </button>
@@ -8,7 +8,7 @@
       <span>{{sorting.sortName | translate}}</span>
     </button>
   </mat-menu>
-</div>
+</ng-template>
 <div *ngFor="let rate of rates">
   <un-rate-item [rate]="rate"></un-rate-item>
 </div>

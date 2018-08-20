@@ -1,9 +1,19 @@
 <form [formGroup]="rateForm" (ngSubmit)="addNewRate()">
   <mat-form-field>
-    <input matInput type="number" min="1" max="10" formControlName="rating" placeholder="{{'rating' | translate}}">
+    <input matInput
+           type="number"
+           [min]="ratingsConfig.minRateValue"
+           [max]="ratingsConfig.maxRateValue"
+           formControlName="rating"
+           placeholder="{{'rating' | translate}}">
   </mat-form-field>
   <mat-form-field>
-    <input matInput formControlName="comments" placeholder="{{'write something...' | translate}}" >
+    <input matInput
+           formControlName="comments"
+           placeholder="{{'write something...' | translate}}">
   </mat-form-field>
-  <button mat-raised-button color="accent" type="submit">{{'Add' | translate}}</button>
+  <button mat-raised-button
+          color="accent"
+          type="submit">{{'Add' | translate}}
+  </button>
 </form>

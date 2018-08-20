@@ -3,7 +3,8 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import {environment} from '@env/environment';
 import {Observable} from 'rxjs/Observable';
 import {Rate} from '@app/places/models/rate';
-import {Pageable, PageableParams} from '@app/places/models/pageable';
+import {Pageable} from '@app/places/models/pageable';
+import {PageableParams} from '@app/places/models/pageable-params';
 
 @Injectable()
 export class PlacesService {
