@@ -1,0 +1,29 @@
+<div class="container">
+  <h3>{{user?.firstname + ' ' + user?.lastname}}</h3>
+
+  <mat-tab-group mat-stretch-tabs
+                 [selectedIndex]="selectedTab"
+                 (selectedTabChange)="tabChanged($event)"
+                 headerPosition="left">
+    <mat-tab *ngFor="let tab of userDetailsTabs"
+             [label]="tab | translate">
+      <div *ngIf="tab === 'User Details'">
+        <un-user-details [user]="user"></un-user-details>
+      </div>
+      <div *ngIf="tab === 'Rated places'">
+        <span>{{'List of rated places' | translate}}:</span>
+        <un-user-ratings-list [ratings]="ratingsList"
+                              [allowEdit]="allowEdit"></un-user-ratings-list>
+      </div>
+      <div *ngIf="tab === 'Places to rate' && isCurrentUser">
+        <span>{{'List of places to rate' | translate}}:</span>
+        <un-user-ratings-list [ratings]="unnratedList"
+                              [allowEdit]="allowEdit"
+                              [allowRemove]="true"></un-user-ratings-list>
+      </div>
+      <div *ngIf="tab === 'Friends'">
+        <un-users-list [users]="user?.friends"></un-users-list>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>

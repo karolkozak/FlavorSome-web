@@ -1,0 +1,9 @@
+<span>
+  {{'List of friends' | translate}}:
+</span>
+<span *ngIf="users">0</span>
+<ul>
+  <li *ngFor="let user of users">
+    <un-users-list-item [user]="user"></un-users-list-item>
+  </li>
+</ul>

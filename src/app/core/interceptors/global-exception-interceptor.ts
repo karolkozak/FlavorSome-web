@@ -35,7 +35,7 @@ export class GlobalExceptionInterceptor implements HttpInterceptor {
         this.customTranslateService
           .getTranslation(errorMessage.message || 'Unexpected exception')
           .subscribe(result => this.errorMessage = result);
-        this.toastr.error(`${this.titleMessage} - ${error.status}`, this.errorMessage);
+        this.toastr.error(this.errorMessage, `${this.titleMessage} - ${error.status}`);
         return Observable.throw(error);
       }) as any;
   }

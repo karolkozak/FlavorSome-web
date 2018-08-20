@@ -3,6 +3,7 @@ import {User} from '@app/security/models/user';
 export class Rate {
   id: number;
   author: User;
+  googlePlaceId: string;
   ratingDate: string;
   rating: number;
   comments: string;
