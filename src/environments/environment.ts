@@ -22,6 +22,7 @@ export const environment = {
   usersPath: '/users',
   current: '/current',
   unrated: '/unrated',
+  visit: '/visit',
 
   availableLanguages: ['pl', 'en'],
   availableCultureLanguages: ['pl-PL', 'en-GB'],
