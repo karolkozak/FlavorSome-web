@@ -1,0 +1,15 @@
+:host {
+  div.un-rating-item {
+    padding: 10px;
+    margin: 5px;
+    border-style: groove;
+    .un-rating-starts {
+      width: 100%;
+      margin-left: 5px;
+    }
+  }
+  .un-rate-star {
+    font-size: 10px;
+    display: inline;
+  }
+}

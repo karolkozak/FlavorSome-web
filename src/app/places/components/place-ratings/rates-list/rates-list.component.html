@@ -1,0 +1,14 @@
+<span *ngIf="!rates?.length; else ratingList">{{"No ratings yet. Be the first to rate this place!" | translate}}</span>
+<ng-template #ratingList>
+  <button mat-button [matMenuTriggerFor]="menu">
+    <span>{{currentSorting.sortName | translate}}</span>
+  </button>
+  <mat-menu #menu>
+    <button *ngFor="let sorting of sortingOptions" mat-menu-item (click)="sort(sorting)">
+      <span>{{sorting.sortName | translate}}</span>
+    </button>
+  </mat-menu>
+</ng-template>
+<div *ngFor="let rate of rates">
+  <un-rate-item [rate]="rate"></un-rate-item>
+</div>

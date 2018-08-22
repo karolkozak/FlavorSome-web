@@ -17,6 +17,7 @@ export const environment = {
 
   placesPath: '/places',
   menuPath: '/menu',
+  ratingsPath: '/ratings',
 
   usersPath: '/users',
   current: '/current',

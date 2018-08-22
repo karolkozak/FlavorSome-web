@@ -3,12 +3,19 @@
     map with marker
   </div>
   <div class="row">
-    <div class="col-md-6">
-      <span>{{placeDetails?.name}}</span>
+    <div class="{{isLoggedIn && placeMenuExists ? 'col-md-6' : 'col-md-12'}}">
+      <h1>{{placeDetails?.name}}</h1>
       <un-place-details [placeDetails]="placeDetails"></un-place-details>
     </div>
-    <div class="col-md-6">
+    <div *ngIf="isLoggedIn && placeMenuExists" class="col-md-6">
       <un-place-menu [menu]="placeMenu"></un-place-menu>
     </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <un-rates-section [placeId]="placeId"></un-rates-section>
+    </div>
+    <div class="col-md-3"></div>
   </div>
 </div>

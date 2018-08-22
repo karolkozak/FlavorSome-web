@@ -1,0 +1,12 @@
+<div class="row un-rating-item">
+  <div class="row un-rating-starts">
+    <i class="material-icons un-rate-star" *ngFor="let i of getListForRating(rate?.rating)">star_rate</i>
+  </div>
+  <div class="col-md-4">
+    {{ rate?.author.firstname + ' ' + rate?.author.lastname }}
+    {{ rate?.ratingDate | date }}
+  </div>
+  <div class="col-md-8">
+    {{ rate?.comments }}
+  </div>
+</div>

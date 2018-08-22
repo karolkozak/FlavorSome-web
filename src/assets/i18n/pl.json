@@ -33,5 +33,19 @@
   "Unexpected exception": "Nieoczekiwany błąd",
   "No results": "Brak wyników",
   "More results": "Więcej wyników",
-  "Results for": "Wyniki dla"
+  "Results for": "Wyniki dla",
+  "Add": "Dodaj",
+  "rating": "ocena",
+  "write something...": "napisz coś...",
+  "You must be logged in to rate place": "Musisz być zalogowanym, aby ocenić lokal",
+  "You have to be logged in": "Musisz być zalogowana / y",
+  "No ratings yet. Be the first to rate this place!": "Brak ocen. Bądź pierwszym, który oceni ten lokal!",
+  "Friends ratings ascending": "Oceny znajomych rosnąco",
+  "Friends ratings descending": "Oceny znajomych malejąco",
+  "Date ascending": "Data rosnąco",
+  "Date descending": "Data malejąco",
+  "Ratigns ascending": "Oceny rosnąco",
+  "Ratings descendings": "Oceny malejąco",
+  "Previous": "Poprzednie",
+  "Next": "Następne"
 }

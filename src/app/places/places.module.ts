@@ -7,6 +7,10 @@ import {SharedModule} from '@app/shared/shared.module';
 import {PlacesListComponent} from './components/places-list/places-list.component';
 import {PlacesListItemComponent} from './components/places-list-item/places-list-item.component';
 import {RouterModule} from '@angular/router';
+import {RatesSectionComponent} from './components/place-ratings/rates-section/rates-section.component';
+import {RateItemComponent} from './components/place-ratings/rate-item/rate-item.component';
+import {RateFormComponent} from './components/place-ratings/rate-form/rate-form.component';
+import {RatesListComponent} from './components/place-ratings/rates-list/rates-list.component';
 
 @NgModule({
   imports: [
@@ -19,11 +23,16 @@ import {RouterModule} from '@angular/router';
     PlaceMenuComponent,
     PlacesListComponent,
     PlacesListItemComponent,
+    RatesSectionComponent,
+    RateItemComponent,
+    RateFormComponent,
+    RatesListComponent,
   ],
   exports: [
     PlaceDetailsComponent,
     PlaceMenuComponent,
     PlacesListComponent,
+    RatesSectionComponent,
   ],
   providers: [PlacesService]
 })
