@@ -1,9 +1,9 @@
-<form [formGroup]="searchForm" (ngSubmit)="searchPlaces()">
+<form [formGroup]="searchForm" (ngSubmit)="searchPlaces()" (keyup.enter)="searchPlaces()">
   <mat-form-field>
     <input type="text" matInput placeholder="{{'Search for places' | translate }}" formControlName="searchInput"
            [matAutocomplete]="auto">
   </mat-form-field>
-  <button mat-raised-button color="accent" type="submit">{{'Q' | translate}}</button>
+  <button class="btn" type="submit">{{'Q' | translate}}</button>
 </form>
 <mat-autocomplete #auto="matAutocomplete">
   <mat-option *ngFor="let place of places" [value]="place.name">

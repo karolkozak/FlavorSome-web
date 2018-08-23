@@ -12,6 +12,7 @@ import {ConfirmationPageComponent} from '@app/layouts/components/confirmation-pa
 import {UnverifiedUserGuardService} from '@app/security/services/guards/unverified-user-guard.service';
 import {AuthGuardService} from '@app/security/services/guards/auth-guard.service';
 
+
 const appRoutes: Routes = [
   {path: '', component: HomePageComponent, pathMatch: 'full'},
   {path: 'login', component: LoginPageComponent, canActivate: [LoginPageGuardService]},

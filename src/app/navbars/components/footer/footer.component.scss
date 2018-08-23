@@ -1,8 +1,22 @@
-.un-footer {
-  border-top-style: groove;
-  border-width: thin;
-}
+@import 'colors';
+@import 'variables';
 
-.un-footer-text {
-  text-align: center;
+:host(un-footer) {
+  width: 100%;
+
+  .un-footer {
+    // border-top-style: groove;
+    border-width: thin;
+    background-color: $un-footer-background;
+    line-height: $un-footer-height;
+    background-repeat:repeat;
+    text-align: center;
+    height: $un-footer-height;
+  }
+
+  .un-footer-text {
+    text-align: center;
+    margin: 0;
+  }
+
 }

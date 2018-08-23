@@ -1,39 +1,30 @@
 <form [formGroup]="registrationUserForm" (ngSubmit)="registerUser()">
-  <mat-form-field>
-    <input matInput formControlName="firstName" placeholder="{{'first name' | translate}}">
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput formControlName="lastName" placeholder="{{'last name' | translate}}">
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput formControlName="email" placeholder="{{'email' | translate}}">
-  </mat-form-field>
-  <div formGroupName="passwordGroup">
-    <mat-form-field>
-      <input matInput type="password" formControlName="password" placeholder="{{'password' | translate}}"
-             matTooltip="{{'Minimum 8 signs, at least upper case and digit' | translate}}"
-             [matTooltipPosition]="'right'">
-    </mat-form-field>
-    <span *ngIf="passwordIncorrect">
-      {{'Password is incorrect' | translate}}
-    </span>
-    <mat-form-field>
-      <input matInput type="password" formControlName="repeatedPassword"
-             placeholder="{{'repeat password' | translate}}">
-    </mat-form-field>
-    <span *ngIf="passwordsNotEquals">
-      {{'Passwords must match' | translate}}
-    </span>
+  <div class="form-group col-12 col-md-6 col-lg-12">
+    <input type="text" class="form-control" formControlName="firstName" placeholder="{{'first name' | translate}}" tabindex="1">
+    <input type="text" class="form-control" formControlName="lastName" placeholder="{{'last name' | translate}}" tabindex="1">
+    <input type="text" class="form-control" formControlName="email" placeholder="{{'email' | translate}}" tabindex="1">
+    <!-- matTooltip="{{'Minimum 8 signs, at least upper case and digit' | translate}}"
+    [matTooltipPosition]="'right'" -->
+    <div formGroupName="passwordGroup">
+      <input type="password" class="form-control" formControlName="password" placeholder="{{'password' | translate}}" tabindex="1">
+      <span *ngIf="passwordIncorrect">
+        {{'Password is incorrect' | translate}}
+      </span>
+      <input type="password" class="form-control" formControlName="repeatedPassword" placeholder="{{'repeat password' | translate}}" tabindex="1">
+      <span *ngIf="passwordsNotEquals">
+        {{'Passwords must match' | translate}}
+      </span>
+    </div>
   </div>
   <div class="un-re-captcha">
-    <jhi-re-captcha formControlName="gRecaptchaResponse" [site_key]="googleReCaptchaKey"
-                    [language]="currentLanguage | flagCultureLang | lowercase"></jhi-re-captcha>
-  </div>
-  <span *ngIf="formIncorrect">
-    {{'Some of fields have errors' | translate}}
-  </span>
-  <button mat-raised-button color="accent" type="submit">
-    <i class="material-icons">people</i> {{'Create account' | translate}}
-  </button>
-  {{registrationError | translate}}
+      <jhi-re-captcha formControlName="gRecaptchaResponse" [site_key]="googleReCaptchaKey"
+                      [language]="currentLanguage | flagCultureLang | lowercase"></jhi-re-captcha>
+    </div>
+    <span *ngIf="formIncorrect">
+      {{'Some of fields have errors' | translate}}
+    </span>
+    <button class="btn" type="submit">
+      <i class="material-icons">people</i> {{'Create account' | translate}}
+    </button>
+    {{registrationError | translate}}
 </form>

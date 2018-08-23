@@ -4,6 +4,7 @@ import {FacebookAuthService} from '@app/security/services/facebook-auth.service'
 import {UserService} from '@app/core/services/user.service';
 import {User} from '@app/security/models/user';
 import {Subscription} from 'rxjs/Subscription';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'un-header',
@@ -17,7 +18,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   constructor(private facebookAuthService: FacebookAuthService,
               private authenticationService: AuthenticationService,
-              private userService: UserService) {
+              private userService: UserService,
+              private location: Location) {
   }
 
   ngOnInit(): void {
@@ -41,6 +43,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
       : this.authenticationService.logout();
     this.currentUser = undefined;
     this.userService.removeCurrentUser();
+  }
+
+  public showPlaceSearcher() {
+    return this.location.path() !== '';
   }
 
   get isLoggedIn(): boolean {
