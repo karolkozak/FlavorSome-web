@@ -16,9 +16,11 @@ import {PlaceDetailsPageComponent} from '@app/layouts/components/place-details-p
 import {UserPageComponent} from './components/user-page/user-page.component';
 import {UsersModule} from '@app/users/users.module';
 import {ConfirmationPageComponent} from '@app/layouts/components/confirmation-page/confirmation-page.component';
+import {AgmCoreModule} from '@agm/core';
 
 @NgModule({
   imports: [
+    AgmCoreModule,
     CommonModule,
     CoreModule,
     DashboardModule,
