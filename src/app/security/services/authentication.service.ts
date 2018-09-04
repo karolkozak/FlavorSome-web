@@ -23,6 +23,7 @@ export class AuthenticationService {
   announceLogin() {
     this.loginAnnounceSource.next();
   }
+
   public setFBAuthenticated(flag: boolean) {
     this.fbAuthenticated = flag;
   }

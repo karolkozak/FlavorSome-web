@@ -14,6 +14,7 @@ import {CustomLoginComponent} from './components/custom-login/custom-login.compo
 import {CustomAuthService} from './services/custom-auth.service';
 import {RegistrationComponent} from './components/registration/registration.component';
 import {ReCaptchaModule} from 'angular5-recaptcha';
+import {UnverifiedUserGuardService} from '@app/security/services/guards/unverified-user-guard.service';
 
 @NgModule({
   imports: [
@@ -31,6 +32,7 @@ import {ReCaptchaModule} from 'angular5-recaptcha';
     CustomAuthService,
     FacebookAuthService,
     LoginPageGuardService,
+    UnverifiedUserGuardService,
   ],
   declarations: [
     CustomLoginComponent,

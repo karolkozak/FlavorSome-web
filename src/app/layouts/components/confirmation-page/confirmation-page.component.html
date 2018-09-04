@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-md-12 un-confirmation">
+    <div *ngIf="!confirmationToken; else pendingConfirmation">
+      {{ 'Thank You for registration! Please check out your e-mail and click the confirmation link' | translate }}
+    </div>
+    <ng-template #pendingConfirmation>
+      <div *ngIf="!confirmationError; else confirmationTokenError">
+        <mat-progress-spinner
+          color="primary"
+          mode="indeterminate">
+        </mat-progress-spinner>
+        {{ 'Please wait for confirmation response' | translate }}
+      </div>
+      <ng-template #confirmationTokenError>
+        {{ 'Token is invalid or has expired' | translate }}
+      </ng-template>
+    </ng-template>
+  </div>
+</div>

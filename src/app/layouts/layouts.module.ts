@@ -11,6 +11,7 @@ import {CoreModule} from '@app/core/core.module';
 import {PlacesListPageComponent} from './components/places-list-page/places-list-page.component';
 import {RegistrationPageComponent} from '@app/layouts/components/registration-page/registration-page.component';
 import {PlaceDetailsPageComponent} from '@app/layouts/components/place-details-page/place-details-page.component';
+import {ConfirmationPageComponent} from '@app/layouts/components/confirmation-page/confirmation-page.component';
 
 @NgModule({
   imports: [
@@ -22,6 +23,7 @@ import {PlaceDetailsPageComponent} from '@app/layouts/components/place-details-p
     SharedModule,
   ],
   declarations: [
+    ConfirmationPageComponent,
     HomePageComponent,
     LoginPageComponent,
     NotFoundComponent,
@@ -30,6 +32,7 @@ import {PlaceDetailsPageComponent} from '@app/layouts/components/place-details-p
     RegistrationPageComponent,
   ],
   exports: [
+    ConfirmationPageComponent,
     HomePageComponent,
     LoginPageComponent,
     NotFoundComponent,
