@@ -14,7 +14,8 @@ export interface User {
 }
 
 export enum UserRole {
-  USER = 'USER',
   ADMIN = 'ADMIN',
-  BUSINESS = 'BUSINESS'
+  BUSINESS = 'BUSINESS',
+  USER = 'USER',
+  UNVERIFIED = 'UNVERIFIED'
 }
