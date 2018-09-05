@@ -6,6 +6,8 @@ import {Rate} from '@app/places/models/rate';
 import {Subscription} from 'rxjs/Subscription';
 import {PlacesService} from '@app/places/services/places.service';
 import {MatTabChangeEvent} from '@angular/material';
+import {PageableParams} from '@app/places/models/pageable-params';
+import {Pageable} from '@app/places/models/pageable';
 
 @Component({
   selector: 'un-user-page',
@@ -16,9 +18,10 @@ export class UserPageComponent implements OnInit, OnDestroy {
   userId: string;
   userDetailsTabs: string[] = [];
   user: User;
-  ratingsList: Rate[];
+  ratingsList: Pageable<Rate>;
   unnratedList: Rate[];
   selectedTab: number;
+  pageableParams: PageableParams = new PageableParams();
   private subscription: Subscription;
 
   constructor(private router: Router,
@@ -26,12 +29,6 @@ export class UserPageComponent implements OnInit, OnDestroy {
               private userService: UserService,
               private placesService: PlacesService) {
   }
-
-  rate = {id: 1, author: this.user, googlePlaceId: 'ChIJ0QIxIxBbFkcRzdl4v6nUZKs',
-    ratingDate: new Date().toDateString(), rating: 4, comments: 'That is great'};
-
-  unrated = {id: 2, author: this.user, googlePlaceId: 'ChIJ0QIxIxBbFkcRzdl4v6nUZKs', ratingDate: new Date().toDateString(),
-    rating: undefined, comments: undefined};
 
   ngOnInit() {
     this.userDetailsTabs = ['User Details', 'Rated places', 'Places to rate', 'Friends'];
@@ -41,6 +38,7 @@ export class UserPageComponent implements OnInit, OnDestroy {
       this.userService.getUser(this.userId).subscribe(currentUser => {
         this.user = {...currentUser};
         this.fetchRatings();
+        this.fetchUnrated();
         if (!this.isCurrentUser) {
           this.userDetailsTabs.splice(2, 1);
         }
@@ -56,17 +54,19 @@ export class UserPageComponent implements OnInit, OnDestroy {
     });
     this.subscription = this.placesService.userRateAnnounce.subscribe(() => {
       this.fetchRatings();
+      this.fetchUnrated();
     });
   }
 
-  fetchRatings() {
+  fetchRatings(pageableParams: PageableParams = this.pageableParams) {
     if (this.user) {
-      this.userService.getRatings(this.userId).subscribe(ratings => this.ratingsList = {...ratings});
-      this.ratingsList = [this.rate, this.rate];
-      if (this.isCurrentUser) {
-        this.userService.getUnrated().subscribe(unrated => this.unnratedList = {...unrated});
-        this.unnratedList = [this.unrated];
-      }
+      this.userService.getRatings(this.userId, pageableParams).subscribe(ratings => this.ratingsList = {...ratings});
+    }
+  }
+
+  fetchUnrated() {
+    if (this.user && this.isCurrentUser) {
+      this.userService.getUnrated().subscribe(unrated => this.unnratedList = unrated);
     }
   }
 

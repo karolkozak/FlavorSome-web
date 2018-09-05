@@ -1,8 +1,9 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Rate} from '@app/places/models/rate';
 import {PlacesService} from '@app/places/services/places.service';
 import {ToastrService} from 'ngx-toastr';
 import {CustomTranslateService} from '@app/core/services/custom-translate.service';
+import {PageableParams} from '@app/places/models/pageable-params';
 
 @Component({
   selector: 'un-user-ratings-list',
@@ -13,6 +14,8 @@ export class UserRatingsListComponent {
   @Input() ratings: Rate[] = [];
   @Input() allowEdit = false;
   @Input() allowRemove = false;
+  @Input() pageableParams: PageableParams;
+  @Output() pageableParamsChanged = new EventEmitter<PageableParams>();
 
   constructor(private placesService: PlacesService, private toastr: ToastrService, private customTranslateService: CustomTranslateService) {
   }

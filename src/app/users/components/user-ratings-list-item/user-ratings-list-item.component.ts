@@ -28,7 +28,7 @@ export class UserRatingsListItemComponent implements OnInit {
   ngOnInit(): void {
     this.mapsAPILoader.load().then(() => {
       this.googlePlacesService = new google.maps.places.PlacesService(document.createElement('div'));
-      this.fetchPlaceDetails(this.rate.googlePlaceId);
+      this.fetchPlaceDetails(this.rate.place.googlePlaceId);
     });
   }
 

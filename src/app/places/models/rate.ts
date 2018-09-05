@@ -1,9 +1,10 @@
 import {User} from '@app/security/models/user';
+import {Place} from '@app/places/models/place';
 
 export class Rate {
   id: number;
   author: User;
-  googlePlaceId: string;
+  place: Place;
   ratingDate: string;
   rating: number;
   comments: string;

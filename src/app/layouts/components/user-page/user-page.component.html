@@ -12,8 +12,12 @@
       </div>
       <div *ngIf="tab === 'Rated places'">
         <span>{{'List of rated places' | translate}}:</span>
-        <un-user-ratings-list [ratings]="ratingsList"
+        <un-user-ratings-list [ratings]="ratingsList?.content"
                               [allowEdit]="allowEdit"></un-user-ratings-list>
+        <un-pagination (dataChanged)="fetchRatings($event)"
+                       [pageableParams]="pageableParams"
+                       [first]="ratingsList?.first"
+                       [last]="ratingsList?.last"></un-pagination>
       </div>
       <div *ngIf="tab === 'Places to rate' && isCurrentUser">
         <span>{{'List of places to rate' | translate}}:</span>

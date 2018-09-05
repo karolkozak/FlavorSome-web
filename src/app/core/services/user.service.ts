@@ -1,11 +1,13 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {environment} from '@env/environment';
 import {User} from '@app/security/models/user';
 import {tap} from 'rxjs/operators';
 import {of} from 'rxjs/observable/of';
 import {Rate} from '@app/places/models/rate';
+import {PageableParams} from '@app/places/models/pageable-params';
+import {Pageable} from '@app/places/models/pageable';
 
 @Injectable()
 export class UserService {
@@ -36,9 +38,13 @@ export class UserService {
     return this.httpClient.get<User>(endpoint);
   }
 
-  getRatings(userId: string): Observable<Rate[]> {
+  getRatings(userId: string, pageable: PageableParams): Observable<Pageable<Rate>> {
+    let params = new HttpParams();
+    params = params.append('page', pageable.page as any as string);
+    params = params.append('size', pageable.size as any as string);
+    params = params.append('sort', `${pageable.sortKey},${pageable.direction}`);
     const endpoint = `${this.baseUrl}/${userId}${environment.ratingsPath}`;
-    return this.httpClient.get<Rate[]>(endpoint);
+    return this.httpClient.get<Pageable<Rate>>(endpoint, {params});
   }
 
   getUnrated(): Observable<Rate[]> {

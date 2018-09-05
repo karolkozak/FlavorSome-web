@@ -44,14 +44,14 @@ export class PlacesService {
   }
 
   public editRate(rate: Rate): Observable<Rate> {
-    const endpoint = this.baseUrl + `/${rate.googlePlaceId}${environment.ratingsPath}/${rate.id}`;
+    const endpoint = this.baseUrl + `/${rate.place.googlePlaceId}${environment.ratingsPath}/${rate.id}`;
     return this.httpClient.put<Rate>(endpoint, rate).pipe(
       tap(() => this.announceUserRate())
     );
   }
 
   public deleteRate(rate: Rate): Observable<ApiResponseBody> {
-    const endpoint = this.baseUrl + `/${rate.googlePlaceId}${environment.ratingsPath}/${rate.id}`;
+    const endpoint = this.baseUrl + `/${rate.place.googlePlaceId}${environment.ratingsPath}/${rate.id}`;
     return this.httpClient.delete<ApiResponseBody>(endpoint);
   }
 }
