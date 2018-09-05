@@ -9,15 +9,18 @@ import {PlaceDetailsPageComponent} from '@app/layouts/components/place-details-p
 import {PlacesListPageComponent} from '@app/layouts/components/places-list-page/places-list-page.component';
 import {RegistrationPageComponent} from '@app/layouts/components/registration-page/registration-page.component';
 import {UserPageComponent} from '@app/layouts/components/user-page/user-page.component';
+import {ConfirmationPageComponent} from '@app/layouts/components/confirmation-page/confirmation-page.component';
+import {UnverifiedUserGuardService} from '@app/security/services/guards/unverified-user-guard.service';
 import {AuthGuardService} from '@app/security/services/guards/auth-guard.service';
 
 const appRoutes: Routes = [
   {path: '', component: HomePageComponent, pathMatch: 'full'},
   {path: 'login', component: LoginPageComponent, canActivate: [LoginPageGuardService]},
   {path: 'registration', component: RegistrationPageComponent, canActivate: [LoginPageGuardService]},
+  {path: 'confirmation', component: ConfirmationPageComponent, canActivate: [AuthGuardService, UnverifiedUserGuardService]},
   {path: 'places', component: PlacesListPageComponent},
   {path: 'places/:id', component: PlaceDetailsPageComponent},
-  {path: 'users/:id', component: UserPageComponent, canActivate: [AuthGuardService]},
+  {path: 'users/:id', component: UserPageComponent, canActivate: [AuthGuardService, UnverifiedUserGuardService]},
   {path: '**', component: NotFoundComponent},
 ];
 

@@ -11,8 +11,9 @@ import {CoreModule} from '@app/core/core.module';
 import {PlacesListPageComponent} from './components/places-list-page/places-list-page.component';
 import {RegistrationPageComponent} from '@app/layouts/components/registration-page/registration-page.component';
 import {PlaceDetailsPageComponent} from '@app/layouts/components/place-details-page/place-details-page.component';
-import { UserPageComponent } from './components/user-page/user-page.component';
+import {UserPageComponent} from './components/user-page/user-page.component';
 import {UsersModule} from '@app/users/users.module';
+import {ConfirmationPageComponent} from '@app/layouts/components/confirmation-page/confirmation-page.component';
 
 @NgModule({
   imports: [
@@ -25,6 +26,7 @@ import {UsersModule} from '@app/users/users.module';
     UsersModule,
   ],
   declarations: [
+    ConfirmationPageComponent,
     HomePageComponent,
     LoginPageComponent,
     NotFoundComponent,
@@ -34,6 +36,7 @@ import {UsersModule} from '@app/users/users.module';
     UserPageComponent,
   ],
   exports: [
+    ConfirmationPageComponent,
     HomePageComponent,
     LoginPageComponent,
     NotFoundComponent,

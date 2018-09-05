@@ -12,6 +12,8 @@ export const environment = {
   loginPath: '/login',
   logoutPath: '/logout',
   registration: '/register',
+  confirmation: '/confirmation',
+
   configPath: '/config',
   placeTypesPath: '/places/types',
 

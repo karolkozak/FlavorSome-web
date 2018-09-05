@@ -29,7 +29,7 @@ export class GlobalExceptionInterceptor implements HttpInterceptor {
           this.router.navigate(['/login']);
           errorMessage = {message: 'You have to be logged in'};
         } else {
-          errorMessage = JSON.parse(error.error);
+          errorMessage = error.error instanceof Object ? error.error : JSON.parse(error.error);
         }
         this.customTranslateService.getTranslation('Exception').subscribe(result => this.titleMessage = result);
         this.customTranslateService
