@@ -54,4 +54,9 @@ export class PlacesService {
     const endpoint = this.baseUrl + `/${rate.place.googlePlaceId}${environment.ratingsPath}/${rate.id}`;
     return this.httpClient.delete<ApiResponseBody>(endpoint);
   }
+
+  public visitPlace(placeId: string): Observable<ApiResponseBody> {
+    const endpoint = this.baseUrl + `/${placeId}${environment.visit}`;
+    return this.httpClient.post<ApiResponseBody>(endpoint, {});
+  }
 }
