@@ -9,7 +9,7 @@
   <div>
     <mat-button-toggle-group>
     <mat-button-toggle mat-raised-button type="radio" [disabled]="isLocationDisabled"
-                       (change)="locateUser($event)">{{'Locate' | translate}}</mat-button-toggle>
+                       (change)="locateUser()">{{'Locate' | translate}}</mat-button-toggle>
     <mat-button-toggle mat-raised-button type="radio" [checked]="true"
                        (change)="useBounds()">{{'Search visible area' | translate}}</mat-button-toggle>
     </mat-button-toggle-group>
