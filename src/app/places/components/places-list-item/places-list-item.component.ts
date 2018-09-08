@@ -15,7 +15,7 @@ export class PlacesListItemComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.configService.getAvailablePlaceTypes().subscribe(placeTypes => this.availablePlacesTypes = placeTypes);
+    this.availablePlacesTypes = this.configService.getAvailablePlaceTypes();
   }
 
   filterAvailableTypes(types: string[]): string[] {

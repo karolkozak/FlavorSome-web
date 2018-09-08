@@ -1,6 +1,5 @@
 import {HttpClient} from '@angular/common/http';
-import {Injectable} from '@angular/core';
-import {Router} from '@angular/router';
+import {Injectable, Injector} from '@angular/core';
 import {ToastrService} from 'ngx-toastr';
 import {Observable} from 'rxjs/Observable';
 import {SocialUser} from '../libs/angular5-social-login/entities';
@@ -16,12 +15,12 @@ export class FacebookAuthService extends AuthenticationService {
   private titleMessage: string;
   private errorMessage: string;
 
-  constructor(router: Router,
+  constructor(injector: Injector,
               private httpClient: HttpClient,
               private socialAuthService: SocialAuthService,
               private toastr: ToastrService,
               private customTranslateService: CustomTranslateService) {
-    super(router);
+    super(injector);
     this.baseUrl = environment.unnamedMicroserviceUrl + environment.authPath;
   }
 

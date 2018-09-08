@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Injectable, Injector} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {Subject} from 'rxjs/Subject';
 import {Router} from '@angular/router';
@@ -10,11 +10,19 @@ export class AuthenticationService {
   private redirectUrl: string;
   private fbAuthenticated = false;
 
-  constructor(private router: Router) {
+  constructor(private injector: Injector) {
   }
 
   private loginAnnounceSource: Subject<string> = new Subject<string>();
   public readonly loginAnnounce: Observable<string> = this.loginAnnounceSource.asObservable();
+
+  /*
+   * injecting Router in constructor causes circular dependency injection in app.module.ts
+   * @see https://stackoverflow.com/questions/39767019/app-initializer-raises-cannot-instantiate-cyclic-dependency-applicationref-w
+   */
+  get router(): Router {
+    return this.injector.get(Router);
+  }
 
   public isLoggedIn(): boolean {
     return !!this.getToken();

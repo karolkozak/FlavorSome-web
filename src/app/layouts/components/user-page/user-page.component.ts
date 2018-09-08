@@ -31,7 +31,6 @@ export class UserPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.userService.getCurrentUser().subscribe();  // for entering the user details page from url, needed to check if current user
     this.route.params.subscribe(params => {
       this.userId = params['id'];
       this.userService.getUser(this.userId).subscribe(currentUser => {

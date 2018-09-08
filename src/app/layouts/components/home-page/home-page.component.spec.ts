@@ -1,15 +1,13 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {HomePageComponent} from './home-page.component';
-import {ConfigService} from '../../../core/services/config.service';
-import {SharedModule} from '../../../shared/shared.module';
-import {of} from 'rxjs/observable/of';
+import {ConfigService} from '@app/core/services/config.service';
+import {SharedModule} from '@app/shared/shared.module';
 
 describe('HomePageComponent', () => {
   let component: HomePageComponent;
   let fixture: ComponentFixture<HomePageComponent>;
   let service: ConfigService;
-  let spy;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -25,19 +23,5 @@ describe('HomePageComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
     service = fixture.debugElement.injector.get(ConfigService);
-    spy = spyOn(service, 'getAvailablePlaceTypes').and.returnValue(of(['BAR']));
   });
-
-  /**
-   * Locally tests pass but Travis fails. Will be done in future; to do this:
-   * @see https://angular.io/guide/testing
-   */
-
-  // it('should create', () => {
-  //   expect(component).toBeTruthy();
-  // });
-  //
-  // it('should create', fakeAsync(() => {
-  //   service.getAvailablePlaceTypes().subscribe(v => expect(v).toEqual(['BAR']));
-  // }));
 });

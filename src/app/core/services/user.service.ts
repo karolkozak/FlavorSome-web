@@ -19,6 +19,16 @@ export class UserService {
     this.baseUrl = environment.unnamedMicroserviceUrl + environment.usersPath;
   }
 
+  fetchUserOnInitApp(): Promise<User> {
+    const endpoint = this.baseUrl + environment.current;
+    return new Promise((resolve, reject) => {
+      this.httpClient.get<User>(endpoint).subscribe(currentUser => {
+        this.currentUser = currentUser;
+        resolve(currentUser);
+      });
+    });
+  }
+
   getCurrentUser(): Observable<User> {
     if (this.currentUser) {
       return of(this.currentUser);
