@@ -35,7 +35,7 @@ export class RateFormComponent implements OnInit {
 
   addNewRate() {
     if (this.rateForm.valid) {
-      this.rateChanged.emit(new Rate(this.rateForm.get('rating').value, this.rateForm.get('comments').value));
+      this.rateChanged.emit({...this.rate, rating: this.rateForm.get('rating').value, comments: this.rateForm.get('comments').value});
     }
   }
 }

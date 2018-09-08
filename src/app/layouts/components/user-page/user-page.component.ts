@@ -16,10 +16,10 @@ import {Pageable} from '@app/places/models/pageable';
 })
 export class UserPageComponent implements OnInit, OnDestroy {
   userId: string;
-  userDetailsTabs: string[] = [];
+  userDetailsTabs: string[] = ['User Details', 'Rated places', 'Places to rate', 'Friends'];
   user: User;
   ratingsList: Pageable<Rate>;
-  unnratedList: Rate[];
+  unratedList: Rate[];
   selectedTab: number;
   pageableParams: PageableParams = new PageableParams();
   private subscription: Subscription;
@@ -31,7 +31,6 @@ export class UserPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.userDetailsTabs = ['User Details', 'Rated places', 'Places to rate', 'Friends'];
     this.userService.getCurrentUser().subscribe();  // for entering the user details page from url, needed to check if current user
     this.route.params.subscribe(params => {
       this.userId = params['id'];
@@ -52,9 +51,19 @@ export class UserPageComponent implements OnInit, OnDestroy {
           .indexOf(activeTab);
       }
     });
-    this.subscription = this.placesService.userRateAnnounce.subscribe(() => {
-      this.fetchRatings();
-      this.fetchUnrated();
+    this.subscription = this.placesService.userRateAnnounce.subscribe((rate: Rate) => {
+      let updated = false;
+      this.ratingsList.content = this.ratingsList.content.map(r => {
+        if (r.id === rate.id) {
+          updated = !updated;
+          return rate;
+        }
+        return r;
+      });
+      if (!updated) {
+        this.ratingsList.content.push(rate);
+      }
+      this.unratedList = this.unratedList.filter(r => r.id !== rate.id);
     });
   }
 
@@ -66,7 +75,7 @@ export class UserPageComponent implements OnInit, OnDestroy {
 
   fetchUnrated() {
     if (this.user && this.isCurrentUser) {
-      this.userService.getUnrated().subscribe(unrated => this.unnratedList = unrated);
+      this.userService.getUnrated().subscribe(unrated => this.unratedList = unrated);
     }
   }
 

@@ -39,10 +39,10 @@ export class UserService {
   }
 
   getRatings(userId: string, pageable: PageableParams): Observable<Pageable<Rate>> {
-    let params = new HttpParams();
-    params = params.append('page', pageable.page as any as string);
-    params = params.append('size', pageable.size as any as string);
-    params = params.append('sort', `${pageable.sortKey},${pageable.direction}`);
+    const params = new HttpParams()
+      .set('page', pageable.page as any as string)
+      .set('size', pageable.size as any as string)
+      .set('sort', `${pageable.sortKey},${pageable.direction}`);
     const endpoint = `${this.baseUrl}/${userId}${environment.ratingsPath}`;
     return this.httpClient.get<Pageable<Rate>>(endpoint, {params});
   }

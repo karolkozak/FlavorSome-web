@@ -21,7 +21,7 @@
       </div>
       <div *ngIf="tab === 'Places to rate' && isCurrentUser">
         <span>{{'List of places to rate' | translate}}:</span>
-        <un-user-ratings-list [ratings]="unnratedList"
+        <un-user-ratings-list [ratings]="unratedList"
                               [allowEdit]="allowEdit"
                               [allowRemove]="true"></un-user-ratings-list>
       </div>

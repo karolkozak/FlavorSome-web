@@ -17,12 +17,8 @@ export class PlacesService {
     this.baseUrl = environment.unnamedMicroserviceUrl + environment.placesPath;
   }
 
-  private userRateAnnounceSource: Subject<string> = new Subject<string>();
-  public readonly userRateAnnounce: Observable<string> = this.userRateAnnounceSource.asObservable();
-
-  announceUserRate() {
-    this.userRateAnnounceSource.next();
-  }
+  private userRateAnnounceSource: Subject<Rate> = new Subject<Rate>();
+  public readonly userRateAnnounce: Observable<Rate> = this.userRateAnnounceSource.asObservable();
 
   public getMenu(placeId: string): Observable<StringMap<number>> {
     const endpoint = this.baseUrl + `/${placeId}${environment.menuPath}`;
@@ -30,10 +26,10 @@ export class PlacesService {
   }
 
   public getRates(placeId: string, pageable: PageableParams): Observable<Pageable<Rate>> {
-    let params = new HttpParams();
-    params = params.append('page', pageable.page as any as string);
-    params = params.append('size', pageable.size as any as string);
-    params = params.append('sort', `${pageable.sortKey},${pageable.direction}`);
+    const params = new HttpParams()
+      .set('page', pageable.page as any as string)
+      .set('size', pageable.size as any as string)
+      .set('sort', `${pageable.sortKey},${pageable.direction}`);
     const endpoint = this.baseUrl + `/${placeId}${environment.ratingsPath}`;
     return this.httpClient.get<Pageable<Rate>>(endpoint, {params});
   }
@@ -46,7 +42,7 @@ export class PlacesService {
   public editRate(rate: Rate): Observable<Rate> {
     const endpoint = this.baseUrl + `/${rate.place.googlePlaceId}${environment.ratingsPath}/${rate.id}`;
     return this.httpClient.put<Rate>(endpoint, rate).pipe(
-      tap(() => this.announceUserRate())
+      tap(editedRate => this.userRateAnnounceSource.next(editedRate))
     );
   }
 
