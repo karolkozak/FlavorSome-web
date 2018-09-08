@@ -6,6 +6,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {
   MatAutocompleteModule,
   MatButtonModule,
+  MatButtonToggleModule,
   MatCardModule,
   MatFormFieldModule,
   MatInputModule,
@@ -37,6 +38,7 @@ import {DatePipe} from './pipes/date.pipe';
     MatCardModule,
     MatFormFieldModule,
     MatButtonModule,
+    MatButtonToggleModule,
     MatInputModule,
     MatListModule,
     MatMenuModule,

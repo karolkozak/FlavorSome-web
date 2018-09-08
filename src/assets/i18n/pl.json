@@ -7,6 +7,8 @@
   "Advanced search": "Zaawansowane wyszukiwanie",
   "Exception": "Błąd",
   "Error 404": "Błąd 404, adres {{url}} nie został znaleziony",
+  "An error occurred": "Wystąpił błąd",
+  "Could not fetch the location": "Nie udało się pobrać lokalizacji",
   "Log in": "Logowanie",
   "Login": "Zaloguj",
   "first name": "imię",
@@ -66,5 +68,16 @@
   "Thank You for registration! Please check out your e-mail and click the confirmation link.": "Dziękujemy za rejestrację. Sprawdź maila i kliknij w link celem dokończenia rejestracji.",
   "Please wait for confirmation response": "Czekaj na potwierdzenie",
   "Token is invalid or has expired": "Token jest nieprawidłowy lub wygasł",
-  "Confirmation successful": "Token potwierdzony"
+  "Confirmation successful": "Token potwierdzony",
+  "Search phrase": "Szukana fraza",
+  "Locate": "Lokalizuj",
+  "Search visible area": "Przeszukaj widoczny obszar",
+  "Range": "Zasięg",
+  "Place type": "Typ miejsca",
+  "Preferences": "Preferencje",
+  "Find places": "Szukaj miejsc",
+  "RESTAURANT": "Restauracja",
+  "CAFE": "Kawiarnia",
+  "BAR": "Bar",
+  "MEAL_TAKEAWAY": "Posiłek na wynos"
 }

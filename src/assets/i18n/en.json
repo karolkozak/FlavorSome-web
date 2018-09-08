@@ -1,3 +1,7 @@
 {
-  "Error 404": "Error 404, {{url}} was not found"
+  "Error 404": "Error 404, {{url}} was not found",
+  "RESTAURANT": "Restaurant",
+  "CAFE": "Cafe",
+  "BAR": "Bar",
+  "MEAL_TAKEAWAY": "Meal takeaway"
 }
