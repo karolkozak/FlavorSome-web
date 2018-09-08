@@ -36,9 +36,13 @@ export const environment = {
   googleApiKey: 'AIzaSyC9sBR6fDjfqbKDPJ_AX8y45G9L4E7pFOg',
   googleReCaptchaKey: '6LfaQlAUAAAAAC2husiZGVe0gCLEGiNyt71svf4Y',
 
-  location: {
-    lat: 50.0617446,
-    lng: 19.948338,
+  googlePlacesUrl: 'https://maps.googleapis.com/maps/api/place/findplacefromtext/json',
+
+  mapDefaults: {
+    coords: {
+      lat: 50.0617446,
+      lng: 19.948338
+    },
     zoom: 14
   },
 };

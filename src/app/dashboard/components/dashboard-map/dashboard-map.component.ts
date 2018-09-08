@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {environment} from '@env/environment';
+import {PlacesSearchService} from '@app/dashboard/services/places-search.service';
 
 @Component({
   selector: 'un-dashboard-map',
@@ -7,14 +8,23 @@ import {environment} from '@env/environment';
   styleUrls: ['./dashboard-map.component.scss']
 })
 export class DashboardMapComponent implements OnInit {
+  map: google.maps.Map;
   mapCenter: {lat: number, lng: number};
   zoom: number;
+  userPosition: google.maps.LatLng;
+  searchRadius: number;
 
-  constructor() { }
+  constructor(private placesService: PlacesSearchService) { }
 
   ngOnInit() {
-    this.mapCenter = environment.location;
-    this.zoom = environment.location.zoom;
+    ({coords: this.mapCenter, zoom: this.zoom} = environment.mapDefaults);
+    this.placesService.userPosition.subscribe((pos: google.maps.LatLng|undefined) => this.userPosition = pos);
+    this.placesService.searchRadius.subscribe((rad: number|undefined) => this.searchRadius = rad);
+  }
+
+  mapReady($map: google.maps.Map): void {
+    this.map = $map;
+    this.placesService.map.next($map);
   }
 
 }
