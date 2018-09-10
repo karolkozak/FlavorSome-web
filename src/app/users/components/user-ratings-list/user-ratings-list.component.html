@@ -1,0 +1,6 @@
+<span *ngIf="!ratings?.length">{{'No pending ratings' | translate}}</span>
+<un-user-ratings-list-item *ngFor="let rate of ratings"
+                           [rate]="rate"
+                           [allowEdit]="allowEdit"
+                           [allowRemove]="allowRemove"
+                           (removeItem)="removeRate($event)"></un-user-ratings-list-item>

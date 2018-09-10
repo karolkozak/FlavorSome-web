@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {ConfigService} from '@app/core/services/config.service';
 import {CustomTranslateService} from '@app/core/services/custom-translate.service';
 
 @Component({
@@ -10,7 +9,7 @@ import {CustomTranslateService} from '@app/core/services/custom-translate.servic
 export class AppComponent implements OnInit {
   title = 'un';
 
-  constructor(private configService: ConfigService, private customTranslateService: CustomTranslateService) {
+  constructor(private customTranslateService: CustomTranslateService) {
   }
 
   onActivate() {
@@ -18,11 +17,6 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.fetchConfig();
     this.customTranslateService.setTranslations();
-  }
-
-  private fetchConfig() {
-    this.configService.getAvailablePlaceTypes().subscribe();
   }
 }

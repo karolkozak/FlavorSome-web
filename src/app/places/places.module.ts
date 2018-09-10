@@ -32,6 +32,7 @@ import {RatesListComponent} from './components/place-ratings/rates-list/rates-li
     PlaceDetailsComponent,
     PlaceMenuComponent,
     PlacesListComponent,
+    RateFormComponent,
     RatesSectionComponent,
   ],
   providers: [PlacesService]
