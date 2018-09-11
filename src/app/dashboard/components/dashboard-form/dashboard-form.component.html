@@ -1,16 +1,13 @@
-<div>
-  <h1>LOGO</h1>
-</div>
 <form [formGroup]="placesSearchForm" (ngSubmit)="findPlaces()">
 
   <mat-form-field>
     <input matInput formControlName="phrase" placeholder="{{'Search phrase' | translate}}">
   </mat-form-field>
   <div>
-    <mat-button-toggle-group>
-    <mat-button-toggle mat-raised-button type="radio" [disabled]="isLocationDisabled"
+    <mat-button-toggle-group [value]="isLocationDisabled ? 'bounds' : 'locate'">
+    <mat-button-toggle type="radio" value="locate" [disabled]="isLocationDisabled"
                        (change)="locateUser()">{{'Locate' | translate}}</mat-button-toggle>
-    <mat-button-toggle mat-raised-button type="radio" [checked]="true"
+    <mat-button-toggle type="radio" value="bounds"
                        (change)="useBounds()">{{'Search visible area' | translate}}</mat-button-toggle>
     </mat-button-toggle-group>
   </div>

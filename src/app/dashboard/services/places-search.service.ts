@@ -7,7 +7,6 @@ import {ToastrService} from 'ngx-toastr';
 
 @Injectable()
 export class PlacesSearchService {
-  map: BehaviorSubject<google.maps.Map> = new BehaviorSubject(undefined);
   userPosition: BehaviorSubject<google.maps.LatLng> = new BehaviorSubject(undefined);
   searchRadius: BehaviorSubject<number> = new BehaviorSubject(undefined);
 
@@ -24,7 +23,6 @@ export class PlacesSearchService {
       const {latitude: lat, longitude: lng} = position.coords;
       const latlng = new google.maps.LatLng(lat, lng);
       this.userPosition.next(latlng);
-      this.map.value.panTo(latlng);
     }, error => {
       switch (error.code) {
         case error.PERMISSION_DENIED:

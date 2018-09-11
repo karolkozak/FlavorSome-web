@@ -11,6 +11,8 @@ import {PlacesSearchService} from '@app/dashboard/services/places-search.service
 })
 export class DashboardFormComponent implements OnInit {
   private static RANGE = 300;
+  private static RANGE_MIN = 10;
+  private static RANGE_MAX = 50000;
 
   isLocationDisabled = !navigator.geolocation;
   placeTypes: Observable<string[]>;
@@ -26,8 +28,8 @@ export class DashboardFormComponent implements OnInit {
     this.placesSearchForm = this.formBuilder.group({
       phrase: [''],
       range: [DashboardFormComponent.RANGE, Validators.compose([
-        Validators.min(10),
-        Validators.max(10000),
+        Validators.min(DashboardFormComponent.RANGE_MIN),
+        Validators.max(DashboardFormComponent.RANGE_MAX),
       ])],
       placeType: [''],
       preferences: [''],

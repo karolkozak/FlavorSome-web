@@ -6,6 +6,7 @@
                   [latitude]="userPosition?.lat()"
                   [longitude]="userPosition?.lng()"
                   [radius]="searchRadius"
+                  [fillOpacity]="0.1"
                   [clickable]="false"
                   [draggable]="false" ></agm-circle>
       <agm-marker *ngIf="userPosition"
