@@ -1,5 +1,13 @@
-:host {
+@import 'colors';
+
+:host(un-custom-login) {
   form {
     margin-bottom: 10px;
+
+    button {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
   }
 }

@@ -1,10 +1,8 @@
-<form [formGroup]="loginUserForm" (ngSubmit)="login()">
-  <mat-form-field>
-    <input matInput formControlName="email" placeholder="{{'email' | translate}}">
-  </mat-form-field>
-  <mat-form-field>
-    <input matInput type="password" formControlName="password" placeholder="{{'password' | translate}}" >
-  </mat-form-field>
+<form [formGroup]="loginUserForm" (ngSubmit)="login()" (keyup.enter)="login()">
+  <div class="form-group col-12 col-md-6 col-lg-12">
+    <input type="text" class="form-control" formControlName="email" placeholder="{{'email' | translate}}" tabindex="1">
+    <input type="password" class="form-control" formControlName="password" placeholder="{{'password' | translate}}" tabindex="1">
+  </div>
   {{errorMessage?.message | translate}}
-  <button mat-raised-button color="accent" type="submit">{{'Login' | translate}}</button>
+<button class="btn" type="submit">{{'Login' | translate}}</button>
 </form>

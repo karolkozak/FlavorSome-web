@@ -1,9 +1,46 @@
-mat-toolbar {
-  span.un-header-fill {
-    flex: 1 1 auto;
-  }
-}
+@import "colors";
+@import "variables";
 
-.un-app-name {
-  cursor: pointer;
+
+:host(un-header) {
+  .un-header-add {
+    background-color: white;
+    text-align: center;
+    padding: 5px 0;
+  }
+
+  nav {
+    span.un-header-fill {
+      flex: 1 1 auto;
+    }
+
+    background-color: rgba(0, 0, 0, .6);
+    height: $un-header-height;
+
+    button {
+      background-color: transparent;
+      border-left: 0.7px solid white;
+
+      &:after {
+        border-right: 1px solid pink;
+      }
+
+      &:last-child:after{
+        border-right: none;
+      }
+    }
+
+    button:first-child {
+      border-right: none;
+    }
+  }
+
+  .un-app-name {
+    cursor: pointer;
+
+    img {
+      height: 30px;
+      width: auto;
+    }
+  }
 }
