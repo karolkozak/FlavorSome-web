@@ -1,0 +1,31 @@
+<div class="row un-ratings-item">
+  <div class="col-md-4 un-ratings-item-col">
+    <a *ngIf="placeDetails" [routerLink]="['/places', placeDetails?.place_id]">{{placeDetails?.name}}</a>
+    {{placeDetails?.formatted_address}}
+  </div>
+  <div class="col-md-4 un-ratings-item-col">
+    {{rate?.rating}}
+    <span>{{rate?.comments}}</span>
+  </div>
+  <div class="col-md-4 un-ratings-item-col">
+    <button mat-raised-button
+            [matTooltip]="'Edit' | translate"
+            *ngIf="allowEdit"
+            (click)="toggleEditForm()">
+      <i class="material-icons">edit</i>
+    </button>
+    <button mat-raised-button
+            [matTooltip]="'Remove' | translate"
+            *ngIf="allowRemove"
+            color="accent"
+            (click)="remove()">
+      <i class="material-icons">delete</i>
+    </button>
+  </div>
+</div>
+
+<div *ngIf="editing" class="row un-ratings-item">
+  <div class="col-md-12">
+    <un-rate-form [rate]="rate" (rateChanged)="saveEdited($event)" [editing]="true"></un-rate-form>
+  </div>
+</div>

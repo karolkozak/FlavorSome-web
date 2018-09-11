@@ -12,8 +12,5 @@
            formControlName="comments"
            placeholder="{{'write something...' | translate}}">
   </mat-form-field>
-  <button mat-raised-button
-          color="accent"
-          type="submit">{{'Add' | translate}}
-  </button>
+  <button mat-raised-button color="accent" type="submit">{{editing ? 'Save' : 'Add' | translate}}</button>
 </form>

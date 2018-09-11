@@ -1,4 +1,3 @@
-import {Survey} from '@app/places/models/survey';
 import {Place} from '@app/places/models/place';
 
 export interface User {
@@ -9,7 +8,6 @@ export interface User {
   email: string;
   role: UserRole;
   friends: User[];
-  surveys: Survey[];
   ownedPlaces: Place[];
 }
 

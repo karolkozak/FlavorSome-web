@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Rate} from '@app/places/models/rate';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
@@ -13,7 +13,9 @@ const ratingsConfig = {
   styleUrls: ['./rate-form.component.scss']
 })
 export class RateFormComponent implements OnInit {
-  @Output() rateAdded = new EventEmitter<Rate>();
+  @Input() rate: Rate = new Rate(undefined, '');
+  @Input() editing: boolean;
+  @Output() rateChanged = new EventEmitter<Rate>();
   rateForm: FormGroup;
   ratingsConfig = ratingsConfig;
 
@@ -22,18 +24,18 @@ export class RateFormComponent implements OnInit {
 
   ngOnInit() {
     this.rateForm = this.formBuilder.group({
-      rating: ['', Validators.compose([
+      rating: [this.rate.rating, Validators.compose([
         Validators.required,
         Validators.min(this.ratingsConfig.minRateValue),
         Validators.max(this.ratingsConfig.maxRateValue)
       ])],
-      comments: ['', Validators.required],
+      comments: [this.rate.comments, Validators.required],
     });
   }
 
   addNewRate() {
     if (this.rateForm.valid) {
-      this.rateAdded.emit(new Rate(this.rateForm.get('rating').value, this.rateForm.get('comments').value));
+      this.rateChanged.emit({...this.rate, rating: this.rateForm.get('rating').value, comments: this.rateForm.get('comments').value});
     }
   }
 }
