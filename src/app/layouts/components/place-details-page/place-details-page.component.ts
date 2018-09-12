@@ -4,6 +4,8 @@ import {MapsAPILoader} from '@agm/core';
 import {PlacesService} from '@app/places/services/places.service';
 import {Subscription} from 'rxjs/Subscription';
 import {AuthenticationService} from '@app/security/services/authentication.service';
+import {ToastrService} from 'ngx-toastr';
+import {CustomTranslateService} from '@app/core/services/custom-translate.service';
 
 @Component({
   selector: 'un-place-details-page',
@@ -19,10 +21,11 @@ export class PlaceDetailsPageComponent implements OnInit, OnDestroy {
   placeMenu: StringMap<number> = {};
 
   constructor(private route: ActivatedRoute,
+              private toastr: ToastrService,
+              private customTranslateService: CustomTranslateService,
               private authenticationService: AuthenticationService,
               private mapsAPILoader: MapsAPILoader,
-              private placesService: PlacesService
-  ) {
+              private placesService: PlacesService) {
   }
 
   ngOnInit() {
@@ -45,6 +48,16 @@ export class PlaceDetailsPageComponent implements OnInit, OnDestroy {
       if (status === google.maps.places.PlacesServiceStatus.OK) {
         this.placeDetails = {...result};
       }
+    });
+  }
+
+  visit() {
+    this.placesService.visitPlace(this.placeId).subscribe(response => {
+      let titleMessage = '', message = '';
+      this.customTranslateService.getTranslation('Success!').subscribe(result => titleMessage = result);
+      this.customTranslateService.getTranslation('Place was successfully added to your list')
+        .subscribe(result => message = result);
+      this.toastr.success(message, titleMessage);
     });
   }
 

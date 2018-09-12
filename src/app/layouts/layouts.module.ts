@@ -11,6 +11,8 @@ import {CoreModule} from '@app/core/core.module';
 import {PlacesListPageComponent} from './components/places-list-page/places-list-page.component';
 import {RegistrationPageComponent} from '@app/layouts/components/registration-page/registration-page.component';
 import {PlaceDetailsPageComponent} from '@app/layouts/components/place-details-page/place-details-page.component';
+import {UserPageComponent} from './components/user-page/user-page.component';
+import {UsersModule} from '@app/users/users.module';
 import {ConfirmationPageComponent} from '@app/layouts/components/confirmation-page/confirmation-page.component';
 
 @NgModule({
@@ -21,6 +23,7 @@ import {ConfirmationPageComponent} from '@app/layouts/components/confirmation-pa
     PlacesModule,
     SecurityModule,
     SharedModule,
+    UsersModule,
   ],
   declarations: [
     ConfirmationPageComponent,
@@ -30,6 +33,7 @@ import {ConfirmationPageComponent} from '@app/layouts/components/confirmation-pa
     PlaceDetailsPageComponent,
     PlacesListPageComponent,
     RegistrationPageComponent,
+    UserPageComponent,
   ],
   exports: [
     ConfirmationPageComponent,
@@ -39,6 +43,7 @@ import {ConfirmationPageComponent} from '@app/layouts/components/confirmation-pa
     PlaceDetailsPageComponent,
     PlacesListPageComponent,
     RegistrationPageComponent,
+    UserPageComponent,
   ]
 })
 export class LayoutsModule {
