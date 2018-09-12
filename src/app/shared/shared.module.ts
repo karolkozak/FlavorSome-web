@@ -6,6 +6,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {
   MatAutocompleteModule,
   MatButtonModule,
+  MatButtonToggleModule,
   MatCardModule,
   MatFormFieldModule,
   MatInputModule,
@@ -13,6 +14,7 @@ import {
   MatTabsModule,
   MatMenuModule,
   MatProgressSpinnerModule,
+  MatSelectModule,
   MatToolbarModule,
   MatTooltipModule
 } from '@angular/material';
@@ -36,11 +38,13 @@ import {DatePipe} from './pipes/date.pipe';
     MatCardModule,
     MatFormFieldModule,
     MatButtonModule,
+    MatButtonToggleModule,
     MatInputModule,
     MatListModule,
     MatMenuModule,
     MatTabsModule,
     MatProgressSpinnerModule,
+    MatSelectModule,
     MatToolbarModule,
     MatTooltipModule,
     PaginationComponent,

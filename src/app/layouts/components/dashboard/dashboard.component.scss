@@ -1,0 +1,22 @@
+:host {
+  flex: 1;
+  display: flex;
+
+  .container-fluid {
+    padding-left: 0;
+    padding-right: 0;
+
+    .row {
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    .col-md-12,
+    .col-md-2,
+    .col-md-10 {
+      height: 100%;
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+}
