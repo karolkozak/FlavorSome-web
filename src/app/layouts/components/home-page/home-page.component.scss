@@ -1,0 +1,113 @@
+@import 'colors';
+@import 'variables';
+@import 'mixins';
+
+:host(un-home-page) {
+  color: white;
+
+  .row.un-description {
+    margin: 0;
+
+    .un-main-content {
+      margin-bottom: 10px;
+      margin-top: 5rem;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+
+      .un-full-logo {
+        text-align: center;
+
+        img {
+          width: 30em;
+          max-width: 350px;
+          margin-left: auto;
+          margin-right: auto;
+        }
+      }
+
+      .un-info {
+        position: relative;
+
+        .un-info-tile {
+          display: inline-block;
+          text-align: center;
+          margin: auto;
+
+          .un-tile-header {
+            display: block;
+
+            .material-icons {
+              @include creatIconCircle('/assets/ux/food.png', 2.3em, 2.3rem, calc(4.3rem), white);
+              @include transform(0, 3rem, 0);
+
+              &:hover {
+                @include transform(0, 1rem, 0);
+              }
+            }
+          }
+          .un-tile-content {
+            text-align: justify;
+
+            @media (min-width: 1200px) {
+              height: 30vh;
+            }
+
+            @media (min-width: 992px) and (max-width: 1199px) {
+              height: 30vh;
+            }
+
+            /* Portrait tablets and small desktops */
+            @media (min-width: 768px) and (max-width: 991px) {
+              height: 20vh;
+            }
+
+            @media (max-width: 767px) {
+              height: 15vh;
+            }
+
+            @media (max-width: 480px) {
+              height: 10vh;
+            }
+
+            background-color: rgba(0, 0, 0, .4);
+            // background-color: rgba(127,128,135,.7);
+            border-bottom: 2rem solid $beige;
+
+            div {
+              height: 100%;
+              padding: 0 0.8rem;
+              padding-top: 6rem;
+            }
+
+            button {
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  //mock
+  .un-searcher-mock {
+    margin-top: 1rem;
+
+    .un-search {
+      width: 50%;
+      margin-right: auto;
+      margin-left: auto;
+
+      span {
+        color: $gray-lightest;
+        padding: 0 2rem;
+        padding-bottom: 10px;
+        border-bottom: 2px solid $gray-light;
+      }
+
+      button {
+        background-color: $beige;
+      }
+    }
+  }
+}

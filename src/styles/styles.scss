@@ -2,13 +2,117 @@
 @import "~flag-icon-css/css/flag-icon.css";
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "fonts";
+@import "colors";
+@import "variables";
+@import "mixins";
 
-body {
-  margin: 0;
+html, body {
+  height: 100%;
+  color: $font-color-basic;
+  font-size: $font-size-basic;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
 
-  simple-notification {
-    .sn-content {
-      margin-right: 30px !important;
+  background-image: url('/assets/ux/palms.JPG');
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  box-shadow: none;
+
+  *:focus {
+    outline: 0;
+    box-shadow: none;
+  }
+
+  .un-create-account {
+    margin-top: 1rem;
+    padding: 1.2rem;
+    font-size: $font-size-medium;
+    background-color: rgba(0, 0, 0, .4);
+
+    a {
+      color:  $gray-blue;
+      font-weight: bolder;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+
+  button.btn {
+    border: none;
+    font-size: $font-size-button;
+    background-color: $button-background;
+    color: $font-color-on-colored-div;
+    font-size: $font-size-basic;
+    border-radius: 0;
+
+    &:focus {
+      outline: 0;
+      box-shadow: none;
+    }
+
+    &:hover {
+      background-color: darken($button-background, 10%);
+    }
+  }
+
+  .un-content {
+    margin-top: 5rem;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgba(0, 0, 0, .4);
+    padding: 0;
+
+    .un-form {
+      .un-header {
+        font-size: $font-size-header;
+        color: white;
+        margin-bottom: 1.5rem;
+        display: block;
+
+        .material-icons {
+          @include creatIconCircle('/assets/ux/food.png', 2.3em, 2.3rem, calc(4.3rem), white);
+          @include transform(0, -3rem, 0);
+        }
+      }
+
+      .form-group {
+        width: 70%;
+        margin-left: auto;
+        margin-right: auto;
+
+      }
+
+      input {
+        margin-bottom: 0.9rem;
+        border-radius: 0;
+        background-color: transparent;
+        border: none;
+        border-bottom: 2px solid white;
+
+        &:focus {
+          transition: border-bottom-color 0.5s ease;
+          border-bottom: 2px solid $gray-blue;
+          outline: 0;
+          box-shadow: none;
+        }
+      }
+
+      .un-adds {
+        background-color: $beige;
+        padding-bottom: 1rem;
+
+        .un-create-account {
+          background-color: transparent;
+
+          a {
+            color: white;
+          }
+        }
+      }
     }
   }
 }
