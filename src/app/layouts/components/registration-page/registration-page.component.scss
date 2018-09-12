@@ -1,7 +1,27 @@
-mat-card {
-  background: #d4d4d4;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-  max-width: 600px;
+@import 'colors';
+@import 'variables';
+@import 'mixins';
+
+:host(un-registration-page){
+  margin: 0;
+
+  .un-registration-component {
+    text-align: center;
+    margin: 0;
+
+    .un-content {
+      .un-full-logo {
+        text-align: center;
+        margin-bottom: 1rem;
+
+        img {
+          width: 20em;
+          max-width: 250px;
+          margin-left: auto;
+          margin-right: auto;
+        }
+      }
+    }
+  }
 }
+

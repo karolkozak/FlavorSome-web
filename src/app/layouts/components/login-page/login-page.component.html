@@ -1,10 +1,20 @@
-<mat-card class="un-login-component">
-  <mat-card-header>
-    <mat-card-title>{{'Log in' | translate}}</mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-    <un-custom-login [loginSuccess]="loginSuccess()"></un-custom-login>
-    {{"Don't have an account yet?" | translate}} <a [routerLink]="['/registration']">{{'Create one!' | translate}}</a>
-    <un-facebook-login [loginSuccess]="loginSuccess()"></un-facebook-login>
-  </mat-card-content>
-</mat-card>
+<div class="row un-login-component">
+  <div class="col-lg-4 col-md-6 col-sm-10 un-content">
+    <div class="un-form">
+        <div class="un-header">
+            <i class="material-icons">people</i>
+        </div>
+        <!-- <div class="un-header">{{'Log in' | translate}}</div> -->
+        <div class="un-full-logo">
+          <img src="assets/ux/logo.svg">
+        </div>
+        <un-custom-login [loginSuccess]="loginSuccess()"></un-custom-login>
+        <div class="un-adds">
+            <div class="un-create-account">
+              {{"Don't have an account yet?" | translate}} <a [routerLink]="['/registration']">{{'Create one!' | translate}}</a>
+            </div>
+            <un-facebook-login [loginSuccess]="loginSuccess()"></un-facebook-login>
+        </div>
+      </div>
+  </div>
+</div>

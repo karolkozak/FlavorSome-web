@@ -32,7 +32,7 @@ export class ConfirmationPageComponent implements OnInit, OnDestroy {
   confirmUserRegistration(token: string) {
     this.customAuthService.confirmRegistration(token).subscribe(() => {
       this.customToastrService.showSuccessToastr('Success', 'Confirmation successful');
-      this.router.navigate(['']);
+      this.router.navigate(['/dashboard']);
     }, () => {
       this.confirmationError = true;
     });

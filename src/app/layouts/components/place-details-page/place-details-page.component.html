@@ -1,6 +1,16 @@
 <div class="container">
   <div class="row">
-    map with marker
+    <div class="col-md-12">
+      <agm-map [latitude]="placeDetails?.geometry.location.lat()"
+               [longitude]="placeDetails?.geometry.location.lng()"
+               [scrollwheel]="true" [zoom]="15">
+        <agm-marker [latitude]="placeDetails?.geometry.location.lat()"
+                    [longitude]="placeDetails?.geometry.location.lng()"
+                    [title]="placeDetails?.name">
+          <agm-info-window [isOpen]="true">{{placeDetails?.name}}</agm-info-window>
+        </agm-marker>
+      </agm-map>
+    </div>
   </div>
   <div class="row">
     <div class="{{isLoggedIn && placeMenuExists ? 'col-md-6' : 'col-md-12'}}">

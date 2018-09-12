@@ -13,12 +13,14 @@ import {ConfirmationPageComponent} from '@app/layouts/components/confirmation-pa
 import {UnverifiedUserGuardService} from '@app/security/services/guards/unverified-user-guard.service';
 import {AuthGuardService} from '@app/security/services/guards/auth-guard.service';
 import {UserResolverService} from '@app/security/services/resolvers/user-resolver.service';
+import {DashboardComponent} from '@app/layouts/components/dashboard/dashboard.component';
 
 const appRoutes: Routes = [
-  {path: '', component: HomePageComponent, pathMatch: 'full'},
+  {path: '', component: HomePageComponent, pathMatch: 'full', canActivate: [LoginPageGuardService]},
   {path: 'login', component: LoginPageComponent, canActivate: [LoginPageGuardService]},
   {path: 'registration', component: RegistrationPageComponent, canActivate: [LoginPageGuardService]},
   {path: 'confirmation', component: ConfirmationPageComponent, canActivate: [AuthGuardService, UnverifiedUserGuardService]},
+  {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuardService, UnverifiedUserGuardService]},
   {path: 'places', component: PlacesListPageComponent},
   {path: 'places/:id', component: PlaceDetailsPageComponent},
   {
