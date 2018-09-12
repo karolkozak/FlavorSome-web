@@ -38,7 +38,7 @@ export class ConfirmationPageComponent implements OnInit, OnDestroy {
         .getTranslation('Confirmation successful')
         .subscribe(result => message = result);
       this.toastr.success(message, title);
-      this.router.navigate(['']);
+      this.router.navigate(['/dashboard']);
     }, () => {
       this.confirmationError = true;
     });

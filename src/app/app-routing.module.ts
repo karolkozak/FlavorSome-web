@@ -16,7 +16,7 @@ import {DashboardComponent} from '@app/layouts/components/dashboard/dashboard.co
 
 
 const appRoutes: Routes = [
-  {path: '', component: HomePageComponent, pathMatch: 'full'},
+  {path: '', component: HomePageComponent, pathMatch: 'full', canActivate: [LoginPageGuardService]},
   {path: 'login', component: LoginPageComponent, canActivate: [LoginPageGuardService]},
   {path: 'registration', component: RegistrationPageComponent, canActivate: [LoginPageGuardService]},
   {path: 'confirmation', component: ConfirmationPageComponent, canActivate: [AuthGuardService, UnverifiedUserGuardService]},

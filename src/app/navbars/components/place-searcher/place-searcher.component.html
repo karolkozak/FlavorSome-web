@@ -9,7 +9,7 @@
   <mat-option *ngFor="let place of places" [value]="place.name">
     <a [routerLink]="['/places', place.place_id]">{{ place.name }}</a>
   </mat-option>
-  <mat-option class="un-search-last">
-    <a [routerLink]="['/places']">{{ places.length ? 'More results' : 'Advanced search' | translate }}</a>
+  <mat-option *ngIf="isLoggedIn" class="un-search-last">
+    <a [routerLink]="['/dashboard']">{{ places.length ? 'More results' : 'Advanced search' | translate }}</a>
   </mat-option>
 </mat-autocomplete>

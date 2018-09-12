@@ -24,7 +24,7 @@ export class DashboardFormComponent implements OnInit {
 
   ngOnInit() {
     this.placeTypes = this.configService.getAvailablePlaceTypes();
-
+    // TODO: retrieve places from router and display on map (if any exists). See place-searcher.component.ts
     this.placesSearchForm = this.formBuilder.group({
       phrase: [''],
       range: [DashboardFormComponent.RANGE, Validators.compose([

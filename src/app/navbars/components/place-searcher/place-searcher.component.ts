@@ -3,6 +3,7 @@ import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
 import {MapsAPILoader} from '@agm/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {Router} from '@angular/router';
+import {AuthenticationService} from '@app/security/services/authentication.service';
 
 
 @Component({
@@ -16,7 +17,7 @@ export class PlaceSearcherComponent implements OnInit {
   places: google.maps.places.PlaceResult[] = [];
   searchForm: FormGroup;
 
-  constructor(private mapsAPILoader: MapsAPILoader, private router: Router) {
+  constructor(private authenticationService: AuthenticationService, private mapsAPILoader: MapsAPILoader, private router: Router) {
   }
 
   ngOnInit() {
@@ -30,6 +31,7 @@ export class PlaceSearcherComponent implements OnInit {
   }
 
   searchPlaces() {
+    // TODO: if logged in, navigate to dashbard and pass there places
     this.router.navigate(['/places'], {queryParams: {query: this.searchForm.get('searchInput').value}});
   }
 
@@ -84,5 +86,9 @@ export class PlaceSearcherComponent implements OnInit {
     return (error: PositionError) => {
       this.textSearch(request);
     };
+  }
+
+  get isLoggedIn(): boolean {
+    return this.authenticationService.isLoggedIn();
   }
 }
