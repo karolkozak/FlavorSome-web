@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import {Router} from '@angular/router';
 
 @Component({
   selector: 'un-not-found',
@@ -7,6 +6,4 @@ import {Router} from '@angular/router';
   styleUrls: ['./not-found.component.scss']
 })
 export class NotFoundComponent {
-
-  constructor(public router: Router) {}
 }

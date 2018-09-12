@@ -44,6 +44,9 @@ export class UserService {
   }
 
   getUser(userId: string): Observable<User> {
+    if (userId === this.currentUser.userId) {
+      return of(this.currentUser);
+    }
     const endpoint = `${this.baseUrl}/${userId}`;
     return this.httpClient.get<User>(endpoint);
   }
