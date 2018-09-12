@@ -43,6 +43,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.userService.removeCurrentUser();
   }
 
+  public showPlaceSearcher() {
+    return this.isLoggedIn;
+  }
+
   get isLoggedIn(): boolean {
     return this.authenticationService.isLoggedIn();
   }

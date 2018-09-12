@@ -14,6 +14,7 @@ import {UnverifiedUserGuardService} from '@app/security/services/guards/unverifi
 import {AuthGuardService} from '@app/security/services/guards/auth-guard.service';
 import {DashboardComponent} from '@app/layouts/components/dashboard/dashboard.component';
 
+
 const appRoutes: Routes = [
   {path: '', component: HomePageComponent, pathMatch: 'full'},
   {path: 'login', component: LoginPageComponent, canActivate: [LoginPageGuardService]},

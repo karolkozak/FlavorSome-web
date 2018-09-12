@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "npm run lint && ng serve --verbose --progress --extract-css true --open true",
+    "start": "ng serve -sm -ec --verbose --progress --open true",
     "build": "npm run lint && ng build",
     "build-test": "npm run lint && npm run test:unit -- --single-run && ng build",
     "test": "npm run test:unit && npm run e2e",

@@ -1,0 +1,47 @@
+@mixin transform($transformX, $transformY, $transformXY) {
+  @if $transformXY != 0 {
+    -webkit-transform: translate($transformXY, $transformXY);
+    -moz-transform: translate($transformXY, $transformXY);
+    -ms-transform: translate($transformXY, $transformXY);
+    -o-transform: translate($transformXY, $transformXY);
+    transform: translate($transformXY, $transformXY);
+
+  } @else {
+    @if $transformX != 0 && $transformY != 0 {
+      -webkit-transform: translateXY($transformX, $transformY);
+      -moz-transform: translateXY($transformX, $transformY);
+      -ms-transform: translateXY($transformX, $transformY);
+      -o-transform: translateXY($transformX, $transformY);
+      transform: translateXY($transformX, $transformY);
+    }
+    @if $transformX != 0 {
+      -webkit-transform: translateX($transformX);
+      -moz-transform: translateX($transformX);
+      -ms-transform: translateX($transformX);
+      -o-transform: translateX($transformX);
+      transform: translateX($transformX);
+
+    }
+    @if $transformY != 0 {
+      -webkit-transform: translateY($transformY);
+      -moz-transform: translateY($transformY);
+      -ms-transform: translateY($transformY);
+      -o-transform: translateY($transformY);
+      transform: translateY($transformY);
+    }
+  }
+}
+
+@mixin creatIconCircle($path, $radius, $padding, $fontSize, $color){
+  background-image: url($path);
+  background-repeat:no-repeat;
+  background-size: cover;
+  position: relative;
+  border-radius: 50%;
+  font-size: calc(4.3rem);
+  padding: $padding;
+  height: $radius;
+  width: $radius;
+  border: 7px solid;
+  color: $color;
+}
