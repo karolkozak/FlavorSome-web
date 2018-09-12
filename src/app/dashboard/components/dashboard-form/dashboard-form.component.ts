@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ConfigService} from '@app/core/services/config.service';
-import {Observable} from 'rxjs/Observable';
 import {PlacesSearchService} from '@app/dashboard/services/places-search.service';
 
 @Component({
@@ -15,12 +14,13 @@ export class DashboardFormComponent implements OnInit {
   private static RANGE_MAX = 50000;
 
   isLocationDisabled = !navigator.geolocation;
-  placeTypes: Observable<string[]>;
+  placeTypes: string[];
   placesSearchForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
               private configService: ConfigService,
-              private placesService: PlacesSearchService) { }
+              private placesService: PlacesSearchService) {
+  }
 
   ngOnInit() {
     this.placeTypes = this.configService.getAvailablePlaceTypes();

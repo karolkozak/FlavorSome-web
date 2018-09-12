@@ -19,7 +19,7 @@
 
   <mat-form-field>
     <mat-select placeholder="{{'Place type' | translate}}">
-      <mat-option *ngFor="let place of placeTypes | async" value="place">{{place | translate}}</mat-option>
+      <mat-option *ngFor="let place of placeTypes" value="place">{{place | translate}}</mat-option>
     </mat-select>
   </mat-form-field>
 
