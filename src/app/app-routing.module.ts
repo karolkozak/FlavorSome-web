@@ -12,8 +12,8 @@ import {UserPageComponent} from '@app/layouts/components/user-page/user-page.com
 import {ConfirmationPageComponent} from '@app/layouts/components/confirmation-page/confirmation-page.component';
 import {UnverifiedUserGuardService} from '@app/security/services/guards/unverified-user-guard.service';
 import {AuthGuardService} from '@app/security/services/guards/auth-guard.service';
+import {UserResolverService} from '@app/security/services/resolvers/user-resolver.service';
 import {DashboardComponent} from '@app/layouts/components/dashboard/dashboard.component';
-
 
 const appRoutes: Routes = [
   {path: '', component: HomePageComponent, pathMatch: 'full', canActivate: [LoginPageGuardService]},
@@ -23,8 +23,14 @@ const appRoutes: Routes = [
   {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuardService, UnverifiedUserGuardService]},
   {path: 'places', component: PlacesListPageComponent},
   {path: 'places/:id', component: PlaceDetailsPageComponent},
-  {path: 'users/:id', component: UserPageComponent, canActivate: [AuthGuardService, UnverifiedUserGuardService]},
-  {path: '**', component: NotFoundComponent},
+  {
+    path: 'users/:id',
+    component: UserPageComponent,
+    canActivate: [AuthGuardService, UnverifiedUserGuardService],
+    resolve: {user: UserResolverService}
+    },
+  {path: 'not-found', component: NotFoundComponent},
+  {path: '**', redirectTo: 'not-found'},
 ];
 
 @NgModule({

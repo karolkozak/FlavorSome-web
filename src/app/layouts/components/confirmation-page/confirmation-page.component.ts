@@ -2,8 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Subscription} from 'rxjs/Subscription';
 import {CustomAuthService} from '@app/security/services/custom-auth.service';
-import {ToastrService} from 'ngx-toastr';
-import {CustomTranslateService} from '@app/core/services/custom-translate.service';
+import {CustomToastrService} from '@app/core/services/custom-toastr.service';
 
 @Component({
   selector: 'un-confirmation-page',
@@ -18,7 +17,7 @@ export class ConfirmationPageComponent implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute,
               private router: Router,
               private customAuthService: CustomAuthService,
-              private toastr: ToastrService, private customTranslateService: CustomTranslateService) {
+              private customToastrService: CustomToastrService) {
   }
 
   ngOnInit(): void {
@@ -32,12 +31,7 @@ export class ConfirmationPageComponent implements OnInit, OnDestroy {
 
   confirmUserRegistration(token: string) {
     this.customAuthService.confirmRegistration(token).subscribe(() => {
-      let title = '', message = '';
-      this.customTranslateService.getTranslation('Success').subscribe(result => title = result);
-      this.customTranslateService
-        .getTranslation('Confirmation successful')
-        .subscribe(result => message = result);
-      this.toastr.success(message, title);
+      this.customToastrService.showSuccessToastr('Success', 'Confirmation successful');
       this.router.navigate(['/dashboard']);
     }, () => {
       this.confirmationError = true;

@@ -15,6 +15,7 @@ import {CustomAuthService} from './services/custom-auth.service';
 import {RegistrationComponent} from './components/registration/registration.component';
 import {ReCaptchaModule} from 'angular5-recaptcha';
 import {UnverifiedUserGuardService} from '@app/security/services/guards/unverified-user-guard.service';
+import {UserResolverService} from '@app/security/services/resolvers/user-resolver.service';
 
 @NgModule({
   imports: [
@@ -33,6 +34,7 @@ import {UnverifiedUserGuardService} from '@app/security/services/guards/unverifi
     FacebookAuthService,
     LoginPageGuardService,
     UnverifiedUserGuardService,
+    UserResolverService,
   ],
   declarations: [
     CustomLoginComponent,

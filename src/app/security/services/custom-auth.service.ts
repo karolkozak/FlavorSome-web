@@ -1,9 +1,8 @@
-import {Injectable} from '@angular/core';
+import {Injectable, Injector} from '@angular/core';
 
 import {AuthenticationService} from './authentication.service';
 import {environment} from '@env/environment';
 import {HttpClient, HttpParams} from '@angular/common/http';
-import {Router} from '@angular/router';
 import {tap} from 'rxjs/operators';
 import {Observable} from 'rxjs/Observable';
 import {ApiResponseBody} from '@app/security/models/api-response-body';
@@ -13,8 +12,8 @@ export class CustomAuthService extends AuthenticationService {
 
   private baseUrl: string;
 
-  constructor(router: Router, private httpClient: HttpClient) {
-    super(router);
+  constructor(injector: Injector, private httpClient: HttpClient) {
+    super(injector);
     this.baseUrl = environment.unnamedMicroserviceUrl + environment.authPath;
   }
 
