@@ -11,21 +11,29 @@ import {
   MatFormFieldModule,
   MatInputModule,
   MatListModule,
-  MatTabsModule,
   MatMenuModule,
   MatProgressSpinnerModule,
   MatSelectModule,
+  MatTabsModule,
   MatToolbarModule,
   MatTooltipModule
 } from '@angular/material';
 import {TranslateModule} from '@ngx-translate/core';
 import {PaginationComponent} from './components/pagination/pagination/pagination.component';
 import {DatePipe} from './pipes/date.pipe';
+import {PlaceSearcherComponent} from '@app/shared/components/place-searcher/place-searcher.component';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
+    MatAutocompleteModule,
     MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    RouterModule,
     TranslateModule,
   ],
   exports: [
@@ -34,7 +42,6 @@ import {DatePipe} from './pipes/date.pipe';
     FlagLangPipe,
     FormsModule,
     LowerCasePipe,
-    MatAutocompleteModule,
     MatCardModule,
     MatFormFieldModule,
     MatButtonModule,
@@ -48,11 +55,12 @@ import {DatePipe} from './pipes/date.pipe';
     MatToolbarModule,
     MatTooltipModule,
     PaginationComponent,
+    PlaceSearcherComponent,
     ReactiveFormsModule,
     TranslateModule,
     UpperCasePipe,
   ],
-  declarations: [FlagCultureLangPipe, FlagLangPipe, PaginationComponent, DatePipe]
+  declarations: [DatePipe, FlagCultureLangPipe, FlagLangPipe, PaginationComponent, PlaceSearcherComponent]
 })
 export class SharedModule {
 }

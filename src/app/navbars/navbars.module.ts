@@ -6,7 +6,6 @@ import {SharedModule} from '@app/shared/shared.module';
 import {HeaderComponent} from '@app/navbars/components/header/header.component';
 import {FooterComponent} from '@app/navbars/components/footer/footer.component';
 import {LanguageChooserComponent} from '@app/navbars/components/language-chooser/language-chooser.component';
-import {PlaceSearcherComponent} from '@app/navbars/components/place-searcher/place-searcher.component';
 
 @NgModule({
   imports: [
@@ -16,7 +15,7 @@ import {PlaceSearcherComponent} from '@app/navbars/components/place-searcher/pla
     ReactiveFormsModule,
     RouterModule
   ],
-  declarations: [HeaderComponent, FooterComponent, LanguageChooserComponent, PlaceSearcherComponent],
+  declarations: [HeaderComponent, FooterComponent, LanguageChooserComponent],
   exports: [HeaderComponent, FooterComponent]
 })
 export class NavbarsModule {
