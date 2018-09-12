@@ -1,9 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {CustomAuthService} from '../../services/custom-auth.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {CustomTranslateService} from '@app/core/services/custom-translate.service';
-import {ToastrService} from 'ngx-toastr';
 import {ApiResponseBody} from '@app/security/models/api-response-body';
+import {CustomToastrService} from '@app/core/services/custom-toastr.service';
 
 @Component({
   selector: 'un-custom-login',
@@ -17,8 +16,7 @@ export class CustomLoginComponent implements OnInit {
 
   constructor(private customAuthService: CustomAuthService,
               private formBuilder: FormBuilder,
-              private toastr: ToastrService,
-              private customTranslateService: CustomTranslateService) {
+              private customToastrService: CustomToastrService) {
   }
 
   ngOnInit() {
@@ -39,12 +37,8 @@ export class CustomLoginComponent implements OnInit {
         },
         loginError => {
           console.error(loginError);
-          let titleMessage = '', errorMessage = '';
-          this.customTranslateService.getTranslation('Log in').subscribe(result => titleMessage = result);
           if (loginError.status !== 404) {
-            this.customTranslateService.getTranslation('Unable to log in, try again later')
-              .subscribe(result => errorMessage = result);
-            this.toastr.error(`${titleMessage} - ${loginError.status}`, errorMessage);
+            this.customToastrService.showErrorToastr('Log in', 'Unable to log in, try again later', loginError.status);
           }
           this.errorMessage = JSON.parse(loginError.error);
         }

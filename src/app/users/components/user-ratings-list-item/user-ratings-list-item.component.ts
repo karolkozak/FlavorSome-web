@@ -2,8 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Rate} from '@app/places/models/rate';
 import {MapsAPILoader} from '@agm/core';
 import {PlacesService} from '@app/places/services/places.service';
-import {ToastrService} from 'ngx-toastr';
-import {CustomTranslateService} from '@app/core/services/custom-translate.service';
+import {CustomToastrService} from '@app/core/services/custom-toastr.service';
 
 @Component({
   selector: 'un-user-ratings-list-item',
@@ -21,8 +20,7 @@ export class UserRatingsListItemComponent implements OnInit {
 
   constructor(private mapsAPILoader: MapsAPILoader,
               private placesService: PlacesService,
-              private toastr: ToastrService,
-              private customTranslateService: CustomTranslateService) {
+              private customToastrService: CustomToastrService) {
   }
 
   ngOnInit(): void {
@@ -43,10 +41,7 @@ export class UserRatingsListItemComponent implements OnInit {
 
   saveEdited(rate: Rate) {
     this.placesService.editRate(rate).subscribe(editedRate => {
-      let titleMessage = '', message = '';
-      this.customTranslateService.getTranslation('Success!').subscribe(result => titleMessage = result);
-      this.customTranslateService.getTranslation('Rating was successfully saved').subscribe(result => message = result);
-      this.toastr.success(message, titleMessage);
+      this.customToastrService.showSuccessToastr('Success', 'Rating was successfully saved');
       this.rate = editedRate;
       this.toggleEditForm();
     });

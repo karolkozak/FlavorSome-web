@@ -1,25 +1,21 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable, Injector} from '@angular/core';
-import {ToastrService} from 'ngx-toastr';
 import {Observable} from 'rxjs/Observable';
 import {SocialUser} from '../libs/angular5-social-login/entities';
 import {AuthService as SocialAuthService, FacebookLoginProvider} from '../libs/angular5-social-login';
 import {environment} from '@env/environment';
-import {CustomTranslateService} from '@app/core/services/custom-translate.service';
 import {AuthenticationService} from './authentication.service';
+import {CustomToastrService} from '@app/core/services/custom-toastr.service';
 
 @Injectable()
 export class FacebookAuthService extends AuthenticationService {
 
   private baseUrl: string;
-  private titleMessage: string;
-  private errorMessage: string;
 
   constructor(injector: Injector,
               private httpClient: HttpClient,
               private socialAuthService: SocialAuthService,
-              private toastr: ToastrService,
-              private customTranslateService: CustomTranslateService) {
+              private customToastrService: CustomToastrService) {
     super(injector);
     this.baseUrl = environment.unnamedMicroserviceUrl + environment.authPath;
   }
@@ -41,10 +37,7 @@ export class FacebookAuthService extends AuthenticationService {
       })
       .catch(error => {
         console.error(error);
-        this.customTranslateService.getTranslation('Facebook log in').subscribe(result => this.titleMessage = result);
-        this.customTranslateService.getTranslation('Unable to log in via Facebook, try again later')
-          .subscribe(result => this.errorMessage = result);
-        this.toastr.error(this.titleMessage, this.errorMessage);
+        this.customToastrService.showErrorToastr('Facebook log in', 'Unable to log in via Facebook, try again later');
         return false;
       });
   }
@@ -58,10 +51,7 @@ export class FacebookAuthService extends AuthenticationService {
       })
       .catch(error => {
         console.error(error);
-        this.customTranslateService.getTranslation('Facebook log out').subscribe(result => this.titleMessage = result);
-        this.customTranslateService.getTranslation('Unable to log out, try again later')
-          .subscribe(result => this.errorMessage = result);
-        this.toastr.error(this.titleMessage, this.errorMessage);
+        this.customToastrService.showErrorToastr('Facebook log out', 'Unable to log out, try again later');
         return false;
       });
   }

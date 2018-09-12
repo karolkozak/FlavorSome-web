@@ -58,7 +58,7 @@
   "List of rated places": "Lista ocenionych miejsc",
   "List of places to rate": "Lista miejsc do oceny",
   "List of friends": "Lista znajomych",
-  "Success!": "Sukces!",
+  "Success": "Sukces",
   "Rating was successfully removed": "Ocena została usunięta",
   "Rating was successfully saved": "Ocena została zapisana",
   "No pending ratings": "Brak oczekujących ocen",
@@ -66,5 +66,8 @@
   "Thank You for registration! Please check out your e-mail and click the confirmation link.": "Dziękujemy za rejestrację. Sprawdź maila i kliknij w link celem dokończenia rejestracji.",
   "Please wait for confirmation response": "Czekaj na potwierdzenie",
   "Token is invalid or has expired": "Token jest nieprawidłowy lub wygasł",
-  "Confirmation successful": "Token potwierdzony"
+  "Confirmation successful": "Token potwierdzony",
+  "Cannot find element": "Nie można znaleźć elementu",
+  "Server has responded with 404 - Not Found.": "Serwer zwrócił błąd 404 - Nie Znaleziono.",
+  "Check correctness of given address or use menu on the page.": "Sprawdź poprawność wpisanego adresu lub użyj na stronie."
 }
