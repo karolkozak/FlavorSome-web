@@ -1,4 +1,4 @@
-<span *ngIf="!ratings?.length">{{'No pending ratings' | translate}}</span>
+<div class="alert alert-warning" role="alert" *ngIf="!ratings?.length">{{'No pending ratings' | translate}}</div>
 <un-user-ratings-list-item *ngFor="let rate of ratings"
                            [rate]="rate"
                            [allowEdit]="allowEdit"

@@ -5,9 +5,9 @@
   min-height: 100%;
 
   .page-content {
-    min-height: calc(100% - #{$un-header-height} - #{$un-footer-height} - #{$un-header-add-height});
-    min-height: calc(100vh - #{$un-header-height} - #{$un-footer-height} - #{$un-header-add-height});
-    background: rgba(102, 103, 107, 0.7);
+    min-height: calc(100% - #{$un-header-height} - #{$un-footer-height});
+    min-height: calc(100vh - #{$un-header-height} - #{$un-footer-height});
+    background-color: $app-background;
 
     .container-fluid {
       min-height: inherit;

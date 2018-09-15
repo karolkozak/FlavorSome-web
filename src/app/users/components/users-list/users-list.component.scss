@@ -1,0 +1,15 @@
+@import "colors";
+@import "variables";
+@import "mixins";
+
+:host(un-users-list){
+  .un-nav-title {
+    margin: $margin-medium 0;
+  }
+
+  .un-user-item {
+    padding: $padding-large;
+    margin: $margin-medium;
+    border: $border-width-medium solid $beige;
+  }
+}

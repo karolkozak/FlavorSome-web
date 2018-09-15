@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnInit, ViewChild, AfterViewInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {CustomAuthService} from '../../services/custom-auth.service';
 import {RegistrationFormValidator} from '../../validators/RegistrationFormValidator';
@@ -8,13 +8,14 @@ import {ApiResponseBody} from '@app/security/models/api-response-body';
 import {environment} from '@env/environment';
 import {ReCaptchaComponent} from 'angular5-recaptcha';
 import {CustomToastrService} from '@app/core/services/custom-toastr.service';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'un-registration',
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.scss']
 })
-export class RegistrationComponent implements OnInit {
+export class RegistrationComponent implements OnInit, AfterViewInit {
   @Input() registrationSuccess: () => void;
   @ViewChild(ReCaptchaComponent) captcha: ReCaptchaComponent;
 
@@ -27,6 +28,18 @@ export class RegistrationComponent implements OnInit {
               private formBuilder: FormBuilder,
               private customToastrService: CustomToastrService,
               private customTranslateService: CustomTranslateService) {
+  }
+
+  ngAfterViewInit() {
+    setTimeout(function() {
+      let htmlInner = $('jhi-re-captcha')[0].innerHTML.replace('304px', 'inherit');
+      htmlInner = htmlInner.replace('78px', 'inherit');
+      $('jhi-re-captcha').html(htmlInner);
+      $('jhi-re-captcha').addClass('visible');
+      if (window.innerWidth < 768) {
+        $('jhi-re-captcha').attr('data-size', 'compact');
+      }
+    }, 600);
   }
 
   ngOnInit() {

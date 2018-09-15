@@ -1,6 +1,11 @@
-:host {
+@import 'colors';
+@import 'variables';
+@import 'mixins';
+
+:host(un-facebook-login) {
   button {
-    margin-top: 10px;
+    margin-top: $margin-small;
     background-color: #1258D1;
+    width: 65%;
   }
 }

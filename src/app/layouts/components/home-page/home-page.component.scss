@@ -10,17 +10,20 @@
 
     .un-main-content {
       margin-bottom: 10px;
-      margin-top: 5rem;
       margin-left: auto;
       margin-right: auto;
       text-align: center;
+
+      un-place-searcher {
+        color: $text;
+      }
 
       .un-full-logo {
         text-align: center;
 
         img {
-          width: 30em;
-          max-width: 350px;
+          width: 30rem;
+          max-width: 300px;
           margin-left: auto;
           margin-right: auto;
         }
@@ -38,75 +41,65 @@
             display: block;
 
             .material-icons {
-              @include creatIconCircle('/assets/ux/food.png', 2.3em, 2.3rem, calc(4.3rem), white);
+              @include creatIconCircle('/assets/ux/food4.png', 2.3em, 2.3rem, calc(4.3rem), white);
               @include transform(0, 3rem, 0);
-
-              &:hover {
-                @include transform(0, 1rem, 0);
-              }
+              transition: width 1s;
             }
           }
+
+          &:hover {
+            .un-tile-header .material-icons {
+              width: 100%;
+              border-radius: 0;
+              border-width: 0;
+            }
+          }
+
+
           .un-tile-content {
             text-align: justify;
 
             @media (min-width: 1200px) {
-              height: 30vh;
+              min-height: 30vh;
+              max-height: 35vh;
             }
 
             @media (min-width: 992px) and (max-width: 1199px) {
-              height: 30vh;
+              min-height: 25vh;
+              max-height: 30vh;
             }
 
-            /* Portrait tablets and small desktops */
             @media (min-width: 768px) and (max-width: 991px) {
-              height: 20vh;
+              min-height: 15vh;
+              max-height: 20vh;
             }
 
             @media (max-width: 767px) {
-              height: 15vh;
+              min-height: 15vh;
             }
 
             @media (max-width: 480px) {
-              height: 10vh;
+              min-height: 12vh;
             }
 
-            background-color: rgba(0, 0, 0, .4);
-            // background-color: rgba(127,128,135,.7);
-            border-bottom: 2rem solid $beige;
+            background-color: rgba(0, 0, 0, .2);
+            border-bottom: 1rem solid $beige;
 
             div {
               height: 100%;
-              padding: 0 0.8rem;
+              padding: 0 $padding-small;
               padding-top: 6rem;
             }
 
             button {
               width: 100%;
             }
+
+            .un-div-button {
+              padding-bottom: $margin-large;
+            }
           }
         }
-      }
-    }
-  }
-
-  //mock
-  .un-searcher-mock {
-    margin-top: 1rem;
-
-    .un-search {
-      width: 50%;
-      margin-right: auto;
-      margin-left: auto;
-
-      span {
-        color: $gray-lightest;
-        padding: 0 2rem;
-        padding-bottom: 10px;
-        border-bottom: 2px solid $gray-light;
-      }
-
-      button {
-        background-color: $beige;
       }
     }
   }

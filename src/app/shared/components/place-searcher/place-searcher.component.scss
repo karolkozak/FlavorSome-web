@@ -1,10 +1,18 @@
-:host {
-  mat-form-field {
-    min-width: 300px;
-  }
-}
+@import 'colors';
+@import 'variables';
+@import 'mixins';
 
-mat-option.un-search-last {
-  background-color: bisque;
-  text-align: center;
+:host(un-place-searcher) {
+  form {
+    mat-form-field {
+      width: 35rem;
+      max-width: 100%;
+    }
+
+    @media (max-width: 767px) {
+      .btn {
+        width: 100%;
+      }
+    }
+  }
 }

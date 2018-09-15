@@ -11,6 +11,7 @@ import {NavbarsModule} from '@app/navbars/navbars.module';
 import {ConfigService} from '@app/core/services/config.service';
 import {UserService} from '@app/core/services/user.service';
 import {AuthenticationService} from '@app/security/services/authentication.service';
+import {Angular2PromiseButtonModule} from 'angular2-promise-buttons/dist';
 
 export const fetchConfigData = (configService: ConfigService) => {
   return () => configService.load();
@@ -37,6 +38,8 @@ export const fetchCurrentUser = (authenticationService: AuthenticationService, u
       positionClass: 'toast-bottom-right',
       preventDuplicates: true,
     }),
+    Angular2PromiseButtonModule.forRoot(),
+    Angular2PromiseButtonModule
   ],
   providers: [
     {provide: APP_INITIALIZER, useFactory: fetchConfigData, deps: [ConfigService], multi: true},

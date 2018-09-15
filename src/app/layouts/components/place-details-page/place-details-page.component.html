@@ -1,38 +1,46 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <agm-map [latitude]="placeDetails?.geometry.location.lat()"
-               [longitude]="placeDetails?.geometry.location.lng()"
-               [scrollwheel]="true" [zoom]="15">
-        <agm-marker [latitude]="placeDetails?.geometry.location.lat()"
-                    [longitude]="placeDetails?.geometry.location.lng()"
-                    [title]="placeDetails?.name">
-          <agm-info-window [isOpen]="true">{{placeDetails?.name}}</agm-info-window>
-        </agm-marker>
-      </agm-map>
+<div class="row un-description">
+  <div class="col-10 un-main-content">
+    <div class="row">
+      <div class="col-12 map">
+        <agm-map [latitude]="placeDetails?.geometry.location.lat()"
+                 [longitude]="placeDetails?.geometry.location.lng()"
+                 [scrollwheel]="true" [zoom]="15">
+          <agm-marker [latitude]="placeDetails?.geometry.location.lat()"
+                      [longitude]="placeDetails?.geometry.location.lng()"
+                      [title]="placeDetails?.name">
+            <agm-info-window [isOpen]="true">{{placeDetails?.name}}</agm-info-window>
+          </agm-marker>
+        </agm-map>
+      </div>
+      <div class="col-12">
+        <button class="btn visit" (click)="visit()">{{'Visit' | translate}}</button>
+        <div class="un-place-header un-header-image">
+          <h1>{{placeDetails?.name ?  placeDetails?.name : 'Szczegóły miejsca'}}</h1>
+        </div>
+        <div class="un-place-navs">
+          <div (click)="currentTab = 'details'" [ngClass]="(!currentTab || (currentTab == 'details')) ? 'active' : ''">Informacje</div>
+          <div (click)="currentTab = 'menu'" [ngClass]="{ 'active': currentTab == 'menu'}">Menu</div>
+          <div (click)="currentTab = 'rates'" [ngClass]="{ 'active': currentTab == 'rates'}" class="rates">Oceny</div>
+        </div>
+        <div class="un-nav-content" [ngClass]="(!currentTab || (currentTab == 'details') || (currentTab == 'menu')) ? 'un-dark-div' : ''">
+          <div class="un-details-content" [hidden]="currentTab != 'details' && currentTab">
+            <un-place-details [placeDetails]="placeDetails"></un-place-details>
+          </div>
+          <div class="un-menu-content" [hidden]="currentTab != 'menu'">
+            <div *ngIf="isLoggedIn && placeMenuExists;else other_content">
+                <un-place-menu [menu]="placeMenu"></un-place-menu>
+            </div>
+            <ng-template #other_content>
+              <div class="alert alert-warning" role="alert">
+                Brak dostępu. Zaloguj się aby sprawdzić menu!
+              </div>
+            </ng-template>
+          </div>
+          <div class="un-rates-content" [hidden]="currentTab != 'rates'">
+            <un-rates-section [placeId]="placeId"></un-rates-section>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="{{isLoggedIn && placeMenuExists ? 'col-md-6' : 'col-md-12'}}">
-      <h1>{{placeDetails?.name}}</h1>
-      <un-place-details [placeDetails]="placeDetails"></un-place-details>
-    </div>
-    <div *ngIf="isLoggedIn && placeMenuExists" class="col-md-6">
-      <un-place-menu [menu]="placeMenu"></un-place-menu>
-    </div>
-  </div>
-  <div class="row">
-    <div class="un-place-visit">
-      <button mat-raised-button
-              color="primary"
-              (click)="visit()">{{'Visit' | translate}}</button>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-3"></div>
-    <div class="col-md-6">
-      <un-rates-section [placeId]="placeId"></un-rates-section>
-    </div>
-    <div class="col-md-3"></div>
   </div>
 </div>

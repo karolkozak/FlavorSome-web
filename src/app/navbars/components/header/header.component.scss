@@ -3,30 +3,33 @@
 
 
 :host(un-header) {
-  .un-header-add {
-    background-color: white;
-    text-align: center;
-    padding: 5px 0;
-  }
-
   nav {
     span.un-header-fill {
       flex: 1 1 auto;
     }
 
-    background-color: rgba(0, 0, 0, .6);
+    background-color: $un-header-background;
     height: $un-header-height;
+    color: $font-color-basic;
+    -webkit-box-shadow: 2px 2px 4px 1px $shadow;
+    -moz-box-shadow:    2px 2px 4px 1px $shadow;
+    box-shadow:         2px 2px 4px 1px $shadow;
 
     button {
+      color: $font-color-basic;
       background-color: transparent;
-      border-left: 0.7px solid white;
-
-      &:after {
-        border-right: 1px solid pink;
-      }
+      border-left: 0.7px solid $gray-light;
 
       &:last-child:after{
         border-right: none;
+      }
+
+      &:hover {
+        color: $dirty-green;
+      }
+
+      i {
+        vertical-align: middle !important;
       }
     }
 
@@ -37,6 +40,7 @@
 
   .un-app-name {
     cursor: pointer;
+    padding-right: $padding-small;
 
     img {
       height: 30px;
