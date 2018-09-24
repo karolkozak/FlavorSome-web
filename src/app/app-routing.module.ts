@@ -19,7 +19,7 @@ const appRoutes: Routes = [
   {path: '', component: HomePageComponent, pathMatch: 'full', canActivate: [LoginPageGuardService]},
   {path: 'login', component: LoginPageComponent, canActivate: [LoginPageGuardService]},
   {path: 'registration', component: RegistrationPageComponent, canActivate: [LoginPageGuardService]},
-  {path: 'confirmation', component: ConfirmationPageComponent, canActivate: [AuthGuardService, UnverifiedUserGuardService]},
+  {path: 'auth/confirmation', component: ConfirmationPageComponent, canActivate: [AuthGuardService, UnverifiedUserGuardService]},
   {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuardService, UnverifiedUserGuardService]},
   {path: 'places', component: PlacesListPageComponent},
   {path: 'places/:id', component: PlaceDetailsPageComponent},
