@@ -18,7 +18,7 @@ export class RegistrationPageComponent {
       this.userService.getCurrentUser().subscribe();
       this.authenticationService.announceLogin();
       this.authenticationService.unsetRedirectUrl();
-      this.router.navigate(['/confirmation']);
+      this.router.navigate(['/auth/confirmation']);
     };
   }
 }
