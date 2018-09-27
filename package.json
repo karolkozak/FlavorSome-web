@@ -5,7 +5,9 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve -sm -ec --verbose --progress --open true",
+    "start:qa": "ng serve -sm -ec --verbose --progress --env=qa --open true",
     "build": "npm run lint && ng build",
+    "build:qa": "npm run lint && ng build --env=qa",
     "build-test": "npm run lint && npm run test:unit -- --single-run && ng build",
     "test": "npm run test:unit && npm run e2e",
     "test:unit": "ng test --progress",
