@@ -7,14 +7,13 @@ import {AboutMessage} from '@app/layouts/models/about-message';
 
 @Injectable()
 export class AboutService {
-  private baseUrl: string;
+  private url: string;
 
   constructor(private httpClient: HttpClient) {
-    this.baseUrl = environment.unnamedMicroserviceUrl + environment.about;
+    this.url = environment.unnamedMicroserviceUrl + environment.about + environment.mail;
   }
 
   sendMessage(aboutMessage: AboutMessage): Observable<ApiResponseBody> {
-    const endpoint = `${this.baseUrl}${environment.mail}`;
-    return this.httpClient.post<ApiResponseBody>(endpoint, aboutMessage);
+    return this.httpClient.post<ApiResponseBody>(this.url, aboutMessage);
   }
 }

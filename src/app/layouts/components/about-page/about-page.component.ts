@@ -13,6 +13,7 @@ import {UserService} from '@app/core/services/user.service';
 })
 export class AboutPageComponent implements OnInit {
   messageForm: FormGroup;
+  formError = false;
 
   constructor(private formBuilder: FormBuilder,
               private aboutService: AboutService,
@@ -40,12 +41,15 @@ export class AboutPageComponent implements OnInit {
 
   sendMessage() {
     if (this.messageForm.valid) {
+      this.formError = false;
       this.aboutService.sendMessage(this.messageForm.value as AboutMessage).subscribe(response => {
         this.customToastrService.showSuccessToastr('Success', 'Your message has been successfully sent!');
         this.messageForm.reset();
       }, () => {
         this.customToastrService.showErrorToastr('Error', 'Something went wrong. Please try again later.');
       });
+    } else {
+      this.formError = true;
     }
   }
 
