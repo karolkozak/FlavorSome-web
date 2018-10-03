@@ -1,13 +1,18 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthenticationService} from '@app/security/services/authentication.service';
+import {CONST_TITLES, CustomTitleService} from '@app/core/services/custom-title.service';
 
 @Component({
   selector: 'un-home-page',
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.scss']
 })
-export class HomePageComponent {
-  constructor(private authenticationService: AuthenticationService) {
+export class HomePageComponent implements OnInit {
+  constructor(private authenticationService: AuthenticationService, private customTitleService: CustomTitleService) {
+  }
+
+  ngOnInit(): void {
+    this.customTitleService.setTitle(CONST_TITLES.WELCOME);
   }
 
   public isLoggedIn(): boolean {
