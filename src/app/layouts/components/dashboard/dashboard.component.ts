@@ -1,9 +1,16 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {CONST_TITLES, CustomTitleService} from '@app/core/services/custom-title.service';
 
 @Component({
   selector: 'un-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit {
+  constructor(private customTitleService: CustomTitleService) {
+  }
+
+  ngOnInit(): void {
+    this.customTitleService.setTitle(CONST_TITLES.DASHBOARD);
+  }
 }

@@ -1,5 +1,10 @@
 {
-  "Login Page": "Strona logowania",
+  "Welcome!": "Witaj!",
+  "Login page": "Strona logowania",
+  "Registration page": "Strona rejestracji",
+  "Confirmation page": "Potwierdzenie rejestracji",
+  "Places": "Lista miejsc",
+  "Page not found": "Strona nie istnieje",
   "Login with facebook": "Zaloguj przez facebooka",
   "Logout": "Wyloguj",
   "Here it will be all layouts, views. In this place router works. navs are static": "Tutaj zostana wyswietlone layouty. W tym miejscu pracuje router, navbarsy sa na stale",

@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {CustomTranslateService} from '@app/core/services/custom-translate.service';
+import {CustomTitleService} from '@app/core/services/custom-title.service';
 
 @Component({
   selector: 'un-language-chooser',
@@ -9,7 +10,7 @@ import {CustomTranslateService} from '@app/core/services/custom-translate.servic
 export class LanguageChooserComponent implements OnInit {
   availableCultureLanguages: Array<string>;
 
-  constructor(private customTranslateService: CustomTranslateService) {
+  constructor(private customTranslateService: CustomTranslateService, private customTitleService: CustomTitleService) {
   }
 
   ngOnInit() {
@@ -23,5 +24,7 @@ export class LanguageChooserComponent implements OnInit {
   changeLanguage(language: string) {
     [language] = language.split('-');
     this.customTranslateService.changeLanguage(language);
+    const title = this.customTitleService.getTitle();
+    this.customTitleService.setTitle(title);
   }
 }
