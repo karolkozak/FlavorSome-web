@@ -5,6 +5,7 @@ import {PlacesService} from '@app/places/services/places.service';
 import {Subscription} from 'rxjs/Subscription';
 import {AuthenticationService} from '@app/security/services/authentication.service';
 import {CustomToastrService} from '@app/core/services/custom-toastr.service';
+import {CustomTitleService} from '@app/core/services/custom-title.service';
 
 @Component({
   selector: 'un-place-details-page',
@@ -23,7 +24,8 @@ export class PlaceDetailsPageComponent implements OnInit, OnDestroy {
               private customToastrService: CustomToastrService,
               private authenticationService: AuthenticationService,
               private mapsAPILoader: MapsAPILoader,
-              private placesService: PlacesService) {
+              private placesService: PlacesService,
+              private customTitleService: CustomTitleService) {
   }
 
   ngOnInit() {
@@ -45,6 +47,7 @@ export class PlaceDetailsPageComponent implements OnInit, OnDestroy {
     this.googlePlacesService.getDetails(placeDetailsRequest, (result, status) => {
       if (status === google.maps.places.PlacesServiceStatus.OK) {
         this.placeDetails = {...result};
+        this.customTitleService.setTitle(this.placeDetails.name);
       }
     });
   }

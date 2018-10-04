@@ -2,6 +2,7 @@ import {HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest} from 
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {AuthenticationService} from '@app/security/services/authentication.service';
+import * as moment from 'moment';
 
 @Injectable()
 export class HeaderInterceptor implements HttpInterceptor {
@@ -10,7 +11,7 @@ export class HeaderInterceptor implements HttpInterceptor {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const headerSettings: {[name: string]: string | string[]; } = {};
+    const headerSettings: { [name: string]: string | string[]; } = {};
     for (const key of req.headers.keys()) {
       headerSettings[key] = req.headers.getAll(key);
     }
@@ -19,6 +20,7 @@ export class HeaderInterceptor implements HttpInterceptor {
       headerSettings['Authorization'] = `Bearer ${token}`;
     }
     headerSettings['Content-Type'] = 'application/json';
+    headerSettings['fs_users_locale'] = moment.locale();
 
     const headers = new HttpHeaders(headerSettings);
     const clonedRequest = req.clone({headers});

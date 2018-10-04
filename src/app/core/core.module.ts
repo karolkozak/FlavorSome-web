@@ -11,6 +11,7 @@ import {environment} from '@env/environment';
 import {} from 'googlemaps'; // it should stay in order to correct google namespace use. Be careful with ctrl + alt + o
 import {CustomToastrService} from '@app/core/services/custom-toastr.service';
 import {AboutService} from '@app/core/services/about.service';
+import {CustomTitleService} from '@app/core/services/custom-title.service';
 
 export function customTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -39,6 +40,7 @@ export class CoreModule {
       providers: [
         AboutService,
         ConfigService,
+        CustomTitleService,
         CustomToastrService,
         CustomTranslateService,
         httpInterceptorProviders,
