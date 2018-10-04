@@ -10,7 +10,8 @@ export enum CONST_TITLES {
   CONFIRMATION = 'Confirmation page',
   DASHBOARD = 'Dashboard',
   PLACES = 'Places',
-  NOT_FOUND = 'Page not found'
+  NOT_FOUND = 'Page not found',
+  ABOUT = 'About'
 }
 
 @Injectable()

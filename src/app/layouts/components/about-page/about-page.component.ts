@@ -5,6 +5,7 @@ import {CustomToastrService} from '@app/core/services/custom-toastr.service';
 import {AboutMessage} from '@app/layouts/models/about-message';
 import {AuthenticationService} from '@app/security/services/authentication.service';
 import {UserService} from '@app/core/services/user.service';
+import {CONST_TITLES, CustomTitleService} from '@app/core/services/custom-title.service';
 
 @Component({
   selector: 'un-about-page',
@@ -19,10 +20,12 @@ export class AboutPageComponent implements OnInit {
               private aboutService: AboutService,
               private customToastrService: CustomToastrService,
               private authenticationService: AuthenticationService,
-              private userService: UserService) {
+              private userService: UserService,
+              private customTitleService: CustomTitleService) {
   }
 
   ngOnInit() {
+    this.customTitleService.setTitle(CONST_TITLES.ABOUT);
     this.messageForm = this.formBuilder.group({
       email: new FormControl('', Validators.compose([
         Validators.required,
