@@ -21,6 +21,9 @@ export const environment = {
   unrated: '/unrated',
   visit: '/visit',
 
+  about: '/about',
+  mail: '/mail',
+
   availableLanguages: ['pl', 'en'],
   availableCultureLanguages: ['pl-PL', 'en-GB'],
   defaultLanguage: 'en',

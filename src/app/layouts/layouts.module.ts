@@ -17,6 +17,7 @@ import {UserPageComponent} from './components/user-page/user-page.component';
 import {UsersModule} from '@app/users/users.module';
 import {ConfirmationPageComponent} from '@app/layouts/components/confirmation-page/confirmation-page.component';
 import {AgmCoreModule} from '@agm/core';
+import { AboutPageComponent } from './components/about-page/about-page.component';
 
 @NgModule({
   imports: [
@@ -40,6 +41,7 @@ import {AgmCoreModule} from '@agm/core';
     PlacesListPageComponent,
     RegistrationPageComponent,
     UserPageComponent,
+    AboutPageComponent,
   ],
   exports: [
     ConfirmationPageComponent,
