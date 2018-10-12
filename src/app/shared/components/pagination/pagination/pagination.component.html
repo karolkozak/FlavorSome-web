@@ -1,11 +1,11 @@
 <div>
   <button *ngIf="!first"
-          mat-button color="link"
+          class="btn"
           (click)="moreResults(pageableParams.page-1)">
     {{"Previous" | translate}}
   </button>
   <button *ngIf="!last"
-          mat-button color="link"
+          class="btn"
           (click)="moreResults(pageableParams.page+1)">
     {{"Next" | translate}}
   </button>

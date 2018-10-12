@@ -1,8 +1,93 @@
-agm-map {
-  height: 500px; /* TODO: adjust height */
-}
+@import 'colors';
+@import 'variables';
+@import 'mixins';
 
-.un-place-visit {
-  text-align: center;
-  width: 100%;
+:host(un-place-details-page) {
+  .row.un-description {
+    margin: 0;
+    color: $text;
+
+    .un-main-content {
+      min-height: calc(100% - #{$un-header-height} - #{$un-footer-height});
+      min-height: calc(100vh - #{$un-header-height} - #{$un-footer-height});
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+
+      .visit {
+        width: 100%;
+        margin-bottom: $margin-medium;
+      }
+
+      .un-place-header {
+        h1 {
+          display: inline-block;
+          font-size: $font-size-header;
+        }
+
+        button {
+          float: right;
+          margin-top: 0.8rem;
+          padding: 0.4rem 1.8rem;
+        }
+
+      }
+
+      .un-place-navs {
+        display: flex;
+        height: 3rem;
+        color: lighten($text, 35%);
+
+        div {
+          flex: 1;
+          display: inline-block;
+          align-items: center;
+          justify-content: center;
+          padding-top: 0.5rem;
+          padding-right: 0.2rem;
+          border-bottom: solid 0.2rem white;
+
+          &:hover {
+            border-bottom: solid 0.3rem rgba($beige, 0.7);
+            background-color: lighten($gray-light, 3%);
+            cursor: pointer;
+          }
+
+          &.active {
+            border-bottom: solid 0.3rem $dirty-green;
+            color: $text
+          }
+
+          &:focus {
+            transition: $dirty-green 0.5s ease;
+            outline: 0;
+            box-shadow: none;
+          }
+        }
+
+        .rates {
+          border-right: none;
+        }
+      }
+
+      .un-nav-content {
+        margin: 1rem 0;
+
+        &.un-dark-div {
+          border: $border-width-medium solid $beige;
+        }
+
+        div {
+          padding: 1rem 0;
+        }
+      }
+
+      .map {
+        agm-map {
+          height: 43vh;
+          width: 100%;
+        }
+      }
+    }
+  }
 }

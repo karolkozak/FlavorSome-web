@@ -4,7 +4,22 @@ $un-header-height: 70px;
 $un-header-add-height: 37px;
 
 //font-size
-$font-size-header: calc(0.9rem + 0.15vh + 0.5vw);
-$font-size-basic: calc(0.3rem + 0.15vh + 0.5vw);
-$font-size-medium: calc(0.5rem + 0.15vh + 0.5vw);
-$font-size-button: calc(0.3rem + 0.8vh + 0.2vw);
+$font-size-header: calc(8px + 0.3rem + 0.15vh + 0.2vw);
+$font-size-basic: calc(8px + 0.1rem + 0.15vh + 0.2vw);
+$font-size-medium: calc(8px + 0.2rem + 0.15vh + 0.3vw);
+$font-size-button: calc(8px + 0.1rem + 0.8vh + 0.3vw);
+
+// paddings
+$padding-large: 2rem;
+$padding-medium: 1rem;
+$padding-small: 0.8rem;
+
+// margins
+$margin-large: 2rem;
+$margin-medium: 1rem;
+$margin-small: 0.8rem;
+
+// others
+$border-width-small: 0.08rem;
+$border-width-medium: 0.1rem;
+$border-width-large: 0.5rem;

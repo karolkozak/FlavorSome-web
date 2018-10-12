@@ -1,16 +1,29 @@
 @import 'colors';
+@import 'variables';
+@import 'mixins';
 
 :host(un-custom-login) {
   form {
-    margin-bottom: 10px;
+    margin-bottom: $margin-small;
+
     input {
-      color: wheat;
+      color: $text;
     }
 
     button {
+      margin-top: $margin-small;
       display: block;
       margin-left: auto;
       margin-right: auto;
+      width: 65%;
+    }
+
+    .un-error {
+      color: $error;
+
+      i {
+        vertical-align: middle !important;
+      }
     }
   }
 }

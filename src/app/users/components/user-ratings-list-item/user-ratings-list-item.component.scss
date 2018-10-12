@@ -1,6 +1,42 @@
-.un-ratings-item {
-  margin: 0;
-  .un-ratings-item-col {
-    text-align: center;
+@import 'colors';
+@import 'variables';
+@import 'mixins';
+
+:host(un-user-ratings-list-item){
+  .un-ratings-item {
+    margin: 0;
+    border: 0.08rem solid $beige;
+    margin-bottom: $margin-medium;
+
+    .un-rate-details {
+      text-align: center;
+      padding: $padding-small $padding-small;
+      min-height: 13vh;
+
+      .un-rate-details-div {
+        height: 100%;
+        background-image: url('/assets/ux/prague.svg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
+        color: $font-color-on-colored-div;
+
+
+        i {
+          position: relative;
+          transform: translateY(50%);
+          width: $font-size-basic;
+          margin-bottom: $margin-small;
+        }
+      }
+    }
+
+    .un-rate-edit {
+      button {
+        position: relative;
+        transform: translateY(50%);
+      }
+    }
   }
 }
+

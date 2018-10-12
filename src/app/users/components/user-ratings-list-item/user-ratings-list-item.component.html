@@ -1,13 +1,20 @@
 <div class="row un-ratings-item">
-  <div class="col-md-4 un-ratings-item-col">
+  <div class="col-md-3 col-sm-12 un-rate-details">
+    <div class="un-rate-details-div">
+      <i class="material-icons">star_rate</i>
+      <div> {{rate?.rating}} / 10 </div>
+    </div>
+  </div>
+  <div class="col-md-6 col-sm-12">
     <a *ngIf="placeDetails" [routerLink]="['/places', placeDetails?.place_id]">{{placeDetails?.name}}</a>
-    {{placeDetails?.formatted_address}}
+    <div>
+      {{placeDetails?.formatted_address ? placeDetails?.formatted_address : 'brak dodanego adresu'}}
+    </div>
+    <div>
+      {{rate?.comments}}
+    </div>
   </div>
-  <div class="col-md-4 un-ratings-item-col">
-    {{rate?.rating}}
-    <span>{{rate?.comments}}</span>
-  </div>
-  <div class="col-md-4 un-ratings-item-col">
+  <div class="col-md-3 col-sm-12 un-rate-edit">
     <button mat-raised-button
             [matTooltip]="'Edit' | translate"
             *ngIf="allowEdit"
@@ -24,8 +31,8 @@
   </div>
 </div>
 
-<div *ngIf="editing" class="row un-ratings-item">
-  <div class="col-md-12">
+<div *ngIf="editing" class="row">
+  <div class="col-12">
     <un-rate-form [rate]="rate" (rateChanged)="saveEdited($event)" [editing]="true"></un-rate-form>
   </div>
 </div>

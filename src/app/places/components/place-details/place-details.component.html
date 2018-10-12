@@ -1,10 +1,27 @@
-<ul *ngIf="placeDetails">
-  <li>{{placeDetails?.formatted_address}}</li>
-  <li>{{placeDetails?.formatted_phone_number}}</li>
-  <li>{{placeDetails?.opening_hours.weekday_text}}</li>
-  <li>{{placeDetails?.id}}</li>
-  <li>{{placeDetails?.place_id}}</li>
-  <li>{{placeDetails?.rating}}</li>
-  <li>{{placeDetails?.vicinity}}</li>
-  <li>{{placeDetails?.website}}</li>
-</ul>
+<div *ngIf="placeDetails;else other_content">
+    <div class="row">
+      <div class="col-lg-6 col-md-6 col-sm-12">
+        <div>{{placeDetails?.formatted_address}}</div>
+        <div>{{placeDetails?.formatted_phone_number}}</div>
+        <div>{{placeDetails?.website}}</div>
+
+        <div>{{placeDetails?.rating}}</div>
+        <div>{{placeDetails?.vicinity}}</div>
+        <div>{{placeDetails?.id}}</div>
+        <div>{{placeDetails?.place_id}}</div>
+      </div>
+      <div class="col-lg-6 col-md-6 col-sm-12">
+        <div *ngIf="placeDetails?.opening_hours.weekday_text">
+          <div *ngFor="let day of placeDetails?.opening_hours.weekday_text">
+            {{ day }}
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+<ng-template #other_content>
+  <div class="alert alert-warning" role="alert">
+    Brak danych!
+  </div>
+</ng-template>

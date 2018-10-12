@@ -1,29 +1,26 @@
 // main palette
 $gray-dark: #292426;
-$gray-medium: #7B7B7B;
-$gray-light: #A2A2A2;
-$gray-lightest: #CACACA;
-$orange-dark: #E38A36;
-$orange-medium: darken(#F0CA4D, 10%);
-$orange-light: #F0CA4D;
+$gray-light: #E8E8E8;
 $text: #444;
 
 //accents
-$gray-blue: #DF6127;
-$beige: #579C87;
+$dirty-green: #3E606F;
+$beige: #d0bead;
+$shadow: rgba(lighten($gray-dark, 10%),0.05);
 
 // main components
 $un-header-background: white;
 $un-footer-background: white;
-$app-background: lighten($gray-dark, 5%);
+$app-background: lighten($gray-light, 5%);
+$containers-background: rgba(0, 0, 0, .1);
 
 //statuses
 $error: #DE5B49;
 
 // buttons
 // ------- confirm button ------------
-$button-background: $gray-blue;
-$button-border: $gray-blue;
+$button-background: $dirty-green;
+$button-border: $dirty-green;
 $button-text: white;
 // ------- rejection button ------------
 
@@ -31,6 +28,6 @@ $button-text: white;
 
 
 //font
-$font-color-basic: $gray-dark;
-$font-color-secondary: $orange-dark;
+$font-color-basic: $text;
+$font-color-secondary: $dirty-green;
 $font-color-on-colored-div: white;

@@ -1,15 +1,33 @@
-:host {
+@import "colors";
+@import "variables";
+@import "mixins";
+
+:host(un-rate-item) {
   div.un-rating-item {
-    padding: 10px;
-    margin: 5px;
-    border-style: groove;
+    border: 0.08rem solid $beige;
+    color: $text;
+
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 1rem;
+    padding: 1rem;
+
+    text-align: center;
+
     .un-rating-starts {
       width: 100%;
-      margin-left: 5px;
+      background-image: url('/assets/ux/prague.svg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      position: relative;
+      color: $font-color-on-colored-div;
+
+      i {
+        width: $font-size-basic;
+      }
     }
   }
   .un-rate-star {
-    font-size: 10px;
-    display: inline;
+    font-size: $font-size-basic;
   }
 }

@@ -1,4 +1,3 @@
-<div class="un-header-add">We got EAT!</div>
 <nav class="navbar navbar-light">
   <span class="un-app-name" [routerLink]="['/']">
     <img src="assets/ux/logo-mini-2.svg">
@@ -6,7 +5,9 @@
   <un-place-searcher *ngIf="showPlaceSearcher()"></un-place-searcher>
   <span class="un-header-fill"></span>
   <un-language-chooser></un-language-chooser>
-  <button class="btn" *ngIf="currentUser" [routerLink]="['/users', currentUser.userId]">{{userDisplayName}}</button>
+  <button class="btn" *ngIf="currentUser" [routerLink]="['/users', currentUser.userId]">
+    <i class="material-icons">person</i> {{userDisplayName}}
+  </button>
   <button class="btn" *ngIf="!isLoggedIn" [routerLink]="['/login']">{{"Login" | translate}}</button>
   <button class="btn" *ngIf="isLoggedIn" (click)="logout()">{{"Logout" | translate}}</button>
 </nav>
