@@ -11,6 +11,66 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
-  <un-root></un-root>
+  <un-root>
+    <style>
+      un-root {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.8);
+      }
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      .loader {
+        margin-top: 35px;
+        text-align: center;
+      }
+      .square {
+        display: inline-block;
+        margin: 0 10px;
+        height: 10px;
+        width: 10px;
+        background-color: #CCCCCC;
+        animation: loading 1.5s ease-out infinite;;
+      }
+      .square1 {
+        animation-delay: 0s;
+      }
+      .square2 {
+        animation-delay: 0.1s;
+      }
+      .square3 {
+        animation-delay: 0.2s;
+      }
+      .square4 {
+        animation-delay: 0.3s;
+      }
+      .square5 {
+        animation-delay: 0.4s;
+      }
+      @keyframes loading {
+        10% {
+          transform: translateY(-30px);
+        }
+        40% {
+          transform: translateY(0);
+        }
+      }
+    </style>
+    <div class="column">
+      <img src="assets/ux/logo.svg">
+      <div class="loader">
+        <div class="square square1"></div>
+        <div class="square square2"></div>
+        <div class="square square3"></div>
+        <div class="square square4"></div>
+        <div class="square square5"></div>
+      </div>
+    </div>
+  </un-root>
 </body>
 </html>
