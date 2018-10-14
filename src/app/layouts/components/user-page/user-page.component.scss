@@ -30,7 +30,7 @@
         border: $border-width-medium solid $beige;
 
         .material-icons {
-          @include creatIconCircle('/assets/ux/food4.png', 2.3em, 2.3rem, calc(4.3rem), white);
+          @include creatIconCircle('/assets/ux/building.png', 2.3em, 2.3rem, calc(4.3rem), white);
           @include transform(0, 3rem, 0);
           transition: width 1s;
         }

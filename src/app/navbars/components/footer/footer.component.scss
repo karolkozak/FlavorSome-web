@@ -5,14 +5,10 @@
   width: 100%;
 
   .un-footer {
-    -webkit-box-shadow: 0px -3px 5px 0px $shadow;
-    -moz-box-shadow: 0px -3px 5px 0px $shadow;
-    box-shadow: 0px -3px 5px 0px $shadow;
-    // border-top-style: groove;
-    border-width: thin;
-    background-color: $un-footer-background;
+    background-color: white;
+    color: $text;
+    position: relative;
     line-height: $un-footer-height;
-    background-repeat:repeat;
     text-align: center;
     height: $un-footer-height;
   }

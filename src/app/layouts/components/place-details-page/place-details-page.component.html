@@ -1,8 +1,9 @@
 <div class="row un-description">
-  <div class="col-10 un-main-content">
+  <div class="col-12 un-main-content">
     <div class="row">
-      <div class="col-12 map">
-        <agm-map [latitude]="placeDetails?.geometry.location.lat()"
+      <div class="col-md-6 col-sm-12">
+        <agm-map class="un-content-map"
+                 [latitude]="placeDetails?.geometry.location.lat()"
                  [longitude]="placeDetails?.geometry.location.lng()"
                  [scrollwheel]="true" [zoom]="15">
           <agm-marker [latitude]="placeDetails?.geometry.location.lat()"
@@ -11,16 +12,28 @@
             <agm-info-window [isOpen]="true">{{placeDetails?.name}}</agm-info-window>
           </agm-marker>
         </agm-map>
+        <button class="btn un-visit" (click)="visit()">{{'Visit' | translate}}</button>
       </div>
-      <div class="col-12">
-        <button class="btn visit" (click)="visit()">{{'Visit' | translate}}</button>
-        <div class="un-place-header un-header-image">
+      <div class="col-md-6 col-sm-12">
+        <div class="un-place-header">
           <h1>{{placeDetails?.name ?  placeDetails?.name : 'Szczegóły miejsca'}}</h1>
         </div>
-        <div class="un-place-navs">
-          <div (click)="currentTab = 'details'" [ngClass]="(!currentTab || (currentTab == 'details')) ? 'active' : ''">Informacje</div>
-          <div (click)="currentTab = 'menu'" [ngClass]="{ 'active': currentTab == 'menu'}">Menu</div>
-          <div (click)="currentTab = 'rates'" [ngClass]="{ 'active': currentTab == 'rates'}" class="rates">Oceny</div>
+        <div class="row un-place-navs">
+          <div (click)="currentTab = 'details'"
+               [ngClass]="(!currentTab || (currentTab == 'details')) ? 'active' : ''"
+               class="col-md-4 col-sm-12">
+            Informacje
+          </div>
+          <div (click)="currentTab = 'menu'"
+               [ngClass]="{ 'active': currentTab == 'menu'}"
+               class="col-md-4 col-sm-12">
+            Menu
+          </div>
+          <div (click)="currentTab = 'rates'"
+               [ngClass]="{ 'active': currentTab == 'rates'}"
+               class="rates col-md-4 col-sm-12">
+            Oceny
+          </div>
         </div>
         <div class="un-nav-content" [ngClass]="(!currentTab || (currentTab == 'details') || (currentTab == 'menu')) ? 'un-dark-div' : ''">
           <div class="un-details-content" [hidden]="currentTab != 'details' && currentTab">
