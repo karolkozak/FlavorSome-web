@@ -1,8 +1,10 @@
 <form [formGroup]="loginUserForm" (ngSubmit)="login()" (keyup.enter)="login()">
   <div class="form-group col-12 col-md-6 col-lg-12 un-login-form">
     <input type="text" class="form-control" formControlName="email" placeholder="{{'email' | translate}}" tabindex="1">
-    <input type="password" class="form-control" formControlName="password" placeholder="{{'password' | translate}}" tabindex="1">
+    <input type="password" class="form-control" formControlName="password" placeholder="{{'password' | translate}}"
+           tabindex="1">
   </div>
-  <div class="un-error" *ngIf="errorMessage"><i class="material-icons">warning</i>{{errorMessage?.message | translate}}</div>
-<button class="btn" [promiseBtn]="loginSubscription" type="submit">{{'Login' | translate}}</button>
+  <div class="un-error" *ngIf="errorMessage"><i class="material-icons">warning</i>{{errorMessage?.message | translate}}
+  </div>
+  <button class="btn" [promiseBtn]="loginPromise" type="submit">{{'Login' | translate}}</button>
 </form>

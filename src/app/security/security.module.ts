@@ -16,7 +16,7 @@ import {RegistrationComponent} from './components/registration/registration.comp
 import {ReCaptchaModule} from 'angular5-recaptcha';
 import {UnverifiedUserGuardService} from '@app/security/services/guards/unverified-user-guard.service';
 import {UserResolverService} from '@app/security/services/resolvers/user-resolver.service';
-import { Angular2PromiseButtonModule } from 'angular2-promise-buttons';
+import {Angular2PromiseButtonModule} from 'angular2-promise-buttons';
 
 @NgModule({
   imports: [
@@ -25,8 +25,9 @@ import { Angular2PromiseButtonModule } from 'angular2-promise-buttons';
     ReCaptchaModule,
     SocialLoginModule,
     SharedModule,
-    Angular2PromiseButtonModule.forRoot(),
-    Angular2PromiseButtonModule
+    Angular2PromiseButtonModule.forRoot({
+      disableBtn: true,
+    }),
   ],
   providers: [
     {provide: AuthServiceConfig, useFactory: getAuthServiceConfig},
