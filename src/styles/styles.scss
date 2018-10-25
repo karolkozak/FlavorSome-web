@@ -45,6 +45,23 @@ html, body {
     }
   }
 
+  .un-content-map {
+    @media (min-width: 992px) {
+      min-height: 60vh;
+      max-height: calc(100vh - #{$un-footer-height} - #{$un-header-height});
+    }
+
+    @media (min-width: 768px) and (max-width: 991px) {
+      min-height: 50vh;
+      max-height: calc(100vh - #{$un-footer-height} - #{$un-header-height});
+    }
+
+    @media (max-width: 767px) {
+      min-height: 30vh;
+      max-height: calc(100vh - #{$un-footer-height} - #{$un-header-height});
+    }
+  }
+
   button.btn {
     border: none;
     font-size: $font-size-button;
@@ -78,7 +95,7 @@ html, body {
         display: block;
 
         .material-icons {
-          @include creatIconCircle('/assets/ux/food4.png', 2.3em, 2.3rem, calc(4.3rem), white);
+          @include creatIconCircle('/assets/ux/building.png', 2.3em, 2.3rem, calc(4.3rem), white);
           @include transform(0, -3rem, 0);
         }
       }

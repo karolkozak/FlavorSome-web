@@ -3,22 +3,47 @@
 
 
 :host(un-header) {
+  .un-header-full {
+    background-image: url('/assets/ux/bb.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    height: $un-header-height;
+    -webkit-box-shadow: 2px 2px 4px 1px $shadow;
+    -moz-box-shadow:    2px 2px 4px 1px $shadow;
+    box-shadow:         2px 2px 4px 1px $shadow;
+
+    .un-full-logo {
+      text-align: center;
+
+      &.un-logo-small img {
+        height: 8rem;
+        width: auto;
+      }
+
+      &.un-logo-big img {
+        height: 12rem;
+        width: auto;
+      }
+    }
+
+    .un-header-searcher {
+      margin-top: $margin-large;
+    }
+  }
+
   nav {
     span.un-header-fill {
       flex: 1 1 auto;
     }
 
-    background-color: $un-header-background;
-    height: $un-header-height;
-    color: $font-color-basic;
-    -webkit-box-shadow: 2px 2px 4px 1px $shadow;
-    -moz-box-shadow:    2px 2px 4px 1px $shadow;
-    box-shadow:         2px 2px 4px 1px $shadow;
+    color: $font-color-on-colored-div;
 
     button {
-      color: $font-color-basic;
+      color: $font-color-on-colored-div;
       background-color: transparent;
       border-left: 0.7px solid $gray-light;
+      padding: 0 $padding-large;
 
       &:last-child:after{
         border-right: none;
@@ -43,7 +68,7 @@
     padding-right: $padding-small;
 
     img {
-      height: 30px;
+      height: calc(#{$font-size-header} + 0.2rem);
       width: auto;
     }
   }
