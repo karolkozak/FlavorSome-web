@@ -3,7 +3,6 @@ import {CustomAuthService} from '../../services/custom-auth.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ApiResponseBody} from '@app/security/models/api-response-body';
 import {CustomToastrService} from '@app/core/services/custom-toastr.service';
-import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'un-custom-login',
@@ -14,7 +13,7 @@ export class CustomLoginComponent implements OnInit {
   @Input() loginSuccess: () => void;
   loginUserForm: FormGroup;
   errorMessage: ApiResponseBody;
-  loginSubscription: Subscription;
+  loginPromise: any;
 
   constructor(private customAuthService: CustomAuthService,
               private formBuilder: FormBuilder,
@@ -33,7 +32,9 @@ export class CustomLoginComponent implements OnInit {
 
   public login() {
     if (this.loginUserForm.valid) {
-      this.loginSubscription = this.customAuthService.login(this.loginUserForm.value).subscribe(
+      const observable = this.customAuthService.login(this.loginUserForm.value);
+      this.loginPromise = observable.toPromise();
+      observable.subscribe(
         loginSuccess => {
           this.loginSuccess();
         },
