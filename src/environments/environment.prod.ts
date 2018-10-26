@@ -36,6 +36,11 @@ export const environment = {
 
   googlePlacesUrl: 'https://maps.googleapis.com/maps/api/place/findplacefromtext/json',
 
+  here: {
+    app_id: 'EuCIZXudfRuYx0QRwEI7',
+    app_code: 'POTrRUBn4rKdTV2_tpIzEg'
+  },
+
   mapDefaults: {
     coords: {
       lat: 50.0617446,
