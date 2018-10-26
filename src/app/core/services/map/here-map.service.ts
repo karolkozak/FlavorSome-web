@@ -3,13 +3,14 @@ import {MapService} from '@app/core/services/map/map.service';
 import {} from '@types/heremaps';
 import {environment} from '@env/environment';
 import {MapServiceAPI} from '@app/shared/models/MapAPI';
+import {Prop, Tracked} from '@app/shared/decorators/prop.decorator';
 
 @Injectable()
 export class HereMapService implements MapService {
   private platform: any;
   private readonly defaultLayers: any;
 
-  map: H.Map;
+  @Tracked map: H.Map;
   behavior: H.mapevents.Behavior;
   ui: H.ui.UI;
 
@@ -56,25 +57,26 @@ export class HereMapService implements MapService {
     this.ui = H.ui.UI.createDefault(this.map, this.defaultLayers);
   }
 
+  @Prop('map')
   setCenter(pos: any) {
-    if (!this.map) { return; }
     this.map.setCenter(pos);
   }
 
+  @Prop('map')
   addMarker(pos: H.geo.Point) {
-    if (!this.map) { return; }
     const marker = new H.map.Marker(pos);
     this.map.addObject(marker);
     return marker;
   }
 
+  @Prop('map')
   removeMarker(marker: H.map.Marker) {
     if (!marker) { return; }
     this.map.removeObject(marker);
   }
 
+  @Prop('map')
   drawCircle(center: H.geo.Point, radius: number) {
-    if (!this.map) { return; }
     const circle = new H.map.Circle(center, radius, {
       style: {
         fillColor: 'rgba(0,0,0,0.1)',
@@ -85,13 +87,15 @@ export class HereMapService implements MapService {
     return circle;
   }
 
+  @Prop('map')
   redrawCircle(circle: H.map.Circle, radius: number) {
-    if (!this.map || !circle || !radius) { return; }
+    if (!circle || !radius) { return; }
     circle.setRadius(radius);
   }
 
+  @Prop('map')
   removeCircle(circle: H.map.Circle) {
-    if (!this.map || !circle) { return; }
+    if (!circle) { return; }
     this.map.removeObject(circle);
   }
 }
