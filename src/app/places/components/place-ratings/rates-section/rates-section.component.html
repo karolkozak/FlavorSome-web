@@ -9,7 +9,8 @@
     <un-rates-list [rates]="pageableRates?.content"
                    (pageableParamsChanged)="fetchRateList($event)"
                    [pageableParams]="pageableParams"></un-rates-list>
-    <un-pagination (dataChanged)="fetchRateList($event)"
+    <un-pagination *ngIf="pageableRates && pageableRates?.content.length"
+      (dataChanged)="fetchRateList($event)"
                    [pageableParams]="pageableParams"
                    [first]="pageableRates?.first"
                    [last]="pageableRates?.last"></un-pagination>

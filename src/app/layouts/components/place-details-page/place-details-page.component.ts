@@ -16,6 +16,7 @@ export class PlaceDetailsPageComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
   private googlePlacesService: google.maps.places.PlacesService;
 
+  currentTab: string;
   placeId: string;
   placeDetails: google.maps.places.PlaceResult;
   placeMenu: StringMap<number> = {};
