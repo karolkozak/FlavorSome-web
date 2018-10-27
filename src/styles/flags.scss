@@ -1,0 +1,35 @@
+// stolen from https://github.com/lipis/flag-icon-css
+
+$languages: 'de',
+'gb',
+'pl';
+
+.flag-icon-background {
+  background-size: contain;
+  background: no-repeat 50%;
+}
+.flag-icon {
+  background-size: contain;
+  background: no-repeat 50%;
+  position: relative;
+  display: inline-block;
+  width: 1.33333333em;
+  line-height: 1em;
+
+  &:before {
+      content: "\00a0";
+    }
+
+  &.flag-icon-squared {
+    width: 1em;
+  }
+
+  @each $lang in $languages {
+    &.flag-icon-#{$lang} {
+      background-image: url('../assets/ux/flags/4x3/#{$lang}.svg');
+    }
+    &.flag-icon-#{$lang}.flag-icon-squared {
+      background-image: url('../assets/ux/flags/1x1/#{$lang}.svg');
+    }
+  }
+}
