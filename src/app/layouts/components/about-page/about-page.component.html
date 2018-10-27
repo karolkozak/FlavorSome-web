@@ -5,13 +5,13 @@
     </div>
     <div class="un-contact-form">
       <form [formGroup]="messageForm" (ngSubmit)="sendMessage()">
-        <div class="form-group col-12 col-md-6 col-lg-12">
+        <div class="form-group col-12 col-md-12 col-lg-12">
           <input type="text" class="form-control" formControlName="email" placeholder="{{'email' | translate}}"
                  tabindex="1">
-          <input type="textarea" class="form-control" formControlName="content" placeholder="{{'message' | translate}}"
-                 tabindex="1">
+          <textarea class="form-control" formControlName="content" placeholder="{{'message' | translate}}"
+                    tabindex="1"></textarea>
         </div>
-        <button class="btn" type="submit">
+        <button class="btn" [promiseBtn]="aboutPromise" type="submit">
           <i class="material-icons">local_post_office</i> {{'Send message' | translate}}
         </button>
         <span *ngIf="formError">{{ 'All fields are required. Check email address correctness' | translate }}</span>
