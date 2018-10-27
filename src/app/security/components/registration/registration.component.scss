@@ -20,17 +20,8 @@
   }
 
   .un-re-captcha {
-    margin-bottom: $margin-small;
-
-    jhi-re-captcha {
-      visibility: hidden;
-
-      &.visible {
-        visibility: visible;
-      }
+    re-captcha {
+      display: none;
     }
-  }
-  .rc-anchor-light {
-    background: inherit !important;
   }
 }

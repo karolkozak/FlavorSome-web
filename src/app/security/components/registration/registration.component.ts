@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, ViewChild, AfterViewInit} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {CustomAuthService} from '../../services/custom-auth.service';
 import {RegistrationFormValidator} from '../../validators/RegistrationFormValidator';
@@ -6,18 +6,19 @@ import {squash} from '@app/shared/utils/object-utils';
 import {CustomTranslateService} from '@app/core/services/custom-translate.service';
 import {ApiResponseBody} from '@app/security/models/api-response-body';
 import {environment} from '@env/environment';
-import {ReCaptchaComponent} from 'angular5-recaptcha';
 import {CustomToastrService} from '@app/core/services/custom-toastr.service';
-import * as $ from 'jquery';
+import {RecaptchaComponent} from 'ng-recaptcha';
 
 @Component({
   selector: 'un-registration',
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.scss']
 })
-export class RegistrationComponent implements OnInit, AfterViewInit {
+export class RegistrationComponent implements OnInit {
   @Input() registrationSuccess: () => void;
-  @ViewChild(ReCaptchaComponent) captcha: ReCaptchaComponent;
+  @ViewChild(RecaptchaComponent) captchaRef: RecaptchaComponent;
+
+  private captcha: string;
 
   registrationUserForm: FormGroup;
   registrationError: ApiResponseBody;
@@ -28,18 +29,6 @@ export class RegistrationComponent implements OnInit, AfterViewInit {
               private formBuilder: FormBuilder,
               private customToastrService: CustomToastrService,
               private customTranslateService: CustomTranslateService) {
-  }
-
-  ngAfterViewInit() {
-    setTimeout(function() {
-      let htmlInner = $('jhi-re-captcha')[0].innerHTML.replace('304px', 'inherit');
-      htmlInner = htmlInner.replace('78px', 'inherit');
-      $('jhi-re-captcha').html(htmlInner);
-      $('jhi-re-captcha').addClass('visible');
-      if (window.innerWidth < 768) {
-        $('jhi-re-captcha').attr('data-size', 'compact');
-      }
-    }, 600);
   }
 
   ngOnInit() {
@@ -93,8 +82,32 @@ export class RegistrationComponent implements OnInit, AfterViewInit {
     return this.registrationUserForm.invalid && this.registrationUserForm.touched;
   }
 
-  registerUser() {
-    if (this.registrationUserForm.valid && this.captcha.getResponse()) {
+  captchaResolved(captchaResponse: string) {
+    this.registrationUserForm.get('gRecaptchaResponse').setValue(captchaResponse);
+    this.captcha = captchaResponse;
+  }
+
+  getCaptcha() {
+    return new Promise(resolve => {
+      if (this.captcha) {
+        resolve(this.captcha);
+        return;
+      }
+
+      this.captchaRef.execute();
+
+      const callback = this.captchaResolved;
+      this.captchaResolved = function(captchaResponse: string) {
+        callback.call(this, captchaResponse);
+        resolve(captchaResponse);
+      };
+    });
+  }
+
+  async registerUser() {
+    await this.getCaptcha();
+
+    if (this.registrationUserForm.valid) {
       const userData = squash(this.registrationUserForm.value);
       this.customAuthService.registerUser(userData).subscribe(
         loginSuccess => {
