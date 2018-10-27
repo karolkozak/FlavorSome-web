@@ -13,6 +13,8 @@ import {CustomToastrService} from '@app/core/services/custom-toastr.service';
 import {AboutService} from '@app/core/services/about.service';
 import {CustomTitleService} from '@app/core/services/custom-title.service';
 import {Angular2PromiseButtonModule} from 'angular2-promise-buttons';
+import {MapService} from '@app/core/services/map/map.service';
+import {HereMapService} from '@app/core/services/map/here-map.service';
 
 export function customTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -49,6 +51,7 @@ export class CoreModule {
         CustomTranslateService,
         httpInterceptorProviders,
         UserService,
+        {provide: MapService, useClass: HereMapService}
       ]
     };
   }

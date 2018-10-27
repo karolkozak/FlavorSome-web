@@ -7,7 +7,7 @@ import {ToastrService} from 'ngx-toastr';
 
 @Injectable()
 export class PlacesSearchService {
-  userPosition: BehaviorSubject<google.maps.LatLng> = new BehaviorSubject(undefined);
+  userPosition: BehaviorSubject<google.maps.LatLngLiteral> = new BehaviorSubject(undefined);
   searchRadius: BehaviorSubject<number> = new BehaviorSubject(undefined);
 
   constructor(private http: HttpClient,
@@ -21,7 +21,8 @@ export class PlacesSearchService {
   locateUser(): void {
     navigator.geolocation.getCurrentPosition(position => {
       const {latitude: lat, longitude: lng} = position.coords;
-      const latlng = new google.maps.LatLng(lat, lng);
+      // const latlng = new google.maps.LatLng(lat, lng);
+      const latlng = {lat: lat, lng: lng};
       this.userPosition.next(latlng);
     }, error => {
       switch (error.code) {
