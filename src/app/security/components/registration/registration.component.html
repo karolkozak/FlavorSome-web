@@ -17,8 +17,7 @@
     </div>
   </div>
   <div class="un-re-captcha">
-    <jhi-re-captcha formControlName="gRecaptchaResponse" [site_key]="googleReCaptchaKey"
-                      [language]="currentLanguage | flagCultureLang | lowercase"></jhi-re-captcha>
+    <re-captcha #captchaRef="reCaptcha" (resolved)="captchaResolved($event)" size="invisible" [siteKey]="googleReCaptchaKey"></re-captcha>
   </div>
   <span *ngIf="formIncorrect">
     {{'Some of fields have errors' | translate}}
