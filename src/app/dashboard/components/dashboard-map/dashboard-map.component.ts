@@ -37,7 +37,7 @@ export class DashboardMapComponent implements OnInit, AfterViewInit {
 
   public ngAfterViewInit() {
     if (this.mapElement) {
-      this.mapService.setMap(this.mapElement, this.zoom);
+      this.mapService.setMap(this.mapElement);
     }
   }
 
@@ -55,6 +55,6 @@ export class DashboardMapComponent implements OnInit, AfterViewInit {
   }
 
   mapReady($map: google.maps.Map): void {
-    this.mapService.setMap($map, this.zoom);
+    this.mapService.setMap($map);
   }
 }

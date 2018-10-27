@@ -6,8 +6,6 @@ import {MapServiceAPI} from '@app/shared/models/MapAPI';
 export class GoogleMapService implements MapService {
   map: google.maps.Map;
 
-  constructor() { }
-
   get provider(): string {
     return MapServiceAPI.Google;
   }
@@ -16,7 +14,7 @@ export class GoogleMapService implements MapService {
     return null;
   }
 
-  setMap(map: google.maps.Map, zoom: number) {
+  setMap(map: google.maps.Map) {
     this.map = map;
   }
 

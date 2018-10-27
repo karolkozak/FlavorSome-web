@@ -44,12 +44,12 @@ export class HereMapService implements MapService {
   //  * It is done here instead of component to avoid API provider dependencies.
   //  * @param mapElement - div containing map instance
   //  */
-  setMap(mapElement: ElementRef, zoom: number) {
+  setMap(mapElement: ElementRef) {
     this.map = new H.Map(
       mapElement.nativeElement,
       this.defaultLayers.normal.map,
       {
-        zoom: zoom,
+        zoom: environment.mapDefaults.zoom,
         center: environment.mapDefaults.coords,
       }
     );

@@ -15,7 +15,7 @@ export abstract class MapService {
    */
   abstract get config(): any;
 
-  abstract setMap(map: any, zoom: number): void;
+  abstract setMap(map: any): void;
 
   abstract setCenter(pos: any): void;
 

@@ -24,9 +24,9 @@ export function Prop(KEY: any) {
   return function(target: any, propertyKey: string | symbol, descriptor: PropertyDescriptor) {
     const originalMethod = descriptor.value;
     descriptor.value = function(...args) {
-      const isMapDefined: boolean = (Reflect.getOwnMetadata(KEY, this) || false);
+      const isDefined: boolean = (Reflect.getOwnMetadata(KEY, this) || false);
 
-      if (!isMapDefined) {
+      if (!isDefined) {
         return;
       }
 

@@ -52,7 +52,7 @@ export class PlaceDetailsPageComponent implements OnInit, OnDestroy, AfterViewIn
 
   public ngAfterViewInit() {
     if (this.mapElement) {
-      this.mapService.setMap(this.mapElement, this.zoom);
+      this.mapService.setMap(this.mapElement);
     }
   }
 
