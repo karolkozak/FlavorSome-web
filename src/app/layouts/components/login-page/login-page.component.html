@@ -8,6 +8,13 @@
             <i class="material-icons">people</i>
         </div>
         <un-custom-login [loginSuccess]="loginSuccess()"></un-custom-login>
+        <div class="un-divider-wrapper">
+          <div class="un-types-divider">
+            <span>
+              {{'OR' | translate}}
+            </span>
+          </div>
+        </div>
         <un-facebook-login [loginSuccess]="loginSuccess()"></un-facebook-login>
       </div>
   </div>

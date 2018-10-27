@@ -4,7 +4,7 @@
 
 :host(un-header) {
   .un-header-full {
-    background-image: url('/assets/ux/bb.png');
+    background-image: url('/assets/ux/yakynina-anastasia-546115-unsplash.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
@@ -42,15 +42,26 @@
     button {
       color: $font-color-on-colored-div;
       background-color: transparent;
-      border-left: 0.7px solid $gray-light;
-      padding: 0 $padding-large;
+      padding: $padding-small $padding-large;
+      // padding-bottom: $padding-small;
+      // margin-top: $padding-small;
 
       &:last-child:after{
         border-right: none;
       }
 
       &:hover {
-        color: $dirty-green;
+        color: $beige;
+        transition: border-bottom-color 0.5s ease;
+        border-bottom: $border-width-medium solid $beige;
+        outline: 0;
+        box-shadow: none;
+      }
+
+      &:focus {
+        color: $beige;
+        background-color: rgba(255, 255, 255, .04);
+        border-bottom: $border-width-medium solid $beige;
       }
 
       i {

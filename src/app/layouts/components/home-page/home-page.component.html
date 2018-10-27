@@ -35,7 +35,9 @@
         </div>
         <div class="un-tile-content">
           <div class="un-div-button">{{ 'Just sign up and use wide FlavorSome!' | translate }}</div>
-          <button *ngIf="!isLoggedIn()" class="btn" [routerLink]="['/login']">{{"Login Page" | translate}}</button>
+          <div class="un-button-wrapper">
+            <button *ngIf="!isLoggedIn()" class="btn" [routerLink]="['/login']">{{"Login Page" | translate}}</button>
+          </div>
         </div>
       </div>
     </div>

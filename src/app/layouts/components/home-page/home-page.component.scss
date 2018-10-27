@@ -34,7 +34,7 @@
             display: block;
 
             .material-icons {
-              @include creatIconCircle('/assets/ux/building.png', 2.3em, 2.3rem, calc(4.3rem), white);
+              @include creatIconCircle('/assets/ux/sharon-chen-352895-unsplash.jpg', 2.3em, 2.3rem, calc(4.3rem), white);
               @include transform(0, 3rem, 0);
               transition: width 1s;
             }
@@ -75,8 +75,7 @@
               min-height: 12vh;
             }
 
-            background-color: rgba(0, 0, 0, .2);
-            border-bottom: 1rem solid $beige;
+            background-color: rgba(0, 0, 0, .16);
 
             div {
               height: 100%;
@@ -84,12 +83,14 @@
               padding-top: 6rem;
             }
 
-            button {
-              width: 100%;
-            }
-
-            .un-div-button {
+            .un-button-wrapper {
               padding-bottom: $margin-large;
+              width: 100%;
+              text-align: center;
+
+              button {
+                width: 60%;
+              }
             }
           }
         }

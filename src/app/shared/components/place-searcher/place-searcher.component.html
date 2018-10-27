@@ -1,5 +1,6 @@
 <form [formGroup]="searchForm" (ngSubmit)="redirectToResults()" (keyup.enter)="redirectToResults()">
   <mat-form-field>
+    <!-- <i class="material-icons d-none d-sm-none d-md-block">room</i> -->
     <input type="text" matInput placeholder="{{'Search for places' | translate }}" formControlName="searchInput"
            [matAutocomplete]="auto">
   </mat-form-field>

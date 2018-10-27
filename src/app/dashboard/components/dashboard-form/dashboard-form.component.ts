@@ -14,6 +14,7 @@ export class DashboardFormComponent implements OnInit {
   private static RANGE = 300;
   private static RANGE_MIN = 100;
   private static RANGE_MAX = 50000;
+  public innerWidth: any;
 
   isLocationDisabled = !navigator.geolocation;
   placeTypes: string[];
@@ -42,6 +43,12 @@ export class DashboardFormComponent implements OnInit {
     // TODO: add form errors
 
     this.placesSearchService.setSearchRadius(DashboardFormComponent.RANGE);
+    this.innerWidth = window.innerWidth;
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.innerWidth = window.innerWidth;
   }
 
   useBounds(): void {

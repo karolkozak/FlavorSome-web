@@ -99,5 +99,11 @@
   "Your message has been successfully sent!": "Twoja wiadomość została wysłana pomyślnie!",
   "Something went wrong. Please try again later.": "Coś poszło nie tak. Spróbuj ponownie później.",
   "If You have any questions feel free to tell about them.": "Jeśli masz pytania, nie wahaj się, napisz do nas.",
-  "All fields are required. Check email address correctness": "Wszystkie pola są wymagane. Sprawdź poprawność adresu email"
+  "All fields are required. Check email address correctness": "Wszystkie pola są wymagane. Sprawdź poprawność adresu email",
+  "OR": "LUB",
+  "Place Details": "Szczegóły miejsca",
+  "Information": "Informacje",
+  "Rates": "Oceny",
+  "Login to check menu!": "Brak dostępu. Zaloguj się aby sprawdzić menu!",
+  "We are sorry, there is no details :(": "Brak danych :("
 }

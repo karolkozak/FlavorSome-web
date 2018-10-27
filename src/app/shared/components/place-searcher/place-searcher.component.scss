@@ -13,11 +13,21 @@
       width: 30rem;
       max-width: 100%;
       background-color: white;
+
+      i {
+        display: inline-block;
+        left: -10%;
+        position: relative;
+      }
+
+      input {
+        width: 90%;
+      }
     }
 
     .btn {
       cursor: pointer;
-      height: 4em;
+      height: 4.2em;
     }
 
     @media (min-width: 768px) {
@@ -28,7 +38,7 @@
       }
 
       .btn {
-        width: 12%;
+        width: 10vh;
         border-bottom-right-radius: $searcher-border-large;
         border-top-right-radius: $searcher-border-large;
       }

@@ -10,23 +10,28 @@
 
     .un-rate-details {
       text-align: center;
-      padding: $padding-small $padding-small;
       min-height: 13vh;
+      padding-left: 0;
 
       .un-rate-details-div {
         height: 100%;
-        background-image: url('/assets/ux/prague.svg');
+        width: 100%;
+        background-image: url('/assets/ux/petr-sevcovic-594807-unsplash.svg');
         background-repeat: no-repeat;
         background-size: cover;
         position: relative;
         color: $font-color-on-colored-div;
+        text-align: initial;
+        padding-left: 2.5vw;
+        padding-top: $padding-medium;
 
+        .un-rate-details {
+          padding: $padding-medium;
+        }
 
         i {
-          position: relative;
-          transform: translateY(50%);
+          padding-left: $padding-small/2;
           width: $font-size-basic;
-          margin-bottom: $margin-small;
         }
       }
     }

@@ -3,15 +3,11 @@
 @import 'mixins';
 
 :host(un-dashboard) {
-  color: white;
-
   .row {
     margin: 0;
   }
 
   .row.un-description {
-    color: $font-color-on-colored-div;
-
     .un-content {
       margin-top: 0;
       margin-left: auto;
@@ -29,7 +25,19 @@
 
         .row {
           .un-form {
-            border: $border-width-medium solid $beige;
+            @media (max-width: 767px) {
+              padding-left: 0 !important;
+              padding-right: 0 !important;
+            }
+
+            @media (min-width: 767px) {
+              border: $border-width-medium solid $beige;
+            }
+
+            .un-form-title {
+              font-size: $font-size-header;
+              margin: $margin-medium;
+            }
           }
         }
       }
