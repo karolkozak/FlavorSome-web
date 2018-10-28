@@ -96,10 +96,11 @@ export class RegistrationComponent implements OnInit {
 
       this.captchaRef.execute();
 
-      const callback = this.captchaResolved;
+      const resolvedCallback = this.captchaResolved;
       this.captchaResolved = function(captchaResponse: string) {
-        callback.call(this, captchaResponse);
+        resolvedCallback.call(this, captchaResponse);
         resolve(captchaResponse);
+        this.captchaResolved = resolvedCallback;
       };
     });
   }
