@@ -10,7 +10,7 @@
   </div>
   <div class="un-rate-content col-6">
     <div>{{ rate?.comments }}</div>
-    <div>{{ rate?.author.firstname + ' ' + rate?.author.lastname }}</div>
+    <un-user-picture [user]="rate?.author"></un-user-picture><a [routerLink]="['/users', rate?.author.userId]">{{ rate?.author.firstname + ' ' + rate?.author.lastname }}</a>
     <div>{{ rate?.ratingDate | date }}</div>
   </div>
 </div>

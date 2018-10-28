@@ -1,0 +1,2 @@
+<img *ngIf="user?.picture; else defaultPicture" class="un-user-picture" [src]="user?.picture">
+<ng-template #defaultPicture><i class="material-icons">person</i></ng-template>
