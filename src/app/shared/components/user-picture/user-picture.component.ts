@@ -1,5 +1,4 @@
 import {Component, Input} from '@angular/core';
-import {User} from 'app/security/models/user';
 
 @Component({
   selector: 'un-user-picture',
@@ -7,5 +6,5 @@ import {User} from 'app/security/models/user';
   styleUrls: ['./user-picture.component.scss']
 })
 export class UserPictureComponent {
-  @Input() user: User;
+  @Input() picture: string;
 }
