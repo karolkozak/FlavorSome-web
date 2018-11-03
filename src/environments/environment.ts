@@ -26,6 +26,9 @@ export const environment = {
   unrated: '/unrated',
   visit: '/visit',
 
+  about: '/about',
+  mail: '/mail',
+
   availableLanguages: ['pl', 'en'],
   availableCultureLanguages: ['pl-PL', 'en-GB'],
   defaultLanguage: 'en',
@@ -34,9 +37,14 @@ export const environment = {
   facebookSecret: 'f47826dc3bcbbafa2052b1c5f91b157f',
 
   googleApiKey: 'AIzaSyC9sBR6fDjfqbKDPJ_AX8y45G9L4E7pFOg',
-  googleReCaptchaKey: '6LfaQlAUAAAAAC2husiZGVe0gCLEGiNyt71svf4Y',
+  googleReCaptchaKey: '6LeOCncUAAAAAJwAYmtVX29quXSiAJJiny4UnHx0',
 
   googlePlacesUrl: 'https://maps.googleapis.com/maps/api/place/findplacefromtext/json',
+
+  here: {
+    app_id: 'EuCIZXudfRuYx0QRwEI7',
+    app_code: 'POTrRUBn4rKdTV2_tpIzEg'
+  },
 
   mapDefaults: {
     coords: {

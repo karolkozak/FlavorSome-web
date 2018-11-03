@@ -1,0 +1,44 @@
+@import "colors";
+@import "variables";
+@import "mixins";
+
+:host(un-user-page){
+  margin: 0;
+
+  .un-user-page {
+    margin: 0;
+    text-align: center;
+
+    mat-tab-body {
+      margin-top: $margin-large;
+    }
+
+    .un-main-content {
+      margin-right: auto;
+      margin-left: auto;
+
+      .un-details-row {
+        margin: 0;
+        margin-top: $margin-large;
+        min-height: calc(100% - #{$un-header-height} - #{$un-footer-height} - 50vh);
+        min-height: calc(100vh - #{$un-header-height} - #{$un-footer-height} - 50vh);
+      }
+
+      .un-tile-content {
+        text-align: justify;
+        padding: $padding-large;
+        border: $border-width-medium solid $beige;
+
+        .material-icons {
+          @include creatIconCircle('/assets/ux/building.png', 2.3em, 2.3rem, calc(4.3rem), white);
+          @include transform(0, 3rem, 0);
+          transition: width 1s;
+        }
+      }
+    }
+
+    .un-nav-title {
+      margin: $margin-medium 0;
+    }
+  }
+}

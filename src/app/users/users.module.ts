@@ -16,7 +16,13 @@ import {PlacesModule} from '@app/places/places.module';
     RouterModule,
     SharedModule,
   ],
-  declarations: [UserDetailsComponent, UsersListComponent, UsersListItemComponent, UserRatingsListComponent, UserRatingsListItemComponent],
+  declarations: [
+    UserDetailsComponent,
+    UsersListComponent,
+    UsersListItemComponent,
+    UserRatingsListComponent,
+    UserRatingsListItemComponent
+  ],
   exports: [UserDetailsComponent, UsersListComponent, UserRatingsListComponent]
 })
 export class UsersModule {

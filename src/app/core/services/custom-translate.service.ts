@@ -3,6 +3,7 @@ import {TranslateService} from '@ngx-translate/core';
 import {Observable} from 'rxjs/Observable';
 import {environment} from '@env/environment';
 import {inArray} from '@app/shared/utils/array-utils';
+import * as moment from 'moment';
 
 @Injectable()
 export class CustomTranslateService {
@@ -44,6 +45,7 @@ export class CustomTranslateService {
 
   public changeLanguage(lang: string) {
     this.translateService.use(lang);
+    moment.locale(lang);
   }
 
   public getTranslation(name: string, params?: Object): Observable<any> {

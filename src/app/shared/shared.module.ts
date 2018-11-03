@@ -23,6 +23,7 @@ import {PaginationComponent} from './components/pagination/pagination/pagination
 import {DatePipe} from './pipes/date.pipe';
 import {PlaceSearcherComponent} from '@app/shared/components/place-searcher/place-searcher.component';
 import {RouterModule} from '@angular/router';
+import {UserPictureComponent} from '@app/shared/components/user-picture/user-picture.component';
 
 @NgModule({
   imports: [
@@ -59,8 +60,9 @@ import {RouterModule} from '@angular/router';
     ReactiveFormsModule,
     TranslateModule,
     UpperCasePipe,
+    UserPictureComponent,
   ],
-  declarations: [DatePipe, FlagCultureLangPipe, FlagLangPipe, PaginationComponent, PlaceSearcherComponent]
+  declarations: [DatePipe, FlagCultureLangPipe, FlagLangPipe, PaginationComponent, PlaceSearcherComponent, UserPictureComponent]
 })
 export class SharedModule {
 }

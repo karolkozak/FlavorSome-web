@@ -1,12 +1,16 @@
 <div class="row un-rating-item">
-  <div class="row un-rating-starts">
-    <i class="material-icons un-rate-star" *ngFor="let i of getListForRating(rate?.rating)">star_rate</i>
+  <div class="un-rating-starts col-sm-12 col-md-6">
+    <div *ngIf="rate?.rating != 0;  else noRates">
+      <i class="material-icons">star_rate</i>
+      <div> {{rate?.rating}} / 10 </div>
+    </div>
+    <ng-template #noRates>
+      <i class="material-icons un-rate-star">star_border</i>
+    </ng-template>
   </div>
-  <div class="col-md-4">
-    {{ rate?.author.firstname + ' ' + rate?.author.lastname }}
-    {{ rate?.ratingDate | date }}
-  </div>
-  <div class="col-md-8">
-    {{ rate?.comments }}
+  <div class="un-rate-content col-6">
+    <div>{{ rate?.comments }}</div>
+    <un-user-picture [picture]="rate?.author.picture"></un-user-picture><a [routerLink]="['/users', rate?.author.userId]">{{ rate?.author.firstname + ' ' + rate?.author.lastname }}</a>
+    <div>{{ rate?.ratingDate | date }}</div>
   </div>
 </div>

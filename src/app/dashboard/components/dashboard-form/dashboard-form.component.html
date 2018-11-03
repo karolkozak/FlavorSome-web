@@ -1,36 +1,31 @@
 <form [formGroup]="placesSearchForm" (ngSubmit)="findPlaces()">
+    <mat-form-field>
+      <input matInput formControlName="phrase" placeholder="{{'Search phrase' | translate}}">
+    </mat-form-field>
+    <div>
+      <mat-button-toggle-group [value]="isLocationDisabled ? 'bounds' : 'locate'">
+      <mat-button-toggle type="radio" value="locate" [disabled]="isLocationDisabled"
+                         (change)="locateUser()">{{'Locate' | translate}}</mat-button-toggle>
+      <mat-button-toggle type="radio" value="bounds"
+                         (change)="useBounds()">{{'Search visible area' | translate}}</mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+    <mat-form-field>
+      <input matInput formControlName="range" type="number" placeholder="{{'Range' | translate}}" (change)="updateRange($event)">
+      <span matSuffix>m</span>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select placeholder="{{'Place type' | translate}}">
+        <mat-option *ngFor="let place of placeTypes" value="place">{{place | translate}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput formControlName="preferences" placeholder="{{'Preferences' | translate}}">
+    </mat-form-field>
+    <div>
+      <button class="btn" type="submit">
+        {{'Find places' | translate}}
+      </button>
+    </div>
 
-  <mat-form-field>
-    <input matInput formControlName="phrase" placeholder="{{'Search phrase' | translate}}">
-  </mat-form-field>
-  <div>
-    <mat-button-toggle-group [value]="isLocationDisabled ? 'bounds' : 'locate'">
-    <mat-button-toggle type="radio" value="locate" [disabled]="isLocationDisabled"
-                       (change)="locateUser()">{{'Locate' | translate}}</mat-button-toggle>
-    <mat-button-toggle type="radio" value="bounds"
-                       (change)="useBounds()">{{'Search visible area' | translate}}</mat-button-toggle>
-    </mat-button-toggle-group>
-  </div>
-
-  <mat-form-field>
-    <input matInput formControlName="range" type="number" placeholder="{{'Range' | translate}}" (change)="updateRange($event)">
-    <span matSuffix>m</span>
-  </mat-form-field>
-
-  <mat-form-field>
-    <mat-select placeholder="{{'Place type' | translate}}">
-      <mat-option *ngFor="let place of placeTypes" value="place">{{place | translate}}</mat-option>
-    </mat-select>
-  </mat-form-field>
-
-  <mat-form-field>
-    <input matInput formControlName="preferences" placeholder="{{'Preferences' | translate}}">
-  </mat-form-field>
-
-  <div>
-    <button mat-raised-button color="primary" type="submit">
-      {{'Find places' | translate}}
-    </button>
-  </div>
-
-</form>
+  </form>

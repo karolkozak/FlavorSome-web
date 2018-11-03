@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Subscription} from 'rxjs/Subscription';
 import {MapsAPILoader} from '@agm/core';
+import {CONST_TITLES, CustomTitleService} from '@app/core/services/custom-title.service';
 
 @Component({
   selector: 'un-places-list-page',
@@ -17,10 +18,11 @@ export class PlacesListPageComponent implements OnInit, OnDestroy {
   places: google.maps.places.PlaceResult[] = [];
   nextPage;
 
-  constructor(private route: ActivatedRoute, private mapsAPILoader: MapsAPILoader) {
+  constructor(private route: ActivatedRoute, private mapsAPILoader: MapsAPILoader, private customTitleService: CustomTitleService) {
   }
 
   ngOnInit() {
+    this.customTitleService.setTitle(CONST_TITLES.PLACES);
     this.mapsAPILoader.load().then(() => {
       this.googlePlacesService = new google.maps.places.PlacesService(document.createElement('div'));
       this.subscription = this.route.queryParams.subscribe(params => {

@@ -1,20 +1,14 @@
 <div class="row un-login-component">
+  <div class="col-12 un-create-account">
+    {{"Don't have an account yet?" | translate}} <a [routerLink]="['/registration']">{{'Create one!' | translate}}</a>
+  </div>
   <div class="col-lg-4 col-md-6 col-sm-10 un-content">
     <div class="un-form">
         <div class="un-header">
             <i class="material-icons">people</i>
         </div>
-        <!-- <div class="un-header">{{'Log in' | translate}}</div> -->
-        <div class="un-full-logo">
-          <img src="assets/ux/logo.svg">
-        </div>
         <un-custom-login [loginSuccess]="loginSuccess()"></un-custom-login>
-        <div class="un-adds">
-            <div class="un-create-account">
-              {{"Don't have an account yet?" | translate}} <a [routerLink]="['/registration']">{{'Create one!' | translate}}</a>
-            </div>
-            <un-facebook-login [loginSuccess]="loginSuccess()"></un-facebook-login>
-        </div>
+        <un-facebook-login [loginSuccess]="loginSuccess()"></un-facebook-login>
       </div>
   </div>
 </div>

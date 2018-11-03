@@ -14,6 +14,7 @@ import {UnverifiedUserGuardService} from '@app/security/services/guards/unverifi
 import {AuthGuardService} from '@app/security/services/guards/auth-guard.service';
 import {UserResolverService} from '@app/security/services/resolvers/user-resolver.service';
 import {DashboardComponent} from '@app/layouts/components/dashboard/dashboard.component';
+import {AboutPageComponent} from '@app/layouts/components/about-page/about-page.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomePageComponent, pathMatch: 'full', canActivate: [LoginPageGuardService]},
@@ -29,6 +30,7 @@ const appRoutes: Routes = [
     canActivate: [AuthGuardService, UnverifiedUserGuardService],
     resolve: {user: UserResolverService}
     },
+  {path: 'about', component: AboutPageComponent},
   {path: 'not-found', component: NotFoundComponent},
   {path: '**', redirectTo: 'not-found'},
 ];

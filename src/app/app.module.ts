@@ -17,7 +17,8 @@ export const fetchConfigData = (configService: ConfigService) => {
 };
 
 export const fetchCurrentUser = (authenticationService: AuthenticationService, userService: UserService) => {
-  return authenticationService.isLoggedIn() ? () => userService.fetchUserOnInitApp() : () => {};
+  return authenticationService.isLoggedIn() ? () => userService.fetchUserOnInitApp() : () => {
+  };
 };
 
 @NgModule({
@@ -36,7 +37,7 @@ export const fetchCurrentUser = (authenticationService: AuthenticationService, u
       timeOut: 10000,
       positionClass: 'toast-bottom-right',
       preventDuplicates: true,
-    }),
+    })
   ],
   providers: [
     {provide: APP_INITIALIZER, useFactory: fetchConfigData, deps: [ConfigService], multi: true},

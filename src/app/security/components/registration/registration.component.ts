@@ -6,8 +6,8 @@ import {squash} from '@app/shared/utils/object-utils';
 import {CustomTranslateService} from '@app/core/services/custom-translate.service';
 import {ApiResponseBody} from '@app/security/models/api-response-body';
 import {environment} from '@env/environment';
-import {ReCaptchaComponent} from 'angular5-recaptcha';
 import {CustomToastrService} from '@app/core/services/custom-toastr.service';
+import {RecaptchaComponent} from 'ng-recaptcha';
 
 @Component({
   selector: 'un-registration',
@@ -16,7 +16,9 @@ import {CustomToastrService} from '@app/core/services/custom-toastr.service';
 })
 export class RegistrationComponent implements OnInit {
   @Input() registrationSuccess: () => void;
-  @ViewChild(ReCaptchaComponent) captcha: ReCaptchaComponent;
+  @ViewChild(RecaptchaComponent) captchaRef: RecaptchaComponent;
+
+  private captcha: string;
 
   registrationUserForm: FormGroup;
   registrationError: ApiResponseBody;
@@ -80,8 +82,33 @@ export class RegistrationComponent implements OnInit {
     return this.registrationUserForm.invalid && this.registrationUserForm.touched;
   }
 
-  registerUser() {
-    if (this.registrationUserForm.valid && this.captcha.getResponse()) {
+  captchaResolved(captchaResponse: string) {
+    this.registrationUserForm.get('gRecaptchaResponse').setValue(captchaResponse);
+    this.captcha = captchaResponse;
+  }
+
+  getCaptcha() {
+    return new Promise(resolve => {
+      if (this.captcha) {
+        resolve(this.captcha);
+        return;
+      }
+
+      this.captchaRef.execute();
+
+      const resolvedCallback = this.captchaResolved;
+      this.captchaResolved = function(captchaResponse: string) {
+        resolvedCallback.call(this, captchaResponse);
+        resolve(captchaResponse);
+        this.captchaResolved = resolvedCallback;
+      };
+    });
+  }
+
+  async registerUser() {
+    await this.getCaptcha();
+
+    if (this.registrationUserForm.valid) {
       const userData = squash(this.registrationUserForm.value);
       this.customAuthService.registerUser(userData).subscribe(
         loginSuccess => {

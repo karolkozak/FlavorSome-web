@@ -1,26 +1,17 @@
 <div class="row un-description">
+  <div class="col-12 un-create-account">
+    {{"Don't have an account yet?" | translate}} <a [routerLink]="['/registration']">{{'Create one!' | translate}}</a>
+  </div>
   <div class="col-8 un-main-content">
-    <div class="un-full-logo">
-      <img src="assets/ux/logo.svg">
-    </div>
-    <!-- <un-place-searcher></un-place-searcher> -->
-    <div class="un-searcher-mock">
-      <div class="un-search">
-          <span>Wyszukaj miejsca</span>
-          <button class="btn btn-primary"><i class="material-icons">search</i></button>
-      </div>
-    </div>
-    <div class="un-create-account">
-      {{"Don't have an account yet?" | translate}} <a [routerLink]="['/registration']">{{'Create one!' | translate}}</a>
-    </div>
+    <un-place-searcher></un-place-searcher>
     <div class="un-info row">
       <div class="un-info-tile col-lg-3 col-md-6 col-sm-12">
         <div class="un-tile-header">
             <i class="material-icons">restaurant_menu</i>
         </div>
         <div class="un-tile-content">
-            <div>{{ 'App, that provide easy searching gastronomic local.' | translate}}</div>
-          </div>
+          <div>{{ 'App, that provide easy searching gastronomic local.' | translate}}</div>
+        </div>
       </div>
       <div class="un-info-tile col-lg-3 col-md-6 col-sm-12">
         <div class="un-tile-header">
@@ -43,9 +34,8 @@
             <i class="material-icons">restaurant</i>
         </div>
         <div class="un-tile-content">
-          <div>{{ 'Just sign up and use wide FlavorSome!' | translate }}
-              <button *ngIf="!isLoggedIn()" class="btn" [routerLink]="['/login']">{{"Login Page" | translate}}</button>
-          </div>
+          <div class="un-div-button">{{ 'Just sign up and use wide FlavorSome!' | translate }}</div>
+          <button *ngIf="!isLoggedIn()" class="btn" [routerLink]="['/login']">{{"Login Page" | translate}}</button>
         </div>
       </div>
     </div>

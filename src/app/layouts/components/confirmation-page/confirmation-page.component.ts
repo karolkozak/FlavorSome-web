@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {Subscription} from 'rxjs/Subscription';
 import {CustomAuthService} from '@app/security/services/custom-auth.service';
 import {CustomToastrService} from '@app/core/services/custom-toastr.service';
+import {CONST_TITLES, CustomTitleService} from '@app/core/services/custom-title.service';
 
 @Component({
   selector: 'un-confirmation-page',
@@ -17,10 +18,12 @@ export class ConfirmationPageComponent implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute,
               private router: Router,
               private customAuthService: CustomAuthService,
-              private customToastrService: CustomToastrService) {
+              private customToastrService: CustomToastrService,
+              private customTitleService: CustomTitleService) {
   }
 
   ngOnInit(): void {
+    this.customTitleService.setTitle(CONST_TITLES.CONFIRMATION);
     this.subscription = this.route.queryParams.subscribe(queryParams => {
       this.confirmationToken = queryParams['token'];
       if (this.confirmationToken) {

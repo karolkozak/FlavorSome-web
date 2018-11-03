@@ -5,11 +5,10 @@
   width: 100%;
 
   .un-footer {
-    // border-top-style: groove;
-    border-width: thin;
-    background-color: $un-footer-background;
+    background-color: white;
+    color: $text;
+    position: relative;
     line-height: $un-footer-height;
-    background-repeat:repeat;
     text-align: center;
     height: $un-footer-height;
   }
@@ -19,4 +18,8 @@
     margin: 0;
   }
 
+  .un-about {
+    float: right;
+    margin-right: 10px;
+  }
 }

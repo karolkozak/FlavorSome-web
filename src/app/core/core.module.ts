@@ -10,6 +10,11 @@ import {UserService} from './services/user.service';
 import {environment} from '@env/environment';
 import {} from 'googlemaps'; // it should stay in order to correct google namespace use. Be careful with ctrl + alt + o
 import {CustomToastrService} from '@app/core/services/custom-toastr.service';
+import {AboutService} from '@app/core/services/about.service';
+import {CustomTitleService} from '@app/core/services/custom-title.service';
+import {Angular2PromiseButtonModule} from 'angular2-promise-buttons';
+import {MapService} from '@app/core/services/map/map.service';
+import {HereMapService} from '@app/core/services/map/here-map.service';
 
 export function customTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -22,6 +27,9 @@ export function customTranslateLoader(http: HttpClient) {
       libraries: ['places']
     }),
     HttpClientModule,
+    Angular2PromiseButtonModule.forRoot({
+      disableBtn: true,
+    }),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -36,11 +44,14 @@ export class CoreModule {
     return {
       ngModule: CoreModule,
       providers: [
+        AboutService,
         ConfigService,
+        CustomTitleService,
         CustomToastrService,
         CustomTranslateService,
         httpInterceptorProviders,
         UserService,
+        {provide: MapService, useClass: HereMapService}
       ]
     };
   }

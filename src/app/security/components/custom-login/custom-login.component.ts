@@ -13,6 +13,7 @@ export class CustomLoginComponent implements OnInit {
   @Input() loginSuccess: () => void;
   loginUserForm: FormGroup;
   errorMessage: ApiResponseBody;
+  loginPromise: any;
 
   constructor(private customAuthService: CustomAuthService,
               private formBuilder: FormBuilder,
@@ -31,7 +32,9 @@ export class CustomLoginComponent implements OnInit {
 
   public login() {
     if (this.loginUserForm.valid) {
-      this.customAuthService.login(this.loginUserForm.value).subscribe(
+      const observable = this.customAuthService.login(this.loginUserForm.value);
+      this.loginPromise = observable.toPromise();
+      observable.subscribe(
         loginSuccess => {
           this.loginSuccess();
         },

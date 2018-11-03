@@ -1,7 +1,11 @@
-<ul>
-  <li>{{user?.firstname + ' ' + user?.lastname}}</li>
-  <li>{{user?.email}}</li>
-</ul>
+<div class="un-user-details-picture">
+  <un-user-picture [picture]="user?.picture"></un-user-picture>
+</div>
+
+<div>
+  <div>{{user?.firstname + ' ' + user?.lastname}}</div>
+  <div>{{user?.email}}</div>
+</div>
 
 <div *ngIf="user?.role === UserRole.BUSINESS">
   <span *ngFor="let place of user?.ownedPlaces">{{place.name}}</span>

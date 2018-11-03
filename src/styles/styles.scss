@@ -1,8 +1,8 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
-@import "~flag-icon-css/css/flag-icon.css";
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "fonts";
 @import "colors";
+@import "flags";
 @import "variables";
 @import "mixins";
 
@@ -14,30 +14,51 @@ html, body {
   -moz-box-shadow: none;
   box-shadow: none;
 
-  background-image: url('/assets/ux/palms.JPG');
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: relative;
-  box-shadow: none;
-
   *:focus {
     outline: 0;
     box-shadow: none;
+  }
+
+  .un-header-image {
+    background-image: url('/assets/ux/venice2.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    padding-top: $padding-large;
+    padding-bottom: $padding-medium;
   }
 
   .un-create-account {
     margin-top: 1rem;
     padding: 1.2rem;
     font-size: $font-size-medium;
-    background-color: rgba(0, 0, 0, .4);
+    background-color: $containers-background;
+    color: $font-color-on-colored-div;
 
     a {
-      color:  $gray-blue;
+      color: lighten($font-color-basic, 5%);
       font-weight: bolder;
 
       &:hover {
         text-decoration: none;
       }
+    }
+  }
+
+  .un-content-map {
+    @media (min-width: 992px) {
+      min-height: 60vh;
+      max-height: calc(100vh - #{$un-footer-height} - #{$un-header-height});
+    }
+
+    @media (min-width: 768px) and (max-width: 991px) {
+      min-height: 50vh;
+      max-height: calc(100vh - #{$un-footer-height} - #{$un-header-height});
+    }
+
+    @media (max-width: 767px) {
+      min-height: 30vh;
+      max-height: calc(100vh - #{$un-footer-height} - #{$un-header-height});
     }
   }
 
@@ -55,7 +76,7 @@ html, body {
     }
 
     &:hover {
-      background-color: darken($button-background, 10%);
+      background-color: darken($button-background, 5%);
     }
   }
 
@@ -63,7 +84,7 @@ html, body {
     margin-top: 5rem;
     margin-left: auto;
     margin-right: auto;
-    background-color: rgba(0, 0, 0, .4);
+    background-color: $containers-background;
     padding: 0;
 
     .un-form {
@@ -74,7 +95,7 @@ html, body {
         display: block;
 
         .material-icons {
-          @include creatIconCircle('/assets/ux/food.png', 2.3em, 2.3rem, calc(4.3rem), white);
+          @include creatIconCircle('/assets/ux/building.png', 2.3em, 2.3rem, calc(4.3rem), white);
           @include transform(0, -3rem, 0);
         }
       }
@@ -86,7 +107,11 @@ html, body {
 
       }
 
-      input {
+      h1 {
+        font-size: $font-size-header;
+      }
+
+      input:not(.mat-input-element) {
         margin-bottom: 0.9rem;
         border-radius: 0;
         background-color: transparent;
@@ -95,7 +120,7 @@ html, body {
 
         &:focus {
           transition: border-bottom-color 0.5s ease;
-          border-bottom: 2px solid $gray-blue;
+          border-bottom: 2px solid $dirty-green;
           outline: 0;
           box-shadow: none;
         }
@@ -114,5 +139,44 @@ html, body {
         }
       }
     }
+  }
+
+  .mat-tab-label{
+    background: transparent;
+    min-width: 60px!important;
+    border-bottom: 0.1rem solid white;
+  }
+
+  .mat-tab-group.mat-primary .mat-tab-label:not(.mat-tab-disabled):focus, .mat-tab-group.mat-primary .mat-tab-link:not(.mat-tab-disabled):focus, .mat-tab-nav-bar.mat-primary .mat-tab-label:not(.mat-tab-disabled):focus, .mat-tab-nav-bar.mat-primary .mat-tab-link:not(.mat-tab-disabled):focus{
+    border-bottom: 0.1rem solid $dirty-green;
+    background: transparent;
+  }
+
+  .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar{
+    background: transparent;
+    border-bottom: 0.1rem solid $beige;
+  }
+
+  /deep/ .mat-input-underline {
+    background-color: $beige;
+  }
+
+  .mat-focused .mat-form-field-label {
+    color: $dirty-green !important;
+  }
+
+  .mat-form-field-ripple {
+    background-color: $dirty-green !important;
+  }
+
+  .mat-focused .mat-form-field-label {
+    color: $text;
+  }
+
+  .alert-warning {
+    background-color: lighten($beige, 10%);
+    border: none;
+    margin: $margin-small;
+    border-radius: 0;
   }
 }

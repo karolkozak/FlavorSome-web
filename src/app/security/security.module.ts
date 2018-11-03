@@ -13,17 +13,21 @@ import {AdminRoleGuardService} from './services/guards/admin-role-guard.service'
 import {CustomLoginComponent} from './components/custom-login/custom-login.component';
 import {CustomAuthService} from './services/custom-auth.service';
 import {RegistrationComponent} from './components/registration/registration.component';
-import {ReCaptchaModule} from 'angular5-recaptcha';
 import {UnverifiedUserGuardService} from '@app/security/services/guards/unverified-user-guard.service';
 import {UserResolverService} from '@app/security/services/resolvers/user-resolver.service';
+import {Angular2PromiseButtonModule} from 'angular2-promise-buttons';
+import {RecaptchaModule} from 'ng-recaptcha';
 
 @NgModule({
   imports: [
     CommonModule,
     HttpClientModule,
-    ReCaptchaModule,
+    RecaptchaModule,
     SocialLoginModule,
     SharedModule,
+    Angular2PromiseButtonModule.forRoot({
+      disableBtn: true,
+    }),
   ],
   providers: [
     {provide: AuthServiceConfig, useFactory: getAuthServiceConfig},

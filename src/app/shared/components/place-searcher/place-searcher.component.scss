@@ -1,10 +1,53 @@
-:host {
-  mat-form-field {
-    min-width: 300px;
-  }
-}
+@import 'colors';
+@import 'variables';
+@import 'mixins';
 
-mat-option.un-search-last {
-  background-color: bisque;
-  text-align: center;
+:host(un-place-searcher) {
+  $searcher-border-large: 5rem;
+  $searcher-border-small: 2rem;
+
+  form {
+    text-align: center;
+    margin-top: $margin-small;
+    mat-form-field {
+      width: 30rem;
+      max-width: 100%;
+      background-color: white;
+    }
+
+    .btn {
+      cursor: pointer;
+      height: 4em;
+    }
+
+    @media (min-width: 768px) {
+      mat-form-field {
+        padding-left: $searcher-border-large;
+        border-bottom-left-radius: $searcher-border-large;
+        border-top-left-radius: $searcher-border-large;
+      }
+
+      .btn {
+        width: 12%;
+        border-bottom-right-radius: $searcher-border-large;
+        border-top-right-radius: $searcher-border-large;
+      }
+    }
+
+    @media (max-width: 767px) {
+      mat-form-field {
+        width: 100%;
+        padding-left: $searcher-border-small;
+        padding-left: $searcher-border-small;
+        border-top-right-radius: $searcher-border-small;
+        border-top-left-radius: $searcher-border-small;
+      }
+
+      .btn {
+        border-bottom-right-radius: $searcher-border-small;
+        border-bottom-left-radius: $searcher-border-small;
+        width: 100%;
+      }
+    }
+  }
 }

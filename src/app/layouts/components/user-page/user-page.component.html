@@ -1,33 +1,36 @@
-<div class="container">
-  <h3>{{user?.firstname + ' ' + user?.lastname}}</h3>
-
-  <mat-tab-group mat-stretch-tabs
-                 [selectedIndex]="selectedTab"
-                 (selectedTabChange)="tabChanged($event)"
-                 headerPosition="left">
-    <mat-tab *ngFor="let tab of userDetailsTabs"
-             [label]="tab | translate">
-      <div *ngIf="tab === 'User Details'">
-        <un-user-details [user]="user"></un-user-details>
-      </div>
-      <div *ngIf="tab === 'Rated places'">
-        <span>{{'List of rated places' | translate}}:</span>
-        <un-user-ratings-list [ratings]="ratingsList?.content"
-                              [allowEdit]="allowEdit"></un-user-ratings-list>
-        <un-pagination (dataChanged)="fetchRatings($event)"
-                       [pageableParams]="pageableParams"
-                       [first]="ratingsList?.first"
-                       [last]="ratingsList?.last"></un-pagination>
-      </div>
-      <div *ngIf="tab === 'Places to rate' && isCurrentUser">
-        <span>{{'List of places to rate' | translate}}:</span>
-        <un-user-ratings-list [ratings]="unratedList"
-                              [allowEdit]="allowEdit"
-                              [allowRemove]="true"></un-user-ratings-list>
-      </div>
-      <div *ngIf="tab === 'Friends'">
-        <un-users-list [users]="user?.friends"></un-users-list>
-      </div>
-    </mat-tab>
-  </mat-tab-group>
+<div class="row un-user-page">
+  <div class="col-10 un-main-content">
+    <h1>{{user?.firstname + ' ' + user?.lastname}}</h1>
+    <mat-tab-group mat-stretch-tabs
+                    [selectedIndex]="selectedTab"
+                    (selectedTabChange)="tabChanged($event)"
+                    headerPosition="left">
+      <mat-tab *ngFor="let tab of userDetailsTabs"
+                [label]="tab | translate">
+        <div *ngIf="tab === 'User Details'" class="un-details-row row">
+          <div class="un-tile-content col-12">
+            <un-user-details [user]="user"></un-user-details>
+          </div>
+        </div>
+        <div *ngIf="tab === 'Rated places'">
+          <div class="un-nav-title">{{'List of rated places' | translate}}:</div>
+          <un-user-ratings-list [ratings]="ratingsList?.content"
+                        [allowEdit]="allowEdit"></un-user-ratings-list>
+          <un-pagination (dataChanged)="fetchRatings($event)"
+                  [pageableParams]="pageableParams"
+                  [first]="ratingsList?.first"
+                  [last]="ratingsList?.last"></un-pagination>
+        </div>
+        <div *ngIf="tab === 'Places to rate' && isCurrentUser">
+          <div class="un-nav-title">{{'List of places to rate' | translate}}:</div>
+          <un-user-ratings-list [ratings]="unratedList"
+                        [allowEdit]="allowEdit"
+                        [allowRemove]="true"></un-user-ratings-list>
+        </div>
+        <div *ngIf="tab === 'Friends'">
+          <un-users-list [users]="user?.friends"></un-users-list>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
 </div>

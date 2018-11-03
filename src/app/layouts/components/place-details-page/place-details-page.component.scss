@@ -1,8 +1,92 @@
-agm-map {
-  height: 500px; /* TODO: adjust height */
-}
+@import 'colors';
+@import 'variables';
+@import 'mixins';
 
-.un-place-visit {
-  text-align: center;
-  width: 100%;
+:host(un-place-details-page) {
+  .row.un-description {
+    margin: 0;
+    color: $text;
+
+    .un-main-content {
+      min-height: calc(100% - #{$un-header-height} - #{$un-footer-height} - #{$margin-large});
+      margin-top: $margin-large;
+      min-height: calc(100vh - #{$un-header-height} - #{$un-footer-height} - #{$margin-large});
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+
+      .un-visit {
+        width: 100%;
+        margin-bottom: $margin-medium;
+      }
+
+      .un-place-header {
+        h1 {
+          display: inline-block;
+          font-size: $font-size-header;
+        }
+
+        button {
+          float: right;
+          margin-top: $margin-small;
+          padding: $padding-small $padding-large;
+        }
+
+      }
+
+      .un-place-navs {
+        display: flex;
+        height: 3rem;
+        color: lighten($text, 35%);
+
+        div {
+          flex: 1;
+          display: inline-block;
+          align-items: center;
+          justify-content: center;
+          padding-top: $padding-small;
+          padding-right: 0.2rem;
+          border-bottom: solid $border-width-small white;
+
+          &:hover {
+            border-bottom: solid $border-width-medium rgba($beige, 0.7);
+            background-color: lighten($gray-light, 3%);
+            cursor: pointer;
+          }
+
+          &.active {
+            border-bottom: solid $border-width-medium $dirty-green;
+            color: $text
+          }
+
+          &:focus {
+            transition: $dirty-green 0.5s ease;
+            outline: 0;
+            box-shadow: none;
+          }
+        }
+
+        .rates {
+          border-right: none;
+        }
+      }
+
+      .un-nav-content {
+        margin: 1rem 0;
+
+        &.un-dark-div {
+          border: $border-width-medium solid $beige;
+        }
+
+        div {
+          padding: 1rem 0;
+        }
+      }
+
+      .un-content-map {
+        width: 100%;
+        height: calc(100vh - #{$un-footer-height} - #{$un-header-height} - 10vh);
+      }
+    }
+  }
 }
