@@ -13,7 +13,7 @@ import {LanguageChooserComponent} from '@app/navbars/components/language-chooser
     RouterModule,
     SharedModule,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
   ],
   declarations: [HeaderComponent, FooterComponent, LanguageChooserComponent],
   exports: [HeaderComponent, FooterComponent]

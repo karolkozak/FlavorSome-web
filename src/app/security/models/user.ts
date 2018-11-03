@@ -3,6 +3,7 @@ import {Place} from '@app/places/models/place';
 export interface User {
   userId: string;
   facebookId: string;
+  picture: string;
   firstname: string;
   lastname: string;
   email: string;
