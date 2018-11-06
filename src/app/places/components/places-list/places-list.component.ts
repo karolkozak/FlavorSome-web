@@ -1,4 +1,5 @@
 import {Component, Input} from '@angular/core';
+import {Place} from '@app/places/models/place';
 
 @Component({
   selector: 'un-places-list',
@@ -6,5 +7,5 @@ import {Component, Input} from '@angular/core';
   styleUrls: ['./places-list.component.scss']
 })
 export class PlacesListComponent {
-  @Input() places: google.maps.places.PlaceResult[] = [];
+  @Input() places: Place[] = [];
 }

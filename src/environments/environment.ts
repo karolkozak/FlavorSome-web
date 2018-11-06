@@ -25,6 +25,7 @@ export const environment = {
   current: '/current',
   unrated: '/unrated',
   visit: '/visit',
+  search: '/search',
 
   about: '/about',
   mail: '/mail',

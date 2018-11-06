@@ -11,6 +11,7 @@ import {RatesSectionComponent} from './components/place-ratings/rates-section/ra
 import {RateItemComponent} from './components/place-ratings/rate-item/rate-item.component';
 import {RateFormComponent} from './components/place-ratings/rate-form/rate-form.component';
 import {RatesListComponent} from './components/place-ratings/rates-list/rates-list.component';
+import {PlaceAddressComponent} from './components/place-details/place-address/place-address.component';
 
 @NgModule({
   imports: [
@@ -19,6 +20,7 @@ import {RatesListComponent} from './components/place-ratings/rates-list/rates-li
     SharedModule,
   ],
   declarations: [
+    PlaceAddressComponent,
     PlaceDetailsComponent,
     PlaceMenuComponent,
     PlacesListComponent,
@@ -29,6 +31,7 @@ import {RatesListComponent} from './components/place-ratings/rates-list/rates-li
     RatesListComponent,
   ],
   exports: [
+    PlaceAddressComponent,
     PlaceDetailsComponent,
     PlaceMenuComponent,
     PlacesListComponent,

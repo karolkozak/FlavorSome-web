@@ -1,4 +1,5 @@
 import {Component, Input} from '@angular/core';
+import {Place} from '@app/places/models/place';
 
 @Component({
   selector: 'un-place-details',
@@ -6,5 +7,5 @@ import {Component, Input} from '@angular/core';
   styleUrls: ['./place-details.component.scss']
 })
 export class PlaceDetailsComponent {
-  @Input() placeDetails: google.maps.places.PlaceResult;
+  @Input() placeDetails: Place;
 }

@@ -24,15 +24,15 @@ export class DashboardMapComponent implements OnInit, AfterViewInit {
   @ViewChild('map')
   public mapElement: ElementRef;
 
-  constructor(private mapService: MapService, private placesService: PlacesSearchService) {
+  constructor(private mapService: MapService, private placesSearchService: PlacesSearchService) {
     this.provider = this.mapService.constructor.name;
   }
 
   ngOnInit() {
     ({coords: this.mapCenter, zoom: this.zoom} = environment.mapDefaults);
-    this.placesService.userPosition.subscribe((pos: google.maps.LatLngLiteral|undefined) => this.setPosition(pos));
-    this.placesService.searchRadius.subscribe((rad: number|undefined) => this.mapService.redrawCircle(this.userCircle, rad));
-    this.placesService.locateUser();
+    this.placesSearchService.userPosition.subscribe((pos: google.maps.LatLngLiteral|undefined) => this.setPosition(pos));
+    this.placesSearchService.searchRadius.subscribe((rad: number|undefined) => this.mapService.redrawCircle(this.userCircle, rad));
+    this.placesSearchService.locateUser();
   }
 
   public ngAfterViewInit() {

@@ -2,5 +2,4 @@
   {{'Results for' | translate}}: {{placeQuery}}
 </div>
 <un-places-list *ngIf="places.length" [places]="places"></un-places-list>
-<button mat-raised-button color="accent" [disabled]="!hasNextPage" (click)="getNextPage()">{{"More results" | translate}}</button>
 <h2 *ngIf="!fetching && !places.length">{{'No results' | translate}}</h2>
