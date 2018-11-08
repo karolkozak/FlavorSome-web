@@ -15,7 +15,6 @@ import {Pageable} from '@app/places/models/pageable';
   styleUrls: ['./user-page.component.scss']
 })
 export class UserPageComponent implements OnInit, OnDestroy {
-  userId: string;
   userDetailsTabs: string[] = ['User Details', 'Rated places', 'Places to rate', 'Friends'];
   user: User;
   ratingsList: Pageable<Rate>;
@@ -31,16 +30,13 @@ export class UserPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
-      this.userId = params['id'];
-      this.userService.getUser(this.userId).subscribe(currentUser => {
-        this.user = {...currentUser};
-        this.fetchRatings();
-        this.fetchUnrated();
-        if (!this.isCurrentUser) {
-          this.userDetailsTabs.splice(2, 1);
-        }
-      });
+    this.route.data.subscribe((data: {user: User}) => {
+      this.user = data.user;
+      this.fetchRatings();
+      this.fetchUnrated();
+      if (!this.isCurrentUser) {
+        this.userDetailsTabs.splice(2, 1);
+      }
     });
     this.route.queryParams.subscribe(queryParams => {
       const activeTab = queryParams['tab'];
@@ -68,7 +64,7 @@ export class UserPageComponent implements OnInit, OnDestroy {
 
   fetchRatings(pageableParams: PageableParams = this.pageableParams) {
     if (this.user) {
-      this.userService.getRatings(this.userId, pageableParams).subscribe(ratings => this.ratingsList = {...ratings});
+      this.userService.getRatings(this.user.userId, pageableParams).subscribe(ratings => this.ratingsList = {...ratings});
     }
   }
 
@@ -80,11 +76,11 @@ export class UserPageComponent implements OnInit, OnDestroy {
 
   tabChanged(event: MatTabChangeEvent) {
     const tabName = event.tab.textLabel.toLowerCase().replace(new RegExp('\\s', 'g'), '_');
-    this.router.navigate(['/users', this.userId], {queryParams: {tab: tabName}});
+    this.router.navigate(['/users', this.user.userId], {queryParams: {tab: tabName}});
   }
 
   get isCurrentUser(): boolean {
-    return this.userService.isCurrentUser(this.userId);
+    return this.userService.isCurrentUser(this.user.userId);
   }
 
   get allowEdit(): boolean {
