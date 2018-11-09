@@ -59,8 +59,9 @@ export class PlacesService {
   }
 
   public getPlaces(placeSearchRequest: PlaceSearchRequest): Observable<Place[]> {
-    const endpoint = this.baseUrl + `${environment.search}?` + placeSearchRequest.createUrlParams();
-    return this.httpClient.get<Place[]>(endpoint);
+    const endpoint = this.baseUrl + `${environment.search}`;
+    const params = placeSearchRequest.getHttpParams();
+    return this.httpClient.get<Place[]>(endpoint, {params});
   }
 
   public getPlace(vendorPlaceId: any): Observable<Place> {

@@ -1,4 +1,4 @@
-import {environment} from '@env/environment';
+import {HttpParams} from '@angular/common/http';
 
 export class PlaceSearchRequest {
   latitude: number;
@@ -7,15 +7,20 @@ export class PlaceSearchRequest {
   query: string;
 
   constructor(values: { latitude?: number, longitude?: number, distance?: number, query?: string } = {}) {
-    this.latitude = values.latitude ? values.latitude : environment.mapDefaults.coords.lat;
-    this.longitude = values.longitude ? values.longitude : environment.mapDefaults.coords.lng;
-    this.distance = values.distance ? values.distance : 1000;
+    this.latitude = values.latitude;
+    this.longitude = values.longitude;
+    this.distance = values.distance;
     this.query = values.query ? values.query : '';
   }
 
-  public createUrlParams(): string {
+  public getHttpParams(): HttpParams {
+    const httpParams = new HttpParams();
     return (this.latitude && this.longitude && this.distance)
-      ? `latitude=${this.latitude}&longitude=${this.longitude}&distance=${this.distance}&query=${this.query}`
-      : `query=${this.query}`;
+      ? httpParams
+        .set('latitude', `${this.latitude}`)
+        .set('longitude', `${this.longitude}`)
+        .set('distance', `${this.distance}`)
+        .set('query', this.query)
+      : httpParams.set('query', this.query);
   }
 }

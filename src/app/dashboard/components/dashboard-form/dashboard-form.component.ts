@@ -72,9 +72,7 @@ export class DashboardFormComponent implements OnInit {
         },
         error => {
           console.error(error);
-          if (error.status !== 404) {
             this.customToastrService.showErrorToastr('Places', 'Unable to search, try again later', error.status);
-          }
         }
       );
     }

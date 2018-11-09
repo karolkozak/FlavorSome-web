@@ -1,6 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Rate} from '@app/places/models/rate';
-import {MapsAPILoader} from '@agm/core';
 import {PlacesService} from '@app/places/services/places.service';
 import {CustomToastrService} from '@app/core/services/custom-toastr.service';
 import {Place} from '@app/places/models/place';
@@ -18,15 +17,11 @@ export class UserRatingsListItemComponent implements OnInit {
   editing = false;
   placeDetails: Place;
 
-  constructor(private mapsAPILoader: MapsAPILoader,
-              private placesService: PlacesService,
-              private customToastrService: CustomToastrService) {
+  constructor(private placesService: PlacesService, private customToastrService: CustomToastrService) {
   }
 
   ngOnInit(): void {
-    this.mapsAPILoader.load().then(() => {
-      this.fetchPlaceDetails(this.rate.place.vendorPlaceId);
-    });
+    this.fetchPlaceDetails(this.rate.place.vendorPlaceId);
   }
 
   private fetchPlaceDetails(vendorPlaceId: any) {

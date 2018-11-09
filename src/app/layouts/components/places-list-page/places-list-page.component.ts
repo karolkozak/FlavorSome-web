@@ -15,7 +15,7 @@ export class PlacesListPageComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
 
   placeQuery: string;
-  fetching = true;
+  fetchingDone = false;
   places: Place[] = [];
 
   constructor(private route: ActivatedRoute, private customTitleService: CustomTitleService, private placesService: PlacesService) {
@@ -30,14 +30,14 @@ export class PlacesListPageComponent implements OnInit, OnDestroy {
   }
 
   private fetchPlaces(query: string) {
-    const placeSearchRequest = new PlaceSearchRequest({query});
     if (query) {
+      const placeSearchRequest = new PlaceSearchRequest({query});
       this.placesService.getPlaces(placeSearchRequest).subscribe(places => {
         this.places = places;
-        this.fetching = false;
+        this.fetchingDone = true;
       });
     } else {
-      this.fetching = false;
+      this.fetchingDone = true;
     }
   }
 

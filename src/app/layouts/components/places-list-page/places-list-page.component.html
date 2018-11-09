@@ -2,4 +2,4 @@
   {{'Results for' | translate}}: {{placeQuery}}
 </div>
 <un-places-list *ngIf="places.length" [places]="places"></un-places-list>
-<h2 *ngIf="!fetching && !places.length">{{'No results' | translate}}</h2>
+<h2 *ngIf="fetchingDone && !places.length">{{'No results' | translate}}</h2>
