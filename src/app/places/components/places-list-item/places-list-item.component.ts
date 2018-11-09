@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ConfigService} from '@app/core/services/config.service';
+import {Place} from '@app/places/models/place';
 
 @Component({
   selector: 'un-places-list-item',
@@ -7,7 +8,7 @@ import {ConfigService} from '@app/core/services/config.service';
   styleUrls: ['./places-list-item.component.scss']
 })
 export class PlacesListItemComponent implements OnInit {
-  @Input() place: google.maps.places.PlaceResult;
+  @Input() place: Place;
 
   private availablePlacesTypes: string[] = [];
 

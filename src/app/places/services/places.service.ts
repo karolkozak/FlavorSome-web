@@ -8,6 +8,8 @@ import {PageableParams} from '@app/places/models/pageable-params';
 import {ApiResponseBody} from '@app/security/models/api-response-body';
 import {Subject} from 'rxjs/Subject';
 import {tap} from 'rxjs/operators';
+import {Place} from '@app/places/models/place';
+import {PlaceSearchRequest} from '@app/places/models/place-search-request';
 
 @Injectable()
 export class PlacesService {
@@ -40,19 +42,30 @@ export class PlacesService {
   }
 
   public editRate(rate: Rate): Observable<Rate> {
-    const endpoint = this.baseUrl + `/${rate.place.googlePlaceId}${environment.ratingsPath}/${rate.id}`;
+    const endpoint = this.baseUrl + `/${rate.place.vendorPlaceId}${environment.ratingsPath}/${rate.id}`;
     return this.httpClient.put<Rate>(endpoint, rate).pipe(
       tap(editedRate => this.userRateAnnounceSource.next(editedRate))
     );
   }
 
   public deleteRate(rate: Rate): Observable<ApiResponseBody> {
-    const endpoint = this.baseUrl + `/${rate.place.googlePlaceId}${environment.ratingsPath}/${rate.id}`;
+    const endpoint = this.baseUrl + `/${rate.place.vendorPlaceId}${environment.ratingsPath}/${rate.id}`;
     return this.httpClient.delete<ApiResponseBody>(endpoint);
   }
 
   public visitPlace(placeId: string): Observable<ApiResponseBody> {
     const endpoint = this.baseUrl + `/${placeId}${environment.visit}`;
     return this.httpClient.post<ApiResponseBody>(endpoint, {});
+  }
+
+  public getPlaces(placeSearchRequest: PlaceSearchRequest): Observable<Place[]> {
+    const endpoint = this.baseUrl + `${environment.search}`;
+    const params = placeSearchRequest.getHttpParams();
+    return this.httpClient.get<Place[]>(endpoint, {params});
+  }
+
+  public getPlace(vendorPlaceId: any): Observable<Place> {
+    const endpoint = this.baseUrl + `/${vendorPlaceId}`;
+    return this.httpClient.get<Place>(endpoint);
   }
 }

@@ -17,6 +17,7 @@ import {UnverifiedUserGuardService} from '@app/security/services/guards/unverifi
 import {UserResolverService} from '@app/security/services/resolvers/user-resolver.service';
 import {Angular2PromiseButtonModule} from 'angular2-promise-buttons';
 import {RecaptchaModule} from 'ng-recaptcha';
+import {PlaceResolverService} from '@app/security/services/resolvers/place-resolver.service';
 
 @NgModule({
   imports: [
@@ -37,6 +38,7 @@ import {RecaptchaModule} from 'ng-recaptcha';
     CustomAuthService,
     FacebookAuthService,
     LoginPageGuardService,
+    PlaceResolverService,
     UnverifiedUserGuardService,
     UserResolverService,
   ],

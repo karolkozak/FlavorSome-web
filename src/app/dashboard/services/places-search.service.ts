@@ -1,18 +1,20 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
-import {HttpClient} from '@angular/common/http';
-import {environment} from '@env/environment';
 import {CustomTranslateService} from '@app/core/services/custom-translate.service';
 import {ToastrService} from 'ngx-toastr';
+import {PlacesService} from '@app/places/services/places.service';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable()
-export class PlacesSearchService {
+export class PlacesSearchService extends PlacesService {
   userPosition: BehaviorSubject<google.maps.LatLngLiteral> = new BehaviorSubject(undefined);
   searchRadius: BehaviorSubject<number> = new BehaviorSubject(undefined);
 
-  constructor(private http: HttpClient,
+  constructor(httpClient: HttpClient,
               private toastr: ToastrService,
-              private customTranslateService: CustomTranslateService) { }
+              private customTranslateService: CustomTranslateService) {
+    super(httpClient);
+  }
 
   setSearchRadius(radius: number): void {
     this.searchRadius.next(radius);
@@ -43,10 +45,5 @@ export class PlacesSearchService {
 
   resetUserPosition(): void {
     this.userPosition.next(undefined);
-  }
-
-  getPlaces() {
-    this.http.get<any>(environment.googlePlacesUrl);
-    // FIXME: method stub
   }
 }
