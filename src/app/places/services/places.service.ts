@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpParams} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {environment} from '@env/environment';
 import {Observable} from 'rxjs/Observable';
 import {Rate} from '@app/places/models/rate';
@@ -10,6 +10,7 @@ import {Subject} from 'rxjs/Subject';
 import {tap} from 'rxjs/operators';
 import {Place} from '@app/places/models/place';
 import {PlaceSearchRequest} from '@app/places/models/place-search-request';
+import {suppressError as suppressErrorHeader} from '@app/core/http-client/headers';
 
 @Injectable()
 export class PlacesService {
@@ -33,7 +34,8 @@ export class PlacesService {
       .set('size', pageable.size as any as string)
       .set('sort', `${pageable.sortKey},${pageable.direction}`);
     const endpoint = this.baseUrl + `/${placeId}${environment.ratingsPath}`;
-    return this.httpClient.get<Pageable<Rate>>(endpoint, {params});
+    const headers = new HttpHeaders({[suppressErrorHeader.name]: suppressErrorHeader.value});
+    return this.httpClient.get<Pageable<Rate>>(endpoint, {headers, params});
   }
 
   public addRate(placeId: string, rate: Rate): Observable<Rate> {
