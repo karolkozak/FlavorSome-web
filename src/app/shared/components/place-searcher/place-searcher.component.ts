@@ -1,9 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
-import {MapsAPILoader} from '@agm/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {Router} from '@angular/router';
 import {AuthenticationService} from '@app/security/services/authentication.service';
+import {PlacesSearchService} from '@app/dashboard/services/places-search.service';
+import {PlaceSearchRequest} from '@app/places/models/place-search-request';
+import {Place} from '@app/places/models/place';
 
 
 @Component({
@@ -13,24 +15,22 @@ import {AuthenticationService} from '@app/security/services/authentication.servi
 })
 export class PlaceSearcherComponent implements OnInit {
 
-  private placesService: google.maps.places.PlacesService;
-  places: google.maps.places.PlaceResult[] = [];
+  places: Place[] = [];
   searchForm: FormGroup;
 
-  constructor(private authenticationService: AuthenticationService, private mapsAPILoader: MapsAPILoader, private router: Router) {
+  constructor(private authenticationService: AuthenticationService,
+              private router: Router,
+              private placesSearchService: PlacesSearchService) {
   }
 
   ngOnInit() {
     this.searchForm = new FormGroup({
       searchInput: new FormControl()
     });
-    this.mapsAPILoader.load().then(() => {
-      this.placesService = new google.maps.places.PlacesService(document.createElement('div'));
-    });
     this.initializeSearch();
   }
 
-  searchPlaces() {
+  redirectToResults() {
     // TODO: if logged in, navigate to dashbard and pass there places
     this.router.navigate(['/places'], {queryParams: {query: this.searchForm.get('searchInput').value}});
   }
@@ -52,39 +52,31 @@ export class PlaceSearcherComponent implements OnInit {
             this.geolocationError(searchForm.searchInput),
             {timeout: 2000});
         } else {
-          const textSearchRequest: google.maps.places.TextSearchRequest = {query: searchForm.searchInput};
-          this.textSearch(textSearchRequest);
+          const placeSearchRequest = new PlaceSearchRequest({query: searchForm.searchInput});
+          this.searchPlaces(placeSearchRequest);
         }
       });
   }
 
-  private textSearch(request: google.maps.places.TextSearchRequest) {
-    this.placesService.textSearch(request, (results, status) => {
-      if (status === google.maps.places.PlacesServiceStatus.OK) {
-        this.places = results.slice(0, 4);
-      } else if (status === google.maps.places.PlacesServiceStatus.ZERO_RESULTS) {
-        this.places = [];
-      }
+  private searchPlaces(placeSearchRequest: PlaceSearchRequest) {
+    this.placesSearchService.getPlaces(placeSearchRequest).subscribe(places => {
+      this.places = places.slice(0, 4);
     });
   }
 
-  private geolocationCallback(searchForm: string) {
+  private geolocationCallback(searchInput: string) {
     return (position: Position) => {
-      const request: google.maps.places.TextSearchRequest = {
-        query: searchForm,
-        location: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
-        radius: 10000
-      };
-      this.textSearch(request);
+      const placeSearchRequest = new PlaceSearchRequest(
+        {latitude: position.coords.latitude, longitude: position.coords.longitude, query: searchInput}
+      );
+      this.searchPlaces(placeSearchRequest);
     };
   }
 
-  private geolocationError(searchForm: string) {
-    const request: google.maps.places.TextSearchRequest = {
-      query: searchForm
-    };
+  private geolocationError(searchInput: string) {
+    const placeSearchRequest = new PlaceSearchRequest({query: searchInput});
     return (error: PositionError) => {
-      this.textSearch(request);
+      this.searchPlaces(placeSearchRequest);
     };
   }
 

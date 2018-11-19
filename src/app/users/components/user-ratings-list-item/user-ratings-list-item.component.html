@@ -6,9 +6,9 @@
     </div>
   </div>
   <div class="col-md-6 col-sm-12">
-    <a *ngIf="placeDetails" [routerLink]="['/places', placeDetails?.place_id]">{{placeDetails?.name}}</a>
+    <a *ngIf="placeDetails" [routerLink]="['/places', placeDetails?.vendorPlaceId]">{{placeDetails?.name}}</a>
     <div>
-      {{placeDetails?.formatted_address ? placeDetails?.formatted_address : 'brak dodanego adresu'}}
+      <un-place-address [location]="placeDetails?.location"></un-place-address>
     </div>
     <div>
       {{rate?.comments}}

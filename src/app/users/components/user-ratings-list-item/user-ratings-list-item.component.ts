@@ -1,8 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Rate} from '@app/places/models/rate';
-import {MapsAPILoader} from '@agm/core';
 import {PlacesService} from '@app/places/services/places.service';
 import {CustomToastrService} from '@app/core/services/custom-toastr.service';
+import {Place} from '@app/places/models/place';
 
 @Component({
   selector: 'un-user-ratings-list-item',
@@ -14,28 +14,19 @@ export class UserRatingsListItemComponent implements OnInit {
   @Input() allowEdit: boolean;
   @Input() allowRemove: boolean;
   @Output() removeItem = new EventEmitter<Rate>();
-  private googlePlacesService: google.maps.places.PlacesService;
   editing = false;
-  placeDetails: google.maps.places.PlaceResult;
+  placeDetails: Place;
 
-  constructor(private mapsAPILoader: MapsAPILoader,
-              private placesService: PlacesService,
-              private customToastrService: CustomToastrService) {
+  constructor(private placesService: PlacesService, private customToastrService: CustomToastrService) {
   }
 
   ngOnInit(): void {
-    this.mapsAPILoader.load().then(() => {
-      this.googlePlacesService = new google.maps.places.PlacesService(document.createElement('div'));
-      this.fetchPlaceDetails(this.rate.place.googlePlaceId);
-    });
+    this.fetchPlaceDetails(this.rate.place.vendorPlaceId);
   }
 
-  private fetchPlaceDetails(placeId: string) {
-    const placeDetailsRequest: google.maps.places.PlaceDetailsRequest = {placeId};
-    this.googlePlacesService.getDetails(placeDetailsRequest, (result, status) => {
-      if (status === google.maps.places.PlacesServiceStatus.OK) {
-        this.placeDetails = {...result};
-      }
+  private fetchPlaceDetails(vendorPlaceId: any) {
+    this.placesService.getPlace(vendorPlaceId).subscribe(place => {
+      this.placeDetails = place;
     });
   }
 

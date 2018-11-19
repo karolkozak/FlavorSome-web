@@ -13,17 +13,17 @@
           <div (click)="currentTab = 'details'"
                [ngClass]="(!currentTab || (currentTab == 'details')) ? 'active' : ''"
                class="col-md-4 col-sm-12">
-            Informacje
+            {{ 'Information' | translate }}
           </div>
           <div (click)="currentTab = 'menu'"
                [ngClass]="{ 'active': currentTab == 'menu'}"
                class="col-md-4 col-sm-12">
-            Menu
+            {{ 'Menu' | translate }}
           </div>
           <div (click)="currentTab = 'rates'"
                [ngClass]="{ 'active': currentTab == 'rates'}"
                class="rates col-md-4 col-sm-12">
-            Oceny
+            {{ 'Ratings' | translate }}
           </div>
         </div>
         <div class="un-nav-content" [ngClass]="(!currentTab || (currentTab == 'details') || (currentTab == 'menu')) ? 'un-dark-div' : ''">
@@ -36,7 +36,7 @@
             </div>
             <ng-template #other_content>
               <div class="alert alert-warning" role="alert">
-                Brak dostępu. Zaloguj się aby sprawdzić menu!
+                {{ 'No access. Log in to see menu!' | translate }}
               </div>
             </ng-template>
           </div>

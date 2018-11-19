@@ -15,6 +15,7 @@ import {AuthGuardService} from '@app/security/services/guards/auth-guard.service
 import {UserResolverService} from '@app/security/services/resolvers/user-resolver.service';
 import {DashboardComponent} from '@app/layouts/components/dashboard/dashboard.component';
 import {AboutPageComponent} from '@app/layouts/components/about-page/about-page.component';
+import {PlaceResolverService} from '@app/security/services/resolvers/place-resolver.service';
 
 const appRoutes: Routes = [
   {path: '', component: HomePageComponent, pathMatch: 'full', canActivate: [LoginPageGuardService]},
@@ -23,7 +24,7 @@ const appRoutes: Routes = [
   {path: 'auth/confirmation', component: ConfirmationPageComponent, canActivate: [AuthGuardService, UnverifiedUserGuardService]},
   {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuardService, UnverifiedUserGuardService]},
   {path: 'places', component: PlacesListPageComponent},
-  {path: 'places/:id', component: PlaceDetailsPageComponent},
+  {path: 'places/:id', component: PlaceDetailsPageComponent, resolve: {place: PlaceResolverService}},
   {
     path: 'users/:id',
     component: UserPageComponent,
