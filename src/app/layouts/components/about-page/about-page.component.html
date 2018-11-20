@@ -5,7 +5,7 @@
     </div>
     <div class="un-contact-form">
       <form [formGroup]="messageForm" (ngSubmit)="sendMessage()">
-        <div class="form-group col-12 col-md-12 col-lg-12">
+        <div class="form-group col-12">
           <input type="text" class="form-control" formControlName="email" placeholder="{{'email' | translate}}"
                  tabindex="1">
           <textarea class="form-control" formControlName="content" placeholder="{{'message' | translate}}"

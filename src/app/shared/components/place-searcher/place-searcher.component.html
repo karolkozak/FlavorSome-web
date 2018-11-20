@@ -1,10 +1,9 @@
 <form [formGroup]="searchForm" (ngSubmit)="redirectToResults()" (keyup.enter)="redirectToResults()">
-  <mat-form-field>
-    <!-- <i class="material-icons d-none d-sm-none d-md-block">room</i> -->
-    <input type="text" matInput placeholder="{{'Search for places' | translate }}" formControlName="searchInput"
-           [matAutocomplete]="auto">
+  <mat-form-field appearance="legacy">
+    <mat-label><mat-icon matSuffix>place</mat-icon> {{'Search for places' | translate }}</mat-label>
+    <input type="text" matInput formControlName="searchInput" [matAutocomplete]="auto">
   </mat-form-field>
-  <button class="btn" type="submit"><i class="material-icons">search</i></button>
+  <button mat-raised-button type="submit" color="primary"><i class="material-icons">search</i></button>
 </form>
 <mat-autocomplete #auto="matAutocomplete">
   <mat-option *ngFor="let place of places" [value]="place.name">

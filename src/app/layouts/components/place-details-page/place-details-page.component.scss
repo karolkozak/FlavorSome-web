@@ -3,8 +3,11 @@
 @import 'mixins';
 
 :host(un-place-details-page) {
-  .row.un-description {
+  .row {
     margin: 0;
+  }
+
+  .row.un-description {
     color: $text;
 
     .un-main-content {
@@ -72,7 +75,15 @@
           border: $border-width-medium solid $beige;
         }
 
-        div {
+        .un-details-content .row {
+          min-height: 27rem;
+
+          .un-details-content-map div {
+            padding: 0;
+          }
+        }
+
+        div, un-place-details {
           padding: 1rem 0;
         }
       }

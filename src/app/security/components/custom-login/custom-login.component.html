@@ -1,5 +1,5 @@
 <form [formGroup]="loginUserForm" (ngSubmit)="login()" (keyup.enter)="login()">
-  <div class="form-group col-12 col-md-6 col-lg-12">
+  <div class="form-group col-12">
     <input type="email" class="form-control" name="email" formControlName="email" placeholder="{{'email' | translate}}" tabindex="1">
     <input type="password" class="form-control" formControlName="password" placeholder="{{'password' | translate}}"
            tabindex="1">

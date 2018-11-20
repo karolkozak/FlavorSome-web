@@ -28,7 +28,11 @@
     }
 
     .un-header-searcher {
-      margin-top: $margin-large;
+      background-color: rgba(255, 255, 255, .8);
+
+      un-place-searcher {
+        margin-top: $margin-large;
+      }
     }
   }
 
@@ -43,8 +47,7 @@
       color: $font-color-on-colored-div;
       background-color: transparent;
       padding: $padding-small $padding-large;
-      // padding-bottom: $padding-small;
-      // margin-top: $padding-small;
+      border-bottom: $border-width-medium solid transparent;
 
       &:last-child:after{
         border-right: none;
@@ -52,20 +55,16 @@
 
       &:hover {
         color: $beige;
-        transition: border-bottom-color 0.5s ease;
+        transition: border-bottom-color 1s ease;
         border-bottom: $border-width-medium solid $beige;
         outline: 0;
         box-shadow: none;
       }
 
       &:focus {
-        color: $beige;
-        background-color: rgba(255, 255, 255, .04);
-        border-bottom: $border-width-medium solid $beige;
-      }
-
-      i {
-        vertical-align: middle !important;
+        color: lighten($beige, 10%);
+        background-color: rgba(255, 255, 255, .06);
+        border-bottom: $border-width-medium solid lighten($beige, 10%);
       }
     }
 

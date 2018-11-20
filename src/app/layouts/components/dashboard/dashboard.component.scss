@@ -25,12 +25,7 @@
 
         .row {
           .un-form {
-            @media (max-width: 767px) {
-              padding-left: 0 !important;
-              padding-right: 0 !important;
-            }
-
-            @media (min-width: 767px) {
+            @media (min-width: 768px) {
               border: $border-width-medium solid $beige;
             }
 

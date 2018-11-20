@@ -1,5 +1,5 @@
 <div class="row un-ratings-item">
-  <div class="col-3 un-rate-details">
+  <div class="col-md-3 col-sm-12 un-rate-details">
     <div *ngIf="rate?.rating != 0;  else noRates" class="un-rate-details-div">
       <i class="material-icons">star_rate</i>
       <div> {{rate?.rating}} / 10 </div>
@@ -9,7 +9,7 @@
       <div> - / 10 </div>
     </ng-template>
   </div>
-  <div class="un-rate-details col-9">
+  <div class="un-rate-details col-md-9 col-sm-12">
     <div class="row">
       <div class="col-md-6 col-sm-12">
           <a *ngIf="placeDetails" [routerLink]="['/places', placeDetails?.place_id]">{{placeDetails?.name}}</a>

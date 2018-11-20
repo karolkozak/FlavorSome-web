@@ -1,30 +1,38 @@
 <div class="row un-description">
   <div class="col-12 un-main-content">
-    <div class="row">
-      <div class="col-lg-4 col-md-5 col-sm-12">
-        <div #map style="width: 100%; height: 100%"></div>
-        <button class="btn un-visit" (click)="visit()">{{'Visit' | translate}}</button>
+    <div class="un-place-details-header">
+        {{placeDetails?.name ?  placeDetails?.name : 'Place Details' | translate }}
       </div>
-      <div class="col-lg-8 col-md-7 col-sm-12">
-        <div class="un-place-details-header">
-            {{placeDetails?.name ?  placeDetails?.name : 'Place Details' | translate }}
+    <div class="row un-place-navs">
+      <div (click)="currentTab = 'details'"
+            [ngClass]="(!currentTab || (currentTab == 'details')) ? 'active' : ''"
+            class="col-md-4 col-sm-12">
+        <i class="material-icons un-rate-star">local_cafe</i>
+        <span *ngIf="innerWidth > 767">{{'Information' | translate}}</span>
+      </div>
+      <div (click)="currentTab = 'menu'"
+            [ngClass]="{ 'active': currentTab == 'menu'}"
+            class="col-md-4 col-sm-12">
+        <i class="material-icons un-rate-star">restaurant</i>
+        <span *ngIf="innerWidth > 767">{{ 'Menu' | translate }}</span>
+      </div>
+      <div (click)="currentTab = 'rates'"
+            [ngClass]="{ 'active': currentTab == 'rates'}"
+            class="rates col-md-4 col-sm-12">
+        <i class="material-icons un-rate-star">person_pin</i>
+        <span *ngIf="innerWidth > 767">{{'Rates' | translate}}</span>
+      </div>
+    </div>
+    <div class="un-nav-content" [ngClass]="(!currentTab || (currentTab == 'details') || (currentTab == 'menu')) ? 'un-dark-div' : ''">
+      <div class="un-details-content" [hidden]="currentTab != 'details' && currentTab">
+        <div class="row">
+          <div class="col-md-6 col-sm-12 un-details-content-map">
+            <div #map style="width: 100%; height: 100%"></div>
+            <button class="btn un-visit" (click)="visit()">{{'Visit' | translate}}</button>
           </div>
-        <div class="row un-place-navs">
-          <div (click)="currentTab = 'details'"
-               [ngClass]="(!currentTab || (currentTab == 'details')) ? 'active' : ''"
-               class="col-md-4 col-sm-12">
-            <i class="material-icons un-rate-star">local_cafe</i> {{'Information' | translate}}
-          </div>
-          <div (click)="currentTab = 'menu'"
-               [ngClass]="{ 'active': currentTab == 'menu'}"
-               class="col-md-4 col-sm-12">
-            <i class="material-icons un-rate-star">restaurant</i> {{ 'Menu' | translate }}
-          </div>
-          <div (click)="currentTab = 'rates'"
-               [ngClass]="{ 'active': currentTab == 'rates'}"
-               class="rates col-md-4 col-sm-12">
-            <i class="material-icons un-rate-star">person_pin</i> {{'Rates' | translate}}
-          </div>
+          <un-place-details class="col-md-6 col-sm-12"
+                            [placeDetails]="placeDetails">
+          </un-place-details>
         </div>
         <div class="un-nav-content" [ngClass]="(!currentTab || (currentTab == 'details') || (currentTab == 'menu')) ? 'un-dark-div' : ''">
           <div class="un-details-content" [hidden]="currentTab != 'details' && currentTab">
@@ -44,6 +52,14 @@
             <un-rates-section [placeId]="placeDetails.vendorPlaceId"></un-rates-section>
           </div>
         </div>
+        <ng-template #other_content>
+          <div class="alert alert-warning" role="alert">
+            {{ 'No access. Log in to see menu!' | translate }}
+          </div>
+        </ng-template>
+      </div>
+      <div class="un-rates-content" [hidden]="currentTab != 'rates'">
+        <un-rates-section [placeId]="placeId"></un-rates-section>
       </div>
     </div>
   </div>
