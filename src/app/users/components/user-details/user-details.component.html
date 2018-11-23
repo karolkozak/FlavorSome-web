@@ -2,6 +2,16 @@
   <un-user-picture [picture]="user?.picture"></un-user-picture>
 </div>
 
+<div *ngIf="showRefreshButton && isCurrentUser && user?.role === UserRole.UNVERIFIED">
+  {{ 'Your account is not confirmed yet. Check your email or if you lost our confirmation email, please click the button in order to get token.' | translate }}
+  <button mat-raised-button
+          [promiseBtn]="buttonPromise"
+          [matTooltip]="'Refresh token' | translate"
+          (click)="refreshToken()">
+    <i class="material-icons">refresh</i>{{ 'Refresh token' | translate }}
+  </button>
+</div>
+
 <div>
   <div>{{user?.firstname + ' ' + user?.lastname}}</div>
   <div>{{user?.email}}</div>
