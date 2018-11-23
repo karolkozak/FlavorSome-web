@@ -34,6 +34,13 @@ export class CustomAuthService extends AuthenticationService {
     return this.httpClient.get<ApiResponseBody>(endpoint, {params});
   }
 
+  deleteRegistration(token: string): Observable<ApiResponseBody> {
+    const endpoint = `${this.baseUrl}${environment.delete}`;
+    let params = new HttpParams();
+    params = params.append('token', token);
+    return this.httpClient.get<ApiResponseBody>(endpoint, {params});
+  }
+
   private makeRequest(userData: any, endpoint: string): Observable<string> {
     return this.httpClient.post<string>(endpoint, userData, {responseType: 'text'} as any as {}).pipe(
       tap(response => this.setTokenDataInStorage(response))
