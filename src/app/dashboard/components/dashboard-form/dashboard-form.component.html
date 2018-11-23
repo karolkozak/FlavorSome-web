@@ -1,6 +1,6 @@
 <form [formGroup]="placesSearchForm" (ngSubmit)="findPlaces()">
   <mat-form-field>
-    <input matInput formControlName="query" placeholder="{{'Search phrase' | translate}}">
+    <input matInput type="text" name="query" formControlName="query" placeholder="{{'Search phrase' | translate}}">
   </mat-form-field>
   <div>
     <mat-button-toggle-group [value]="isLocationDisabled ? 'bounds' : 'locate'">

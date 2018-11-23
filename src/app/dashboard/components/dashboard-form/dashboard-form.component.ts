@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ConfigService} from '@app/core/services/config.service';
 import {PlacesSearchService} from '@app/dashboard/services/places-search.service';
 import {PlaceSearchRequest} from '@app/places/models/place-search-request';
@@ -30,12 +30,14 @@ export class DashboardFormComponent implements OnInit {
     this.placeTypes = this.configService.getAvailablePlaceTypes();
     // TODO: retrieve query param from router, find places and display on map (if any exists). See place-searcher.component.ts
     this.placesSearchForm = this.formBuilder.group({
-      query: [''],
-      distance: [DashboardFormComponent.RANGE, Validators.compose([
+      query: new FormControl('', Validators.compose([
+        Validators.minLength(3)
+      ])),
+      distance: new FormControl(DashboardFormComponent.RANGE, Validators.compose([
         Validators.min(DashboardFormComponent.RANGE_MIN),
         Validators.max(DashboardFormComponent.RANGE_MAX),
-      ])],
-      placeType: [''],
+      ])),
+      placeType: new FormControl(''),
     });
     // TODO: add form errors
 
@@ -72,7 +74,7 @@ export class DashboardFormComponent implements OnInit {
         },
         error => {
           console.error(error);
-            this.customToastrService.showErrorToastr('Places', 'Unable to search, try again later', error.status);
+          this.customToastrService.showErrorToastr('Places', 'Unable to search, try again later', error.status);
         }
       );
     }

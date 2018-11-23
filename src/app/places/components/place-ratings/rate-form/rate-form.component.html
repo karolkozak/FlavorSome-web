@@ -1,16 +1,18 @@
-<form [formGroup]="rateForm" (ngSubmit)="addNewRate()">
+<form [formGroup]="rateForm" (ngSubmit)="addNewRate()" (keyup.enter)="addNewRate()">
   <mat-form-field>
     <input matInput
            type="number"
            [min]="ratingsConfig.minRateValue"
            [max]="ratingsConfig.maxRateValue"
            formControlName="rating"
-           placeholder="{{'rating' | translate}}">
+           placeholder="{{'rating' | translate}}"
+           tabindex="1">
   </mat-form-field>
   <mat-form-field>
-    <input matInput
-           formControlName="comments"
-           placeholder="{{'write something...' | translate}}">
+    <textarea matInput
+              formControlName="comments"
+              placeholder="{{'write something...' | translate}}"
+              tabindex="1"></textarea>
   </mat-form-field>
   <button mat-raised-button color="accent" type="submit">{{editing ? 'Save' : 'Add' | translate}}</button>
 </form>
