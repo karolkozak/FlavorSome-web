@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, OnInit, ViewChild, HostListener} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {PlacesService} from '@app/places/services/places.service';
 import {AuthenticationService} from '@app/security/services/authentication.service';
@@ -16,7 +16,6 @@ export class PlaceDetailsPageComponent implements OnInit, AfterViewInit {
   currentTab: string;
   placeDetails: Place;
   placeMenu: StringMap<number> = {};
-  innerWidth: any;
 
   zoom = 15;
   placeMarker: any;
@@ -38,12 +37,6 @@ export class PlaceDetailsPageComponent implements OnInit, AfterViewInit {
         this.placesService.getMenu(this.placeDetails.vendorPlaceId).subscribe(menu => this.placeMenu = menu);
       }
     });
-    this.innerWidth = window.innerWidth;
-  }
-
-  @HostListener('window:resize', ['$event'])
-  onResize(event) {
-    this.innerWidth = window.innerWidth;
   }
 
   public ngAfterViewInit() {

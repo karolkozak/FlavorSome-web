@@ -5,22 +5,20 @@
       </div>
     <div class="row un-place-navs">
       <div (click)="currentTab = 'details'"
-            [ngClass]="(!currentTab || (currentTab == 'details')) ? 'active' : ''"
-            class="col-md-4 col-sm-12">
+            [ngClass]="(!currentTab || (currentTab == 'details')) ? 'active' : ''">
         <i class="material-icons un-rate-star">local_cafe</i>
-        <span *ngIf="innerWidth > 767">{{'Information' | translate}}</span>
+        <span class="d-none d-sm-none d-md-inline-block">{{'Information' | translate}}</span>
       </div>
       <div (click)="currentTab = 'menu'"
-            [ngClass]="{ 'active': currentTab == 'menu'}"
-            class="col-md-4 col-sm-12">
+            [hidden]="true"
+            [ngClass]="{ 'active': currentTab == 'menu'}">
         <i class="material-icons un-rate-star">restaurant</i>
-        <span *ngIf="innerWidth > 767">{{ 'Menu' | translate }}</span>
+        <span class="d-none d-sm-none d-md-inline-block">{{ 'Menu' | translate }}</span>
       </div>
       <div (click)="currentTab = 'rates'"
-            [ngClass]="{ 'active': currentTab == 'rates'}"
-            class="rates col-md-4 col-sm-12">
+            [ngClass]="{ 'active': currentTab == 'rates'}">
         <i class="material-icons un-rate-star">person_pin</i>
-        <span *ngIf="innerWidth > 767">{{'Rates' | translate}}</span>
+        <span class="d-none d-sm-none d-md-inline-block">{{'Rates' | translate}}</span>
       </div>
     </div>
     <div class="un-nav-content" [ngClass]="(!currentTab || (currentTab == 'details') || (currentTab == 'menu')) ? 'un-dark-div' : ''">
@@ -34,23 +32,10 @@
                             [placeDetails]="placeDetails">
           </un-place-details>
         </div>
-        <div class="un-nav-content" [ngClass]="(!currentTab || (currentTab == 'details') || (currentTab == 'menu')) ? 'un-dark-div' : ''">
-          <div class="un-details-content" [hidden]="currentTab != 'details' && currentTab">
-            <un-place-details [placeDetails]="placeDetails"></un-place-details>
-          </div>
-          <div class="un-menu-content" [hidden]="currentTab != 'menu'">
-            <div *ngIf="isLoggedIn && placeMenuExists;else other_content">
-                <un-place-menu [menu]="placeMenu"></un-place-menu>
-            </div>
-            <ng-template #other_content>
-              <div class="alert alert-warning" role="alert">
-                {{ 'No access. Log in to see menu!' | translate }}
-              </div>
-            </ng-template>
-          </div>
-          <div class="un-rates-content" [hidden]="currentTab != 'rates'">
-            <un-rates-section [placeId]="placeDetails.vendorPlaceId"></un-rates-section>
-          </div>
+      </div>
+      <div class="un-menu-content" [hidden]="currentTab != 'menu'">
+        <div *ngIf="isLoggedIn && placeMenuExists;else other_content">
+            <un-place-menu [menu]="placeMenu"></un-place-menu>
         </div>
         <ng-template #other_content>
           <div class="alert alert-warning" role="alert">
