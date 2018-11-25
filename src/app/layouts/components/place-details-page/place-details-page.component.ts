@@ -14,7 +14,6 @@ import {PlaceLocation} from '@app/places/models/place-location';
 })
 export class PlaceDetailsPageComponent implements OnInit, AfterViewInit {
   currentTab: string;
-  placeId: string;
   placeDetails: Place;
   placeMenu: StringMap<number> = {};
 
@@ -35,7 +34,7 @@ export class PlaceDetailsPageComponent implements OnInit, AfterViewInit {
       this.placeDetails = data.place;
       this.setPosition(this.placeDetails.location);
       if (this.isLoggedIn) {
-        this.placesService.getMenu(this.placeId).subscribe(menu => this.placeMenu = menu);
+        this.placesService.getMenu(this.placeDetails.vendorPlaceId).subscribe(menu => this.placeMenu = menu);
       }
     });
   }
@@ -47,7 +46,7 @@ export class PlaceDetailsPageComponent implements OnInit, AfterViewInit {
   }
 
   visit() {
-    this.placesService.visitPlace(this.placeId).subscribe(response => {
+    this.placesService.visitPlace(this.placeDetails.vendorPlaceId).subscribe(response => {
       this.customToastrService.showSuccessToastr('Success', 'Place was successfully added to your list');
     });
   }
