@@ -9,4 +9,7 @@ export interface Place {
   description: string;
   defaultMenu: StringMap<any>;
   menu: StringMap<any>;
+  picture: string;
+  link: string;
+  website: string;
 }

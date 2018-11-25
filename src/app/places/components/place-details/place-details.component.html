@@ -1,10 +1,18 @@
 <div *ngIf="placeDetails; else other_content">
-    <div class="row">
-      <div class="col-sm-12">
-        <un-place-address [location]="placeDetails?.location"></un-place-address>
-        <div *ngIf="placeDetails?.rating">Rating: {{placeDetails?.rating}}</div>
+  <div class="row">
+    <div class="col-sm-12">
+      <un-place-picture [pictureUrl]="placeDetails?.picture"></un-place-picture>
+      <un-place-address [location]="placeDetails?.location"></un-place-address>
+      <div *ngIf="placeDetails?.rating">{{ 'Our rating' | translate }}: {{placeDetails.rating}}</div>
+      <div *ngIf="placeDetails?.description">{{placeDetails.description}}</div>
+      <div *ngIf="placeDetails?.link">
+        {{ 'Facebook Page' | translate }}: <a href="{{placeDetails?.link}}" target="_blank">{{ placeDetails.name }}</a>
+      </div>
+      <div *ngIf="placeDetails?.website">
+        {{ "Place's website" | translate }}: <a href="{{placeDetails?.website}}" target="_blank">{{ placeDetails.name }}</a>
       </div>
     </div>
+  </div>
 </div>
 
 <ng-template #other_content>
