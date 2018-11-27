@@ -1,6 +1,6 @@
 <div *ngIf="placeDetails; else other_content">
     <div class="row">
-      <div class="col-sm-12">
+      <div class="col-12">
         <un-place-address [location]="placeDetails?.location"></un-place-address>
         <div *ngIf="placeDetails?.rating">Rating: {{placeDetails?.rating}}</div>
       </div>
@@ -9,6 +9,6 @@
 
 <ng-template #other_content>
   <div class="alert alert-warning" role="alert">
-    Brak danych!
+    {{"We are sorry, there is no details :(" | translate}}
   </div>
 </ng-template>

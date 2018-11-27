@@ -3,8 +3,11 @@
 @import 'mixins';
 
 :host(un-place-details-page) {
-  .row.un-description {
+  .row {
     margin: 0;
+  }
+
+  .row.un-description {
     color: $text;
 
     .un-main-content {
@@ -15,23 +18,14 @@
       margin-right: auto;
       text-align: center;
 
+      .un-place-details-header {
+        font-size: 27px;
+        font-family: serif;
+      }
+
       .un-visit {
         width: 100%;
         margin-bottom: $margin-medium;
-      }
-
-      .un-place-header {
-        h1 {
-          display: inline-block;
-          font-size: $font-size-header;
-        }
-
-        button {
-          float: right;
-          margin-top: $margin-small;
-          padding: $padding-small $padding-large;
-        }
-
       }
 
       .un-place-navs {
@@ -47,6 +41,9 @@
           padding-top: $padding-small;
           padding-right: 0.2rem;
           border-bottom: solid $border-width-small white;
+          i {
+            vertical-align: middle !important;
+          }
 
           &:hover {
             border-bottom: solid $border-width-medium rgba($beige, 0.7);
@@ -78,7 +75,15 @@
           border: $border-width-medium solid $beige;
         }
 
-        div {
+        .un-details-content .row {
+          min-height: 27rem;
+
+          .un-details-content-map div {
+            padding: 0;
+          }
+        }
+
+        div, un-place-details {
           padding: 1rem 0;
         }
       }

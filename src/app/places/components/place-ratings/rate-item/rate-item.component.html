@@ -1,16 +1,26 @@
 <div class="row un-rating-item">
-  <div class="un-rating-starts col-sm-12 col-md-6">
+  <div class="un-rating-starts col-3">
     <div *ngIf="rate?.rating != 0;  else noRates">
       <i class="material-icons">star_rate</i>
       <div> {{rate?.rating}} / 10 </div>
     </div>
     <ng-template #noRates>
       <i class="material-icons un-rate-star">star_border</i>
+      <div> - / 10 </div>
     </ng-template>
   </div>
-  <div class="un-rate-content col-6">
-    <div>{{ rate?.comments }}</div>
-    <un-user-picture [picture]="rate?.author.picture"></un-user-picture><a [routerLink]="['/users', rate?.author.userId]">{{ rate?.author.firstname + ' ' + rate?.author.lastname }}</a>
-    <div>{{ rate?.ratingDate | date }}</div>
+  <div class="un-rate-details col-9">
+    <div class="row">
+      <div class="col-md-6 col-sm-12">
+          <un-user-picture [picture]="rate?.author.picture"></un-user-picture><a [routerLink]="['/users', rate?.author.userId]">{{ rate?.author.firstname + ' ' + rate?.author.lastname }}</a>
+          <div>{{ rate?.author.firstname + ' ' + rate?.author.lastname }}</div>
+          <div>{{ rate?.ratingDate | date }}</div>
+        </div>
+      <div class="col-md-6 col-sm-12">
+        <div><i class="material-icons un-rate-star"
+          [ngClass]="{'good': rate?.rating > 7, 'fine': rate?.rating < 8 && rate?.rating > 3, 'bad':  rate?.rating < 4}">mode_comment</i> {{ rate?.comments }}
+        </div>
+      </div>
+    </div>
   </div>
 </div>

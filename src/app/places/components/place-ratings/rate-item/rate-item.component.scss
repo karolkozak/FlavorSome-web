@@ -4,26 +4,50 @@
 
 :host(un-rate-item) {
   div.un-rating-item {
-    border: 0.08rem solid $beige;
+    border: $border-width-small solid $beige;
     color: $text;
 
     margin-right: auto;
     margin-left: auto;
-    margin-bottom: 1rem;
-    padding: 1rem;
+    margin-bottom: $margin-medium;
 
     text-align: center;
 
     .un-rating-starts {
       width: 100%;
-      background-image: url('/assets/ux/prague.svg');
+      background-image: url('/assets/ux/petr-sevcovic-594807-unsplash.svg');
       background-repeat: no-repeat;
       background-size: cover;
       position: relative;
       color: $font-color-on-colored-div;
+      text-align: initial;
+      padding-left: 4em;
+      padding-top: 3em;
 
       i {
+        padding-left: $padding-small/2;
         width: $font-size-basic;
+      }
+    }
+
+    .un-rate-details {
+      padding: $padding-medium;
+
+      i {
+
+        &.good {
+          color: $dirty-green;
+        }
+
+        &.fine {
+          color: $beige;
+        }
+
+        &.bad {
+          color: $error;
+        }
+
+        vertical-align: middle !important;
       }
     }
   }

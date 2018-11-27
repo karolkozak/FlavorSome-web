@@ -5,7 +5,7 @@
   <div>
     <mat-button-toggle-group [value]="isLocationDisabled ? 'bounds' : 'locate'">
       <mat-button-toggle type="radio" value="locate" [disabled]="isLocationDisabled"
-                         (change)="locateUser()">{{'Locate' | translate}}
+                         (change)="locateUser()"><i class="material-icons">my_location</i> {{'Locate' | translate}}
       </mat-button-toggle>
       <mat-button-toggle type="radio" value="bounds"
                          (change)="useBounds()">{{'Search visible area' | translate}}
@@ -19,7 +19,7 @@
   </mat-form-field>
   <div>
     <button class="btn" type="submit">
-      {{'Find places' | translate}}
+      <i class="material-icons">search</i> {{'Find places' | translate}}
     </button>
   </div>
 </form>

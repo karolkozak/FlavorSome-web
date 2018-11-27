@@ -2,7 +2,7 @@
   <div class="col-12 un-create-account">
     {{"Don't have an account yet?" | translate}} <a [routerLink]="['/registration']">{{'Create one!' | translate}}</a>
   </div>
-  <div class="col-8 un-main-content">
+  <div class="col-lg-8 col-sm-10 un-main-content">
     <un-place-searcher></un-place-searcher>
     <div class="un-info row">
       <div class="un-info-tile col-lg-3 col-md-6 col-sm-12">
@@ -35,7 +35,9 @@
         </div>
         <div class="un-tile-content">
           <div class="un-div-button">{{ 'Just sign up and use wide FlavorSome!' | translate }}</div>
-          <button *ngIf="!isLoggedIn()" class="btn" [routerLink]="['/login']">{{"Login Page" | translate}}</button>
+          <div class="un-button-wrapper">
+            <button *ngIf="!isLoggedIn()" class="btn" [routerLink]="['/login']">{{"Login Page" | translate}}</button>
+          </div>
         </div>
       </div>
     </div>
