@@ -70,7 +70,7 @@ export class ConfirmationPageComponent implements OnInit, OnDestroy {
     const observable = this.customAuthService.refreshToken();
     this.buttonPromise = observable.toPromise();
     observable.subscribe(() => {
-      this.customToastrService.showSuccessToastr('Success', 'Refresh token request send successfully');
+      this.customToastrService.showSuccessToastr('Success', 'Please check your email box. We have sent confirmation.');
       this.token = undefined;
     }, () => {
       this.confirmationError = true;

@@ -40,7 +40,7 @@ export class CustomAuthService extends AuthenticationService {
     return this.httpClient.get<ApiResponseBody>(endpoint, {params});
   }
 
-  refreshToken() {
+  refreshToken(): Observable<ApiResponseBody> {
     const endpoint = `${this.baseUrl}${environment.confirmation}${environment.refresh}`;
     return this.httpClient.get<ApiResponseBody>(endpoint);
   }
