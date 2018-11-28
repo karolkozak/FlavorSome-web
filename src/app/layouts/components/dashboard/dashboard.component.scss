@@ -1,17 +1,12 @@
 @import 'colors';
 @import 'variables';
-@import 'mixins';
 
 :host(un-dashboard) {
-  color: white;
-
   .row {
     margin: 0;
   }
 
   .row.un-description {
-    color: $font-color-on-colored-div;
-
     .un-content {
       margin-top: 0;
       margin-left: auto;
@@ -29,7 +24,14 @@
 
         .row {
           .un-form {
-            border: $border-width-medium solid $beige;
+            @media (min-width: 768px) {
+              border: $border-width-medium solid $beige;
+            }
+
+            .un-form-title {
+              font-size: $font-size-header;
+              margin: $margin-medium;
+            }
           }
         }
       }

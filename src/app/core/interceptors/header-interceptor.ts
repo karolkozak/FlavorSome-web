@@ -20,7 +20,7 @@ export class HeaderInterceptor implements HttpInterceptor {
       headerSettings['Authorization'] = `Bearer ${token}`;
     }
     headerSettings['Content-Type'] = 'application/json';
-    headerSettings['fs_users_locale'] = moment.locale();
+    headerSettings['Accept-Language'] = moment.locale();
 
     const headers = new HttpHeaders(headerSettings);
     const clonedRequest = req.clone({headers});
