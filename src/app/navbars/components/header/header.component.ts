@@ -31,6 +31,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.subscription = this.authenticationService.loginAnnounce.subscribe(() => {
       if (this.isLoggedIn) {
         this.userService.getCurrentUser().subscribe(currentUser => this.currentUser = {...currentUser});
+      } else {
+        this.currentUser = undefined;
+        this.userService.removeCurrentUser();
       }
     });
   }
@@ -39,8 +42,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.facebookAuthService.isFbAuthenticated()
       ? this.facebookAuthService.facebookLogout()
       : this.authenticationService.logout();
-    this.currentUser = undefined;
-    this.userService.removeCurrentUser();
   }
 
   public showPlaceSearcher() {

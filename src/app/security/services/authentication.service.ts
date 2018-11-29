@@ -58,6 +58,7 @@ export class AuthenticationService {
 
   logout() {
     this.removeTokenDataFromStorage();
+    this.announceLogin();
     this.router.navigate(['']);
   }
 

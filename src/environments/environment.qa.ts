@@ -8,6 +8,7 @@ export const environment = {
   logoutPath: '/logout',
   registration: '/register',
   confirmation: '/confirmation',
+  delete: '/delete',
 
   configPath: '/config',
   placeTypesPath: '/places/types',
