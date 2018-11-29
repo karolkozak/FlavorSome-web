@@ -9,6 +9,7 @@ export const environment = {
   registration: '/register',
   confirmation: '/confirmation',
   delete: '/delete',
+  refresh: '/refresh',
 
   configPath: '/config',
   placeTypesPath: '/places/types',

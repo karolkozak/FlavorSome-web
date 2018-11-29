@@ -8,9 +8,13 @@ import {RouterModule} from '@angular/router';
 import {UserRatingsListComponent} from './components/user-ratings-list/user-ratings-list.component';
 import {UserRatingsListItemComponent} from './components/user-ratings-list-item/user-ratings-list-item.component';
 import {PlacesModule} from '@app/places/places.module';
+import {Angular2PromiseButtonModule} from 'angular2-promise-buttons';
 
 @NgModule({
   imports: [
+    Angular2PromiseButtonModule.forRoot({
+      disableBtn: true,
+    }),
     CommonModule,
     PlacesModule,
     RouterModule,

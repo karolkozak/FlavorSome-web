@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UserService} from '@app/core/services/user.service';
-import {User} from '@app/security/models/user';
+import {User, UserRole} from '@app/security/models/user';
 import {Rate} from '@app/places/models/rate';
 import {Subscription} from 'rxjs/Subscription';
 import {PlacesService} from '@app/places/services/places.service';
@@ -30,10 +30,12 @@ export class UserPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.route.data.subscribe((data: {user: User}) => {
+    this.route.data.subscribe((data: { user: User }) => {
       this.user = data.user;
-      this.fetchRatings();
-      this.fetchUnrated();
+      if (this.isVerified) {
+        this.fetchRatings();
+        this.fetchUnrated();
+      }
       if (!this.isCurrentUser) {
         this.userDetailsTabs.splice(2, 1);
       }
@@ -81,6 +83,10 @@ export class UserPageComponent implements OnInit, OnDestroy {
 
   get isCurrentUser(): boolean {
     return this.userService.isCurrentUser(this.user.userId);
+  }
+
+  get isVerified(): boolean {
+    return this.user.role !== UserRole.UNVERIFIED;
   }
 
   get allowEdit(): boolean {

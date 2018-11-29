@@ -28,7 +28,7 @@ const appRoutes: Routes = [
   {
     path: 'users/:id',
     component: UserPageComponent,
-    canActivate: [AuthGuardService, UnverifiedUserGuardService],
+    canActivate: [AuthGuardService],
     resolve: {user: UserResolverService}
     },
   {path: 'about', component: AboutPageComponent},

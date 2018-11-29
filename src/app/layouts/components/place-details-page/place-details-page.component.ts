@@ -6,6 +6,8 @@ import {CustomToastrService} from '@app/core/services/custom-toastr.service';
 import {MapService} from '@app/core/services/map/map.service';
 import {Place} from '@app/places/models/place';
 import {PlaceLocation} from '@app/places/models/place-location';
+import {User, UserRole} from '@app/security/models/user';
+import {UserService} from '@app/core/services/user.service';
 
 @Component({
   selector: 'un-place-details-page',
@@ -16,6 +18,8 @@ export class PlaceDetailsPageComponent implements OnInit, AfterViewInit {
   currentTab: string;
   placeDetails: Place;
   placeMenu: StringMap<number> = {};
+  user: User;
+  UserRole: typeof UserRole = UserRole;
 
   zoom = 15;
   placeMarker: any;
@@ -26,7 +30,8 @@ export class PlaceDetailsPageComponent implements OnInit, AfterViewInit {
               private customToastrService: CustomToastrService,
               private authenticationService: AuthenticationService,
               private placesService: PlacesService,
-              private mapService: MapService) {
+              private mapService: MapService,
+              private userService: UserService) {
   }
 
   ngOnInit() {
@@ -35,6 +40,9 @@ export class PlaceDetailsPageComponent implements OnInit, AfterViewInit {
       this.setPosition(this.placeDetails.location);
       if (this.isLoggedIn) {
         this.placesService.getMenu(this.placeDetails.vendorPlaceId).subscribe(menu => this.placeMenu = menu);
+        this.userService.getCurrentUser().subscribe(user => {
+          this.user = user;
+        });
       }
     });
   }
