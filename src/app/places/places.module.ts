@@ -12,6 +12,7 @@ import {RateItemComponent} from './components/place-ratings/rate-item/rate-item.
 import {RateFormComponent} from './components/place-ratings/rate-form/rate-form.component';
 import {RatesListComponent} from './components/place-ratings/rates-list/rates-list.component';
 import {PlaceAddressComponent} from './components/place-details/place-address/place-address.component';
+import {PlacePictureComponent} from '@app/places/components/place-details/place-picture/place-picture.component';
 
 @NgModule({
   imports: [
@@ -23,6 +24,7 @@ import {PlaceAddressComponent} from './components/place-details/place-address/pl
     PlaceAddressComponent,
     PlaceDetailsComponent,
     PlaceMenuComponent,
+    PlacePictureComponent,
     PlacesListComponent,
     PlacesListItemComponent,
     RatesSectionComponent,
