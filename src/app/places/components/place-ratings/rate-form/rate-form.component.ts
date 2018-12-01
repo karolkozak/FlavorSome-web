@@ -8,7 +8,7 @@ const ratingsConfig = {
 };
 
 @Component({
-  selector: 'un-rate-form',
+  selector: 'fs-rate-form',
   templateUrl: './rate-form.component.html',
   styleUrls: ['./rate-form.component.scss']
 })

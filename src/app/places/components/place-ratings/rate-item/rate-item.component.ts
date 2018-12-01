@@ -2,7 +2,7 @@ import {Component, Input} from '@angular/core';
 import {Rate} from '@app/places/models/rate';
 
 @Component({
-  selector: 'un-rate-item',
+  selector: 'fs-rate-item',
   templateUrl: './rate-item.component.html',
   styleUrls: ['./rate-item.component.scss']
 })

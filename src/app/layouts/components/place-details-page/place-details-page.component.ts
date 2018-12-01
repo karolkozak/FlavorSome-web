@@ -10,7 +10,7 @@ import {User, UserRole} from '@app/security/models/user';
 import {UserService} from '@app/core/services/user.service';
 
 @Component({
-  selector: 'un-place-details-page',
+  selector: 'fs-place-details-page',
   templateUrl: './place-details-page.component.html',
   styleUrls: ['./place-details-page.component.scss']
 })

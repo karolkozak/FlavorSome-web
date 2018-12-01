@@ -8,7 +8,7 @@ import {AuthenticationService} from '@app/security/services/authentication.servi
 import {UserService} from '@app/core/services/user.service';
 
 @Component({
-  selector: 'un-confirmation-page',
+  selector: 'fs-confirmation-page',
   templateUrl: './confirmation-page.component.html',
   styleUrls: ['./confirmation-page.component.scss']
 })

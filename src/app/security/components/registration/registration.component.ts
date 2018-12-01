@@ -10,7 +10,7 @@ import {CustomToastrService} from '@app/core/services/custom-toastr.service';
 import {RecaptchaComponent} from 'ng-recaptcha';
 
 @Component({
-  selector: 'un-registration',
+  selector: 'fs-registration',
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.scss']
 })

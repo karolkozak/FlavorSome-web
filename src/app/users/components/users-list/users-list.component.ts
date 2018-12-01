@@ -2,7 +2,7 @@ import {Component, Input} from '@angular/core';
 import {User} from '@app/security/models/user';
 
 @Component({
-  selector: 'un-users-list',
+  selector: 'fs-users-list',
   templateUrl: './users-list.component.html',
   styleUrls: ['./users-list.component.scss']
 })

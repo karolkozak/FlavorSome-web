@@ -1,8 +1,8 @@
 <div *ngIf="placeDetails; else other_content">
   <div class="row">
     <div class="col-12">
-      <un-place-picture [pictureUrl]="placeDetails?.picture"></un-place-picture>
-      <un-place-address [location]="placeDetails?.location"></un-place-address>
+      <fs-place-picture [pictureUrl]="placeDetails?.picture"></fs-place-picture>
+      <fs-place-address [location]="placeDetails?.location"></fs-place-address>
       <div *ngIf="placeDetails?.rating">{{ 'Our rating' | translate }}: {{placeDetails.rating}}</div>
       <div *ngIf="placeDetails?.description">{{placeDetails.description}}</div>
       <div *ngIf="placeDetails?.link">

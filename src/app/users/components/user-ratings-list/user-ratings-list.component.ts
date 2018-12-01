@@ -5,7 +5,7 @@ import {PageableParams} from '@app/places/models/pageable-params';
 import {CustomToastrService} from '@app/core/services/custom-toastr.service';
 
 @Component({
-  selector: 'un-user-ratings-list',
+  selector: 'fs-user-ratings-list',
   templateUrl: './user-ratings-list.component.html',
   styleUrls: ['./user-ratings-list.component.scss']
 })

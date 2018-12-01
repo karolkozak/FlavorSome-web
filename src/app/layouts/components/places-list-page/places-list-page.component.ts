@@ -7,7 +7,7 @@ import {PlaceSearchRequest} from '@app/places/models/place-search-request';
 import {Place} from '@app/places/models/place';
 
 @Component({
-  selector: 'un-places-list-page',
+  selector: 'fs-places-list-page',
   templateUrl: './places-list-page.component.html',
   styleUrls: ['./places-list-page.component.scss']
 })

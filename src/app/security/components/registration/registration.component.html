@@ -16,7 +16,7 @@
       </span>
     </div>
   </div>
-  <div class="un-re-captcha">
+  <div class="fs-re-captcha">
     <re-captcha #captchaRef="reCaptcha" (resolved)="captchaResolved($event)" size="invisible" [siteKey]="googleReCaptchaKey"></re-captcha>
   </div>
   <span *ngIf="formIncorrect">

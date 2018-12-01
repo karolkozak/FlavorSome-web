@@ -5,7 +5,7 @@ import {CustomToastrService} from '@app/core/services/custom-toastr.service';
 import {UserService} from '@app/core/services/user.service';
 
 @Component({
-  selector: 'un-user-details',
+  selector: 'fs-user-details',
   templateUrl: './user-details.component.html',
   styleUrls: ['./user-details.component.scss']
 })

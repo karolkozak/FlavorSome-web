@@ -6,7 +6,7 @@ import {UserService} from '@app/core/services/user.service';
 import {CONST_TITLES, CustomTitleService} from '@app/core/services/custom-title.service';
 
 @Component({
-  selector: 'un-login-page',
+  selector: 'fs-login-page',
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.scss']
 })

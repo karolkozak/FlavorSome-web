@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
 
-  unnamedMicroserviceUrl: 'http://127.0.0.3:8080/api',
+  flavorSomeMicroserviceUrl: 'http://127.0.0.3:8080/api',
   authPath: '/auth',
   facebookPath: '/facebook',
   loginPath: '/login',

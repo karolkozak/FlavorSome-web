@@ -6,7 +6,7 @@ import {PlaceSearchRequest} from '@app/places/models/place-search-request';
 import {CustomToastrService} from '@app/core/services/custom-toastr.service';
 
 @Component({
-  selector: 'un-dashboard-form',
+  selector: 'fs-dashboard-form',
   templateUrl: './dashboard-form.component.html',
   styleUrls: ['./dashboard-form.component.scss']
 })

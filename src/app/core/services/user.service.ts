@@ -16,7 +16,7 @@ export class UserService {
   private currentUser: User;
 
   constructor(private httpClient: HttpClient) {
-    this.baseUrl = environment.unnamedMicroserviceUrl + environment.usersPath;
+    this.baseUrl = environment.flavorSomeMicroserviceUrl + environment.usersPath;
   }
 
   fetchUserOnInitApp(): Promise<User> {

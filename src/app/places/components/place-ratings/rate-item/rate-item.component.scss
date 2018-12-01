@@ -2,8 +2,8 @@
 @import "variables";
 @import "mixins";
 
-:host(un-rate-item) {
-  div.un-rating-item {
+:host(fs-rate-item) {
+  div.fs-rating-item {
     border: $border-width-small solid $beige;
     color: $text;
 
@@ -13,7 +13,7 @@
 
     text-align: center;
 
-    .un-rating-starts {
+    .fs-rating-starts {
       width: 100%;
       background-image: url('/assets/ux/petr-sevcovic-594807-unsplash.svg');
       background-repeat: no-repeat;
@@ -30,7 +30,7 @@
       }
     }
 
-    .un-rate-details {
+    .fs-rate-details {
       padding: $padding-medium;
 
       i {
@@ -51,7 +51,7 @@
       }
     }
   }
-  .un-rate-star {
+  .fs-rate-star {
     font-size: $font-size-basic;
   }
 }

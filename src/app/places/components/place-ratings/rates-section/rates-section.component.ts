@@ -6,7 +6,7 @@ import {Pageable} from '@app/places/models/pageable';
 import {PageableParams} from '@app/places/models/pageable-params';
 
 @Component({
-  selector: 'un-rates-section',
+  selector: 'fs-rates-section',
   templateUrl: './rates-section.component.html',
   styleUrls: ['./rates-section.component.scss']
 })

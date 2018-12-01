@@ -3,7 +3,7 @@ import {CustomTranslateService} from '@app/core/services/custom-translate.servic
 import {CustomTitleService} from '@app/core/services/custom-title.service';
 
 @Component({
-  selector: 'un-language-chooser',
+  selector: 'fs-language-chooser',
   templateUrl: './language-chooser.component.html',
   styleUrls: ['./language-chooser.component.scss']
 })
