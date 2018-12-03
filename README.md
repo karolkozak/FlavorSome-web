@@ -1,55 +1,33 @@
 # FlavorSome-web
 
-# How to build and run app
+## How to start
 
-Both the CLI and generated project have dependencies that require Node 6.9.0 or higher, together with NPM 3 or higher.
-# install angular cli
-npm install -g @angular/cli
+1. Install [nvm](https://github.com/coreybutler/nvm-windows/releases). You can skip this step and install Node.js on your own.
+1. Install Node.js (at least 8.3 version is required). Run in console `nvm install 9.11.1` and then `nvm use 9.11.1`.
+1. Clone this repository to your local directory.
+1. Run in console `npm install -g @angular/cli`;
+1. Run in console `npm install`.
+1. Run in console `npm run start:qa`.
 
-Useful for generating new modules / components / services etc. :
-https://github.com/angular/angular-cli
+## How to build app using local backend server
 
-# download all dependencies from package-lock.json
-npm install 
-# how to serve app on default localhost:4200 
-npm start
+1. Run Neo4J database.
+1. Start [FlavorSome micro service](https://github.com/karolkozak/FlavorSome).
+1. Run in console `npm start`.
+1. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.28.3.
+## How to build app using qa server
 
-## Development server
-
-Run `npm start` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+1. Run in console `npm run start:qa`.
+1. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class/module`.
+To create module / component / service / directive use following commands:
 
-## Build
+ - Run `ng generate module path/module-name` to generate a new module.
+ - Run `ng generate component path/component-name` to generate a new component.
+ - Run `ng generate service path/service-name` to generate a new service.
+ - Run `ng generate directive path/directive-name` to generate a new directive.
 
-Run `npm run build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `npm run build -- -prod` for a production build.
-
-## Running unit tests
-
-Run `npm test:unit` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `npm run e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `npm start`.
-
-## Running aplication tests
-
-Run `npm run test` to execute both the unit tests and end-to-end tests.
-Before running the tests make sure you are serving the app via `npm start`.
-
-## Angular docs
-
-Run `npm run doc` to open angular docs in web browser.
-
-## Deploying to GitHub Pages
-
-Run `ng github-pages:deploy` to deploy to GitHub Pages.
-
-## Further help
-
-To get more help on the Angular CLI use `npm run help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+You can also use shorthanded versions: `ng g <m | c | s | d> path/name`.
