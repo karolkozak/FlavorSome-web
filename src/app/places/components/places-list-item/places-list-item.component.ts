@@ -3,7 +3,7 @@ import {ConfigService} from '@app/core/services/config.service';
 import {Place} from '@app/places/models/place';
 
 @Component({
-  selector: 'un-places-list-item',
+  selector: 'fs-places-list-item',
   templateUrl: './places-list-item.component.html',
   styleUrls: ['./places-list-item.component.scss']
 })

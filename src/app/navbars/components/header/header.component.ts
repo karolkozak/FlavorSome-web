@@ -6,7 +6,7 @@ import {User} from '@app/security/models/user';
 import {Subscription} from 'rxjs/Subscription';
 
 @Component({
-  selector: 'un-header',
+  selector: 'fs-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })

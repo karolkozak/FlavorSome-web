@@ -2,33 +2,33 @@
 @import 'variables';
 @import 'mixins';
 
-:host(un-place-details-page) {
+:host(fs-place-details-page) {
   .row {
     margin: 0;
   }
 
-  .row.un-description {
+  .row.fs-description {
     color: $text;
 
-    .un-main-content {
-      min-height: calc(100% - #{$un-header-height} - #{$un-footer-height} - #{$margin-large});
+    .fs-main-content {
+      min-height: calc(100% - #{$fs-header-height} - #{$fs-footer-height} - #{$margin-large});
       margin-top: $margin-large;
-      min-height: calc(100vh - #{$un-header-height} - #{$un-footer-height} - #{$margin-large});
+      min-height: calc(100vh - #{$fs-header-height} - #{$fs-footer-height} - #{$margin-large});
       margin-left: auto;
       margin-right: auto;
       text-align: center;
 
-      .un-place-details-header {
+      .fs-place-details-header {
         font-size: 27px;
         font-family: serif;
       }
 
-      .un-visit {
+      .fs-visit {
         width: 100%;
         margin-bottom: $margin-medium;
       }
 
-      .un-place-navs {
+      .fs-place-navs {
         display: flex;
         height: 3rem;
         color: lighten($text, 35%);
@@ -68,29 +68,29 @@
         }
       }
 
-      .un-nav-content {
+      .fs-nav-content {
         margin: 1rem 0;
 
-        &.un-dark-div {
+        &.fs-dark-div {
           border: $border-width-medium solid $beige;
         }
 
-        .un-details-content .row {
+        .fs-details-content .row {
           min-height: 27rem;
 
-          .un-details-content-map div {
+          .fs-details-content-map div {
             padding: 0;
           }
         }
 
-        div, un-place-details {
+        div, fs-place-details {
           padding: 1rem 0;
         }
       }
 
-      .un-content-map {
+      .fs-content-map {
         width: 100%;
-        height: calc(100vh - #{$un-footer-height} - #{$un-header-height} - 10vh);
+        height: calc(100vh - #{$fs-footer-height} - #{$fs-header-height} - 10vh);
       }
     }
   }

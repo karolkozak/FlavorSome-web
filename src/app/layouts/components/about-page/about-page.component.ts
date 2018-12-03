@@ -8,7 +8,7 @@ import {UserService} from '@app/core/services/user.service';
 import {CONST_TITLES, CustomTitleService} from '@app/core/services/custom-title.service';
 
 @Component({
-  selector: 'un-about-page',
+  selector: 'fs-about-page',
   templateUrl: './about-page.component.html',
   styleUrls: ['./about-page.component.scss']
 })

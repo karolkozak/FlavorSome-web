@@ -3,7 +3,7 @@ import {AuthenticationService} from '@app/security/services/authentication.servi
 import {CONST_TITLES, CustomTitleService} from '@app/core/services/custom-title.service';
 
 @Component({
-  selector: 'un-home-page',
+  selector: 'fs-home-page',
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.scss']
 })

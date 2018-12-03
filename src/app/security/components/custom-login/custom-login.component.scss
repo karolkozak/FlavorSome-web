@@ -2,7 +2,7 @@
 @import 'variables';
 @import 'mixins';
 
-:host(un-custom-login) {
+:host(fs-custom-login) {
   form {
     margin-bottom: $margin-small;
 
@@ -18,7 +18,7 @@
       width: 65%;
     }
 
-    .un-error {
+    .fs-error {
       color: $error;
 
       i {

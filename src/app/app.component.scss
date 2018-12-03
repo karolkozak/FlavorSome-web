@@ -1,12 +1,12 @@
 @import "colors";
 @import "variables";
 
-:host(un-root) {
+:host(fs-root) {
   min-height: 100%;
 
   .page-content {
-    min-height: calc(100% - #{$un-header-height} - #{$un-footer-height});
-    min-height: calc(100vh - #{$un-header-height} - #{$un-footer-height});
+    min-height: calc(100% - #{$fs-header-height} - #{$fs-footer-height});
+    min-height: calc(100vh - #{$fs-header-height} - #{$fs-footer-height});
     background-color: $app-background;
 
     .container-fluid {

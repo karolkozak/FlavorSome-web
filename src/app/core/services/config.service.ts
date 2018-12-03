@@ -9,7 +9,7 @@ export class ConfigService {
   private placeTypes: string[] = [];
 
   constructor(private httpClient: HttpClient) {
-    this.baseUrl = environment.unnamedMicroserviceUrl + environment.configPath;
+    this.baseUrl = environment.flavorSomeMicroserviceUrl + environment.configPath;
   }
 
   getAvailablePlaceTypes(): string[] {

@@ -5,7 +5,7 @@ import {ApiResponseBody} from '@app/security/models/api-response-body';
 import {CustomToastrService} from '@app/core/services/custom-toastr.service';
 
 @Component({
-  selector: 'un-custom-login',
+  selector: 'fs-custom-login',
   templateUrl: './custom-login.component.html',
   styleUrls: ['./custom-login.component.scss']
 })

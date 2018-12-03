@@ -10,7 +10,7 @@ export class AboutService {
   private url: string;
 
   constructor(private httpClient: HttpClient) {
-    this.url = environment.unnamedMicroserviceUrl + environment.about + environment.mail;
+    this.url = environment.flavorSomeMicroserviceUrl + environment.about + environment.mail;
   }
 
   sendMessage(aboutMessage: AboutMessage): Observable<ApiResponseBody> {

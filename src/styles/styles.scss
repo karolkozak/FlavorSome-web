@@ -19,7 +19,7 @@ html, body {
     box-shadow: none;
   }
 
-  .un-create-account {
+  .fs-create-account {
     margin-top: 1rem;
     padding: 1.2rem;
     font-size: $font-size-medium;
@@ -36,20 +36,20 @@ html, body {
     }
   }
 
-  .un-content-map {
+  .fs-content-map {
     @media (min-width: 992px) {
       min-height: 60vh;
-      max-height: calc(100vh - #{$un-footer-height} - #{$un-header-height});
+      max-height: calc(100vh - #{$fs-footer-height} - #{$fs-header-height});
     }
 
     @media (min-width: 768px) and (max-width: 991px) {
       min-height: 50vh;
-      max-height: calc(100vh - #{$un-footer-height} - #{$un-header-height});
+      max-height: calc(100vh - #{$fs-footer-height} - #{$fs-header-height});
     }
 
     @media (max-width: 767px) {
       min-height: 30vh;
-      max-height: calc(100vh - #{$un-footer-height} - #{$un-header-height});
+      max-height: calc(100vh - #{$fs-footer-height} - #{$fs-header-height});
     }
   }
 
@@ -71,15 +71,15 @@ html, body {
     }
   }
 
-  .un-content {
+  .fs-content {
     margin-top: 5rem;
     margin-left: auto;
     margin-right: auto;
     background-color: $containers-background;
     padding: 0;
 
-    .un-form {
-      .un-header {
+    .fs-form {
+      .fs-header {
         font-size: $font-size-header;
         color: white;
         margin-bottom: 1.5rem;
@@ -117,11 +117,11 @@ html, body {
         }
       }
 
-      .un-adds {
+      .fs-adds {
         background-color: $beige;
         padding-bottom: 1rem;
 
-        .un-create-account {
+        .fs-create-account {
           background-color: transparent;
 
           a {

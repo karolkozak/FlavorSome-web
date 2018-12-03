@@ -10,7 +10,7 @@ import {PageableParams} from '@app/places/models/pageable-params';
 import {Pageable} from '@app/places/models/pageable';
 
 @Component({
-  selector: 'un-user-page',
+  selector: 'fs-user-page',
   templateUrl: './user-page.component.html',
   styleUrls: ['./user-page.component.scss']
 })

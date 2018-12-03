@@ -5,7 +5,7 @@ import {CustomToastrService} from '@app/core/services/custom-toastr.service';
 import {Place} from '@app/places/models/place';
 
 @Component({
-  selector: 'un-user-ratings-list-item',
+  selector: 'fs-user-ratings-list-item',
   templateUrl: './user-ratings-list-item.component.html',
   styleUrls: ['./user-ratings-list-item.component.scss']
 })

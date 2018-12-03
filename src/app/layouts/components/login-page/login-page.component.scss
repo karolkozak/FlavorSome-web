@@ -2,23 +2,23 @@
 @import 'variables';
 @import 'mixins';
 
-:host(un-login-page){
+:host(fs-login-page){
   margin: 0;
 
-  .un-login-component {
+  .fs-login-component {
     text-align: center;
     margin: 0;
 
-    .un-header {
+    .fs-header {
       margin-bottom: 0;
     }
-    .un-divider-wrapper {
+    .fs-divider-wrapper {
       width: 80%;
       margin-left: auto;
       margin-right: auto;
     }
 
-    .un-types-divider {
+    .fs-types-divider {
       margin: $margin-large 0;
       width: 100%;
       height: 20px;
@@ -32,7 +32,7 @@
       }
     }
 
-    .un-content {
+    .fs-content {
       padding-bottom: $padding-large;
     }
   }

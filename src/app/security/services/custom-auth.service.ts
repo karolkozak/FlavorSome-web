@@ -14,7 +14,7 @@ export class CustomAuthService extends AuthenticationService {
 
   constructor(injector: Injector, private httpClient: HttpClient) {
     super(injector);
-    this.baseUrl = environment.unnamedMicroserviceUrl + environment.authPath;
+    this.baseUrl = environment.flavorSomeMicroserviceUrl + environment.authPath;
   }
 
   login(userData: any): Observable<string> {

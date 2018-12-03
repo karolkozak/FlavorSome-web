@@ -5,7 +5,7 @@ import {PageableParams} from '@app/places/models/pageable-params';
 import {AuthenticationService} from '@app/security/services/authentication.service';
 
 @Component({
-  selector: 'un-rates-list',
+  selector: 'fs-rates-list',
   templateUrl: './rates-list.component.html',
   styleUrls: ['./rates-list.component.scss']
 })

@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {CONST_TITLES, CustomTitleService} from '@app/core/services/custom-title.service';
 
 @Component({
-  selector: 'un-not-found',
+  selector: 'fs-not-found',
   templateUrl: './not-found.component.html',
   styleUrls: ['./not-found.component.scss']
 })

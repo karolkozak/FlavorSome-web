@@ -1,24 +1,24 @@
 @import 'colors';
 @import 'variables';
 
-:host(un-footer) {
+:host(fs-footer) {
   width: 100%;
 
-  .un-footer {
+  .fs-footer {
     background-color: white;
     color: $text;
     position: relative;
-    line-height: $un-footer-height;
+    line-height: $fs-footer-height;
     text-align: center;
-    height: $un-footer-height;
+    height: $fs-footer-height;
   }
 
-  .un-footer-text {
+  .fs-footer-text {
     text-align: center;
     margin: 0;
   }
 
-  .un-about {
+  .fs-about {
     float: right;
     margin-right: 10px;
   }

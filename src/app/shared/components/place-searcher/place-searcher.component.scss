@@ -2,7 +2,7 @@
 @import 'variables';
 @import 'mixins';
 
-:host(un-place-searcher) {
+:host(fs-place-searcher) {
   form {
     text-align: center;
     margin-top: $margin-small;

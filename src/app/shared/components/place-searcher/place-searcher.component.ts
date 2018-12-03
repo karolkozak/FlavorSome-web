@@ -9,7 +9,7 @@ import {Place} from '@app/places/models/place';
 
 
 @Component({
-  selector: 'un-place-searcher',
+  selector: 'fs-place-searcher',
   templateUrl: './place-searcher.component.html',
   styleUrls: ['./place-searcher.component.scss']
 })

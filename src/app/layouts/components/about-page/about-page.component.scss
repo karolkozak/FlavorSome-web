@@ -1,6 +1,6 @@
 @import 'colors';
 
-:host(un-about-page) {
+:host(fs-about-page) {
   color: white;
 
   form {
@@ -13,10 +13,10 @@
     }
   }
 
-  .row.un-description {
+  .row.fs-description {
     margin: 0;
 
-    .un-main-content {
+    .fs-main-content {
       margin-bottom: 10px;
       margin-top: 5rem;
       margin-left: auto;

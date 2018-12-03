@@ -1,7 +1,7 @@
 import {Component, Input} from '@angular/core';
 
 @Component({
-  selector: 'un-user-picture',
+  selector: 'fs-user-picture',
   templateUrl: './user-picture.component.html',
   styleUrls: ['./user-picture.component.scss']
 })

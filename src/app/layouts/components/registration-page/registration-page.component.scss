@@ -2,18 +2,18 @@
 @import 'variables';
 @import 'mixins';
 
-:host(un-registration-page){
+:host(fs-registration-page){
   margin: 0;
 
-  .un-registration-component {
+  .fs-registration-component {
     text-align: center;
     margin: 0;
 
-    .un-content {
+    .fs-content {
       margin-top: $margin-large * 1.8;
       padding-bottom: $padding-medium;
 
-      .un-header {
+      .fs-header {
         margin-bottom: 0;
       }
     }
