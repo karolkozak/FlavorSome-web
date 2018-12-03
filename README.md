@@ -1,4 +1,4 @@
-# UnnamedWebapp
+# FlavorSome-web
 
 # How to build and run app
 

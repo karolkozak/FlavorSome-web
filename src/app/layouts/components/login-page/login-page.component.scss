@@ -2,14 +2,37 @@
 @import 'variables';
 @import 'mixins';
 
-:host(un-login-page){
+:host(fs-login-page){
   margin: 0;
 
-  .un-login-component {
+  .fs-login-component {
     text-align: center;
     margin: 0;
 
-    .un-content {
+    .fs-header {
+      margin-bottom: 0;
+    }
+    .fs-divider-wrapper {
+      width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .fs-types-divider {
+      margin: $margin-large 0;
+      width: 100%;
+      height: 20px;
+      border-bottom: $border-width-small solid lighten($text, 20%);
+      text-align: center;
+
+      span {
+        font-size: 20px;
+        background-color: #dcdcdcff;
+        padding: 0 $padding-large;
+      }
+    }
+
+    .fs-content {
       padding-bottom: $padding-large;
     }
   }

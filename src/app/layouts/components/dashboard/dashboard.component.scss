@@ -1,35 +1,37 @@
 @import 'colors';
 @import 'variables';
-@import 'mixins';
 
-:host(un-dashboard) {
-  color: white;
-
+:host(fs-dashboard) {
   .row {
     margin: 0;
   }
 
-  .row.un-description {
-    color: $font-color-on-colored-div;
-
-    .un-content {
+  .row.fs-description {
+    .fs-content {
       margin-top: 0;
       margin-left: auto;
       margin-right: auto;
       text-align: center;
       background-color: transparent;
 
-      .un-map-form {
+      .fs-map-form {
         margin-top: $margin-large;
       }
 
-      .un-dashboard-content {
+      .fs-dashboard-content {
         margin-left: auto;
         margin-right: auto;
 
         .row {
-          .un-form {
-            border: $border-width-medium solid $beige;
+          .fs-form {
+            @media (min-width: 768px) {
+              border: $border-width-medium solid $beige;
+            }
+
+            .fs-form-title {
+              font-size: $font-size-header;
+              margin: $margin-medium;
+            }
           }
         }
       }

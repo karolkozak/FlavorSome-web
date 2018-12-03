@@ -6,13 +6,15 @@
 export const environment = {
   production: false,
 
-  unnamedMicroserviceUrl: 'http://127.0.0.3:8080/api',
+  flavorSomeMicroserviceUrl: 'http://127.0.0.3:8080/api',
   authPath: '/auth',
   facebookPath: '/facebook',
   loginPath: '/login',
   logoutPath: '/logout',
   registration: '/register',
   confirmation: '/confirmation',
+  delete: '/delete',
+  refresh: '/refresh',
 
   configPath: '/config',
   placeTypesPath: '/places/types',

@@ -5,7 +5,7 @@ import {MapService} from '@app/core/services/map/map.service';
 import {MapServiceAPI} from '@app/shared/models/MapAPI';
 
 @Component({
-  selector: 'un-dashboard-map',
+  selector: 'fs-dashboard-map',
   templateUrl: './dashboard-map.component.html',
   styleUrls: ['./dashboard-map.component.scss']
 })

@@ -1,7 +1,7 @@
 import {Component, Input} from '@angular/core';
 
 @Component({
-  selector: 'un-place-menu',
+  selector: 'fs-place-menu',
   templateUrl: './place-menu.component.html',
   styleUrls: ['./place-menu.component.scss']
 })

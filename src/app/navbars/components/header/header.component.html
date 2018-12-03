@@ -1,21 +1,21 @@
-<div class="un-header-full">
+<div class="fs-header-full">
   <nav class="navbar navbar-light">
-    <span class="un-app-name" [routerLink]="['/']">
+    <span class="fs-app-name" [routerLink]="['/']">
       <img src="assets/ux/logo-mini-2.svg">
     </span>
-    <span class="un-header-fill"></span>
-    <un-language-chooser></un-language-chooser>
+    <span class="fs-header-fill"></span>
+    <fs-language-chooser></fs-language-chooser>
     <button class="btn" *ngIf="currentUser" [routerLink]="['/users', currentUser.userId]">
-      <un-user-picture [picture]="currentUser?.picture"></un-user-picture> {{userDisplayName}}
+      <fs-user-picture [picture]="currentUser?.picture"></fs-user-picture> {{userDisplayName}}
     </button>
     <button class="btn" *ngIf="!isLoggedIn" [routerLink]="['/login']">{{"Login" | translate}}</button>
     <button class="btn" *ngIf="isLoggedIn" (click)="logout()">{{"Logout" | translate}}</button>
     <button class="btn" *ngIf="!isLoggedIn" [routerLink]="['/registration']">{{"Registration" | translate}}</button>
   </nav>
-  <div class="un-full-logo" [ngClass]="(showPlaceSearcher()) ? 'un-logo-small' : 'un-logo-big'">
+  <div class="fs-full-logo" [ngClass]="(showPlaceSearcher()) ? 'fs-logo-small' : 'fs-logo-big'">
     <img src="assets/ux/logo.svg">
   </div>
-  <div class="un-header-searcher">
-    <un-place-searcher *ngIf="showPlaceSearcher()"></un-place-searcher>
+  <div class="fs-header-searcher">
+    <fs-place-searcher *ngIf="showPlaceSearcher()"></fs-place-searcher>
   </div>
 </div>

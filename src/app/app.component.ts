@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {CustomTranslateService} from '@app/core/services/custom-translate.service';
 
 @Component({
-  selector: 'un-root',
+  selector: 'fs-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })

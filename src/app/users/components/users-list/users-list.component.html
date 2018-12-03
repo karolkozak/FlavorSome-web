@@ -1,7 +1,7 @@
-<div class="un-nav-title">
+<div class="fs-nav-title">
   {{'List of friends' | translate}}:
   <span *ngIf="users">{{users.length}}</span>
 </div>
-<div *ngFor="let user of users" class="un-user-item">
-  <un-users-list-item [user]="user"></un-users-list-item>
+<div *ngFor="let user of users" class="fs-user-item">
+  <fs-users-list-item [user]="user"></fs-users-list-item>
 </div>

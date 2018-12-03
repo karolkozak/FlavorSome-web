@@ -2,7 +2,7 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {PageableParams} from '@app/places/models/pageable-params';
 
 @Component({
-  selector: 'un-pagination',
+  selector: 'fs-pagination',
   templateUrl: './pagination.component.html',
   styleUrls: ['./pagination.component.scss']
 })

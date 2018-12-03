@@ -3,7 +3,7 @@
 @import 'mixins';
 
 
-:host(un-registration) {
+:host(fs-registration) {
   form {
     margin-bottom: 10px;
 
@@ -19,7 +19,7 @@
     }
   }
 
-  .un-re-captcha {
+  .fs-re-captcha {
     re-captcha {
       display: none;
     }

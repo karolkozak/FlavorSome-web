@@ -14,7 +14,7 @@ export class CustomAuthService extends AuthenticationService {
 
   constructor(injector: Injector, private httpClient: HttpClient) {
     super(injector);
-    this.baseUrl = environment.unnamedMicroserviceUrl + environment.authPath;
+    this.baseUrl = environment.flavorSomeMicroserviceUrl + environment.authPath;
   }
 
   login(userData: any): Observable<string> {
@@ -32,6 +32,17 @@ export class CustomAuthService extends AuthenticationService {
     let params = new HttpParams();
     params = params.append('token', token);
     return this.httpClient.get<ApiResponseBody>(endpoint, {params});
+  }
+
+  deleteRegistration(token: string): Observable<ApiResponseBody> {
+    const endpoint = `${this.baseUrl}${environment.delete}`;
+    const params = (new HttpParams()).append('token', token);
+    return this.httpClient.get<ApiResponseBody>(endpoint, {params});
+  }
+
+  refreshToken(): Observable<ApiResponseBody> {
+    const endpoint = `${this.baseUrl}${environment.confirmation}${environment.refresh}`;
+    return this.httpClient.get<ApiResponseBody>(endpoint);
   }
 
   private makeRequest(userData: any, endpoint: string): Observable<string> {

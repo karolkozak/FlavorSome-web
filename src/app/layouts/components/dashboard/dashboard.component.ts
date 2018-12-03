@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {CONST_TITLES, CustomTitleService} from '@app/core/services/custom-title.service';
 
 @Component({
-  selector: 'un-dashboard',
+  selector: 'fs-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })

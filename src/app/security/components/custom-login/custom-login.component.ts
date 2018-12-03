@@ -1,11 +1,11 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {CustomAuthService} from '../../services/custom-auth.service';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ApiResponseBody} from '@app/security/models/api-response-body';
 import {CustomToastrService} from '@app/core/services/custom-toastr.service';
 
 @Component({
-  selector: 'un-custom-login',
+  selector: 'fs-custom-login',
   templateUrl: './custom-login.component.html',
   styleUrls: ['./custom-login.component.scss']
 })
@@ -22,11 +22,11 @@ export class CustomLoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginUserForm = this.formBuilder.group({
-      email: ['', Validators.compose([
+      email: new FormControl('', Validators.compose([
         Validators.required,
         Validators.email
-      ])],
-      password: ['', Validators.required],
+      ])),
+      password: new FormControl('', Validators.required),
     });
   }
 

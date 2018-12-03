@@ -1,13 +1,15 @@
 export const environment = {
   production: false,
 
-  unnamedMicroserviceUrl: 'http://ghost.kkopec.net:8080/api',
+  flavorSomeMicroserviceUrl: 'http://ghost.kkopec.net:8080/api',
   authPath: '/auth',
   facebookPath: '/facebook',
   loginPath: '/login',
   logoutPath: '/logout',
   registration: '/register',
   confirmation: '/confirmation',
+  delete: '/delete',
+  refresh: '/refresh',
 
   configPath: '/config',
   placeTypesPath: '/places/types',

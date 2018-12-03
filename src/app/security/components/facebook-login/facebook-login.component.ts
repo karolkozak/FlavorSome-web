@@ -2,7 +2,7 @@ import {Component, Input} from '@angular/core';
 import {FacebookAuthService} from '../../services/facebook-auth.service';
 
 @Component({
-  selector: 'un-facebook-login',
+  selector: 'fs-facebook-login',
   templateUrl: './facebook-login.component.html',
   styleUrls: ['./facebook-login.component.scss']
 })

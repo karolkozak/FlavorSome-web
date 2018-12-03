@@ -2,50 +2,44 @@
 @import 'variables';
 @import 'mixins';
 
-:host(un-place-searcher) {
-  $searcher-border-large: 5rem;
-  $searcher-border-small: 2rem;
-
+:host(fs-place-searcher) {
   form {
     text-align: center;
     margin-top: $margin-small;
     mat-form-field {
-      width: 30rem;
       max-width: 100%;
-      background-color: white;
+
+      input {
+        width: 90%;
+      }
     }
 
-    .btn {
+    button {
       cursor: pointer;
-      height: 4em;
+      background-color: $dirty-green;
+      color: $font-color-on-colored-div;
+
+      &:hover {
+        background-color: darken($button-background, 5%);
+      }
     }
 
     @media (min-width: 768px) {
       mat-form-field {
-        padding-left: $searcher-border-large;
-        border-bottom-left-radius: $searcher-border-large;
-        border-top-left-radius: $searcher-border-large;
+        width: 30rem;
       }
 
-      .btn {
-        width: 12%;
-        border-bottom-right-radius: $searcher-border-large;
-        border-top-right-radius: $searcher-border-large;
+      button {
+        width: 10vh;
       }
     }
 
     @media (max-width: 767px) {
       mat-form-field {
         width: 100%;
-        padding-left: $searcher-border-small;
-        padding-left: $searcher-border-small;
-        border-top-right-radius: $searcher-border-small;
-        border-top-left-radius: $searcher-border-small;
       }
 
-      .btn {
-        border-bottom-right-radius: $searcher-border-small;
-        border-bottom-left-radius: $searcher-border-small;
+      button {
         width: 100%;
       }
     }

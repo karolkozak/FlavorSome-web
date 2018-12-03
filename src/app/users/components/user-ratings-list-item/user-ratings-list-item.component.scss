@@ -2,36 +2,45 @@
 @import 'variables';
 @import 'mixins';
 
-:host(un-user-ratings-list-item){
-  .un-ratings-item {
+:host(fs-user-ratings-list-item){
+  .fs-ratings-item {
     margin: 0;
     border: 0.08rem solid $beige;
     margin-bottom: $margin-medium;
 
-    .un-rate-details {
+    .fs-rate-details {
       text-align: center;
-      padding: $padding-small $padding-small;
       min-height: 13vh;
+      padding-left: 0;
 
-      .un-rate-details-div {
+      @media (max-width: 767px) {
+        padding-right: 0;
+      }
+
+      .fs-rate-details-div {
         height: 100%;
-        background-image: url('/assets/ux/prague.svg');
+        width: 100%;
+        background-image: url('/assets/ux/petr-sevcovic-594807-unsplash.svg');
         background-repeat: no-repeat;
         background-size: cover;
         position: relative;
         color: $font-color-on-colored-div;
+        text-align: initial;
+        padding-left: 4em;
+        padding-top: 3em;
 
+        .fs-rate-details {
+          padding: $padding-medium;
+        }
 
         i {
-          position: relative;
-          transform: translateY(50%);
+          padding-left: $padding-small/2;
           width: $font-size-basic;
-          margin-bottom: $margin-small;
         }
       }
     }
 
-    .un-rate-edit {
+    .fs-rate-edit {
       button {
         position: relative;
         transform: translateY(50%);

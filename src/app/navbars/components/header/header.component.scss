@@ -2,38 +2,42 @@
 @import "variables";
 
 
-:host(un-header) {
-  .un-header-full {
-    background-image: url('/assets/ux/bb.png');
+:host(fs-header) {
+  .fs-header-full {
+    background-image: url('/assets/ux/yakynina-anastasia-546115-unsplash.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
-    height: $un-header-height;
+    height: $fs-header-height;
     -webkit-box-shadow: 2px 2px 4px 1px $shadow;
     -moz-box-shadow:    2px 2px 4px 1px $shadow;
     box-shadow:         2px 2px 4px 1px $shadow;
 
-    .un-full-logo {
+    .fs-full-logo {
       text-align: center;
 
-      &.un-logo-small img {
+      &.fs-logo-small img {
         height: 8rem;
         width: auto;
       }
 
-      &.un-logo-big img {
+      &.fs-logo-big img {
         height: 12rem;
         width: auto;
       }
     }
 
-    .un-header-searcher {
-      margin-top: $margin-large;
+    .fs-header-searcher {
+      background-color: rgba(255, 255, 255, .8);
+
+      fs-place-searcher {
+        margin-top: $margin-large;
+      }
     }
   }
 
   nav {
-    span.un-header-fill {
+    span.fs-header-fill {
       flex: 1 1 auto;
     }
 
@@ -42,19 +46,25 @@
     button {
       color: $font-color-on-colored-div;
       background-color: transparent;
-      border-left: 0.7px solid $gray-light;
-      padding: 0 $padding-large;
+      padding: $padding-small $padding-large;
+      border-bottom: $border-width-medium solid transparent;
 
       &:last-child:after{
         border-right: none;
       }
 
       &:hover {
-        color: $dirty-green;
+        color: $beige;
+        transition: border-bottom-color 1s ease;
+        border-bottom: $border-width-medium solid $beige;
+        outline: 0;
+        box-shadow: none;
       }
 
-      i {
-        vertical-align: middle !important;
+      &:focus {
+        color: lighten($beige, 10%);
+        background-color: rgba(255, 255, 255, .06);
+        border-bottom: $border-width-medium solid lighten($beige, 10%);
       }
     }
 
@@ -63,7 +73,7 @@
     }
   }
 
-  .un-app-name {
+  .fs-app-name {
     cursor: pointer;
     padding-right: $padding-small;
 

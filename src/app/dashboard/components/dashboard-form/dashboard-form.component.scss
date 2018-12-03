@@ -1,12 +1,8 @@
-@import 'colors';
-@import 'variables';
-@import 'mixins';
-
-:host(un-dashboard-form) {
-  form {
-    width: 50%;
-    margin-right: auto;
-    margin-left: auto;
-    color: black;
+:host(fs-dashboard-form) {
+  mat-form-field {
+    width: 100%;
+  }
+  i {
+    vertical-align: middle !important;
   }
 }

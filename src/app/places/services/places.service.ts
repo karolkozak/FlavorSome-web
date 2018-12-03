@@ -17,7 +17,7 @@ export class PlacesService {
   private baseUrl: string;
 
   constructor(private httpClient: HttpClient) {
-    this.baseUrl = environment.unnamedMicroserviceUrl + environment.placesPath;
+    this.baseUrl = environment.flavorSomeMicroserviceUrl + environment.placesPath;
   }
 
   private userRateAnnounceSource: Subject<Rate> = new Subject<Rate>();

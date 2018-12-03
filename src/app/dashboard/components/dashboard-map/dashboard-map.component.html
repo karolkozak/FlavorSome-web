@@ -1,5 +1,5 @@
-<div class="un-map-container-wrapper">
-  <div class="un-map-container" [ngSwitch]="provider">
+<div class="fs-map-container-wrapper">
+  <div class="fs-map-container" [ngSwitch]="provider">
 
     <ng-template #google [ngSwitchCase]="providers.Google">
       <agm-map [latitude]="mapCenter?.lat" [longitude]="mapCenter?.lng" [scrollwheel]="true" [zoom]="zoom"

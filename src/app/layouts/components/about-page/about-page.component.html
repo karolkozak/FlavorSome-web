@@ -1,11 +1,11 @@
-<div class="row un-description">
-  <div class="col-8 un-main-content">
-    <div class="un-about-description">
+<div class="row fs-description">
+  <div class="col-8 fs-main-content">
+    <div class="fs-about-description">
       {{ 'If You have any questions feel free to tell about them.' | translate }}
     </div>
-    <div class="un-contact-form">
+    <div class="fs-contact-form">
       <form [formGroup]="messageForm" (ngSubmit)="sendMessage()">
-        <div class="form-group col-12 col-md-12 col-lg-12">
+        <div class="form-group col-12">
           <input type="text" class="form-control" formControlName="email" placeholder="{{'email' | translate}}"
                  tabindex="1">
           <textarea class="form-control" formControlName="content" placeholder="{{'message' | translate}}"

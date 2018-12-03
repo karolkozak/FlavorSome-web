@@ -19,21 +19,12 @@ html, body {
     box-shadow: none;
   }
 
-  .un-header-image {
-    background-image: url('/assets/ux/venice2.svg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: relative;
-    padding-top: $padding-large;
-    padding-bottom: $padding-medium;
-  }
-
-  .un-create-account {
+  .fs-create-account {
     margin-top: 1rem;
     padding: 1.2rem;
     font-size: $font-size-medium;
     background-color: $containers-background;
-    color: $font-color-on-colored-div;
+    color: lighten($font-color-basic, 15%);
 
     a {
       color: lighten($font-color-basic, 5%);
@@ -45,20 +36,20 @@ html, body {
     }
   }
 
-  .un-content-map {
+  .fs-content-map {
     @media (min-width: 992px) {
       min-height: 60vh;
-      max-height: calc(100vh - #{$un-footer-height} - #{$un-header-height});
+      max-height: calc(100vh - #{$fs-footer-height} - #{$fs-header-height});
     }
 
     @media (min-width: 768px) and (max-width: 991px) {
       min-height: 50vh;
-      max-height: calc(100vh - #{$un-footer-height} - #{$un-header-height});
+      max-height: calc(100vh - #{$fs-footer-height} - #{$fs-header-height});
     }
 
     @media (max-width: 767px) {
       min-height: 30vh;
-      max-height: calc(100vh - #{$un-footer-height} - #{$un-header-height});
+      max-height: calc(100vh - #{$fs-footer-height} - #{$fs-header-height});
     }
   }
 
@@ -80,22 +71,22 @@ html, body {
     }
   }
 
-  .un-content {
+  .fs-content {
     margin-top: 5rem;
     margin-left: auto;
     margin-right: auto;
     background-color: $containers-background;
     padding: 0;
 
-    .un-form {
-      .un-header {
+    .fs-form {
+      .fs-header {
         font-size: $font-size-header;
         color: white;
         margin-bottom: 1.5rem;
         display: block;
 
         .material-icons {
-          @include creatIconCircle('/assets/ux/building.png', 2.3em, 2.3rem, calc(4.3rem), white);
+          @include creatIconCircle('/assets/ux/sharon-chen-352895-unsplash.jpg', 2.3em, 2.3rem, calc(4.3rem), white);
           @include transform(0, -3rem, 0);
         }
       }
@@ -126,11 +117,11 @@ html, body {
         }
       }
 
-      .un-adds {
+      .fs-adds {
         background-color: $beige;
         padding-bottom: 1rem;
 
-        .un-create-account {
+        .fs-create-account {
           background-color: transparent;
 
           a {
@@ -150,6 +141,14 @@ html, body {
   .mat-tab-group.mat-primary .mat-tab-label:not(.mat-tab-disabled):focus, .mat-tab-group.mat-primary .mat-tab-link:not(.mat-tab-disabled):focus, .mat-tab-nav-bar.mat-primary .mat-tab-label:not(.mat-tab-disabled):focus, .mat-tab-nav-bar.mat-primary .mat-tab-link:not(.mat-tab-disabled):focus{
     border-bottom: 0.1rem solid $dirty-green;
     background: transparent;
+  }
+
+  /deep/ .mat-form-field-label-wrapper .mat-input-placeholder-wrapper .mat-form-field-placeholder-wrapper {
+    color: $text;
+  }
+
+  /deep/ .mat-form-field-label-wrapper {
+    color: $text;
   }
 
   .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar{

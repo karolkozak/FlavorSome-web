@@ -17,7 +17,7 @@ export class FacebookAuthService extends AuthenticationService {
               private socialAuthService: SocialAuthService,
               private customToastrService: CustomToastrService) {
     super(injector);
-    this.baseUrl = environment.unnamedMicroserviceUrl + environment.authPath;
+    this.baseUrl = environment.flavorSomeMicroserviceUrl + environment.authPath;
   }
 
   private loginWithFacebook(facebookToken: string): Observable<string> {

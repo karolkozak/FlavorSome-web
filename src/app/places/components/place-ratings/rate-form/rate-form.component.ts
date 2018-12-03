@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Rate} from '@app/places/models/rate';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 const ratingsConfig = {
   minRateValue: 1,
@@ -8,7 +8,7 @@ const ratingsConfig = {
 };
 
 @Component({
-  selector: 'un-rate-form',
+  selector: 'fs-rate-form',
   templateUrl: './rate-form.component.html',
   styleUrls: ['./rate-form.component.scss']
 })
@@ -24,12 +24,12 @@ export class RateFormComponent implements OnInit {
 
   ngOnInit() {
     this.rateForm = this.formBuilder.group({
-      rating: [this.rate.rating, Validators.compose([
+      rating: new FormControl(this.rate.rating, Validators.compose([
         Validators.required,
         Validators.min(this.ratingsConfig.minRateValue),
         Validators.max(this.ratingsConfig.maxRateValue)
-      ])],
-      comments: [this.rate.comments, Validators.required],
+      ])),
+      comments: new FormControl(this.rate.comments, Validators.required),
     });
   }
 

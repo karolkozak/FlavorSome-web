@@ -6,7 +6,7 @@ import {CONST_TITLES, CustomTitleService} from '@app/core/services/custom-title.
 
 
 @Component({
-  selector: 'un-registration-page',
+  selector: 'fs-registration-page',
   templateUrl: './registration-page.component.html',
   styleUrls: ['./registration-page.component.scss']
 })

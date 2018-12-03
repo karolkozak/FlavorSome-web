@@ -2,39 +2,33 @@
 @import 'variables';
 @import 'mixins';
 
-:host(un-place-details-page) {
-  .row.un-description {
+:host(fs-place-details-page) {
+  .row {
     margin: 0;
+  }
+
+  .row.fs-description {
     color: $text;
 
-    .un-main-content {
-      min-height: calc(100% - #{$un-header-height} - #{$un-footer-height} - #{$margin-large});
+    .fs-main-content {
+      min-height: calc(100% - #{$fs-header-height} - #{$fs-footer-height} - #{$margin-large});
       margin-top: $margin-large;
-      min-height: calc(100vh - #{$un-header-height} - #{$un-footer-height} - #{$margin-large});
+      min-height: calc(100vh - #{$fs-header-height} - #{$fs-footer-height} - #{$margin-large});
       margin-left: auto;
       margin-right: auto;
       text-align: center;
 
-      .un-visit {
+      .fs-place-details-header {
+        font-size: 27px;
+        font-family: serif;
+      }
+
+      .fs-visit {
         width: 100%;
         margin-bottom: $margin-medium;
       }
 
-      .un-place-header {
-        h1 {
-          display: inline-block;
-          font-size: $font-size-header;
-        }
-
-        button {
-          float: right;
-          margin-top: $margin-small;
-          padding: $padding-small $padding-large;
-        }
-
-      }
-
-      .un-place-navs {
+      .fs-place-navs {
         display: flex;
         height: 3rem;
         color: lighten($text, 35%);
@@ -47,6 +41,9 @@
           padding-top: $padding-small;
           padding-right: 0.2rem;
           border-bottom: solid $border-width-small white;
+          i {
+            vertical-align: middle !important;
+          }
 
           &:hover {
             border-bottom: solid $border-width-medium rgba($beige, 0.7);
@@ -71,21 +68,29 @@
         }
       }
 
-      .un-nav-content {
+      .fs-nav-content {
         margin: 1rem 0;
 
-        &.un-dark-div {
+        &.fs-dark-div {
           border: $border-width-medium solid $beige;
         }
 
-        div {
+        .fs-details-content .row {
+          min-height: 27rem;
+
+          .fs-details-content-map div {
+            padding: 0;
+          }
+        }
+
+        div, fs-place-details {
           padding: 1rem 0;
         }
       }
 
-      .un-content-map {
+      .fs-content-map {
         width: 100%;
-        height: calc(100vh - #{$un-footer-height} - #{$un-header-height} - 10vh);
+        height: calc(100vh - #{$fs-footer-height} - #{$fs-header-height} - 10vh);
       }
     }
   }

@@ -2,10 +2,10 @@
 @import "variables";
 @import "mixins";
 
-:host(un-user-page){
+:host(fs-user-page){
   margin: 0;
 
-  .un-user-page {
+  .fs-user-page {
     margin: 0;
     text-align: center;
 
@@ -13,31 +13,31 @@
       margin-top: $margin-large;
     }
 
-    .un-main-content {
+    .fs-main-content {
       margin-right: auto;
       margin-left: auto;
 
-      .un-details-row {
+      .fs-details-row {
         margin: 0;
         margin-top: $margin-large;
-        min-height: calc(100% - #{$un-header-height} - #{$un-footer-height} - 50vh);
-        min-height: calc(100vh - #{$un-header-height} - #{$un-footer-height} - 50vh);
+        min-height: calc(100% - #{$fs-header-height} - #{$fs-footer-height} - 50vh);
+        min-height: calc(100vh - #{$fs-header-height} - #{$fs-footer-height} - 50vh);
       }
 
-      .un-tile-content {
+      .fs-tile-content {
         text-align: justify;
         padding: $padding-large;
         border: $border-width-medium solid $beige;
 
         .material-icons {
-          @include creatIconCircle('/assets/ux/building.png', 2.3em, 2.3rem, calc(4.3rem), white);
+          @include creatIconCircle('/assets/ux/sharon-chen-352895-unsplash.jpg', 2.3em, 2.3rem, calc(4.3rem), white);
           @include transform(0, 3rem, 0);
           transition: width 1s;
         }
       }
     }
 
-    .un-nav-title {
+    .fs-nav-title {
       margin: $margin-medium 0;
     }
   }

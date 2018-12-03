@@ -1,14 +1,21 @@
-<div class="row un-login-component">
-  <div class="col-12 un-create-account">
+<div class="row fs-login-component">
+  <div class="col-12 fs-create-account">
     {{"Don't have an account yet?" | translate}} <a [routerLink]="['/registration']">{{'Create one!' | translate}}</a>
   </div>
-  <div class="col-lg-4 col-md-6 col-sm-10 un-content">
-    <div class="un-form">
-        <div class="un-header">
+  <div class="col-lg-4 col-md-6 col-sm-10 fs-content">
+    <div class="fs-form">
+        <div class="fs-header">
             <i class="material-icons">people</i>
         </div>
-        <un-custom-login [loginSuccess]="loginSuccess()"></un-custom-login>
-        <un-facebook-login [loginSuccess]="loginSuccess()"></un-facebook-login>
+        <fs-custom-login [loginSuccess]="loginSuccess()"></fs-custom-login>
+        <div class="fs-divider-wrapper">
+          <div class="fs-types-divider">
+            <span>
+              {{'OR' | translate}}
+            </span>
+          </div>
+        </div>
+        <fs-facebook-login [loginSuccess]="loginSuccess()"></fs-facebook-login>
       </div>
   </div>
 </div>
