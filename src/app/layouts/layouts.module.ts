@@ -19,6 +19,8 @@ import {ConfirmationPageComponent} from '@app/layouts/components/confirmation-pa
 import {AgmCoreModule} from '@agm/core';
 import { AboutPageComponent } from './components/about-page/about-page.component';
 import {Angular2PromiseButtonModule} from 'angular2-promise-buttons';
+import {PasswordRecoveryPageComponent} from '@app/layouts/components/password-recovery-page/password-recovery-page.component';
+import {ResetPasswordPageComponent} from '@app/layouts/components/reset-password-page/reset-password-page.component';
 
 @NgModule({
   imports: [
@@ -41,9 +43,11 @@ import {Angular2PromiseButtonModule} from 'angular2-promise-buttons';
     HomePageComponent,
     LoginPageComponent,
     NotFoundComponent,
+    PasswordRecoveryPageComponent,
     PlaceDetailsPageComponent,
     PlacesListPageComponent,
     RegistrationPageComponent,
+    ResetPasswordPageComponent,
     UserPageComponent,
     AboutPageComponent,
   ],

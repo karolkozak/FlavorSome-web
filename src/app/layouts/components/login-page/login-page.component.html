@@ -7,7 +7,11 @@
         <div class="fs-header">
             <i class="material-icons">people</i>
         </div>
+      <div class="fs-auth-name">
+        <h3><span>{{ 'Sign in' | translate }}</span></h3>
+      </div>
         <fs-custom-login [loginSuccess]="loginSuccess()"></fs-custom-login>
+        <span>{{ 'Have you forgot password?' | translate }} </span><a [routerLink]="['/password-recovery']">{{ 'Recover password' | translate }}</a>
         <div class="fs-divider-wrapper">
           <div class="fs-types-divider">
             <span>

@@ -91,6 +91,31 @@ html, body {
         }
       }
 
+      .fs-auth-name {
+        padding: 0 $padding-large;
+        margin-bottom: 1rem;
+        h3 {
+          overflow: hidden;
+          &:before, &:after {
+            background-color: #000;
+            content: "";
+            display: inline-block;
+            height: 1px;
+            position: relative;
+            vertical-align: middle;
+            width: 50%;
+          }
+          &:before {
+            right: 0.5em;
+            margin-left: -50%;
+          }
+          &:after {
+            left: 0.5em;
+            margin-right: -50%;
+          }
+        }
+      }
+
       .form-group {
         width: 70%;
         margin-left: auto;
@@ -132,13 +157,13 @@ html, body {
     }
   }
 
-  .mat-tab-label{
+  .mat-tab-label {
     background: transparent;
-    min-width: 60px!important;
+    min-width: 60px !important;
     border-bottom: 0.1rem solid white;
   }
 
-  .mat-tab-group.mat-primary .mat-tab-label:not(.mat-tab-disabled):focus, .mat-tab-group.mat-primary .mat-tab-link:not(.mat-tab-disabled):focus, .mat-tab-nav-bar.mat-primary .mat-tab-label:not(.mat-tab-disabled):focus, .mat-tab-nav-bar.mat-primary .mat-tab-link:not(.mat-tab-disabled):focus{
+  .mat-tab-group.mat-primary .mat-tab-label:not(.mat-tab-disabled):focus, .mat-tab-group.mat-primary .mat-tab-link:not(.mat-tab-disabled):focus, .mat-tab-nav-bar.mat-primary .mat-tab-label:not(.mat-tab-disabled):focus, .mat-tab-nav-bar.mat-primary .mat-tab-link:not(.mat-tab-disabled):focus {
     border-bottom: 0.1rem solid $dirty-green;
     background: transparent;
   }
@@ -151,7 +176,7 @@ html, body {
     color: $text;
   }
 
-  .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar{
+  .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
     background: transparent;
     border-bottom: 0.1rem solid $beige;
   }

@@ -27,6 +27,16 @@ export class CustomAuthService extends AuthenticationService {
     return this.makeRequest(userData, endpoint);
   }
 
+  recoverPassword(recoveryData: any): Observable<ApiResponseBody> {
+    const endpoint = this.baseUrl + environment.passwordRecovery;
+    return this.httpClient.post<ApiResponseBody>(endpoint, recoveryData);
+  }
+
+  resetPassword(resetPasswordData: any): Observable<ApiResponseBody> {
+    const endpoint = this.baseUrl + environment.resetPassword;
+    return this.httpClient.post<ApiResponseBody>(endpoint, resetPasswordData);
+  }
+
   confirmRegistration(token: string): Observable<ApiResponseBody> {
     const endpoint = `${this.baseUrl}${environment.confirmation}`;
     let params = new HttpParams();

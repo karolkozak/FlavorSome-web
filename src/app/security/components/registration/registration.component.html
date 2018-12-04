@@ -3,10 +3,8 @@
     <input type="text" class="form-control" name="firstName" formControlName="firstName" placeholder="{{'first name' | translate}}" tabindex="1">
     <input type="text" class="form-control" name="lastName" formControlName="lastName" placeholder="{{'last name' | translate}}" tabindex="1">
     <input type="email" class="form-control" name="email" formControlName="email" placeholder="{{'email' | translate}}" tabindex="1">
-    <!-- matTooltip="{{'Minimum 8 signs, at least upper case and digit' | translate}}"
-    [matTooltipPosition]="'right'" -->
     <div formGroupName="passwordGroup">
-      <input type="password" class="form-control" formControlName="password" placeholder="{{'password' | translate}}" tabindex="1">
+      <input type="password" matTooltip="{{'Minimum 8 signs, at least upper case and digit' | translate}}" [matTooltipPosition]="'right'" class="form-control" formControlName="password" placeholder="{{'password' | translate}}" tabindex="1">
       <span *ngIf="passwordIncorrect">
         {{'Password is incorrect' | translate}}
       </span>
@@ -22,7 +20,7 @@
   <span *ngIf="formIncorrect">
     {{'Some of fields have errors' | translate}}
   </span>
-  <button class="btn" type="submit">
+  <button class="btn" type="submit" [promiseBtn]="promiseButton">
     <i class="material-icons">people</i> {{'Create account' | translate}}
   </button>
   {{registrationError | translate}}
