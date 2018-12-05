@@ -21,6 +21,7 @@ import { AboutPageComponent } from './components/about-page/about-page.component
 import {Angular2PromiseButtonModule} from 'angular2-promise-buttons';
 import {PasswordRecoveryPageComponent} from '@app/layouts/components/password-recovery-page/password-recovery-page.component';
 import {ResetPasswordPageComponent} from '@app/layouts/components/reset-password-page/reset-password-page.component';
+import {ContactPageComponent} from '@app/layouts/components/contact-page/contact-page.component';
 
 @NgModule({
   imports: [
@@ -39,6 +40,7 @@ import {ResetPasswordPageComponent} from '@app/layouts/components/reset-password
   ],
   declarations: [
     ConfirmationPageComponent,
+    ContactPageComponent,
     DashboardComponent,
     HomePageComponent,
     LoginPageComponent,
@@ -53,6 +55,7 @@ import {ResetPasswordPageComponent} from '@app/layouts/components/reset-password
   ],
   exports: [
     ConfirmationPageComponent,
+    ContactPageComponent,
     DashboardComponent,
     HomePageComponent,
     LoginPageComponent,

@@ -9,8 +9,9 @@
       <fs-user-picture [picture]="currentUser?.picture"></fs-user-picture> {{userDisplayName}}
     </button>
     <button class="btn" *ngIf="!isLoggedIn" [routerLink]="['/login']">{{"Login" | translate}}</button>
-    <button class="btn" *ngIf="isLoggedIn" (click)="logout()">{{"Logout" | translate}}</button>
     <button class="btn" *ngIf="!isLoggedIn" [routerLink]="['/registration']">{{"Registration" | translate}}</button>
+    <button class="btn" [routerLink]="['/about']">{{ 'About FlavorSome' | translate }}</button>
+    <button class="btn" *ngIf="isLoggedIn" (click)="logout()">{{"Logout" | translate}}</button>
   </nav>
   <div class="fs-full-logo" [ngClass]="(showPlaceSearcher()) ? 'fs-logo-small' : 'fs-logo-big'">
     <img src="assets/ux/logo.svg">
