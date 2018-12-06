@@ -18,7 +18,7 @@
             <textarea class="form-control" formControlName="content" placeholder="{{'message' | translate}}"
                       rows="4" tabindex="1"></textarea>
           </div>
-          <button class="btn" [promiseBtn]="promiseButton" type="submit">
+          <button class="btn fs-form-button" [promiseBtn]="promiseButton" type="submit">
             <i class="material-icons">local_post_office</i> {{'Send message' | translate}}
           </button>
           <span *ngIf="formError">{{ 'All fields are required. Check email address correctness.' | translate }}</span>

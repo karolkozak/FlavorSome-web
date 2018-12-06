@@ -12,7 +12,7 @@
   <div class="fs-rate-details col-md-9 col-sm-12">
     <div class="row">
       <div class="col-md-6 col-sm-12">
-          <a *ngIf="placeDetails" [routerLink]="['/places', placeDetails?.place_id]">{{placeDetails?.name}}</a>
+          <a *ngIf="placeDetails" [routerLink]="['/places', placeDetails?.vendorPlaceId]">{{placeDetails?.name}}</a>
           <div>
             <fs-place-address [location]="placeDetails?.location"></fs-place-address>
           </div>
@@ -22,13 +22,11 @@
         </div>
         <div class="col-md-3 col-sm-12 fs-rate-edit">
           <button mat-raised-button
-                  [matTooltip]="'Edit' | translate"
                   *ngIf="allowEdit"
                   (click)="toggleEditForm()">
             <i class="material-icons">edit</i>
           </button>
           <button mat-raised-button
-                  [matTooltip]="'Remove' | translate"
                   *ngIf="allowRemove"
                   color="accent"
                   (click)="remove()">
