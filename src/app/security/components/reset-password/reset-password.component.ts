@@ -57,7 +57,7 @@ export class ResetPasswordComponent implements OnInit {
 
   resetPassword() {
     if (this.resetPasswordForm.valid) {
-      const resetData = {...squash(this.resetPasswordForm.value), email: this.email, token: this.token};
+      const resetData = {...squash(this.resetPasswordForm.value), token: this.token};
       const observable = this.customAuthService.resetPassword(resetData);
       this.promiseButton = observable.toPromise();
       observable.subscribe(
