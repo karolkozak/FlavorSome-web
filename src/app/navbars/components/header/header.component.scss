@@ -22,7 +22,7 @@
       }
 
       &.fs-logo-big img {
-        height: 12rem;
+        height: 10rem;
         width: auto;
       }
     }
@@ -36,7 +36,7 @@
     }
   }
 
-  nav {
+  nav  .navbar-collapse {
     background-color: transparent;
     color: $font-color-on-colored-div;
 
