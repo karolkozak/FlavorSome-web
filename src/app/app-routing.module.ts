@@ -18,6 +18,7 @@ import {AboutPageComponent} from '@app/layouts/components/about-page/about-page.
 import {PlaceResolverService} from '@app/security/services/resolvers/place-resolver.service';
 import {PasswordRecoveryPageComponent} from '@app/layouts/components/password-recovery-page/password-recovery-page.component';
 import {ResetPasswordPageComponent} from '@app/layouts/components/reset-password-page/reset-password-page.component';
+import {ContactPageComponent} from '@app/layouts/components/contact-page/contact-page.component';
 
 const appRoutes: Routes = [
   {path: '', component: HomePageComponent, pathMatch: 'full', canActivate: [LoginPageGuardService]},
@@ -35,6 +36,7 @@ const appRoutes: Routes = [
     canActivate: [AuthGuardService],
     resolve: {user: UserResolverService}
   },
+  {path: 'contact', component: ContactPageComponent},
   {path: 'about', component: AboutPageComponent},
   {path: 'not-found', component: NotFoundComponent},
   {path: '**', redirectTo: 'not-found'},

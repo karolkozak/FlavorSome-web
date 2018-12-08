@@ -1,0 +1,29 @@
+<div class="row fs-contact-component">
+  <div class="col-lg-6 col-md-8 col-sm-10 fs-content">
+    <div class="fs-form">
+      <div class="fs-header">
+        <i class="material-icons">contact_mail</i>
+      </div>
+      <div class="fs-auth-name">
+        <h3><span>{{ 'Contact' | translate }}</span></h3>
+      </div>
+      <div class="fs-contact-description">
+        {{ 'If You have any questions feel free to tell about them. We will reply as soon as possible.' | translate }}
+      </div>
+      <div class="fs-contact-form">
+        <form [formGroup]="messageForm" (ngSubmit)="sendMessage()">
+          <div class="form-group col-12">
+            <input type="email" class="form-control" name="email" formControlName="email" placeholder="{{'email' | translate}}"
+                   tabindex="1">
+            <textarea class="form-control" formControlName="content" placeholder="{{'message' | translate}}"
+                      rows="4" tabindex="1"></textarea>
+          </div>
+          <button class="btn" [promiseBtn]="promiseButton" type="submit">
+            <i class="material-icons">local_post_office</i> {{'Send message' | translate}}
+          </button>
+          <span *ngIf="formError">{{ 'All fields are required. Check email address correctness.' | translate }}</span>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
