@@ -1,0 +1,48 @@
+@import 'colors';
+@import 'variables';
+@import 'mixins';
+
+:host(fs-contact-page) {
+  margin: 0;
+
+  .fs-contact-component {
+    text-align: center;
+    margin: 0;
+
+    .fs-content {
+      margin-top: $margin-large * 1.8;
+      padding-bottom: $padding-medium;
+
+      .fs-header {
+        margin-bottom: 0;
+      }
+
+      .fs-contact-description {
+        margin-bottom: 1rem;
+        padding: 0 2rem;
+      }
+
+      .fs-contact-form {
+        form {
+          margin-bottom: 10px;
+
+          textarea {
+            background-color: transparent;
+            border: none;
+            border-bottom-style: inset;
+            border-bottom-color: white;
+            border-bottom-width: 2px;
+            border-bottom-left-radius: unset;
+            border-bottom-right-radius: unset;
+            &:focus {
+              -webkit-box-shadow: none;
+              -moz-box-shadow: none;
+              box-shadow: none;
+              border-bottom-color: $dirty-green;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -7,6 +7,8 @@ export const environment = {
   loginPath: '/login',
   logoutPath: '/logout',
   registration: '/register',
+  passwordRecovery: '/password-recovery',
+  resetPassword: '/reset-password',
   confirmation: '/confirmation',
   delete: '/delete',
   refresh: '/refresh',

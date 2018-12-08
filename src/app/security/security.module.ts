@@ -18,17 +18,19 @@ import {UserResolverService} from '@app/security/services/resolvers/user-resolve
 import {Angular2PromiseButtonModule} from 'angular2-promise-buttons';
 import {RecaptchaModule} from 'ng-recaptcha';
 import {PlaceResolverService} from '@app/security/services/resolvers/place-resolver.service';
+import { PasswordRecoveryComponent } from './components/password-recovery/password-recovery.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 
 @NgModule({
   imports: [
+    Angular2PromiseButtonModule.forRoot({
+      disableBtn: true,
+    }),
     CommonModule,
     HttpClientModule,
     RecaptchaModule,
     SocialLoginModule,
     SharedModule,
-    Angular2PromiseButtonModule.forRoot({
-      disableBtn: true,
-    }),
   ],
   providers: [
     {provide: AuthServiceConfig, useFactory: getAuthServiceConfig},
@@ -45,12 +47,16 @@ import {PlaceResolverService} from '@app/security/services/resolvers/place-resol
   declarations: [
     CustomLoginComponent,
     FacebookLoginComponent,
+    PasswordRecoveryComponent,
     RegistrationComponent,
+    ResetPasswordComponent,
   ],
   exports: [
     CustomLoginComponent,
     FacebookLoginComponent,
+    PasswordRecoveryComponent,
     RegistrationComponent,
+    ResetPasswordComponent,
   ]
 })
 export class SecurityModule {
