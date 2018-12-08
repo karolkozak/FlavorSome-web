@@ -1,7 +1,10 @@
 <div class="fs-footer">
-  <span class="fs-footer-text">
-    &copy; FlavorSome 2018
-  </span>
-  <span class="fs-footer-link"><a [routerLink]="['/contact']">{{ 'Contact' | translate }}</a></span>
-  <span class="fs-footer-link"><a [routerLink]="['/about']">{{ 'About FlavorSome' | translate }}</a></span>
+  <div class="row">
+    <div class="col-4"></div>
+    <div class="col-4 fs-copyrights">&copy; FlavorSome 2018</div>
+    <div class="col-4 fs-footer-link">
+      <span><a [routerLink]="['/contact']">{{ 'Contact' | translate }}</a></span>
+      <span><a [routerLink]="['/about']">{{ 'About FlavorSome' | translate }}</a></span>
+    </div>
+  </div>
 </div>
