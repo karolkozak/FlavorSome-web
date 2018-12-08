@@ -13,7 +13,7 @@
       <div class="fs-contact-form">
         <form [formGroup]="messageForm" (ngSubmit)="sendMessage()">
           <div class="form-group col-12">
-            <input type="text" class="form-control" formControlName="email" placeholder="{{'email' | translate}}"
+            <input type="email" class="form-control" name="email" formControlName="email" placeholder="{{'email' | translate}}"
                    tabindex="1">
             <textarea class="form-control" formControlName="content" placeholder="{{'message' | translate}}"
                       rows="4" tabindex="1"></textarea>

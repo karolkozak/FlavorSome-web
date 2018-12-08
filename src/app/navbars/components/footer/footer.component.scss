@@ -11,14 +11,17 @@
     line-height: $fs-footer-height;
     text-align: center;
     height: $fs-footer-height;
-  }
 
-  .fs-footer-text {
-    text-align: center;
-    margin: 0;
-  }
-  .fs-footer-link {
-    float: right;
-    margin-right: 10px;
+    .row {
+      margin: 0;
+
+      .fs-copyrights {
+        text-align: center;
+      }
+
+      .fs-footer-link {
+        text-align: right;
+      }
+    }
   }
 }
