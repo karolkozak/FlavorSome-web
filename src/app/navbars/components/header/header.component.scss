@@ -17,7 +17,7 @@
       text-align: center;
 
       &.fs-logo-small img {
-        height: 8rem;
+        height: 4rem;
         width: auto;
       }
 
@@ -37,13 +37,15 @@
   }
 
   nav {
-    span.fs-header-fill {
-      flex: 1 1 auto;
-    }
-
+    background-color: transparent;
     color: $font-color-on-colored-div;
 
-    button {
+    button i {
+      color: $font-color-on-colored-div;
+      vertical-align: middle !important;
+    }
+
+    a {
       color: $font-color-on-colored-div;
       background-color: transparent;
       padding: $padding-small $padding-large;
@@ -62,21 +64,18 @@
       }
 
       &:focus {
-        color: lighten($beige, 10%);
+      color: lighten($beige, 10%);
         background-color: rgba(255, 255, 255, .06);
         border-bottom: $border-width-medium solid lighten($beige, 10%);
       }
     }
 
-    button:first-child {
+    a:first-child {
       border-right: none;
     }
   }
 
-  .fs-app-name {
-    cursor: pointer;
-    padding-right: $padding-small;
-
+  .navbar-brand {
     img {
       height: calc(#{$font-size-header} + 0.2rem);
       width: auto;
