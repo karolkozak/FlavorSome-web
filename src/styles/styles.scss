@@ -61,6 +61,16 @@ html, body {
     font-size: $font-size-basic;
     border-radius: 0;
 
+    &.fs-form-button {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 65%;
+      i {
+        vertical-align: middle !important;
+      }
+    }
+
     &:focus {
       outline: 0;
       box-shadow: none;
