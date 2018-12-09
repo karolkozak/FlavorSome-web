@@ -24,7 +24,7 @@ export class RatesSectionComponent implements OnChanges {
     }
   }
 
-  private fetchRateList(pageableParams: PageableParams = this.pageableParams) {
+  fetchRateList(pageableParams: PageableParams = this.pageableParams) {
     this.placesService.getRates(this.placeId, pageableParams).subscribe(rates => this.pageableRates = rates);
   }
 

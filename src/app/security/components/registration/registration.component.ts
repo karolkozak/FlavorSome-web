@@ -22,7 +22,7 @@ export class RegistrationComponent implements OnInit {
   registrationUserForm: FormGroup;
   registrationError: ApiResponseBody;
   googleReCaptchaKey: string;
-  promiseButton: any;
+  promiseButton: Promise<void>;
 
   constructor(private customAuthService: CustomAuthService,
               private formBuilder: FormBuilder,
@@ -101,12 +101,13 @@ export class RegistrationComponent implements OnInit {
   async registerUser() {
     await this.getCaptcha();
     if (this.registrationUserForm.valid) {
+      this.promiseButton = new Promise(undefined);
       const userData = squash(this.registrationUserForm.value);
       const observable = this.customAuthService.registerUser(userData);
-      this.promiseButton = observable.toPromise();
       observable.subscribe(
         () => {
           this.registrationSuccess();
+          this.promiseButton = Promise.resolve();
         },
         registrationError => {
           console.error(registrationError);
@@ -115,6 +116,7 @@ export class RegistrationComponent implements OnInit {
               .showErrorToastr('Registration', 'Unable to register, try again later', registrationError.status);
           }
           this.registrationError = JSON.parse(registrationError.error);
+          this.promiseButton = Promise.resolve();
         }
       );
     }

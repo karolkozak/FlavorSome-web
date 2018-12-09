@@ -15,7 +15,7 @@ export class ResetPasswordComponent implements OnInit {
   @Input() email: string;
   @Input() token: string;
   resetPasswordForm: FormGroup;
-  promiseButton: any;
+  promiseButton: Promise<void>;
 
   constructor(private router: Router,
               private customAuthService: CustomAuthService,
@@ -57,13 +57,14 @@ export class ResetPasswordComponent implements OnInit {
 
   resetPassword() {
     if (this.resetPasswordForm.valid) {
+      this.promiseButton = new Promise(undefined);
       const resetData = {...squash(this.resetPasswordForm.value), token: this.token};
       const observable = this.customAuthService.resetPassword(resetData);
-      this.promiseButton = observable.toPromise();
       observable.subscribe(
         resetPasswordSuccess => {
           this.customToastrService.showSuccessToastr('Password recovery', resetPasswordSuccess.message);
           this.router.navigate(['/login']);
+          this.promiseButton = Promise.resolve();
         }
       );
     }

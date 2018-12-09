@@ -13,7 +13,7 @@ export class CustomLoginComponent implements OnInit {
   @Input() loginSuccess: () => void;
   loginUserForm: FormGroup;
   errorMessage: ApiResponseBody;
-  loginPromise: any;
+  promiseButton: Promise<void>;
 
   constructor(private customAuthService: CustomAuthService,
               private formBuilder: FormBuilder,
@@ -32,11 +32,12 @@ export class CustomLoginComponent implements OnInit {
 
   public login() {
     if (this.loginUserForm.valid) {
+      this.promiseButton = new Promise(undefined);
       const observable = this.customAuthService.login(this.loginUserForm.value);
-      this.loginPromise = observable.toPromise();
       observable.subscribe(
-        loginSuccess => {
+        () => {
           this.loginSuccess();
+          this.promiseButton = Promise.resolve();
         },
         loginError => {
           console.error(loginError);
@@ -44,6 +45,7 @@ export class CustomLoginComponent implements OnInit {
             this.customToastrService.showErrorToastr('Log in', 'Unable to log in, try again later', loginError.status);
           }
           this.errorMessage = JSON.parse(loginError.error);
+          this.promiseButton = Promise.resolve();
         }
       );
     }

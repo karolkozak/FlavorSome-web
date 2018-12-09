@@ -17,7 +17,7 @@ export class PasswordRecoveryComponent implements OnInit {
 
   passwordRecoveryForm: FormGroup;
   googleReCaptchaKey: string;
-  promiseButton: any;
+  promiseButton: Promise<void>;
 
   constructor(private formBuilder: FormBuilder,
               private customToastrService: CustomToastrService,
@@ -69,17 +69,19 @@ export class PasswordRecoveryComponent implements OnInit {
   async recoverPassword() {
     await this.getCaptcha();
     if (this.passwordRecoveryForm.valid) {
+      this.promiseButton = new Promise(undefined);
       const recoverData = this.passwordRecoveryForm.value;
       const observable = this.customAuthService.recoverPassword(recoverData);
-      this.promiseButton = observable.toPromise();
       observable.subscribe(
         recoveryPasswordSucces => {
           this.customToastrService.showSuccessToastr('Password recovery', recoveryPasswordSucces.message);
+          this.promiseButton = Promise.resolve();
         },
         recoveryPasswordError => {
           console.error(recoveryPasswordError);
           this.customToastrService
             .showErrorToastr('Password recovery', 'Unable to recover, try again later', recoveryPasswordError.status);
+          this.promiseButton = Promise.resolve();
         });
     }
   }

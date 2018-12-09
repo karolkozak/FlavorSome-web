@@ -15,7 +15,7 @@ import {CONST_TITLES, CustomTitleService} from '@app/core/services/custom-title.
 export class ContactPageComponent implements OnInit {
   messageForm: FormGroup;
   formError = false;
-  promiseButton: any;
+  promiseButton: Promise<void>;
 
   constructor(private formBuilder: FormBuilder,
               private aboutService: AboutService,
@@ -44,19 +44,23 @@ export class ContactPageComponent implements OnInit {
       this.userService.getCurrentUser().subscribe(user => {
         this.messageForm.setValue({email: user.email, content: ''});
       });
+    } else {
+      this.messageForm.setValue({email: '', content: ''});
     }
   }
 
   sendMessage() {
     if (this.messageForm.valid) {
+      this.promiseButton = new Promise(undefined);
       this.formError = false;
       const observable = this.aboutService.sendMessage(this.messageForm.value as AboutMessage);
-      this.promiseButton = observable.toPromise();
-      observable.subscribe(response => {
+      observable.subscribe(() => {
         this.customToastrService.showSuccessToastr('Success', 'Your message has been successfully sent!');
         this.setDefaultValues();
+        this.promiseButton = Promise.resolve();
       }, () => {
         this.customToastrService.showErrorToastr('Error', 'Something went wrong. Please try again later.');
+        this.promiseButton = Promise.resolve();
       });
     } else {
       this.formError = true;

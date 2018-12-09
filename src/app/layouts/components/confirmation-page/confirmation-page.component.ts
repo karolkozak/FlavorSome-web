@@ -17,7 +17,7 @@ export class ConfirmationPageComponent implements OnInit, OnDestroy {
   token: string;
   action: string;
   confirmationError = false;
-  promiseButton: any;
+  promiseButton: Promise<void>;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -56,24 +56,28 @@ export class ConfirmationPageComponent implements OnInit, OnDestroy {
   }
 
   deleteUserRegistration() {
+    this.promiseButton = new Promise(undefined);
     const observable = this.customAuthService.deleteRegistration(this.token);
-    this.promiseButton = observable.toPromise();
     observable.subscribe(() => {
       this.customToastrService.showSuccessToastr('Success', 'Account removed successfully');
       this.authenticationService.logout();
+      this.promiseButton = Promise.resolve();
     }, () => {
       this.confirmationError = true;
+      this.promiseButton = Promise.resolve();
     });
   }
 
   refreshToken() {
+    this.promiseButton = new Promise(undefined);
     const observable = this.customAuthService.refreshToken();
-    this.promiseButton = observable.toPromise();
     observable.subscribe(() => {
       this.customToastrService.showSuccessToastr('Success', 'Please check your email box. We have sent confirmation.');
       this.token = undefined;
+      this.promiseButton = Promise.resolve();
     }, () => {
       this.confirmationError = true;
+      this.promiseButton = Promise.resolve();
     });
   }
 
