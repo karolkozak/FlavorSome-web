@@ -81,6 +81,31 @@ html, body {
     }
   }
 
+  .fs-auth-name {
+    padding: 0 $padding-large;
+    margin-bottom: 1rem;
+    h3 {
+      overflow: hidden;
+      &:before, &:after {
+        background-color: $text;
+        content: "";
+        display: inline-block;
+        height: 1px;
+        position: relative;
+        vertical-align: middle;
+        width: 50%;
+      }
+      &:before {
+        right: 0.5em;
+        margin-left: -50%;
+      }
+      &:after {
+        left: 0.5em;
+        margin-right: -50%;
+      }
+    }
+  }
+
   .fs-content {
     margin-top: 5rem;
     margin-left: auto;
@@ -98,31 +123,6 @@ html, body {
         .material-icons {
           @include creatIconCircle('/assets/ux/sharon-chen-352895-unsplash.jpg', 2.3em, 2.3rem, calc(4.3rem), white);
           @include transform(0, -3rem, 0);
-        }
-      }
-
-      .fs-auth-name {
-        padding: 0 $padding-large;
-        margin-bottom: 1rem;
-        h3 {
-          overflow: hidden;
-          &:before, &:after {
-            background-color: #000;
-            content: "";
-            display: inline-block;
-            height: 1px;
-            position: relative;
-            vertical-align: middle;
-            width: 50%;
-          }
-          &:before {
-            right: 0.5em;
-            margin-left: -50%;
-          }
-          &:after {
-            left: 0.5em;
-            margin-right: -50%;
-          }
         }
       }
 

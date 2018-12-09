@@ -1,2 +1,15 @@
-<a [routerLink]="['/places', place.vendorPlaceId]"><h3 mat-line><b>{{place.name}}</b></h3></a>
-<fs-place-address [location]="place?.location"></fs-place-address>
+<div class="row">
+  <div class="col-md-3 col-lg-5">
+    <div class="fs-place-icon">
+      <i class="material-icons">restaurant_menu</i>
+    </div>
+    {{ 'Place Details'| translate }}
+  </div>
+  <div class="col-sm-12 col-md-9 col-lg-7">
+    <a [routerLink]="['/places', place.vendorPlaceId]">
+      <div mat-line>{{place.name}}</div>
+    </a>
+    <fs-place-address [location]="place?.location"></fs-place-address>
+  </div>
+</div>
+

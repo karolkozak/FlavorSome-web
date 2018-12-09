@@ -1,0 +1,14 @@
+@import "colors";
+@import "variables";
+
+:host(fs-places-list-page) {
+  .row {
+    margin: 0;
+
+    .fs-list-content {
+      margin-top: $margin-medium;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+}

@@ -1,5 +1,10 @@
-:host {
-  .fs-mat-list-item {
-    height: 100%;
+@import "colors";
+@import "variables";
+
+:host(fs-places-list) {
+  .fs-place-detail-full {
+    text-align: center;
+    border: $border-width-small solid $beige;
+    border-top-width: $border-width-large;
   }
 }

@@ -1,5 +1,10 @@
-<mat-list>
-  <mat-list-item *ngFor="let place of places" class="fs-mat-list-item">
-    <fs-places-list-item [place]="place"></fs-places-list-item>
-  </mat-list-item>
-</mat-list>
+<mat-grid-list [cols]="columnNumbers" [rowHeight]="columnHeight" [gutterSize]="glutter">
+  <mat-grid-tile
+      class="fs-place-detail-full"
+      *ngFor="let tile of places"
+      [colspan]="1"
+      [rowspan]="1"
+      [style.background]="white">
+    <fs-places-list-item [place]="tile"></fs-places-list-item>
+  </mat-grid-tile>
+</mat-grid-list>
