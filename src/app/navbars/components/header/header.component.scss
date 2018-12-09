@@ -36,14 +36,9 @@
     }
   }
 
-  nav  .navbar-collapse {
+  nav .navbar-collapse {
     background-color: transparent;
     color: $font-color-on-colored-div;
-
-    button i {
-      color: $font-color-on-colored-div;
-      vertical-align: middle !important;
-    }
 
     a {
       color: $font-color-on-colored-div;
@@ -75,10 +70,26 @@
     }
   }
 
+  nav .navbar-collapse.show {
+    a {
+      background-color: rgba(0, 0, 0, .43);
+      margin-bottom: $margin-extra-small;
+
+      &:hover {
+        color: $font-color-on-colored-div;
+      }
+    }
+  }
+
   .navbar-brand {
     img {
       height: calc(#{$font-size-header} + 0.2rem);
       width: auto;
     }
+  }
+
+  button i {
+    color: $font-color-on-colored-div;
+    vertical-align: middle !important;
   }
 }

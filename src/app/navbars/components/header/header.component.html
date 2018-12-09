@@ -1,6 +1,6 @@
 <div class="fs-header-full">
   <nav class="navbar navbar-expand-md navbar-light">
-    <fs-language-chooser class="d-sm-block d-xs-block d-md-none d-lg-none"></fs-language-chooser>
+    <fs-language-chooser class="d-block d-md-none"></fs-language-chooser>
     <a class="navbar-brand" [routerLink]="['/']">
       <img src="assets/ux/logo-mini-2.svg" alt="FlavorSome">
     </a>
@@ -15,7 +15,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto justify-content-end">
-        <li class="nav-item d-none d-sm-none d-md-block" *ngIf="!isLoggedIn">
+        <li class="nav-item d-none d-md-block" *ngIf="!isLoggedIn">
           <fs-language-chooser></fs-language-chooser>
         </li>
         <li class="nav-item" *ngIf="!isLoggedIn">
@@ -27,13 +27,13 @@
         <li class="nav-item" *ngIf="!isLoggedIn">
           <a class="nav-link" [routerLink]="['/registration']">{{"Registration" | translate}}</a>
         </li>
-        <li class="nav-item" *ngIf="!isLoggedIn">
+        <li class="nav-item">
           <a class="nav-link" [routerLink]="['/about']">{{ 'About FlavorSome' | translate }}</a>
         </li>
       </ul>
     </div>
   </nav>
-  <div class="fs-full-logo d-none d-md-block d-lg-block" [ngClass]="(showPlaceSearcher()) ? 'fs-logo-small' : 'fs-logo-big'">
+  <div class="fs-full-logo d-none d-md-block" [ngClass]="(showPlaceSearcher()) ? 'fs-logo-small' : 'fs-logo-big'">
     <img src="assets/ux/logo.svg">
   </div>
   <div class="fs-header-searcher">
