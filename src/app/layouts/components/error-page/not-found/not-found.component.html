@@ -1,6 +1,18 @@
-<h1>404</h1>
-<h2>{{ 'Cannot find element' | translate }}</h2>
-<h3>{{ 'Server has responded with 404 - Not Found.' | translate }}</h3>
-<div class="fs-not-found">
-  <span>{{ 'Check correctness of given address or use menu on the page.' | translate }}</span>
+<div class="row fs-not-found-component">
+  <div class="col-lg-6 col-md-8 col-sm-10 fs-content">
+    <div class="fs-form">
+      <div class="fs-header">
+        <i class="material-icons">filter_none</i>
+      </div>
+      <div class="fs-auth-name">
+        <h3><span>{{ '404 - Not Found' | translate }}</span></h3>
+      </div>
+      <div class="fs-not-found-description">
+        <span class="fs-elem-not-found">{{ 'Cannot find element' | translate }}</span>
+        <div class="fs-not-found">
+          <span>{{ 'Check correctness of address or use menu on the page.' | translate }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
