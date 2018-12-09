@@ -15,20 +15,25 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav ml-auto justify-content-end">
-        <li class="nav-item d-none d-md-block" *ngIf="!isLoggedIn">
+        <li class="nav-item d-none d-md-block">
           <fs-language-chooser></fs-language-chooser>
+        </li>
+        <li class="nav-item" *ngIf="currentUser">
+          <a class="nav-link" [routerLink]="['/users', currentUser.userId]">
+            <fs-user-picture [picture]="currentUser?.picture" ></fs-user-picture> {{userDisplayName}}
+          </a>
         </li>
         <li class="nav-item" *ngIf="!isLoggedIn">
           <a class="nav-link" [routerLink]="['/login']">{{"Login" | translate}}</a>
-        </li>
-        <li class="nav-item" *ngIf="isLoggedIn">
-          <a class="nav-link" (click)="logout()">{{"Logout" | translate}}</a>
         </li>
         <li class="nav-item" *ngIf="!isLoggedIn">
           <a class="nav-link" [routerLink]="['/registration']">{{"Registration" | translate}}</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/about']">{{ 'About FlavorSome' | translate }}</a>
+        </li>
+        <li class="nav-item" *ngIf="isLoggedIn">
+          <a class="nav-link" (click)="logout()">{{"Logout" | translate}}</a>
         </li>
       </ul>
     </div>

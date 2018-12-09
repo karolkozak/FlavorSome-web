@@ -17,12 +17,12 @@
       text-align: center;
 
       &.fs-logo-small img {
-        height: 4rem;
+        height: 6rem;
         width: auto;
       }
 
       &.fs-logo-big img {
-        height: 10rem;
+        height: 12rem;
         width: auto;
       }
     }
@@ -39,6 +39,10 @@
   nav .navbar-collapse {
     background-color: transparent;
     color: $font-color-on-colored-div;
+
+    .nav-item {
+      cursor: pointer;
+    }
 
     a {
       color: $font-color-on-colored-div;
@@ -70,7 +74,8 @@
     }
   }
 
-  nav .navbar-collapse.show {
+  nav .navbar-collapse.show,
+  nav .navbar-collapse.collapsing  {
     a {
       background-color: rgba(0, 0, 0, .43);
       margin-bottom: $margin-extra-small;
