@@ -1,8 +1,8 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable, Injector} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
-import {SocialUser} from '../libs/angular5-social-login/entities';
-import {AuthService as SocialAuthService, FacebookLoginProvider} from '../libs/angular5-social-login';
+import {SocialUser} from 'angular5-social-login/entities';
+import {AuthService as SocialAuthService, FacebookLoginProvider} from 'angular5-social-login';
 import {environment} from '@env/environment';
 import {AuthenticationService} from './authentication.service';
 import {CustomToastrService} from '@app/core/services/custom-toastr.service';

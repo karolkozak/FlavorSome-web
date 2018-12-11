@@ -6,5 +6,5 @@
   </div>
   <div class="fs-error" *ngIf="errorMessage"><i class="material-icons">warning</i>{{errorMessage?.message | translate}}
   </div>
-  <button class="btn" [promiseBtn]="loginPromise" type="submit">{{'Login' | translate}}</button>
+  <button class="btn" [promiseBtn]="promiseButton" type="submit">{{'Login' | translate}}</button>
 </form>

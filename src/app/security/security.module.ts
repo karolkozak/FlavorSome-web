@@ -2,7 +2,6 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {HttpClientModule} from '@angular/common/http';
 import {SharedModule} from '@app/shared/shared.module';
-import {AuthServiceConfig, SocialLoginModule} from './libs/angular5-social-login';
 import {getAuthServiceConfig} from './config/social-login-config';
 import {FacebookLoginComponent} from './components/facebook-login/facebook-login.component';
 import {AuthenticationService} from './services/authentication.service';
@@ -18,8 +17,9 @@ import {UserResolverService} from '@app/security/services/resolvers/user-resolve
 import {Angular2PromiseButtonModule} from 'angular2-promise-buttons';
 import {RecaptchaModule} from 'ng-recaptcha';
 import {PlaceResolverService} from '@app/security/services/resolvers/place-resolver.service';
-import { PasswordRecoveryComponent } from './components/password-recovery/password-recovery.component';
-import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import {PasswordRecoveryComponent} from './components/password-recovery/password-recovery.component';
+import {ResetPasswordComponent} from './components/reset-password/reset-password.component';
+import {AuthServiceConfig, SocialLoginModule} from 'angular5-social-login';
 
 @NgModule({
   imports: [

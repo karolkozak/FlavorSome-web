@@ -9,7 +9,7 @@ import {FacebookAuthService} from '../../services/facebook-auth.service';
 export class FacebookLoginComponent {
   @Input() loginSuccess: () => void;
 
-  promiseButton: any;
+  promiseButton: Promise<void>;
 
   constructor(private facebookAuthService: FacebookAuthService) {
   }

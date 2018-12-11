@@ -18,7 +18,7 @@ export class DashboardFormComponent implements OnInit {
   isLocationDisabled = !navigator.geolocation;
   placeTypes: string[];
   placesSearchForm: FormGroup;
-  promiseButton: any;
+  promiseButton: Promise<void>;
 
   constructor(private formBuilder: FormBuilder,
               private configService: ConfigService,
@@ -62,19 +62,21 @@ export class DashboardFormComponent implements OnInit {
 
   findPlaces(): any {
     if (this.placesSearchForm.valid) {
+      this.promiseButton = new Promise(undefined);
       const {query, distance} = this.placesSearchForm.value;
       // TODO: fetch user position if 'locate', when 'useBounds' get center point from map
       const placeSearchRequest = new PlaceSearchRequest({distance, query});
       const observable = this.placesSearchService.getPlaces(placeSearchRequest);
-      this.promiseButton = observable.toPromise();
       observable.subscribe(
         places => {
           // TODO display somewhere, specially on map; remove toastr from here
           this.customToastrService.showSuccessToastr('Places', `${places.length} places were found`);
+          this.promiseButton = Promise.resolve();
         },
         error => {
           console.error(error);
           this.customToastrService.showErrorToastr('Places', 'Unable to search, try again later', error.status);
+          this.promiseButton = Promise.resolve();
         }
       );
     }
