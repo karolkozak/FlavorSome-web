@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
 
-  flavorSomeMicroserviceUrl: 'http://ghost.kkopec.net:8080/api',
+  flavorSomeMicroserviceUrl: 'https://ghost.kkopec.net:8443/api',
   authPath: '/auth',
   facebookPath: '/facebook',
   loginPath: '/login',
