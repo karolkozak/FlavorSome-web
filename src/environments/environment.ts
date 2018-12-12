@@ -31,7 +31,7 @@ export const environment = {
   visit: '/visit',
   search: '/search',
 
-  about: '/about',
+  contact: '/contact',
   mail: '/mail',
 
   availableLanguages: ['pl', 'en'],
