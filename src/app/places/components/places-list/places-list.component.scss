@@ -4,7 +4,24 @@
 :host(fs-places-list) {
   .fs-place-detail-full {
     text-align: center;
-    border: $border-width-small solid $beige;
-    border-top-width: $border-width-large;
+    margin-bottom: $margin-small;
+
+    .fs-place-list-item-wrapper {
+      padding: $padding-small 0;
+      height: 100%;
+      border: $border-width-small solid $beige;
+      border-top-width: $border-width-large;
+
+      &:hover {
+        transition: border-top-color 0.5s ease;
+        border-top-color: $dirty-green;
+        cursor: pointer;
+        -webkit-transform: translateX(8px);
+        -moz-transform: translateX(8px);
+        -ms-transform: translateX(8px);
+        -o-transform: translateX(8px);
+        transform: translateX(8px);
+      }
+    }
   }
 }

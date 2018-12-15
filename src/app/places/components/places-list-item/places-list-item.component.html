@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" [routerLink]="['/places', place.vendorPlaceId]">
   <div class="col-md-3 col-lg-5">
     <div class="fs-place-icon">
       <i class="material-icons">restaurant_menu</i>
@@ -6,9 +6,7 @@
     {{ 'Place Details'| translate }}
   </div>
   <div class="col-sm-12 col-md-9 col-lg-7">
-    <a [routerLink]="['/places', place.vendorPlaceId]">
-      <div mat-line>{{place.name}}</div>
-    </a>
+    <div class="fs-place-name">{{place.name}}</div>
     <fs-place-address [location]="place?.location"></fs-place-address>
   </div>
 </div>
