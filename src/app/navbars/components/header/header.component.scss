@@ -15,15 +15,19 @@
 
     .fs-full-logo {
       text-align: center;
-
-      &.fs-logo-small img {
-        height: 6rem;
+      img {
+        max-width: 90%;
+        margin-right: auto;
+        margin-left: auto;
         width: auto;
       }
 
+      &.fs-logo-small img {
+        height: 5rem;
+      }
+
       &.fs-logo-big img {
-        height: 12rem;
-        width: auto;
+        height: 8rem;
       }
     }
 
