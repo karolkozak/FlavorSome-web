@@ -1,0 +1,30 @@
+@import "colors";
+@import "variables";
+
+:host(fs-places-list-item) {
+  width: 100%;
+
+  .row {
+    text-decoration: none;
+    margin: 0;
+    text-align: center;
+    color: $text;
+
+    .fs-place-name {
+      font-weight: bold;
+    }
+
+    /deep/ fs-place-picture {
+      img, i {
+        height: auto;
+        width: 100%;
+      }
+
+      i {
+        vertical-align: middle !important;
+        font-size: calc(3.5rem);
+      }
+    }
+
+  }
+}

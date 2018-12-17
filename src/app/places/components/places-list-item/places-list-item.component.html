@@ -1,2 +1,11 @@
-<a [routerLink]="['/places', place.vendorPlaceId]"><h3 mat-line><b>{{place.name}}</b></h3></a>
-<fs-place-address [location]="place?.location"></fs-place-address>
+<a class="row" [routerLink]="['/places', place.vendorPlaceId]">
+  <div class="col-md-3 col-lg-5">
+    <fs-place-picture [pictureUrl]="place?.picture" class="d-none d-md-block"></fs-place-picture>
+    <span *ngIf="!place?.picture">{{ 'Place Details'| translate }}</span>
+  </div>
+  <div class="col-sm-12 col-md-9 col-lg-7">
+    <div class="fs-place-name">{{place.name}}</div>
+    <fs-place-address [location]="place?.location"></fs-place-address>
+  </div>
+</a>
+

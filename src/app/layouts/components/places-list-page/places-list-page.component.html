@@ -1,5 +1,9 @@
-<div *ngIf="placeQuery">
-  {{'Results for' | translate}}: {{placeQuery}}
+<div class="row">
+  <div class="col-10 fs-list-content">
+    <div *ngIf="placeQuery" class="fs-auth-name">
+      <h3><span> {{'Results for' | translate}}: {{placeQuery}}</span></h3>
+    </div>
+    <fs-places-list *ngIf="places.length" [places]="places"></fs-places-list>
+    <div class="alert alert-info" *ngIf="fetchingDone && !places.length">{{'No results' | translate}}</div>
+  </div>
 </div>
-<fs-places-list *ngIf="places.length" [places]="places"></fs-places-list>
-<h2 *ngIf="fetchingDone && !places.length">{{'No results' | translate}}</h2>
