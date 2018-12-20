@@ -1,0 +1,25 @@
+@import "colors";
+@import "variables";
+@import "mixins";
+
+:host(fs-rate-form) {
+  button {
+    background-color: $dirty-green;
+  }
+
+  @media (min-width: 768px) {
+    mat-form-field {
+      width: 25rem;
+    }
+  }
+
+  @media (max-width: 767px) {
+    mat-form-field {
+      width: 100%;
+    }
+
+    button {
+      width: 100%;
+    }
+  }
+}

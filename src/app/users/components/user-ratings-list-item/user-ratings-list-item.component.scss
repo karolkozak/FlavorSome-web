@@ -20,14 +20,13 @@
       .fs-rate-details-div {
         height: 100%;
         width: 100%;
-        background-image: url('/assets/ux/petr-sevcovic-594807-unsplash.svg');
-        background-repeat: no-repeat;
-        background-size: cover;
-        position: relative;
+        background-color: $dirty-green;
         color: $font-color-on-colored-div;
         text-align: initial;
-        padding-left: 4em;
-        padding-top: 3em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
 
         .fs-rate-details {
           padding: $padding-medium;

@@ -1,0 +1,17 @@
+@import "variables";
+@import "colors";
+
+
+:host(fs-place-picture) {
+  img {
+    height: auto;
+    max-height: 10rem;
+    min-width: 20%;
+    max-width: 50%;
+    border: $border-width-large double $dirty-green;
+    border-radius: 50%;
+  }
+  i {
+    vertical-align: middle !important;
+  }
+}

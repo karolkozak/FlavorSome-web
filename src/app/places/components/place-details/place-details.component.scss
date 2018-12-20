@@ -1,5 +1,10 @@
-:host {
-  fs-place-picture {
-    display: block;
+:host(fs-place-details) {
+  .row {
+    margin: 0;
+
+    .fs-aditional {
+      vertical-align: middle !important;
+      font-size: 3rem;
+    }
   }
 }

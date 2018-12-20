@@ -1,0 +1,13 @@
+@import "colors";
+@import "variables";
+@import "mixins";
+
+:host(fs-rates-list){
+  .fs-rates-list-wrapper {
+    margin: $margin-medium 0;
+
+    .fs-rates {
+      margin-top: $margin-medium;
+    }
+  }
+}

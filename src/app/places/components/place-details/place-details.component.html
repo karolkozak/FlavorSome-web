@@ -1,15 +1,23 @@
 <div *ngIf="placeDetails; else other_content">
   <div class="row">
     <div class="col-12">
-      <fs-place-picture [pictureUrl]="placeDetails?.picture"></fs-place-picture>
-      <fs-place-address [location]="placeDetails?.location"></fs-place-address>
-      <div *ngIf="placeDetails?.rating">{{ 'Our rating' | translate }}: {{placeDetails.rating}}</div>
-      <div *ngIf="placeDetails?.description">{{placeDetails.description}}</div>
-      <div *ngIf="placeDetails?.link">
-        {{ 'Facebook Page' | translate }}: <a href="{{placeDetails?.link}}" target="_blank">{{ placeDetails.name }}</a>
-      </div>
-      <div *ngIf="placeDetails?.website">
-        {{ "Place's website" | translate }}: <a href="{{placeDetails?.website}}" target="_blank">{{ placeDetails.name }}</a>
+      <div class="row">
+        <div class="col-xs-12 col-sm-4 col-md-12">
+          <i class="material-icons fs-aditional">place</i>
+          <fs-place-picture [pictureUrl]="placeDetails?.picture"></fs-place-picture>
+          <i class="material-icons fs-aditional">restaurant</i>
+        </div>
+        <div class="col-xs-12 col-sm-8 col-md-12">
+          <fs-place-address [location]="placeDetails?.location"></fs-place-address>
+          <div *ngIf="placeDetails?.rating">{{ 'Our rating' | translate }}: {{placeDetails.rating}}</div>
+          <div *ngIf="placeDetails?.description">{{placeDetails.description}}</div>
+          <div *ngIf="placeDetails?.link">
+            {{ 'Facebook Page' | translate }}: <a href="{{placeDetails?.link}}" target="_blank">{{ placeDetails.name }}</a>
+          </div>
+          <div *ngIf="placeDetails?.website">
+            {{ "Place's website" | translate }}: <a href="{{placeDetails?.website}}" target="_blank">{{ placeDetails.name }}</a>
+          </div>
+        </div>
       </div>
     </div>
   </div>

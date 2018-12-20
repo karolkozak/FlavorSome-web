@@ -121,7 +121,7 @@ html, body {
         display: block;
 
         .material-icons {
-          @include creatIconCircle('/assets/ux/sharon-chen-352895-unsplash.jpg', 2.3em, 2.3rem, calc(4.3rem), white);
+          @include creatIconCircle('/assets/ux/tile.jpg', 2.3em, 2.3rem, calc(4.3rem), white);
           @include transform(0, -3rem, 0);
         }
       }
@@ -212,5 +212,17 @@ html, body {
     border: none;
     margin: $margin-small;
     border-radius: 0;
+  }
+
+  @-webkit-keyframes autofill {
+    to {
+        color: #666;
+        background: transparent;
+    }
+  }
+
+  input:-webkit-autofill {
+    -webkit-animation-name: autofill;
+    -webkit-animation-fill-mode: both;
   }
 }
