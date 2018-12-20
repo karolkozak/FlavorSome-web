@@ -1,5 +1,6 @@
 export const environment = {
   production: false,
+  qa: true,
 
   flavorSomeMicroserviceUrl: 'https://ghost.kkopec.net:8443/api',
   authPath: '/auth',
