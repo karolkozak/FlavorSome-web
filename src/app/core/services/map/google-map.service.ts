@@ -74,8 +74,7 @@ export class GoogleMapService extends MapService {
     circle.setCenter(pos);
   }
 
-  moveMarker(marker: google.maps.Marker, pos: google.maps.LatLngLiteral): any {
-    if (!marker) { return; }
+  moveMarker(pos: google.maps.LatLngLiteral, marker = this.userMarker): any {
     marker.setPosition(pos);
   }
 

@@ -27,6 +27,7 @@ export class HereMapService extends MapService {
     this.platform = new H.service.Platform({
       'app_id': environment.here.app_id,
       'app_code': environment.here.app_code,
+      useHTTPS: true,
     });
     this.defaultLayers = this.platform.createDefaultLayers();
   }
@@ -81,8 +82,8 @@ export class HereMapService extends MapService {
   }
 
   updateUserPosition(pos: H.geo.Point) {
-    this.moveMarker(this.userMarker, pos);
-    this.moveCircle(this.userCircle, pos);
+    this.moveMarker(pos, this.userMarker);
+    this.moveCircle(pos, this.userCircle);
   }
 
   hideUserPosition() {
@@ -102,14 +103,12 @@ export class HereMapService extends MapService {
     return marker;
   }
 
-  moveMarker(marker: H.map.Marker, pos: H.geo.Point): void {
-    if (!marker) { return; }
+  moveMarker(pos: H.geo.Point, marker = this.userMarker): void {
     marker.setPosition(pos);
   }
 
   @Prop('map')
-  removeMarker(marker: H.map.Marker): void {
-    if (!marker) { return; }
+  removeMarker(marker = this.userMarker): void {
     this.map.removeObject(marker);
   }
 
@@ -141,10 +140,14 @@ export class HereMapService extends MapService {
   }
 
   showPlaceMarkers(places: Place[]) {
-    places.forEach((place: Place) => {
-      const marker = this.addPlaceMarker(place);
-      this.placeMarkers.push(marker);
-    });
+    // TODO: investigate why some places are missing data
+    places.filter((place: Place) => {
+        return place.location && place.name;
+      })
+      .forEach((place: Place) => {
+        const marker = this.addPlaceMarker(place);
+        this.placeMarkers.push(marker);
+      });
   }
 
   removePlaceMarkers() {
@@ -153,7 +156,7 @@ export class HereMapService extends MapService {
       bubble.dispose();
     });
     this.placeMarkers.forEach((marker: H.map.Group) => {
-      this.map.removeObjects(marker);
+      this.map.removeObject(marker);
       marker.dispose();
     });
     this.placeMarkers = [];
@@ -167,6 +170,7 @@ export class HereMapService extends MapService {
     group.addObject(marker);
 
     group.addEventListener('tap', (event: H.util.Event) => {
+      this.ui.getBubbles().forEach((infobubble: H.ui.InfoBubble) => infobubble.close());
       const bubble = new H.ui.InfoBubble(event.target.getPosition(), {
         content: event.target.getData()
       });

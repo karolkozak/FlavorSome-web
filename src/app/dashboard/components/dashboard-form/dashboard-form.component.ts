@@ -8,6 +8,7 @@ import {environment} from '@env/environment';
 import {MapService} from '@app/core/services/map/map.service';
 import {LatLng} from '@app/shared/models/LatLng.interface';
 import {Subscription} from 'rxjs/Subscription';
+import {ActivatedRoute} from '@angular/router';
 
 
 @Component({
@@ -28,6 +29,7 @@ export class DashboardFormComponent implements OnInit, OnDestroy {
 
   constructor(private formBuilder: FormBuilder,
               private configService: ConfigService,
+              private route: ActivatedRoute,
               private placesSearchService: PlacesSearchService,
               private mapService: MapService,
               private customToastrService: CustomToastrService) {
@@ -36,12 +38,14 @@ export class DashboardFormComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.placeTypes = this.configService.getAvailablePlaceTypes();
     // TODO: retrieve query param from router, find places and display on map (if any exists). See place-searcher.component.ts
+    const query = this.route.snapshot.queryParamMap.get('query');
 
     const range = environment.mapDefaults.range;
     const [minRange, maxRange] = environment.mapDefaults.rangeBounds;
 
     this.placesSearchForm = this.formBuilder.group({
-      query: new FormControl('', Validators.compose([
+      query: new FormControl(query, Validators.compose([
+        Validators.required,
         Validators.minLength(3)
       ])),
       distance: new FormControl(range, Validators.compose([

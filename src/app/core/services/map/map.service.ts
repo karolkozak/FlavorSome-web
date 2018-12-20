@@ -30,8 +30,8 @@ export abstract class MapService {
   abstract hideUserPosition(): void;
 
   abstract addMarker(pos: any): any;
-  abstract moveMarker(marker: any, pos: LatLng): any;
-  abstract removeMarker(marker: any): void;
+  abstract moveMarker(pos: LatLng, marker?: any): any;
+  abstract removeMarker(marker?: any): void;
 
   abstract drawCircle(center: any, radius: number): any;
   abstract moveCircle(pos: LatLng, circle?: any): any;

@@ -1,10 +1,12 @@
 import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {environment} from '@env/environment';
-import {PlacesSearchService} from '@app/dashboard/services/places-search.service';
-import {MapService} from '@app/core/services/map/map.service';
-import {MapServiceAPI} from '@app/shared/models/MapAPI';
-import {LatLng} from '@app/shared/models/LatLng.interface';
 import {Subscription} from 'rxjs/Subscription';
+import {Subject} from 'rxjs/Subject';
+
+import {MapService} from '@app/core/services/map/map.service';
+import {PlacesSearchService} from '@app/dashboard/services/places-search.service';
+import {LatLng} from '@app/shared/models/LatLng.interface';
+import {MapServiceAPI} from '@app/shared/models/MapAPI';
+import {environment} from '@env/environment';
 
 @Component({
   selector: 'fs-dashboard-map',
@@ -18,6 +20,7 @@ export class DashboardMapComponent implements OnInit, OnDestroy, AfterViewInit {
   mapCenter: LatLng;
   zoom: number;
 
+  private onDestroy = new Subject();
   private userPositionSub: Subscription;
   private searchRadiusSub: Subscription;
   searchRadius: number;
@@ -31,17 +34,21 @@ export class DashboardMapComponent implements OnInit, OnDestroy, AfterViewInit {
 
   ngOnInit() {
     ({coords: this.mapCenter, zoom: this.zoom} = environment.mapDefaults);
-    this.userPositionSub = this.placesSearchService.userPosition$.subscribe((pos: LatLng|undefined) => this.setPosition(pos));
-    this.searchRadiusSub = this.placesSearchService.searchRadius$.subscribe((rad: number|undefined) => {
-      this.searchRadius = rad;
-      this.mapService.redrawCircle(rad);
-    });
+    this.userPositionSub = this.placesSearchService.userPosition$
+      .takeUntil(this.onDestroy)
+      .subscribe((pos: LatLng|undefined) => this.setPosition(pos));
+    this.searchRadiusSub = this.placesSearchService.searchRadius$
+      .takeUntil(this.onDestroy)
+      .subscribe((rad: number|undefined) => {
+        this.searchRadius = rad;
+        this.mapService.redrawCircle(rad);
+      });
     this.placesSearchService.locateUser();
   }
 
   ngOnDestroy() {
-    this.userPositionSub.unsubscribe();
-    this.searchRadiusSub.unsubscribe();
+    this.onDestroy.next();
+    this.onDestroy.complete();
   }
 
   public ngAfterViewInit() {
