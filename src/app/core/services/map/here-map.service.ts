@@ -18,6 +18,7 @@ export class HereMapService implements MapService {
     this.platform = new H.service.Platform({
       'app_id': environment.here.app_id,
       'app_code': environment.here.app_code,
+      useHTTPS: true,
     });
     this.defaultLayers = this.platform.createDefaultLayers();
   }

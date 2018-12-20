@@ -12,7 +12,14 @@
     </button>
   </div>
   <div class="modal-body">
-    {{ 'This page is in development mode. Some of functionalities may not be working or contains bugs.' | translate }}
+    <div class="fs-modal-dev-body">
+      <div class="fs-modal-icon">
+        <img src="assets/ux/favicon.svg">
+      </div>
+      <span>
+        {{ 'This page is in development mode. Some of functionalities may not be working or contains bugs.' | translate }}
+      </span>
+    </div>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-dark" (click)="modalRef.close()">{{ 'Close' | translate }}</button>
