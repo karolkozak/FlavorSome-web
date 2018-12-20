@@ -27,9 +27,18 @@
       }
 
       .loader {
-        margin-top: 35px;
         text-align: center;
       }
+
+      .column img {
+        max-width: 90%;
+        margin-right: auto;
+        margin-left: auto;
+        width: auto;
+        height: 8rem;
+        margin-bottom: 2vh;
+      }
+
       .square {
         display: inline-block;
         margin: 0 10px;
@@ -53,6 +62,10 @@
       .square5 {
         animation-delay: 0.4s;
       }
+      .square6 {
+        animation-delay: 0.5s;
+      }
+
       @keyframes loading {
         10% {
           transform: translateY(-30px);
@@ -70,6 +83,7 @@
         <div class="square square3"></div>
         <div class="square square4"></div>
         <div class="square square5"></div>
+        <div class="square square6"></div>
       </div>
     </div>
   </fs-root>
