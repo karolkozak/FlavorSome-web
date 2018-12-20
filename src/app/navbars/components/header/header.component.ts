@@ -39,7 +39,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   public logout() {
-    this.facebookAuthService.isFbAuthenticated()
+    this.authenticationService.isFbAuthenticated()
       ? this.facebookAuthService.facebookLogout()
       : this.authenticationService.logout();
   }

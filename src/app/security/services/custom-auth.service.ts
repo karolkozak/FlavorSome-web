@@ -1,4 +1,4 @@
-import {Injectable, Injector} from '@angular/core';
+import {Injectable} from '@angular/core';
 
 import {AuthenticationService} from './authentication.service';
 import {environment} from '@env/environment';
@@ -8,12 +8,10 @@ import {Observable} from 'rxjs/Observable';
 import {ApiResponseBody} from '@app/security/models/api-response-body';
 
 @Injectable()
-export class CustomAuthService extends AuthenticationService {
-
+export class CustomAuthService {
   private baseUrl: string;
 
-  constructor(injector: Injector, private httpClient: HttpClient) {
-    super(injector);
+  constructor(private authenticationService: AuthenticationService, private httpClient: HttpClient) {
     this.baseUrl = environment.flavorSomeMicroserviceUrl + environment.authPath;
   }
 
@@ -57,7 +55,7 @@ export class CustomAuthService extends AuthenticationService {
 
   private makeRequest(userData: any, endpoint: string): Observable<string> {
     return this.httpClient.post<string>(endpoint, userData, {responseType: 'text'} as any as {}).pipe(
-      tap(response => this.setTokenDataInStorage(response))
+      tap(response => this.authenticationService.setTokenDataInStorage(response))
     );
   }
 }
