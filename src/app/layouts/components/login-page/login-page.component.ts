@@ -23,11 +23,12 @@ export class LoginPageComponent implements OnInit {
 
   loginSuccess() {
     return () => {
-      this.userService.getCurrentUser().subscribe();
-      this.authenticationService.announceLogin();
-      const redirectUrl = this.authenticationService.getRedirectUrl() || '';
-      this.authenticationService.unsetRedirectUrl();
-      this.router.navigate([redirectUrl]);
+      this.userService.getCurrentUser().subscribe(() => {
+        const redirectUrl = this.authenticationService.getRedirectUrl() || '';
+        this.authenticationService.unsetRedirectUrl();
+        this.authenticationService.announceLogin();
+        this.router.navigate([redirectUrl]);
+      });
     };
   }
 }
