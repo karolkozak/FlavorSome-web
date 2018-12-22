@@ -4,12 +4,14 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {environment} from '@env/environment';
 import {CustomToastrService} from '@app/core/services/custom-toastr.service';
 import {CustomAuthService} from '@app/security/services/custom-auth.service';
+import {DestroySubscribers} from '@app/shared/decorators/destroy-subscribers.decorator';
 
 @Component({
   selector: 'fs-password-recovery',
   templateUrl: './password-recovery.component.html',
   styleUrls: ['./password-recovery.component.scss']
 })
+@DestroySubscribers()
 export class PasswordRecoveryComponent implements OnInit {
   @ViewChild(RecaptchaComponent) captchaRef: RecaptchaComponent;
 
@@ -18,6 +20,7 @@ export class PasswordRecoveryComponent implements OnInit {
   passwordRecoveryForm: FormGroup;
   googleReCaptchaKey: string;
   promiseButton: Promise<void>;
+  public subscribers: any = {};
 
   constructor(private formBuilder: FormBuilder,
               private customToastrService: CustomToastrService,
@@ -71,8 +74,7 @@ export class PasswordRecoveryComponent implements OnInit {
     if (this.passwordRecoveryForm.valid) {
       this.promiseButton = new Promise(undefined);
       const recoverData = this.passwordRecoveryForm.value;
-      const observable = this.customAuthService.recoverPassword(recoverData);
-      observable.subscribe(
+      this.subscribers.recover = this.customAuthService.recoverPassword(recoverData).subscribe(
         recoveryPasswordSucces => {
           this.customToastrService.showSuccessToastr('Password recovery', recoveryPasswordSucces.message);
           this.promiseButton = Promise.resolve();

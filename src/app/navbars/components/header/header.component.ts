@@ -1,18 +1,19 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthenticationService} from '@app/security/services/authentication.service';
 import {FacebookAuthService} from '@app/security/services/facebook-auth.service';
 import {UserService} from '@app/core/services/user.service';
 import {User} from '@app/security/models/user';
-import {Subscription} from 'rxjs/Subscription';
+import {DestroySubscribers} from '@app/shared/decorators/destroy-subscribers.decorator';
 
 @Component({
   selector: 'fs-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit, OnDestroy {
+@DestroySubscribers()
+export class HeaderComponent implements OnInit {
 
-  private subscription: Subscription;
+  public subscribers: any = {};
   currentUser: User;
 
   constructor(private facebookAuthService: FacebookAuthService,
@@ -26,11 +27,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   private getCurrentUser() {
     if (this.isLoggedIn) {
-      this.userService.getCurrentUser().subscribe(currentUser => this.currentUser = {...currentUser});
+      this.subscribers.user = this.userService.getCurrentUser().subscribe(currentUser => this.currentUser = {...currentUser});
     }
-    this.subscription = this.authenticationService.loginAnnounce.subscribe(() => {
+    this.subscribers.loginAnnouncement = this.authenticationService.loginAnnounce.subscribe(() => {
       if (this.isLoggedIn) {
-        this.userService.getCurrentUser().subscribe(currentUser => this.currentUser = {...currentUser});
+        this.subscribers.currentUser = this.userService.getCurrentUser().subscribe(currentUser => this.currentUser = {...currentUser});
       } else {
         this.currentUser = undefined;
         this.userService.removeCurrentUser();
@@ -54,9 +55,5 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   get userDisplayName(): string {
     return `${this.currentUser.firstname} ${this.currentUser.lastname}`;
-  }
-
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
   }
 }

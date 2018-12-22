@@ -5,17 +5,20 @@ import {squash} from '@app/shared/utils/object-utils';
 import {CustomToastrService} from '@app/core/services/custom-toastr.service';
 import {CustomAuthService} from '@app/security/services/custom-auth.service';
 import {Router} from '@angular/router';
+import {DestroySubscribers} from '@app/shared/decorators/destroy-subscribers.decorator';
 
 @Component({
   selector: 'fs-reset-password',
   templateUrl: './reset-password.component.html',
   styleUrls: ['./reset-password.component.scss']
 })
+@DestroySubscribers()
 export class ResetPasswordComponent implements OnInit {
   @Input() email: string;
   @Input() token: string;
   resetPasswordForm: FormGroup;
   promiseButton: Promise<void>;
+  public subscribers: any = {};
 
   constructor(private router: Router,
               private customAuthService: CustomAuthService,
@@ -59,8 +62,7 @@ export class ResetPasswordComponent implements OnInit {
     if (this.resetPasswordForm.valid) {
       this.promiseButton = new Promise(undefined);
       const resetData = {...squash(this.resetPasswordForm.value), token: this.token};
-      const observable = this.customAuthService.resetPassword(resetData);
-      observable.subscribe(
+      this.subscribers.reset = this.customAuthService.resetPassword(resetData).subscribe(
         resetPasswordSuccess => {
           this.customToastrService.showSuccessToastr('Password recovery', resetPasswordSuccess.message);
           this.router.navigate(['/login']);

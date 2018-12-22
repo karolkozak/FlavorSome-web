@@ -3,17 +3,21 @@ import {CustomAuthService} from '../../services/custom-auth.service';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ApiResponseBody} from '@app/security/models/api-response-body';
 import {CustomToastrService} from '@app/core/services/custom-toastr.service';
+import {DestroySubscribers} from '@app/shared/decorators/destroy-subscribers.decorator';
 
 @Component({
   selector: 'fs-custom-login',
   templateUrl: './custom-login.component.html',
   styleUrls: ['./custom-login.component.scss']
 })
+@DestroySubscribers()
 export class CustomLoginComponent implements OnInit {
   @Input() loginSuccess: () => void;
   loginUserForm: FormGroup;
   errorMessage: ApiResponseBody;
   promiseButton: Promise<void>;
+
+  public subscribers: any = {};
 
   constructor(private customAuthService: CustomAuthService,
               private formBuilder: FormBuilder,
@@ -33,8 +37,7 @@ export class CustomLoginComponent implements OnInit {
   public login() {
     if (this.loginUserForm.valid) {
       this.promiseButton = new Promise(undefined);
-      const observable = this.customAuthService.login(this.loginUserForm.value);
-      observable.subscribe(
+      this.subscribers.authLogin = this.customAuthService.login(this.loginUserForm.value).subscribe(
         () => {
           this.loginSuccess();
           this.promiseButton = Promise.resolve();

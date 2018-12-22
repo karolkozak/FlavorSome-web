@@ -3,16 +3,18 @@ import {environment} from '@env/environment';
 import {PlacesSearchService} from '@app/dashboard/services/places-search.service';
 import {MapService} from '@app/core/services/map/map.service';
 import {MapServiceAPI} from '@app/shared/models/MapAPI';
+import {DestroySubscribers} from '@app/shared/decorators/destroy-subscribers.decorator';
 
 @Component({
   selector: 'fs-dashboard-map',
   templateUrl: './dashboard-map.component.html',
   styleUrls: ['./dashboard-map.component.scss']
 })
+@DestroySubscribers()
 export class DashboardMapComponent implements OnInit, AfterViewInit {
   providers = MapServiceAPI;
   // map: google.maps.Map;
-  mapCenter: {lat: number, lng: number};
+  mapCenter: { lat: number, lng: number };
   zoom: number;
   userPosition: google.maps.LatLng;
   searchRadius: number;
@@ -20,6 +22,7 @@ export class DashboardMapComponent implements OnInit, AfterViewInit {
 
   userMarker: any;
   userCircle: any;
+  public subsrcibers: any = {};
 
   @ViewChild('map')
   public mapElement: ElementRef;
@@ -30,8 +33,10 @@ export class DashboardMapComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     ({coords: this.mapCenter, zoom: this.zoom} = environment.mapDefaults);
-    this.placesSearchService.userPosition.subscribe((pos: google.maps.LatLngLiteral|undefined) => this.setPosition(pos));
-    this.placesSearchService.searchRadius.subscribe((rad: number|undefined) => this.mapService.redrawCircle(this.userCircle, rad));
+    this.subsrcibers.userPosition = this.placesSearchService.userPosition
+      .subscribe((pos: google.maps.LatLngLiteral | undefined) => this.setPosition(pos));
+    this.subsrcibers.searchRadius = this.placesSearchService.searchRadius
+      .subscribe((rad: number | undefined) => this.mapService.redrawCircle(this.userCircle, rad));
     this.placesSearchService.locateUser();
   }
 
@@ -41,7 +46,7 @@ export class DashboardMapComponent implements OnInit, AfterViewInit {
     }
   }
 
-  setPosition(pos: any|undefined) {
+  setPosition(pos: any | undefined) {
     this.userPosition = pos;
 
     if (!!pos) {

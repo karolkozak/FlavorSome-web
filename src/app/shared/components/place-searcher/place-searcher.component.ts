@@ -6,6 +6,7 @@ import {AuthenticationService} from '@app/security/services/authentication.servi
 import {PlacesSearchService} from '@app/dashboard/services/places-search.service';
 import {PlaceSearchRequest} from '@app/places/models/place-search-request';
 import {Place} from '@app/places/models/place';
+import {DestroySubscribers} from '@app/shared/decorators/destroy-subscribers.decorator';
 
 
 @Component({
@@ -13,10 +14,12 @@ import {Place} from '@app/places/models/place';
   templateUrl: './place-searcher.component.html',
   styleUrls: ['./place-searcher.component.scss']
 })
+@DestroySubscribers()
 export class PlaceSearcherComponent implements OnInit {
 
   places: Place[] = [];
   searchForm: FormGroup;
+  public subscribers: any = {};
 
   constructor(private authenticationService: AuthenticationService,
               private router: Router,
@@ -36,7 +39,7 @@ export class PlaceSearcherComponent implements OnInit {
   }
 
   private initializeSearch() {
-    this.searchForm.valueChanges
+    this.subscribers.searchForm = this.searchForm.valueChanges
       .pipe(
         debounceTime(744),
         distinctUntilChanged()
@@ -59,7 +62,7 @@ export class PlaceSearcherComponent implements OnInit {
   }
 
   private searchPlaces(placeSearchRequest: PlaceSearchRequest) {
-    this.placesSearchService.getPlaces(placeSearchRequest).subscribe(places => {
+    this.subscribers.places = this.placesSearchService.getPlaces(placeSearchRequest).subscribe(places => {
       this.places = places.slice(0, 4);
     });
   }

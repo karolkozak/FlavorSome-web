@@ -4,12 +4,14 @@ import {ConfigService} from '@app/core/services/config.service';
 import {PlacesSearchService} from '@app/dashboard/services/places-search.service';
 import {PlaceSearchRequest} from '@app/places/models/place-search-request';
 import {CustomToastrService} from '@app/core/services/custom-toastr.service';
+import {DestroySubscribers} from '@app/shared/decorators/destroy-subscribers.decorator';
 
 @Component({
   selector: 'fs-dashboard-form',
   templateUrl: './dashboard-form.component.html',
   styleUrls: ['./dashboard-form.component.scss']
 })
+@DestroySubscribers()
 export class DashboardFormComponent implements OnInit {
   private static RANGE = 300;
   private static RANGE_MIN = 100;
@@ -19,6 +21,7 @@ export class DashboardFormComponent implements OnInit {
   placeTypes: string[];
   placesSearchForm: FormGroup;
   promiseButton: Promise<void>;
+  public subscribers: any = {};
 
   constructor(private formBuilder: FormBuilder,
               private configService: ConfigService,
@@ -66,8 +69,7 @@ export class DashboardFormComponent implements OnInit {
       const {query, distance} = this.placesSearchForm.value;
       // TODO: fetch user position if 'locate', when 'useBounds' get center point from map
       const placeSearchRequest = new PlaceSearchRequest({distance, query});
-      const observable = this.placesSearchService.getPlaces(placeSearchRequest);
-      observable.subscribe(
+      this.subscribers.places = this.placesSearchService.getPlaces(placeSearchRequest).subscribe(
         places => {
           // TODO display somewhere, specially on map; remove toastr from here
           this.customToastrService.showSuccessToastr('Places', `${places.length} places were found`);

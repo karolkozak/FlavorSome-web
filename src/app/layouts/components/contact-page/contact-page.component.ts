@@ -6,16 +6,19 @@ import {AboutMessage} from '@app/layouts/models/about-message';
 import {AuthenticationService} from '@app/security/services/authentication.service';
 import {UserService} from '@app/core/services/user.service';
 import {CONST_TITLES, CustomTitleService} from '@app/core/services/custom-title.service';
+import {DestroySubscribers} from '@app/shared/decorators/destroy-subscribers.decorator';
 
 @Component({
   selector: 'fs-contact-page',
   templateUrl: './contact-page.component.html',
   styleUrls: ['./contact-page.component.scss']
 })
+@DestroySubscribers()
 export class ContactPageComponent implements OnInit {
   messageForm: FormGroup;
   formError = false;
   promiseButton: Promise<void>;
+  public subscribers: any = {};
 
   constructor(private formBuilder: FormBuilder,
               private aboutService: AboutService,
@@ -41,7 +44,7 @@ export class ContactPageComponent implements OnInit {
 
   private setDefaultValues() {
     if (this.isLoggedIn) {
-      this.userService.getCurrentUser().subscribe(user => {
+      this.subscribers.currentUser = this.userService.getCurrentUser().subscribe(user => {
         this.messageForm.setValue({email: user.email, content: ''});
       });
     } else {
@@ -53,8 +56,7 @@ export class ContactPageComponent implements OnInit {
     if (this.messageForm.valid) {
       this.promiseButton = new Promise(undefined);
       this.formError = false;
-      const observable = this.aboutService.sendMessage(this.messageForm.value as AboutMessage);
-      observable.subscribe(() => {
+      this.subscribers.message = this.aboutService.sendMessage(this.messageForm.value as AboutMessage).subscribe(() => {
         this.customToastrService.showSuccessToastr('Success', 'Your message has been successfully sent!');
         this.setDefaultValues();
         this.promiseButton = Promise.resolve();

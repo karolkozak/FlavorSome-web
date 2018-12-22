@@ -1,27 +1,28 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UserService} from '@app/core/services/user.service';
 import {User, UserRole} from '@app/security/models/user';
 import {Rate} from '@app/places/models/rate';
-import {Subscription} from 'rxjs/Subscription';
 import {PlacesService} from '@app/places/services/places.service';
 import {MatTabChangeEvent} from '@angular/material';
 import {PageableParams} from '@app/places/models/pageable-params';
 import {Pageable} from '@app/places/models/pageable';
+import {DestroySubscribers} from '@app/shared/decorators/destroy-subscribers.decorator';
 
 @Component({
   selector: 'fs-user-page',
   templateUrl: './user-page.component.html',
   styleUrls: ['./user-page.component.scss']
 })
-export class UserPageComponent implements OnInit, OnDestroy {
+@DestroySubscribers()
+export class UserPageComponent implements OnInit {
   userDetailsTabs: string[] = ['User Details', 'Rated places', 'Places to rate', 'Friends'];
   user: User;
   ratingsList: Pageable<Rate>;
   unratedList: Rate[];
   selectedTab: number;
   pageableParams: PageableParams = new PageableParams();
-  private subscription: Subscription;
+  public subscribers: any = {};
 
   constructor(private router: Router,
               private route: ActivatedRoute,
@@ -30,7 +31,7 @@ export class UserPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.route.data.subscribe((data: { user: User }) => {
+    this.subscribers.routeData = this.route.data.subscribe((data: { user: User }) => {
       this.user = data.user;
       if (this.isVerified) {
         this.fetchRatings();
@@ -40,7 +41,7 @@ export class UserPageComponent implements OnInit, OnDestroy {
         this.userDetailsTabs.splice(2, 1);
       }
     });
-    this.route.queryParams.subscribe(queryParams => {
+    this.subscribers.params = this.route.queryParams.subscribe(queryParams => {
       const activeTab = queryParams['tab'];
       if (activeTab) {
         this.selectedTab = this.userDetailsTabs
@@ -48,7 +49,7 @@ export class UserPageComponent implements OnInit, OnDestroy {
           .indexOf(activeTab);
       }
     });
-    this.subscription = this.placesService.userRateAnnounce.subscribe((rate: Rate) => {
+    this.subscribers.rateAnnouncment = this.placesService.userRateAnnounce.subscribe((rate: Rate) => {
       let updated = false;
       this.ratingsList.content = this.ratingsList.content.map(r => {
         if (r.id === rate.id) {
@@ -66,13 +67,14 @@ export class UserPageComponent implements OnInit, OnDestroy {
 
   fetchRatings(pageableParams: PageableParams = this.pageableParams) {
     if (this.user) {
-      this.userService.getRatings(this.user.userId, pageableParams).subscribe(ratings => this.ratingsList = {...ratings});
+      this.subscribers.ratings = this.userService.getRatings(this.user.userId, pageableParams)
+        .subscribe(ratings => this.ratingsList = {...ratings});
     }
   }
 
   fetchUnrated() {
     if (this.user && this.isCurrentUser) {
-      this.userService.getUnrated().subscribe(unrated => this.unratedList = unrated);
+      this.subscribers.unrated = this.userService.getUnrated().subscribe(unrated => this.unratedList = unrated);
     }
   }
 
@@ -91,9 +93,5 @@ export class UserPageComponent implements OnInit, OnDestroy {
 
   get allowEdit(): boolean {
     return this.isCurrentUser;
-  }
-
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
   }
 }
