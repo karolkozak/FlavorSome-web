@@ -1,7 +1,6 @@
 <div class="row fs-ratings-item">
   <div class="col-md-2 col-sm-12 fs-rate-details">
     <div *ngIf="rate?.rating != 0;  else noRates" class="fs-rate-details-div">
-      <i class="material-icons">star_rate</i>
       <div> {{rate?.rating}} / 10 </div>
     </div>
     <ng-template #noRates>
