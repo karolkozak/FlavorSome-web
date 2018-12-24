@@ -9,13 +9,15 @@ import {MatTabChangeEvent} from '@angular/material';
 import {PageableParams} from '@app/places/models/pageable-params';
 import {Pageable} from '@app/places/models/pageable';
 
+const userPageTabs = ['User Details', 'Rated places', 'Places to rate', 'Friends'];
+
 @Component({
   selector: 'fs-user-page',
   templateUrl: './user-page.component.html',
   styleUrls: ['./user-page.component.scss']
 })
 export class UserPageComponent implements OnInit, OnDestroy {
-  userDetailsTabs: string[] = ['User Details', 'Rated places', 'Places to rate', 'Friends'];
+  userDetailsTabs: string[];
   user: User;
   ratingsList: Pageable<Rate>;
   unratedList: Rate[];
@@ -36,6 +38,7 @@ export class UserPageComponent implements OnInit, OnDestroy {
         this.fetchRatings();
         this.fetchUnrated();
       }
+      this.userDetailsTabs = userPageTabs.slice();
       if (!this.isCurrentUser) {
         this.userDetailsTabs.splice(2, 1);
       }
