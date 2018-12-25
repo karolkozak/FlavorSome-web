@@ -41,7 +41,7 @@ export class FacebookAuthService {
   }
 
   public facebookLogout() {
-    this.socialAuthService.signOut()
+    return this.socialAuthService.signOut()
       .then(() => {
         this.authenticationService.logout();
         this.authenticationService.setFBAuthenticated(false);

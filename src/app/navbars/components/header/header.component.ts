@@ -4,6 +4,7 @@ import {FacebookAuthService} from '@app/security/services/facebook-auth.service'
 import {UserService} from '@app/core/services/user.service';
 import {User} from '@app/security/models/user';
 import {Subscription} from 'rxjs/Subscription';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'fs-header',
@@ -17,7 +18,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   constructor(private facebookAuthService: FacebookAuthService,
               private authenticationService: AuthenticationService,
-              private userService: UserService) {
+              private userService: UserService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -39,9 +41,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   public logout() {
-    this.authenticationService.isFbAuthenticated()
-      ? this.facebookAuthService.facebookLogout()
-      : this.authenticationService.logout();
+    if (this.authenticationService.isFbAuthenticated()) {
+      this.facebookAuthService.facebookLogout().then(() => this.router.navigate(['']));
+      return;
+    }
+    this.authenticationService.logout();
+    this.router.navigate(['']);
   }
 
   public showPlaceSearcher() {

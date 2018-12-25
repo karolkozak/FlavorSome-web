@@ -61,6 +61,7 @@ export class ConfirmationPageComponent implements OnInit, OnDestroy {
     observable.subscribe(() => {
       this.customToastrService.showSuccessToastr('Success', 'Account removed successfully');
       this.authenticationService.logout();
+      this.router.navigate(['']);
       this.promiseButton = Promise.resolve();
     }, () => {
       this.confirmationError = true;
