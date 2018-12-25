@@ -24,9 +24,11 @@ export class RatesSectionComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-    this.userService.getCurrentUser().subscribe(user => {
-      this.currentUser = user;
-    });
+    if (this.isLoggedIn()) {
+      this.userService.getCurrentUser().subscribe(user => {
+        this.currentUser = user;
+      });
+    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -53,6 +55,6 @@ export class RatesSectionComponent implements OnInit, OnChanges {
   }
 
   public hasRequiredRole(): boolean {
-    return this.currentUser.role !== UserRole.UNVERIFIED;
+    return this.isLoggedIn() ? this.currentUser.role !== UserRole.UNVERIFIED : true;
   }
 }

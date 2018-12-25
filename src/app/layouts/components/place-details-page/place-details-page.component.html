@@ -4,18 +4,18 @@
         {{placeDetails?.name ?  placeDetails?.name : 'Place Details' | translate }}
     </div>
     <div class="row fs-place-navs">
-      <div (click)="currentTab = 'details'"
+      <div (click)="tabChanged('details')"
             [ngClass]="(!currentTab || (currentTab == 'details')) ? 'active' : ''">
         <i class="material-icons fs-rate-star">local_cafe</i>
         <span class="d-none d-sm-none d-md-inline-block">{{'Information' | translate}}</span>
       </div>
-      <div (click)="currentTab = 'menu'"
+      <div (click)="tabChanged('menu')"
             [hidden]="true"
             [ngClass]="{ 'active': currentTab == 'menu'}">
         <i class="material-icons fs-rate-star">restaurant</i>
         <span class="d-none d-sm-none d-md-inline-block">{{ 'Menu' | translate }}</span>
       </div>
-      <div (click)="currentTab = 'rates'"
+      <div (click)="tabChanged('rates')"
             [ngClass]="{ 'active': currentTab == 'rates'}">
         <i class="material-icons fs-rate-star">person_pin</i>
         <span class="d-none d-sm-none d-md-inline-block">{{'Rates' | translate}}</span>
