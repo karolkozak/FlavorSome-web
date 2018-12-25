@@ -22,7 +22,7 @@ export class UserPageComponent implements OnInit, OnDestroy {
   ratingsList: Pageable<Rate>;
   unratedList: Rate[];
   selectedTab: number;
-  pageableParams: PageableParams = new PageableParams();
+  pageableParams: PageableParams = new PageableParams({isLogged: true});
   private subscription: Subscription;
 
   constructor(private router: Router,

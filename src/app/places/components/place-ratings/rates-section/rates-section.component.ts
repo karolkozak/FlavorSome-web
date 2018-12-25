@@ -31,6 +31,9 @@ export class RatesSectionComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.placeId.currentValue) {
+      if (this.isLoggedIn()) {
+        this.pageableParams = new PageableParams({isLogged: true});
+      }
       this.fetchRateList();
     }
   }

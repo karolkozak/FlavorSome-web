@@ -6,10 +6,10 @@ export class PageableParams {
   sortKey: RateSortingKey;
   direction: SortDirection;
 
-  constructor(values: { page?: number, size?: number, sort?: RateSortingKey, direction?: SortDirection } = {}) {
+  constructor(values: { page?: number, size?: number, sort?: RateSortingKey, direction?: SortDirection, isLogged?: boolean } = {}) {
     this.page = values.page ? values.page : 0;
     this.size = values.size ? values.size : 4;
-    this.sortKey = values.sort ? values.sort : RateSortingKey.FRIENDS;
+    this.sortKey = values.sort ? values.sort : (values.isLogged ? RateSortingKey.FRIENDS : RateSortingKey.RATING_DATE);
     this.direction = values.direction ? values.direction : SortDirection.ASC;
   }
 }
