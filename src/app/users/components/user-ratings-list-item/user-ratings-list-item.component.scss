@@ -40,6 +40,12 @@
         transform: translateY(50%);
       }
     }
+
+    .fs-edit-rate-form {
+      @media (max-width: 767px) {
+        margin-top: $margin-large;
+      }
+    }
   }
 }
 

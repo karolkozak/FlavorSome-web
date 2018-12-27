@@ -20,5 +20,9 @@
       transition: border-top-width 0.5s ease;
       border-top-width: $border-width-large/2;
     }
+    .row {
+      align-items: center;
+      justify-content: center;
+    }
   }
 }

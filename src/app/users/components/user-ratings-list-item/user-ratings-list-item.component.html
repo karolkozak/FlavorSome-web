@@ -33,7 +33,7 @@
         </button>
       </div>
     </div>
-    <div *ngIf="editing" class="row">
+    <div *ngIf="editing" class="row fs-edit-rate-form">
       <div class="col-12">
         <fs-rate-form [rate]="rate" (rateChanged)="saveEdited($event)" [editing]="true"></fs-rate-form>
       </div>
