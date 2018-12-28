@@ -18,7 +18,7 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class DashboardFormComponent implements OnInit, OnDestroy {
 
-  isLocationDisabled = !navigator.geolocation;
+  isLocationDisabled: boolean;
   placeTypes: string[];
   placesSearchForm: FormGroup;
   promiseButton: Promise<number>;
@@ -36,6 +36,7 @@ export class DashboardFormComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.isLocationDisabled = this.placesSearchService.isLocationDisabled;
     this.placeTypes = this.configService.getAvailablePlaceTypes();
     // TODO: retrieve query param from router, find places and display on map (if any exists). See place-searcher.component.ts
     const query = this.route.snapshot.queryParamMap.get('query');

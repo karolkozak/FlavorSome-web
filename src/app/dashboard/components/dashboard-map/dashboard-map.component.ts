@@ -1,12 +1,14 @@
-import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {Subscription} from 'rxjs/Subscription';
+import {AfterViewInit, Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {Subject} from 'rxjs/Subject';
+import {Subscription} from 'rxjs/Subscription';
+import {takeUntil} from 'rxjs/operators';
 
 import {MapService} from '@app/core/services/map/map.service';
 import {PlacesSearchService} from '@app/dashboard/services/places-search.service';
 import {LatLng} from '@app/shared/models/LatLng.interface';
 import {MapServiceAPI} from '@app/shared/models/MapAPI';
 import {environment} from '@env/environment';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'fs-dashboard-map',
@@ -28,17 +30,27 @@ export class DashboardMapComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('map')
   public mapElement: ElementRef;
 
-  constructor(private mapService: MapService, private placesSearchService: PlacesSearchService) {
+  // FIXME: quick workaround - do it properly before the release
+  @HostListener('click', ['$event'])
+  onMarkerClick(event) {
+    if (event.target.parentElement.classList.contains('H_ib_content')) {
+      const id = event.target.getAttribute('id');
+      this.router.navigate(['/places', id]);
+    }
+  }
+
+  constructor(private mapService: MapService, private placesSearchService: PlacesSearchService,
+              private router: Router) {
     this.provider = this.mapService.constructor.name;
   }
 
   ngOnInit() {
     ({coords: this.mapCenter, zoom: this.zoom} = environment.mapDefaults);
     this.userPositionSub = this.placesSearchService.userPosition$
-      .takeUntil(this.onDestroy)
+      .pipe(takeUntil(this.onDestroy))
       .subscribe((pos: LatLng|undefined) => this.setPosition(pos));
     this.searchRadiusSub = this.placesSearchService.searchRadius$
-      .takeUntil(this.onDestroy)
+      .pipe(takeUntil(this.onDestroy))
       .subscribe((rad: number|undefined) => {
         this.searchRadius = rad;
         this.mapService.redrawCircle(rad);
@@ -57,8 +69,8 @@ export class DashboardMapComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
-  setPosition(pos: any|undefined) {
-    if (!!pos) {
+  private setPosition(pos: any|undefined) {
+    if (pos) {
       if (this.mapService.isUserPositioned) {
         this.moveUserPosition(pos);
       } else {

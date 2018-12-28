@@ -18,6 +18,9 @@ export class PlacesSearchService extends PlacesService {
   private searchRadius: BehaviorSubject<number> = new BehaviorSubject(environment.mapDefaults.range);
   searchRadius$: Observable<number> = this.searchRadius.asObservable();
 
+  private places: BehaviorSubject<Place[]> = new BehaviorSubject([]);
+  places$: Observable<Place[]> = this.places.asObservable();
+
   constructor(httpClient: HttpClient,
               private toastr: ToastrService,
               private customTranslateService: CustomTranslateService,
@@ -26,6 +29,7 @@ export class PlacesSearchService extends PlacesService {
   }
 
   locateUser(): void {
+    // TODO: refactor to return promise
     navigator.geolocation.getCurrentPosition(position => {
       const {latitude: lat, longitude: lng} = position.coords;
       const latlng = {lat: lat, lng: lng};
@@ -49,8 +53,11 @@ export class PlacesSearchService extends PlacesService {
 
   findPlaces(placeSearchRequest: PlaceSearchRequest): Promise<number> {
     return new Promise<number>((resolve, reject) => {
+      // TODO: remove mapService related logic
       this.mapService.removePlaceMarkers();
       this.getPlaces(placeSearchRequest).subscribe((places: Place[]) => {
+          this.places.next(places);
+
           this.mapService.showPlaceMarkers(places);
             resolve(places.length);
           },
@@ -70,5 +77,9 @@ export class PlacesSearchService extends PlacesService {
 
   resetUserPosition(): void {
     this.userPosition.next(undefined);
+  }
+
+  get isLocationDisabled() {
+    return !navigator.geolocation;
   }
 }

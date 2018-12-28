@@ -42,6 +42,6 @@ export abstract class MapService {
   abstract removePlaceMarkers(): void;
 
   preparePlaceData(place: Place): string {
-    return place.name;
+    return `<a id="${place.vendorPlaceId}" >${place.name}</a>`;
   }
 }

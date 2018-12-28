@@ -42,10 +42,12 @@ export class PlaceSearcherComponent implements OnInit {
         distinctUntilChanged()
       )
       .subscribe(searchForm => {
+        // TODO: change to form validation
         if (searchForm.searchInput.length < 3) {
           this.places = [];
           return;
         }
+        // TODO: use placesSearchService
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(
             this.geolocationCallback(searchForm.searchInput),

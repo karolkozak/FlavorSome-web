@@ -19,5 +19,6 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.customTitleService.setTitle(CONST_TITLES.DASHBOARD);
+    // TODO: retrieve query params for request
   }
 }
