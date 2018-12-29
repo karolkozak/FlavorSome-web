@@ -1,11 +1,11 @@
 <div *ngIf="placeDetails; else other_content">
   <div class="row">
     <div class="col-12">
-      <div class="row">
-        <div class="col-xs-12 col-sm-4 col-md-12">
-          <i class="material-icons fs-aditional">place</i>
+      <div class="row fs-row-wrapper">
+        <div class="col-xs-12 col-sm-4 col-md-12 fs-place-picture-wrapper">
+          <i class="material-icons fs-additional d-none d-md-inline-block">place</i>
           <fs-place-picture [pictureUrl]="placeDetails?.picture"></fs-place-picture>
-          <i class="material-icons fs-aditional">restaurant</i>
+          <i class="material-icons fs-additional d-none d-md-inline-block">restaurant</i>
         </div>
         <div class="col-xs-12 col-sm-8 col-md-12">
           <fs-place-address [location]="placeDetails?.location"></fs-place-address>
