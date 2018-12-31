@@ -1,7 +1,6 @@
 <div class="row fs-ratings-item">
-  <div class="col-md-3 col-sm-12 fs-rate-details">
+  <div class="col-md-2 col-sm-12 fs-rate-details">
     <div *ngIf="rate?.rating != 0;  else noRates" class="fs-rate-details-div">
-      <i class="material-icons">star_rate</i>
       <div> {{rate?.rating}} / 10 </div>
     </div>
     <ng-template #noRates>
@@ -9,36 +8,35 @@
       <div> - / 10 </div>
     </ng-template>
   </div>
-  <div class="fs-rate-details col-md-9 col-sm-12">
+  <div class="fs-rate-details col-md-10 col-sm-12">
     <div class="row">
-      <div class="col-md-6 col-sm-12">
-          <a *ngIf="placeDetails" [routerLink]="['/places', placeDetails?.vendorPlaceId]">{{placeDetails?.name}}</a>
-          <div>
-            <fs-place-address [location]="placeDetails?.location"></fs-place-address>
-          </div>
-          <div>
-            {{rate?.comments}}
-          </div>
+      <div class="col-md-7 col-sm-12">
+        <a *ngIf="placeDetails" [routerLink]="['/places', placeDetails?.vendorPlaceId]">{{placeDetails?.name}}</a>
+        <div>
+          <fs-place-address [location]="placeDetails?.location"></fs-place-address>
         </div>
-        <div class="col-md-3 col-sm-12 fs-rate-edit">
-          <button mat-raised-button
-                  *ngIf="allowEdit"
-                  (click)="toggleEditForm()">
-            <i class="material-icons">edit</i>
-          </button>
-          <button mat-raised-button
-                  *ngIf="allowRemove"
-                  color="accent"
-                  (click)="remove()">
-            <i class="material-icons">delete</i>
-          </button>
+        <div>
+          {{rate?.comments}}
         </div>
       </div>
-
-      <div *ngIf="editing" class="row">
-        <div class="col-12">
-          <fs-rate-form [rate]="rate" (rateChanged)="saveEdited($event)" [editing]="true"></fs-rate-form>
-        </div>
+      <div class="col-md-5 col-sm-12 fs-rate-edit">
+        <button mat-raised-button
+                *ngIf="allowEdit"
+                (click)="toggleEditForm()">
+          <i class="material-icons">edit</i>
+        </button>
+        <button mat-raised-button
+                *ngIf="allowRemove"
+                color="accent"
+                (click)="remove()">
+          <i class="material-icons">delete</i>
+        </button>
+      </div>
+    </div>
+    <div *ngIf="editing" class="row fs-edit-rate-form">
+      <div class="col-12">
+        <fs-rate-form [rate]="rate" (rateChanged)="saveEdited($event)" [editing]="true"></fs-rate-form>
       </div>
     </div>
   </div>
+</div>

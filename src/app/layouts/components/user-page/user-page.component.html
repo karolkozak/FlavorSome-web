@@ -13,7 +13,8 @@
           </div>
         </div>
         <div *ngIf="tab === 'Rated places'">
-          <div class="fs-nav-title">{{'List of rated places' | translate}}:</div>
+          <div class="fs-nav-title">
+            {{'List of rated places' | translate}}:</div>
           <fs-user-ratings-list [ratings]="ratingsList?.content"
                                 [allowEdit]="allowEdit"></fs-user-ratings-list>
           <fs-pagination (dataChanged)="fetchRatings($event)"

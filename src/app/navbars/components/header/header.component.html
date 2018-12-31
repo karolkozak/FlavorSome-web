@@ -1,8 +1,8 @@
 <div class="fs-header-full">
-  <nav class="navbar navbar-expand-md navbar-light">
+  <nav class="navbar navbar-expand-md navbar-light fixed-top">
     <fs-language-chooser class="d-block d-md-none"></fs-language-chooser>
     <a class="navbar-brand" [routerLink]="['/']">
-      <img src="assets/ux/logo-mini-2.svg" alt="FlavorSome">
+      <img src="assets/ux/logo-mini.png" alt="FlavorSome">
     </a>
     <button class="navbar-toggler"
             type="button"
@@ -38,6 +38,7 @@
       </ul>
     </div>
   </nav>
+  <div class="fs-navbar-fixed-filler"></div>
   <div class="fs-full-logo d-none d-md-block" [ngClass]="(showPlaceSearcher()) ? 'fs-logo-small' : 'fs-logo-big'">
     <img src="assets/ux/logo.svg">
   </div>

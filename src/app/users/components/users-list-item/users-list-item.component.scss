@@ -1,0 +1,28 @@
+@import "colors";
+@import "variables";
+@import "mixins";
+
+:host(fs-users-list-item) {
+  .fs-user-item {
+    text-decoration: none;
+    width:80%;
+    display: block;
+    padding: $padding-large;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: $margin-medium;
+    border: $border-width-medium solid $beige;
+    color: $text;
+
+    &:hover {
+      transition: border-top-color 0.5s ease;
+      border-top-color: $dirty-green;
+      transition: border-top-width 0.5s ease;
+      border-top-width: $border-width-large/2;
+    }
+    .row {
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}

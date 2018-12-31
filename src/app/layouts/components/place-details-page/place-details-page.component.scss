@@ -78,8 +78,12 @@
         .fs-details-content .row {
           min-height: 27rem;
 
-          .fs-details-content-map div {
-            padding: 0;
+          .fs-details-content-map {
+            min-height: 40vh;
+
+            div {
+              padding: 0;
+            }
           }
         }
 

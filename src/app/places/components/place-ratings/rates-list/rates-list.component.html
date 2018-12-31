@@ -1,16 +1,18 @@
-<span *ngIf="!rates?.length; else ratingList">{{"No ratings yet. Be the first to rate this place!" | translate}}</span>
-<ng-template #ratingList>
-  <button class="btn" [matMenuTriggerFor]="menu">
-    <span>{{currentSorting.sortName | translate}}</span>
-  </button>
-  <mat-menu #menu>
-    <button *ngFor="let sorting of sortingOptions" mat-menu-item (click)="sort(sorting)">
-      <span>{{sorting.sortName | translate}}</span>
+<div class="fs-rates-list-wrapper">
+  <span *ngIf="!rates?.length; else ratingList">{{"No ratings yet. Be the first to rate this place!" | translate}}</span>
+  <ng-template #ratingList>
+    <button class="btn" [matMenuTriggerFor]="menu">
+      <span>{{currentSorting.sortName | translate}}</span>
     </button>
-  </mat-menu>
-</ng-template>
-<div class="fs-rates row">
-  <div *ngFor="let rate of rates" class="col-12">
-    <fs-rate-item [rate]="rate"></fs-rate-item>
+    <mat-menu #menu>
+      <button *ngFor="let sorting of sortingOptions" mat-menu-item (click)="sort(sorting)">
+        <span>{{sorting.sortName | translate}}</span>
+      </button>
+    </mat-menu>
+  </ng-template>
+  <div class="fs-rates row">
+    <div *ngFor="let rate of rates" class="col-12">
+      <fs-rate-item [rate]="rate"></fs-rate-item>
+    </div>
   </div>
 </div>

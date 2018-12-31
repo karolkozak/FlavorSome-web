@@ -1,10 +1,18 @@
 <div class="fs-footer">
   <div class="row">
-    <div class="col-4"></div>
-    <div class="col-4 fs-copyrights">&copy; FlavorSome 2018</div>
-    <div class="col-4 fs-footer-link">
-      <span><a [routerLink]="['/contact']">{{ 'Contact' | translate }}</a></span>
-      <span><a [routerLink]="['/about']">{{ 'About FlavorSome' | translate }}</a></span>
+    <div class="d-none d-md-inline-block col-md-4"></div>
+    <div class="col-sm-12 col-md-4 fs-copyrights">&copy; FlavorSome 2018</div>
+    <div class="col-sm-12 col-md-4 fs-footer-details">
+      <span class="fs-footer-contact">
+        <a [routerLink]="['/contact']">
+          <i class="material-icons">local_post_office</i>{{ 'Contact' | translate }}
+        </a>
+      </span>
+      <span class="fs-footer-about">
+        <a [routerLink]="['/about']">
+          <i class="material-icons">remove_red_eye</i> {{ 'About FlavorSome' | translate }}
+        </a>
+      </span>
     </div>
   </div>
 </div>

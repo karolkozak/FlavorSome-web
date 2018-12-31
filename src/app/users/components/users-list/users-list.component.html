@@ -2,6 +2,6 @@
   {{'List of friends' | translate}}:
   <span *ngIf="users">{{users.length}}</span>
 </div>
-<div *ngFor="let user of users" class="fs-user-item">
+<div *ngFor="let user of users">
   <fs-users-list-item [user]="user"></fs-users-list-item>
 </div>

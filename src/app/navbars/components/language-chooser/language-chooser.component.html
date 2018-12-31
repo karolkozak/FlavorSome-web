@@ -1,7 +1,7 @@
 <button mat-button [matMenuTriggerFor]="menu">
   <span class="flag-icon flag-icon-{{currentLanguage | flagCultureLang}}"></span>
 </button>
-<mat-menu #menu>
+<mat-menu #menu [overlapTrigger]="false" style="z-index:1000">
   <button *ngFor="let language of availableCultureLanguages" mat-menu-item (click)="changeLanguage(language)">
     <span class="flag-icon flag-icon-{{language | flagCultureLang}}"></span>
     <span>{{language | flagLang | uppercase}}</span>

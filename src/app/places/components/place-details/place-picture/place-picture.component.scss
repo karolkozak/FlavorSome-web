@@ -1,0 +1,31 @@
+@import "variables";
+@import "colors";
+
+
+:host(fs-place-picture) {
+  img {
+    height: auto;
+    border: $border-width-large double $dirty-green;
+    border-radius: 50%;
+
+    @media (min-width: 1200px) {
+      width: 8vw;
+    }
+
+    @media (min-width: 992px) and (max-width: 1199px) {
+      width: 13vw;
+    }
+
+    @media (min-width: 768px) and (max-width: 991px) {
+      width: 15vw;
+    }
+
+    @media (max-width: 767px) {
+      width: 25vw;
+    }
+  }
+
+  i {
+    vertical-align: middle !important;
+  }
+}

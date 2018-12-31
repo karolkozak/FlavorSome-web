@@ -15,14 +15,12 @@
 
     .fs-rating-starts {
       width: 100%;
-      background-image: url('/assets/ux/petr-sevcovic-594807-unsplash.svg');
-      background-repeat: no-repeat;
-      background-size: cover;
-      position: relative;
+      background-color: $dirty-green;
       color: $font-color-on-colored-div;
       text-align: initial;
-      padding-left: 4em;
-      padding-top: 3em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
       i {
         padding-left: $padding-small/2;
