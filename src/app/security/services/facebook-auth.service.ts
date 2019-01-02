@@ -1,5 +1,5 @@
 import {HttpClient} from '@angular/common/http';
-import {Injectable, Injector} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {SocialUser} from 'angular5-social-login/entities';
 import {AuthService as SocialAuthService, FacebookLoginProvider} from 'angular5-social-login';
@@ -8,15 +8,13 @@ import {AuthenticationService} from './authentication.service';
 import {CustomToastrService} from '@app/core/services/custom-toastr.service';
 
 @Injectable()
-export class FacebookAuthService extends AuthenticationService {
-
+export class FacebookAuthService {
   private baseUrl: string;
 
-  constructor(injector: Injector,
-              private httpClient: HttpClient,
+  constructor(private httpClient: HttpClient,
               private socialAuthService: SocialAuthService,
-              private customToastrService: CustomToastrService) {
-    super(injector);
+              private customToastrService: CustomToastrService,
+              private authenticationService: AuthenticationService) {
     this.baseUrl = environment.flavorSomeMicroserviceUrl + environment.authPath;
   }
 
@@ -30,8 +28,8 @@ export class FacebookAuthService extends AuthenticationService {
     return this.socialAuthService.signIn(socialPlatformProvider)
       .then((socialUser: SocialUser) => {
         return this.loginWithFacebook(socialUser.token).toPromise().then(response => {
-          this.setTokenDataInStorage(response);
-          this.setFBAuthenticated(true);
+          this.authenticationService.setTokenDataInStorage(response);
+          this.authenticationService.setFBAuthenticated(true);
           return true;
         });
       })
@@ -43,10 +41,10 @@ export class FacebookAuthService extends AuthenticationService {
   }
 
   public facebookLogout() {
-    this.socialAuthService.signOut()
+    return this.socialAuthService.signOut()
       .then(() => {
-        this.logout();
-        this.setFBAuthenticated(false);
+        this.authenticationService.logout();
+        this.authenticationService.setFBAuthenticated(false);
         return true;
       })
       .catch(error => {
