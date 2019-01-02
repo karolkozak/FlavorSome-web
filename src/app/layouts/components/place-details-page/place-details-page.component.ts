@@ -37,7 +37,6 @@ export class PlaceDetailsPageComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.route.data.subscribe((data: { place: Place }) => {
       this.placeDetails = data.place;
-      this.setPosition(this.placeDetails.location);
       if (this.isLoggedIn) {
         this.placesService.getMenu(this.placeDetails.vendorPlaceId).subscribe(menu => this.placeMenu = menu);
         this.userService.getCurrentUser().subscribe(user => {
@@ -50,6 +49,7 @@ export class PlaceDetailsPageComponent implements OnInit, AfterViewInit {
   public ngAfterViewInit() {
     if (this.mapElement) {
       this.mapService.setMap(this.mapElement);
+      this.setPosition(this.placeDetails.location);
     }
   }
 
