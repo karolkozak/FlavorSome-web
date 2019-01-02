@@ -18,7 +18,7 @@
     <span matSuffix>m</span>
   </mat-form-field>
   <div>
-    <button class="btn" type="submit">
+    <button [promiseBtn]="promiseButton" class="btn" type="submit">
       <i class="material-icons">search</i> {{'Find places' | translate}}
     </button>
   </div>

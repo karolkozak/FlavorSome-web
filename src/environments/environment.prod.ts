@@ -50,6 +50,8 @@ export const environment = {
       lat: 50.0617446,
       lng: 19.948338
     },
-    zoom: 14
+    zoom: 14,
+    range: 300,
+    rangeBounds: [100, 50000]
   },
 };

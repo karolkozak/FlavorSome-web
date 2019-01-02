@@ -1,21 +1,31 @@
 import { Injectable } from '@angular/core';
 import {MapService} from '@app/core/services/map/map.service';
 import {MapServiceAPI} from '@app/shared/models/MapAPI';
+import {Observable} from 'rxjs/Observable';
+import {of} from 'rxjs/observable/of';
+import {Place} from '@app/places/models/place';
+import {LatLng} from '@app/shared/models/LatLng.interface';
 
 @Injectable()
-export class GoogleMapService implements MapService {
+export class GoogleMapService extends MapService {
   map: google.maps.Map;
 
   get provider(): string {
     return MapServiceAPI.Google;
   }
 
-  get config() {
-    return null;
-  }
-
   setMap(map: google.maps.Map) {
     this.map = map;
+  }
+
+  followCenter(): Observable<any> {
+    return of(undefined);
+  }
+
+  getCenter(): google.maps.LatLngLiteral {
+    const center = this.map.getCenter();
+    const latlng = {lat: center.lat(), lng: center.lng()};
+    return latlng;
   }
 
   setCenter(pos: google.maps.LatLngLiteral) {
@@ -50,8 +60,8 @@ export class GoogleMapService implements MapService {
     return circle;
   }
 
-  redrawCircle(circle: google.maps.Circle, radius: number) {
-    if (!circle || !radius) { return; }
+  redrawCircle(radius: number, circle = this.userCircle) {
+    if (!radius) { return; }
     circle.setRadius(radius);
   }
 
@@ -60,4 +70,30 @@ export class GoogleMapService implements MapService {
     circle.setMap(null);
   }
 
+  moveCircle(pos: google.maps.LatLngLiteral, circle = this.userCircle): any {
+    circle.setCenter(pos);
+  }
+
+  moveMarker(pos: google.maps.LatLngLiteral, marker = this.userMarker): any {
+    marker.setPosition(pos);
+  }
+
+  removePlaceMarkers(): void {
+  }
+
+  showPlaceMarkers(places: Place[]): void {
+  }
+
+  hideUserPosition(): void {
+  }
+
+  get isUserPositioned(): boolean {
+    return false;
+  }
+
+  showUserPosition(pos: LatLng, radius: number): any {
+  }
+
+  updateUserPosition(pos: LatLng): void {
+  }
 }
