@@ -51,19 +51,18 @@ export class PlacesSearchService extends PlacesService {
     });
   }
 
-  findPlaces(placeSearchRequest: PlaceSearchRequest): Promise<number> {
-    return new Promise<number>((resolve, reject) => {
+  findPlaces(placeSearchRequest: PlaceSearchRequest): Promise<Place[]> {
+    return new Promise<Place[]>((resolve, reject) => {
       // TODO: remove mapService related logic
       this.mapService.removePlaceMarkers();
       this.getPlaces(placeSearchRequest).subscribe((places: Place[]) => {
           this.places.next(places);
 
           this.mapService.showPlaceMarkers(places);
-            resolve(places.length);
-          },
-          error => {
-            reject(error);
-          });
+          resolve(places);
+        }, error => {
+          reject(error);
+        });
     });
   }
 

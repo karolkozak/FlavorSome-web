@@ -1,9 +1,8 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ConfigService} from '@app/core/services/config.service';
 import {PlacesSearchService} from '@app/dashboard/services/places-search.service';
 import {PlaceSearchRequest} from '@app/places/models/place-search-request';
-import {CustomToastrService} from '@app/core/services/custom-toastr.service';
 import {environment} from '@env/environment';
 import {MapService} from '@app/core/services/map/map.service';
 import {LatLng} from '@app/shared/models/LatLng.interface';
@@ -17,22 +16,21 @@ import {ActivatedRoute} from '@angular/router';
   styleUrls: ['./dashboard-form.component.scss']
 })
 export class DashboardFormComponent implements OnInit, OnDestroy {
-
   isLocationDisabled: boolean;
   placeTypes: string[];
   placesSearchForm: FormGroup;
-  promiseButton: Promise<number>;
-
+  promiseButton: Promise<void>;
   mapCenterSub: Subscription;
+
   locationSub: Subscription;
   location: LatLng;
+  @Input() searchPlaces = (placeSearchRequest: PlaceSearchRequest): Promise<void> => Promise.resolve();
 
   constructor(private formBuilder: FormBuilder,
               private configService: ConfigService,
               private route: ActivatedRoute,
               private placesSearchService: PlacesSearchService,
-              private mapService: MapService,
-              private customToastrService: CustomToastrService) {
+              private mapService: MapService) {
   }
 
   ngOnInit() {
@@ -57,7 +55,9 @@ export class DashboardFormComponent implements OnInit, OnDestroy {
     });
     // TODO: add form errors
 
-    this.locationSub = this.placesSearchService.userPosition$.subscribe((pos: LatLng) => { this.location = pos; });
+    this.locationSub = this.placesSearchService.userPosition$.subscribe((pos: LatLng) => {
+      this.location = pos;
+    });
   }
 
   ngOnDestroy() {
@@ -67,7 +67,7 @@ export class DashboardFormComponent implements OnInit, OnDestroy {
   useBounds(): void {
     const center = this.mapService.getCenter();
     this.placesSearchService.setUserPosition(center);
-    this.mapCenterSub = this.mapService.followCenter().subscribe( (mapCenter: LatLng) => {
+    this.mapCenterSub = this.mapService.followCenter().subscribe((mapCenter: LatLng) => {
       this.placesSearchService.setUserPosition(mapCenter);
     });
   }
@@ -91,12 +91,9 @@ export class DashboardFormComponent implements OnInit, OnDestroy {
       const {query, distance} = this.placesSearchForm.value;
       const {lat: latitude, lng: longitude} = this.location;
       const placeSearchRequest = new PlaceSearchRequest({latitude, longitude, distance, query});
-      this.promiseButton = this.placesSearchService.findPlaces(placeSearchRequest);
-      this.promiseButton.then( numberOfPlaces => {
-        this.customToastrService.showSuccessToastr('Places', `${numberOfPlaces} places were found`);
-      }).catch(error => {
-        console.error(error);
-        this.customToastrService.showErrorToastr('Places', 'Unable to search, try again later', error.status);
+      this.promiseButton = new Promise(undefined);
+      this.searchPlaces(placeSearchRequest).then(() => {
+        this.promiseButton = Promise.resolve();
       });
     }
   }

@@ -23,12 +23,16 @@
         margin-right: auto;
 
         .row {
-          .fs-form {
+          &.fs-dashboard-search {
+            margin-bottom: $margin-small;
+          }
+          .fs-section {
             @media (min-width: 768px) {
               border: $border-width-medium solid $beige;
+              padding-bottom: $padding-small;
             }
 
-            .fs-form-title {
+            .fs-section-title {
               font-size: $font-size-header;
               margin: $margin-medium;
             }

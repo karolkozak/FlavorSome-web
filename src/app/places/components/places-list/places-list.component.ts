@@ -8,4 +8,5 @@ import {Place} from '@app/places/models/place';
 })
 export class PlacesListComponent {
   @Input() places: Place[] = [];
+  @Input() columnList = false;
 }
