@@ -5,7 +5,7 @@
 
 export const environment = {
   production: false,
-  qa: true,
+  qa: false,
 
   flavorSomeMicroserviceUrl: 'http://127.0.0.3:8080/api',
   authPath: '/auth',
