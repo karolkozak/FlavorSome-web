@@ -27,7 +27,8 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.customTitleService.setTitle(CONST_TITLES.DASHBOARD);
-    // TODO: retrieve query params for request
+    // TODO: retrieve query params for request and fetch places
+    this.fetchingDone = true;
   }
 
   searchPlaces() {
@@ -39,6 +40,7 @@ export class DashboardComponent implements OnInit {
         this.fetchingDone = true;
       }).catch(error => {
         console.error(error);
+        this.places = [];
         this.fetchingDone = true;
         this.customToastrService.showErrorToastr('Places', 'Unable to search, try again later', error.status);
       });
