@@ -1,17 +1,18 @@
 <div class="row fs-description">
   <div class="col-12 fs-content">
     <div class="row fs-map-form">
-      <div class="col-10 fs-dashboard-content">
+      <div class="col-sm-12 col-md-10 fs-dashboard-content">
         <div class="row fs-dashboard-search">
-          <div class="fs-section col-12">
+          <div class="col-12 fs-section ">
             <div class="fs-section-title">{{ 'Search place' | translate }}</div>
             <fs-dashboard-form [searchPlaces]="searchPlaces()"></fs-dashboard-form>
           </div>
         </div>
         <div class="row">
           <fs-dashboard-map class="col-lg-9 col-md-8 col-sm-12 fs-content-map"></fs-dashboard-map>
-          <div class="fs-section col-lg-3 col-md-4 col-sm-12">
+          <div class="col-lg-3 col-md-4 col-sm-12 fs-section fs-place-list-wrapper">
             <div class="fs-section-title">{{ 'List of places' | translate }}</div>
+            <div class="alert alert-info" *ngIf="fetchingDone && !places.length">{{'No results' | translate}}</div>
             <fs-places-list [columnList]="true" [places]="places"></fs-places-list>
           </div>
         </div>

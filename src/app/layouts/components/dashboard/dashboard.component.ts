@@ -18,6 +18,7 @@ import {Place} from '@app/places/models/place';
 })
 export class DashboardComponent implements OnInit {
   places: Place[] = [];
+  fetchingDone = false;
 
   constructor(private customTitleService: CustomTitleService,
               private placesSearchService: PlacesSearchService,
@@ -31,11 +32,14 @@ export class DashboardComponent implements OnInit {
 
   searchPlaces() {
     return (placeSearchRequest: PlaceSearchRequest) => {
-      return this.placesSearchService.findPlaces(placeSearchRequest).then(places => {
+      return this.placesSearchService.findPlaces(placeSearchRequest)
+      .then(places => {
         this.customToastrService.showSuccessToastr('Places', `${places.length} places were found`);
         this.places = places;
+        this.fetchingDone = true;
       }).catch(error => {
         console.error(error);
+        this.fetchingDone = true;
         this.customToastrService.showErrorToastr('Places', 'Unable to search, try again later', error.status);
       });
     };
