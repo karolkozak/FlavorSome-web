@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, HostListener, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, HostListener, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {Subject} from 'rxjs/Subject';
 import {Subscription} from 'rxjs/Subscription';
 import {takeUntil} from 'rxjs/operators';
@@ -16,6 +16,7 @@ import {Router} from '@angular/router';
   styleUrls: ['./dashboard-map.component.scss']
 })
 export class DashboardMapComponent implements OnInit, OnDestroy, AfterViewInit {
+  @Input() locate: boolean;
   providers = MapServiceAPI;
 
   provider: string;
@@ -48,14 +49,16 @@ export class DashboardMapComponent implements OnInit, OnDestroy, AfterViewInit {
     ({coords: this.mapCenter, zoom: this.zoom} = environment.mapDefaults);
     this.userPositionSub = this.placesSearchService.userPosition$
       .pipe(takeUntil(this.onDestroy))
-      .subscribe((pos: LatLng|undefined) => this.setPosition(pos));
+      .subscribe((pos: LatLng | undefined) => this.setPosition(pos));
     this.searchRadiusSub = this.placesSearchService.searchRadius$
       .pipe(takeUntil(this.onDestroy))
-      .subscribe((rad: number|undefined) => {
+      .subscribe((rad: number | undefined) => {
         this.searchRadius = rad;
         this.mapService.redrawCircle(rad);
       });
-    this.placesSearchService.locateUser();
+    if (this.locate) {
+      this.placesSearchService.locateUser();
+    }
   }
 
   ngOnDestroy() {
@@ -69,7 +72,7 @@ export class DashboardMapComponent implements OnInit, OnDestroy, AfterViewInit {
     }
   }
 
-  private setPosition(pos: any|undefined) {
+  private setPosition(pos: any | undefined) {
     if (pos) {
       if (this.mapService.isUserPositioned) {
         this.moveUserPosition(pos);
@@ -91,7 +94,9 @@ export class DashboardMapComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   private removeUserPosition() {
-    this.mapService.hideUserPosition();
+    if (this.mapService.isUserPositioned) {
+      this.mapService.hideUserPosition();
+    }
   }
 
   mapReady($map: google.maps.Map): void {

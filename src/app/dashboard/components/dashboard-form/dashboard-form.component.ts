@@ -7,7 +7,6 @@ import {environment} from '@env/environment';
 import {MapService} from '@app/core/services/map/map.service';
 import {LatLng} from '@app/shared/models/LatLng.interface';
 import {Subscription} from 'rxjs/Subscription';
-import {ActivatedRoute} from '@angular/router';
 
 
 @Component({
@@ -16,6 +15,8 @@ import {ActivatedRoute} from '@angular/router';
   styleUrls: ['./dashboard-form.component.scss']
 })
 export class DashboardFormComponent implements OnInit, OnDestroy {
+  @Input() placeSearchRequest: PlaceSearchRequest;
+  @Input() locate: boolean;
   isLocationDisabled: boolean;
   placeTypes: string[];
   placesSearchForm: FormGroup;
@@ -28,7 +29,6 @@ export class DashboardFormComponent implements OnInit, OnDestroy {
 
   constructor(private formBuilder: FormBuilder,
               private configService: ConfigService,
-              private route: ActivatedRoute,
               private placesSearchService: PlacesSearchService,
               private mapService: MapService) {
   }
@@ -36,10 +36,10 @@ export class DashboardFormComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.isLocationDisabled = this.placesSearchService.isLocationDisabled;
     this.placeTypes = this.configService.getAvailablePlaceTypes();
-    // TODO: retrieve query param from router, find places and display on map (if any exists). See place-searcher.component.ts
-    const query = this.route.snapshot.queryParamMap.get('query');
-
-    const range = environment.mapDefaults.range;
+    const query = this.placeSearchRequest ? this.placeSearchRequest.query : undefined;
+    const range = this.placeSearchRequest && this.placeSearchRequest.distance
+      ? this.placeSearchRequest.distance
+      : environment.mapDefaults.range;
     const [minRange, maxRange] = environment.mapDefaults.rangeBounds;
 
     this.placesSearchForm = this.formBuilder.group({
@@ -64,6 +64,12 @@ export class DashboardFormComponent implements OnInit, OnDestroy {
     this.locationSub.unsubscribe();
   }
 
+  get locationValue(): string {
+    return this.locate
+      ? this.isLocationDisabled ? 'bounds' : 'locate'
+      : '';
+  }
+
   useBounds(): void {
     const center = this.mapService.getCenter();
     this.placesSearchService.setUserPosition(center);
@@ -73,7 +79,9 @@ export class DashboardFormComponent implements OnInit, OnDestroy {
   }
 
   locateUser(): void {
-    this.mapCenterSub.unsubscribe();
+    if (this.mapCenterSub) {
+      this.mapCenterSub.unsubscribe();
+    }
     this.placesSearchService.resetUserPosition();
     this.placesSearchService.locateUser();
   }

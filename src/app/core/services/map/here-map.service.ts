@@ -150,6 +150,7 @@ export class HereMapService extends MapService {
       });
   }
 
+  @Prop('ui')
   removePlaceMarkers() {
     this.ui.getBubbles().forEach(bubble => {
       this.ui.removeBubble(bubble);
