@@ -42,7 +42,11 @@ export class PlaceDetailsPageComponent implements OnInit, AfterViewInit {
       this.placeDetails = data.place;
       this.activateTab();
       if (this.isLoggedIn) {
-        this.placesService.getMenu(this.placeDetails.vendorPlaceId).subscribe(menu => this.placeMenu = menu);
+        /*
+         * Disable menu for now as it is not supported yet - no one provides menu.
+         * When it is available fetch menu and display in template
+         * this.placesService.getMenu(this.placeDetails.vendorPlaceId).subscribe(menu => this.placeMenu = menu);
+         */
         this.userService.getCurrentUser().subscribe(user => {
           this.user = user;
         });
