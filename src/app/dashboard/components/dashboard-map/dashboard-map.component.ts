@@ -9,6 +9,7 @@ import {LatLng} from '@app/shared/models/LatLng.interface';
 import {MapServiceAPI} from '@app/shared/models/MapAPI';
 import {environment} from '@env/environment';
 import {Router} from '@angular/router';
+import {PlaceSearchRequest} from '@app/places/models/place-search-request';
 
 @Component({
   selector: 'fs-dashboard-map',
@@ -17,6 +18,7 @@ import {Router} from '@angular/router';
 })
 export class DashboardMapComponent implements OnInit, OnDestroy, AfterViewInit {
   @Input() locate: boolean;
+  @Input() placeSearchRequest: PlaceSearchRequest;
   providers = MapServiceAPI;
 
   provider: string;
@@ -46,7 +48,12 @@ export class DashboardMapComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngOnInit() {
-    ({coords: this.mapCenter, zoom: this.zoom} = environment.mapDefaults);
+    if (this.placeSearchRequest && this.placeSearchRequest.latitude && this.placeSearchRequest.longitude) {
+      this.mapCenter = {lat: this.placeSearchRequest.latitude, lng: this.placeSearchRequest.longitude};
+      this.zoom = environment.mapDefaults.zoom;
+    } else {
+      ({coords: this.mapCenter, zoom: this.zoom} = environment.mapDefaults);
+    }
     this.userPositionSub = this.placesSearchService.userPosition$
       .pipe(takeUntil(this.onDestroy))
       .subscribe((pos: LatLng | undefined) => this.setPosition(pos));

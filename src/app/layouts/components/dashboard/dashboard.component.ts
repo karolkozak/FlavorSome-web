@@ -8,6 +8,8 @@ import {CustomToastrService} from '@app/core/services/custom-toastr.service';
 import {Place} from '@app/places/models/place';
 import {Subscription} from 'rxjs/Subscription';
 import {ActivatedRoute, Router} from '@angular/router';
+import {Subject} from 'rxjs/Subject';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'fs-dashboard',
@@ -23,6 +25,9 @@ export class DashboardComponent implements OnInit {
   fetchingDone = false;
   placeSearchRequest: PlaceSearchRequest;
   private subscription: Subscription;
+
+  private fetchingPlacesSource: Subject<string> = new Subject<string>();
+  fetchingPlacesAnnounce: Observable<string> = this.fetchingPlacesSource.asObservable();
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -45,12 +50,14 @@ export class DashboardComponent implements OnInit {
   }
 
   private fetchPlaces(placeSearchRequest: PlaceSearchRequest) {
+    this.places = [];
     this.placesSearchService.findPlaces(placeSearchRequest)
       .then(places => {
         this.onFetchingSuccess(places);
+        this.fetchingPlacesSource.next();
       }).catch(error => {
-        this.onFetchingFailre(error);
-      });
+      this.onFetchingFailre(error);
+    });
   }
 
   private onFetchingSuccess(places: Place[]) {
@@ -74,12 +81,6 @@ export class DashboardComponent implements OnInit {
     return (placeSearchRequest: PlaceSearchRequest) => {
       const {query, latitude, longitude, distance} = placeSearchRequest;
       this.router.navigate([], {relativeTo: this.route, queryParams: {query, latitude, longitude, distance}});
-      return this.placesSearchService.findPlaces(placeSearchRequest)
-      .then(places => {
-        this.onFetchingSuccess(places);
-      }).catch(error => {
-          this.onFetchingFailre(error);
-      });
     };
   }
 }
