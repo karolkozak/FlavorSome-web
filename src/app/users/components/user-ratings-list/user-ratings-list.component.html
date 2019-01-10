@@ -1,6 +1,18 @@
-<div class="alert alert-warning" role="alert" *ngIf="!ratings?.length">{{'No pending ratings' | translate}}</div>
-<fs-user-ratings-list-item *ngFor="let rate of ratings"
-                           [rate]="rate"
-                           [allowEdit]="allowEdit"
-                           [allowRemove]="allowRemove"
-                           (removeItem)="removeRate($event)"></fs-user-ratings-list-item>
+<div class="alert alert-warning" role="alert" *ngIf="!ratings?.length; else ratingList">{{'No pending ratings' | translate}}</div>
+<ng-template #ratingList>
+  <button class="btn" [matMenuTriggerFor]="menu">
+    <span>{{currentSorting.sortName | translate}}</span>
+  </button>
+  <mat-menu #menu>
+    <button *ngFor="let sorting of sortingOptions" mat-menu-item (click)="sort(sorting)">
+      <span>{{sorting.sortName | translate}}</span>
+    </button>
+  </mat-menu>
+</ng-template>
+<div class="fs-user-ratings">
+  <fs-user-ratings-list-item *ngFor="let rate of ratings"
+                             [rate]="rate"
+                             [allowEdit]="isCurrentUser"
+                             [allowRemove]="allowRemove"
+                             (removeItem)="removeRate($event)"></fs-user-ratings-list-item>
+</div>

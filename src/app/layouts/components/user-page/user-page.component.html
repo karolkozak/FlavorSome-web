@@ -16,7 +16,9 @@
           <div class="fs-nav-title">
             {{'List of rated places' | translate}}:</div>
           <fs-user-ratings-list [ratings]="ratingsList?.content"
-                                [allowEdit]="allowEdit"></fs-user-ratings-list>
+                                [isCurrentUser]="isCurrentUser"
+                                [pageableParams]="pageableParams"
+                                (pageableParamsChanged)="fetchRatings($event)"></fs-user-ratings-list>
           <fs-pagination (dataChanged)="fetchRatings($event)"
                   [pageableParams]="pageableParams"
                   [first]="ratingsList?.first"
@@ -24,8 +26,10 @@
         </div>
         <div *ngIf="tab === 'Places to rate' && isCurrentUser">
           <div class="fs-nav-title">{{'List of places to rate' | translate}}:</div>
-          <fs-user-ratings-list [ratings]="unratedList"
-                                [allowEdit]="allowEdit"
+          <fs-user-ratings-list [ratings]="unratedList?.content"
+                                [isCurrentUser]="isCurrentUser"
+                                [pageableParams]="pageableParams"
+                                (pageableParamsChanged)="fetchUnrated($event)"
                                 [allowRemove]="true"></fs-user-ratings-list>
         </div>
         <div *ngIf="tab === 'Friends'">

@@ -13,7 +13,7 @@
                    (pageableParamsChanged)="fetchRateList($event)"
                    [pageableParams]="pageableParams"></fs-rates-list>
     <fs-pagination *ngIf="pageableRates && pageableRates?.content.length"
-      (dataChanged)="fetchRateList($event)"
+                   (dataChanged)="fetchRateList($event)"
                    [pageableParams]="pageableParams"
                    [first]="pageableRates?.first"
                    [last]="pageableRates?.last"></fs-pagination>
