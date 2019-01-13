@@ -22,6 +22,10 @@ export class GoogleMapService extends MapService {
     return of(undefined);
   }
 
+  adjustViewBounds(): void {
+    return;
+  }
+
   getCenter(): google.maps.LatLngLiteral {
     const center = this.map.getCenter();
     const latlng = {lat: center.lat(), lng: center.lng()};

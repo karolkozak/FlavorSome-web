@@ -24,6 +24,7 @@ export abstract class MapService {
   abstract getCenter(): any;
   abstract setCenter(pos: LatLng): void;
   abstract followCenter(): Observable<any>;
+  abstract adjustViewBounds(): void;
 
   abstract showUserPosition(pos: LatLng, radius: number): any;
   abstract updateUserPosition(pos: LatLng): void;

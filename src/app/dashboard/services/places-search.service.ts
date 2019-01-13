@@ -56,13 +56,14 @@ export class PlacesSearchService extends PlacesService {
       // TODO: remove mapService related logic
       this.mapService.removePlaceMarkers();
       this.getPlaces(placeSearchRequest).subscribe((places: Place[]) => {
-          this.places.next(places);
+        this.places.next(places);
 
-          this.mapService.showPlaceMarkers(places);
-          resolve(places);
-        }, error => {
-          reject(error);
-        });
+        this.mapService.showPlaceMarkers(places);
+        this.mapService.adjustViewBounds();
+        resolve(places);
+      }, error => {
+        reject(error);
+      });
     });
   }
 
