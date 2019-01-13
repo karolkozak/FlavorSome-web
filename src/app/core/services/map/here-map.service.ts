@@ -19,6 +19,7 @@ export class HereMapService extends MapService {
   ui: H.ui.UI;
 
   placeMarkers: H.map.Group[] = [];
+  groupOfMarkers: H.map.Group = new H.map.Group();
 
   private followHandler: EventListener;
 
@@ -74,6 +75,10 @@ export class HereMapService extends MapService {
     return center$.pipe(
       debounce(() => timer(200))
     );
+  }
+
+  adjustViewBounds(): void {
+    this.map.setViewBounds(this.groupOfMarkers.getBounds());
   }
 
   showUserPosition(pos: H.geo.Point, radius: number) {
@@ -145,6 +150,7 @@ export class HereMapService extends MapService {
         return place.location && place.name;
       })
       .forEach((place: Place) => {
+        this.groupOfMarkers.addObject(this.prepareMarker(place));
         const marker = this.addPlaceMarker(place);
         this.placeMarkers.push(marker);
       });
@@ -160,6 +166,7 @@ export class HereMapService extends MapService {
       marker.dispose();
     });
     this.placeMarkers = [];
+    this.groupOfMarkers.removeAll();
   }
 
   @Prop('map')
