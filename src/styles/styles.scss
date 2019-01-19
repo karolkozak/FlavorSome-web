@@ -84,10 +84,11 @@ html, body {
   .fs-auth-name {
     padding: 0 $padding-large;
     margin-bottom: 1rem;
+
     h3 {
       overflow: hidden;
       &:before, &:after {
-        background-color: $text;
+        background-color: #777777;
         content: "";
         display: inline-block;
         height: 1px;
@@ -105,6 +106,16 @@ html, body {
       }
     }
   }
+
+  a {
+    outline: none;
+    text-decoration: none;
+  }
+
+  a:link, a:visited, a:focus, a:active, a:hover {
+    color: $dirty-green;
+  }
+
 
   .fs-content {
     margin-top: 5rem;
@@ -137,6 +148,10 @@ html, body {
         font-size: $font-size-header;
       }
 
+      .fs-form-error {
+        color: $error;
+      }
+
       input:not(.mat-input-element) {
         margin-bottom: 0.9rem;
         border-radius: 0;
@@ -149,6 +164,10 @@ html, body {
           border-bottom: 2px solid $dirty-green;
           outline: 0;
           box-shadow: none;
+        }
+
+        &.form-control-invalid {
+          border-bottom-color: $error !important;
         }
       }
 
@@ -166,7 +185,6 @@ html, body {
       }
     }
   }
-
   .mat-tab-label {
     background: transparent;
     min-width: 60px !important;

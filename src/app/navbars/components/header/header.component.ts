@@ -5,6 +5,7 @@ import {UserService} from '@app/core/services/user.service';
 import {User} from '@app/security/models/user';
 import {Subscription} from 'rxjs/Subscription';
 import {Router} from '@angular/router';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'fs-header',
@@ -24,6 +25,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getCurrentUser();
+    $('body').click(function() {
+      $('#navbarNav').removeClass('show');
+    });
   }
 
   private getCurrentUser() {
