@@ -1,16 +1,30 @@
-:host {
-  ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-  }
+@import 'colors';
+@import 'variables';
 
-  li {
-    float: left;
-    padding: 3px;
-    a {
-      cursor: pointer;
+:host(fs-pagination) {
+  .fs-pagination-buttons-wrapper {
+    margin: 0;
+    margin-bottom: $margin-small;
+
+    div {
+      @media (max-width: 767px) {
+        padding: 0;
+      }
+    }
+
+    button {
+      @media (min-width: 768px) {
+        width: 30%;
+      }
+
+      @media (max-width: 767px) {
+        margin-bottom: $margin-small;
+        width: 100%;
+      }
+    }
+
+    i {
+      vertical-align: middle !important;
     }
   }
 }

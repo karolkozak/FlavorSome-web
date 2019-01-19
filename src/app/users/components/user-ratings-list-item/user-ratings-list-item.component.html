@@ -10,7 +10,7 @@
   </div>
   <div class="fs-rate-details col-md-10 col-sm-12">
     <div class="row">
-      <div class="col-md-7 col-sm-12">
+      <div class="col-md-7 col-sm-12 fs-rated-place-details">
         <a *ngIf="placeDetails" [routerLink]="['/places', placeDetails?.vendorPlaceId]">{{placeDetails?.name}}</a>
         <div>
           <fs-place-address [location]="placeDetails?.location"></fs-place-address>
@@ -23,7 +23,8 @@
         <button mat-raised-button
                 *ngIf="allowEdit"
                 (click)="toggleEditForm()">
-          <i class="material-icons">edit</i>
+          <i class="material-icons" *ngIf="!editing">edit</i>
+          <i class="material-icons" *ngIf="editing">cancel</i>
         </button>
         <button mat-raised-button
                 *ngIf="allowRemove"

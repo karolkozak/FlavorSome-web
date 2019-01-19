@@ -10,11 +10,15 @@
 
     .fs-rate-details {
       text-align: center;
-      min-height: 13vh;
+      min-height: 9vh;
       padding-left: 0;
 
       @media (max-width: 767px) {
         padding-right: 0;
+      }
+
+      .fs-rated-place-details {
+        margin-top: $margin-medium;
       }
 
       .fs-rate-details-div {
@@ -38,10 +42,16 @@
       button {
         position: relative;
         transform: translateY(50%);
+
+        @media (max-width: 767px) {
+          width: 100%;
+        }
+
       }
     }
 
     .fs-edit-rate-form {
+      background-color: rgba(255, 255, 255, 0.35);
       @media (max-width: 767px) {
         margin-top: $margin-large;
       }
