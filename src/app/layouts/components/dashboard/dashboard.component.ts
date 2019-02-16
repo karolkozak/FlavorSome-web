@@ -39,8 +39,11 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.customTitleService.setTitle(CONST_TITLES.DASHBOARD);
     this.subscription = this.route.queryParams.subscribe(params => {
-      const {query, latitude, longitude, distance} = params;
+      let {latitude, longitude} = params;
+      const {query, distance} = params;
       if (query) {
+        latitude = +latitude;
+        longitude = +longitude;
         this.placeSearchRequest = new PlaceSearchRequest({latitude, longitude, distance, query});
         this.fetchPlaces(this.placeSearchRequest);
       } else {
@@ -56,7 +59,7 @@ export class DashboardComponent implements OnInit {
         this.onFetchingSuccess(places);
         this.fetchingPlacesSource.next();
       }).catch(error => {
-      this.onFetchingFailre(error);
+      this.onFetchingFailure(error);
     });
   }
 
@@ -66,7 +69,7 @@ export class DashboardComponent implements OnInit {
     this.fetchingDone = true;
   }
 
-  private onFetchingFailre(error) {
+  private onFetchingFailure(error) {
     console.error(error);
     this.places = [];
     this.fetchingDone = true;

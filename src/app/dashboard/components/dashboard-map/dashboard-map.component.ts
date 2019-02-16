@@ -76,6 +76,7 @@ export class DashboardMapComponent implements OnInit, OnDestroy, AfterViewInit {
   public ngAfterViewInit() {
     if (this.mapElement) {
       this.mapService.setMap(this.mapElement);
+      this.mapService.setCenter(this.mapCenter);
     }
   }
 
@@ -93,7 +94,9 @@ export class DashboardMapComponent implements OnInit, OnDestroy, AfterViewInit {
 
   private addUserPosition(pos: any) {
     this.mapService.showUserPosition(pos, this.searchRadius);
-    this.mapService.setCenter(pos);
+    if (!this.mapCenter) {
+      this.mapService.setCenter(pos);
+    }
   }
 
   private moveUserPosition(pos: any) {

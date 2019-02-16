@@ -8,6 +8,7 @@ import {MapService} from '@app/core/services/map/map.service';
 import {LatLng} from '@app/shared/models/LatLng.interface';
 import {Subscription} from 'rxjs/Subscription';
 import {Observable} from 'rxjs/Observable';
+import {deepCompare} from '@app/shared/utils/object-utils';
 
 
 @Component({
@@ -111,8 +112,12 @@ export class DashboardFormComponent implements OnInit, OnChanges, OnDestroy {
       const {query, distance} = this.placesSearchForm.value;
       const {lat: latitude, lng: longitude} = this.location;
       const placeSearchRequest = new PlaceSearchRequest({latitude, longitude, distance, query});
+      if (deepCompare(this.placeSearchRequest, placeSearchRequest)) {
+        return;
+      }
+      this.placeSearchRequest = placeSearchRequest;
       this.promiseButton = new Promise(undefined);
-      this.searchPlaces(placeSearchRequest);
+      this.searchPlaces(this.placeSearchRequest);
     }
   }
 }
