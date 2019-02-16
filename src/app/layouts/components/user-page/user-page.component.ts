@@ -4,10 +4,12 @@ import {UserService} from '@app/core/services/user.service';
 import {User, UserRole} from '@app/security/models/user';
 import {Rate} from '@app/places/models/rate';
 import {Subscription} from 'rxjs/Subscription';
-import {PlacesService} from '@app/places/services/places.service';
 import {MatTabChangeEvent} from '@angular/material';
 import {PageableParams} from '@app/places/models/pageable-params';
 import {Pageable} from '@app/places/models/pageable';
+import {RatesService} from '@app/places/services/rates.service';
+
+const userPageTabs = ['User Details', 'Rated places', 'Places to rate', 'Friends'];
 
 @Component({
   selector: 'fs-user-page',
@@ -15,18 +17,18 @@ import {Pageable} from '@app/places/models/pageable';
   styleUrls: ['./user-page.component.scss']
 })
 export class UserPageComponent implements OnInit, OnDestroy {
-  userDetailsTabs: string[] = ['User Details', 'Rated places', 'Places to rate', 'Friends'];
+  userDetailsTabs: string[];
   user: User;
   ratingsList: Pageable<Rate>;
-  unratedList: Rate[];
+  unratedList: Pageable<Rate>;
   selectedTab: number;
-  pageableParams: PageableParams = new PageableParams();
+  pageableParams: PageableParams = new PageableParams({isLogged: true});
   private subscription: Subscription;
 
   constructor(private router: Router,
               private route: ActivatedRoute,
               private userService: UserService,
-              private placesService: PlacesService) {
+              private ratesService: RatesService) {
   }
 
   ngOnInit() {
@@ -36,6 +38,7 @@ export class UserPageComponent implements OnInit, OnDestroy {
         this.fetchRatings();
         this.fetchUnrated();
       }
+      this.userDetailsTabs = userPageTabs.slice();
       if (!this.isCurrentUser) {
         this.userDetailsTabs.splice(2, 1);
       }
@@ -48,7 +51,7 @@ export class UserPageComponent implements OnInit, OnDestroy {
           .indexOf(activeTab);
       }
     });
-    this.subscription = this.placesService.userRateAnnounce.subscribe((rate: Rate) => {
+    this.subscription = this.ratesService.userRateAnnounce.subscribe((rate: Rate) => {
       let updated = false;
       this.ratingsList.content = this.ratingsList.content.map(r => {
         if (r.id === rate.id) {
@@ -60,7 +63,7 @@ export class UserPageComponent implements OnInit, OnDestroy {
       if (!updated) {
         this.ratingsList.content.push(rate);
       }
-      this.unratedList = this.unratedList.filter(r => r.id !== rate.id);
+      this.unratedList.content = this.unratedList.content.filter(r => r.id !== rate.id);
     });
   }
 
@@ -70,9 +73,9 @@ export class UserPageComponent implements OnInit, OnDestroy {
     }
   }
 
-  fetchUnrated() {
+  fetchUnrated(pageableParams: PageableParams = this.pageableParams) {
     if (this.user && this.isCurrentUser) {
-      this.userService.getUnrated().subscribe(unrated => this.unratedList = unrated);
+      this.userService.getUnrated(pageableParams).subscribe(unrated => this.unratedList = {...unrated});
     }
   }
 
@@ -87,10 +90,6 @@ export class UserPageComponent implements OnInit, OnDestroy {
 
   get isVerified(): boolean {
     return this.user.role !== UserRole.UNVERIFIED;
-  }
-
-  get allowEdit(): boolean {
-    return this.isCurrentUser;
   }
 
   ngOnDestroy(): void {

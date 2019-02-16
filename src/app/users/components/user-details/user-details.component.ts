@@ -12,7 +12,7 @@ import {UserService} from '@app/core/services/user.service';
 export class UserDetailsComponent {
   @Input() user: User;
   UserRole: typeof UserRole = UserRole;
-  buttonPromise: any;
+  promiseButton: Promise<void>;
   showRefreshButton = true;
 
   constructor(private customAuthService: CustomAuthService,
@@ -21,11 +21,12 @@ export class UserDetailsComponent {
   }
 
   refreshToken() {
+    this.promiseButton = new Promise(undefined);
     const observable = this.customAuthService.refreshToken();
-    this.buttonPromise = observable.toPromise();
     observable.subscribe(() => {
       this.customToastrService.showSuccessToastr('Success', 'Please check your email box. We have sent confirmation.');
       this.showRefreshButton = false;
+      this.promiseButton = Promise.resolve();
     });
   }
 

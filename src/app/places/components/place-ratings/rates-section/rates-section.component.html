@@ -1,16 +1,19 @@
 <div class="row">
-  <div class="col-md-12">
-    <div *ngIf="isLoggedIn()">
+  <div class="fs-rates-list col-sm-12 col-md-10">
+    <div *ngIf="isLoggedIn() && hasRequiredRole()">
       <fs-rate-form (rateChanged)="addRate($event)"></fs-rate-form>
     </div>
     <div class="alert alert-warning" role="alert" *ngIf="!isLoggedIn()">
       {{"You must be logged in to rate place" | translate}}.
     </div>
+    <div class="alert alert-warning" role="alert" *ngIf="!hasRequiredRole()">
+      {{"Please verify account to rate place" | translate}}.
+    </div>
     <fs-rates-list [rates]="pageableRates?.content"
                    (pageableParamsChanged)="fetchRateList($event)"
                    [pageableParams]="pageableParams"></fs-rates-list>
     <fs-pagination *ngIf="pageableRates && pageableRates?.content.length"
-      (dataChanged)="fetchRateList($event)"
+                   (dataChanged)="fetchRateList($event)"
                    [pageableParams]="pageableParams"
                    [first]="pageableRates?.first"
                    [last]="pageableRates?.last"></fs-pagination>

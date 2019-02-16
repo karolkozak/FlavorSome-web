@@ -5,12 +5,28 @@
   min-height: 100%;
 
   .page-content {
-    min-height: calc(100% - #{$fs-header-height} - #{$fs-footer-height});
-    min-height: calc(100vh - #{$fs-header-height} - #{$fs-footer-height});
+    @media (min-width: 768px) {
+      $fs-footer-height-fixed: $fs-footer-height;
+      min-height: calc(100% - #{$fs-header-height} - #{$fs-footer-height-fixed});
+      min-height: calc(100vh - #{$fs-header-height} - #{$fs-footer-height-fixed});
+    }
+
+    @media (max-width: 767px) {
+      $fs-footer-height-fixed: $fs-footer-height-small-screens;
+      min-height: calc(100% - #{$fs-header-height} - #{$fs-footer-height-fixed});
+      min-height: calc(100vh - #{$fs-header-height} - #{$fs-footer-height-fixed});
+    }
     background-color: $app-background;
 
     .container-fluid {
       min-height: inherit;
     }
+  }
+}
+
+.fs-modal-dev-body {
+  text-align: center;
+  .fs-modal-icon {
+    margin-bottom: 1rem;
   }
 }

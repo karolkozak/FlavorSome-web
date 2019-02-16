@@ -1,6 +1,7 @@
 //basic elements
 $fs-footer-height: 50px;
-$fs-header-height: 30vh;
+$fs-footer-height-small-screens: 100px;
+$fs-header-height: 27vh;
 $fs-header-add-height: 37px;
 
 //font-size
@@ -10,6 +11,7 @@ $font-size-medium: calc(8px + 0.2rem + 0.15vh + 0.3vw);
 $font-size-button: calc(8px + 0.1rem + 0.8vh + 0.3vw);
 
 // paddings
+$padding-extra-large: 5.7rem;
 $padding-large: 2rem;
 $padding-medium: 1rem;
 $padding-small: 0.8rem;
@@ -18,6 +20,7 @@ $padding-small: 0.8rem;
 $margin-large: 2rem;
 $margin-medium: 1rem;
 $margin-small: 0.8rem;
+$margin-extra-small: 0.2rem;
 
 // others
 $border-width-small: 0.08rem;

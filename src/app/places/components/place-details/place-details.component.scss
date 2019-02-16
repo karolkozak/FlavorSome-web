@@ -1,5 +1,22 @@
-:host {
-  fs-place-picture {
-    display: block;
+@import "variables";
+
+:host(fs-place-details) {
+  .row {
+    margin: 0;
+
+    .fs-additional {
+      vertical-align: middle !important;
+      font-size: 3rem;
+    }
+  }
+
+  .fs-place-picture-wrapper {
+    margin-top: $margin-medium;
+  }
+
+  .fs-row-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }

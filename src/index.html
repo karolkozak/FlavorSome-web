@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Unnamed</title>
+  <title>FlavorSome</title>
   <base href="/">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="" />
   <meta name="keywords" content="" />
   <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link type="text/css" rel="stylesheet" href="https://js.api.here.com/v3/3.0/mapsjs-ui.css">
+  <link type="text/css" rel="stylesheet" href="//js.api.here.com/v3/3.0/mapsjs-ui.css">
 </head>
 <body>
   <fs-root>
@@ -27,9 +27,18 @@
       }
 
       .loader {
-        margin-top: 35px;
         text-align: center;
       }
+
+      .column img {
+        margin-right: auto;
+        margin-left: auto;
+        width: auto;
+        min-height: 3rem;
+        max-height: 8rem;
+        margin-bottom: 5vh;
+      }
+
       .square {
         display: inline-block;
         margin: 0 10px;
@@ -53,6 +62,16 @@
       .square5 {
         animation-delay: 0.4s;
       }
+      .square6 {
+        animation-delay: 0.5s;
+      }
+
+      @media (min-width: 768px) {
+        .column img {
+          margin-bottom: 4vh;
+        }
+      }
+
       @keyframes loading {
         10% {
           transform: translateY(-30px);
@@ -70,13 +89,14 @@
         <div class="square square3"></div>
         <div class="square square4"></div>
         <div class="square square5"></div>
+        <div class="square square6"></div>
       </div>
     </div>
   </fs-root>
 
-  <script src="https://js.api.here.com/v3/3.0/mapsjs-core.js" type="text/javascript" charset="utf-8"></script>
-  <script src="https://js.api.here.com/v3/3.0/mapsjs-service.js" type="text/javascript" charset="utf-8"></script>
-  <script src="https://js.api.here.com/v3/3.0/mapsjs-ui.js" type="text/javascript" charset="utf-8"></script>
-  <script src="https://js.api.here.com/v3/3.0/mapsjs-mapevents.js" type="text/javascript" charset="utf-8"></script>
+  <script src="//js.api.here.com/v3/3.0/mapsjs-core.js" type="text/javascript" charset="utf-8"></script>
+  <script src="//js.api.here.com/v3/3.0/mapsjs-service.js" type="text/javascript" charset="utf-8"></script>
+  <script src="//js.api.here.com/v3/3.0/mapsjs-ui.js" type="text/javascript" charset="utf-8"></script>
+  <script src="//js.api.here.com/v3/3.0/mapsjs-mapevents.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>

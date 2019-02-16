@@ -11,15 +11,42 @@
     line-height: $fs-footer-height;
     text-align: center;
     height: $fs-footer-height;
-  }
 
-  .fs-footer-text {
-    text-align: center;
-    margin: 0;
-  }
+    .row {
+      margin: 0;
 
-  .fs-about {
-    float: right;
-    margin-right: 10px;
+      .fs-footer-details {
+        text-align: right;
+
+        a {
+          color: $text;
+        }
+
+        i {
+          vertical-align: middle !important;
+          color: $dirty-green;
+        }
+        .fs-footer-contact {
+          padding-right: $padding-small;
+        }
+
+        @media (max-width: 767px) {
+          .fs-footer-contact {
+            float: left;
+            text-align: initial;
+            padding-right: 0;
+          }
+
+          .fs-footer-about {
+            float: right;
+            text-align: initial;
+          }
+        }
+      }
+
+      .fs-copyrights {
+        text-align: center;
+      }
+    }
   }
 }

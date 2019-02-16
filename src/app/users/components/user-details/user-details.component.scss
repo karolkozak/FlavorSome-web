@@ -1,3 +1,26 @@
-:host {
-  text-align: center;
+@import 'colors';
+@import 'variables';
+@import 'mixins';
+
+:host(fs-user-details){
+  .fs-user {
+    text-align: center;
+  }
+  .row {
+    margin: 0;
+
+    &.fs-user-basic-details {
+      margin-bottom: $margin-large;
+    }
+
+    @media (max-width: 1199px) {
+      .fs-confirmation-text {
+        text-align: justify;
+      }
+    }
+  }
+
+  button {
+    margin-top: $margin-medium;
+  }
 }

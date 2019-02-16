@@ -8,6 +8,7 @@
             <i class="material-icons">people</i>
         </div>
         <fs-custom-login [loginSuccess]="loginSuccess()"></fs-custom-login>
+        <span>{{ 'Have you forgot password?' | translate }} </span><a [routerLink]="['/password-recovery']">{{ 'Recover password' | translate }}</a>
         <div class="fs-divider-wrapper">
           <div class="fs-types-divider">
             <span>

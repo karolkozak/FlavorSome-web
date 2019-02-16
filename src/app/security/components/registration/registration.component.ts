@@ -3,7 +3,6 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {CustomAuthService} from '../../services/custom-auth.service';
 import {RegistrationFormValidator} from '../../validators/RegistrationFormValidator';
 import {squash} from '@app/shared/utils/object-utils';
-import {CustomTranslateService} from '@app/core/services/custom-translate.service';
 import {ApiResponseBody} from '@app/security/models/api-response-body';
 import {environment} from '@env/environment';
 import {CustomToastrService} from '@app/core/services/custom-toastr.service';
@@ -23,17 +22,15 @@ export class RegistrationComponent implements OnInit {
   registrationUserForm: FormGroup;
   registrationError: ApiResponseBody;
   googleReCaptchaKey: string;
-  availableCultureLanguages: Array<string>;
+  promiseButton: Promise<void>;
 
   constructor(private customAuthService: CustomAuthService,
               private formBuilder: FormBuilder,
-              private customToastrService: CustomToastrService,
-              private customTranslateService: CustomTranslateService) {
+              private customToastrService: CustomToastrService) {
   }
 
   ngOnInit() {
     this.googleReCaptchaKey = environment.googleReCaptchaKey;
-    this.availableCultureLanguages = this.customTranslateService.getAvailableCultureLanguages();
     this.initForm();
   }
 
@@ -62,10 +59,6 @@ export class RegistrationComponent implements OnInit {
         Validators.required
       ]))
     });
-  }
-
-  get currentLanguage(): string {
-    return this.availableCultureLanguages.find(v => v.startsWith(this.customTranslateService.getCurrentLanguage()));
   }
 
   get passwordIncorrect(): boolean {
@@ -97,7 +90,7 @@ export class RegistrationComponent implements OnInit {
       this.captchaRef.execute();
 
       const resolvedCallback = this.captchaResolved;
-      this.captchaResolved = function(captchaResponse: string) {
+      this.captchaResolved = function (captchaResponse: string) {
         resolvedCallback.call(this, captchaResponse);
         resolve(captchaResponse);
         this.captchaResolved = resolvedCallback;
@@ -107,20 +100,23 @@ export class RegistrationComponent implements OnInit {
 
   async registerUser() {
     await this.getCaptcha();
-
     if (this.registrationUserForm.valid) {
+      this.promiseButton = new Promise(undefined);
       const userData = squash(this.registrationUserForm.value);
-      this.customAuthService.registerUser(userData).subscribe(
-        loginSuccess => {
+      const observable = this.customAuthService.registerUser(userData);
+      observable.subscribe(
+        () => {
           this.registrationSuccess();
+          this.promiseButton = Promise.resolve();
         },
-        loginError => {
-          console.error(loginError);
-          if (loginError.status !== 404) {
+        registrationError => {
+          console.error(registrationError);
+          if (registrationError.status !== 404) {
             this.customToastrService
-              .showErrorToastr('Registration', 'Unable to register, try again later', loginError.status);
+              .showErrorToastr('Registration', 'Unable to register, try again later', registrationError.status);
           }
-          this.registrationError = JSON.parse(loginError.error);
+          this.registrationError = JSON.parse(registrationError.error);
+          this.promiseButton = Promise.resolve();
         }
       );
     }

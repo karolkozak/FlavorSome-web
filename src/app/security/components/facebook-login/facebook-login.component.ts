@@ -9,11 +9,13 @@ import {FacebookAuthService} from '../../services/facebook-auth.service';
 export class FacebookLoginComponent {
   @Input() loginSuccess: () => void;
 
+  promiseButton: Promise<void>;
+
   constructor(private facebookAuthService: FacebookAuthService) {
   }
 
   public facebookLogin() {
-    this.facebookAuthService.facebookLogin().then(loginSuccess => {
+    this.promiseButton = this.facebookAuthService.facebookLogin().then(loginSuccess => {
       if (loginSuccess) {
         this.loginSuccess();
       }

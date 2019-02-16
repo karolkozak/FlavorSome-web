@@ -1,18 +1,45 @@
 <div class="fs-header-full">
-  <nav class="navbar navbar-light">
-    <span class="fs-app-name" [routerLink]="['/']">
-      <img src="assets/ux/logo-mini-2.svg">
-    </span>
-    <span class="fs-header-fill"></span>
-    <fs-language-chooser></fs-language-chooser>
-    <button class="btn" *ngIf="currentUser" [routerLink]="['/users', currentUser.userId]">
-      <fs-user-picture [picture]="currentUser?.picture"></fs-user-picture> {{userDisplayName}}
+  <nav class="navbar navbar-expand-md navbar-light fixed-top">
+    <fs-language-chooser class="d-block d-md-none"></fs-language-chooser>
+    <a class="navbar-brand" [routerLink]="['/']">
+      <img src="assets/ux/logo-mini.png" alt="FlavorSome">
+    </a>
+    <button class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+      <i class="material-icons">list</i>
     </button>
-    <button class="btn" *ngIf="!isLoggedIn" [routerLink]="['/login']">{{"Login" | translate}}</button>
-    <button class="btn" *ngIf="isLoggedIn" (click)="logout()">{{"Logout" | translate}}</button>
-    <button class="btn" *ngIf="!isLoggedIn" [routerLink]="['/registration']">{{"Registration" | translate}}</button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto justify-content-end">
+        <li class="nav-item d-none d-md-block">
+          <fs-language-chooser></fs-language-chooser>
+        </li>
+        <li class="nav-item" *ngIf="currentUser">
+          <a class="nav-link" [routerLink]="['/users', currentUser.userId]">
+            <fs-user-picture [picture]="currentUser?.picture" ></fs-user-picture> {{userDisplayName}}
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="!isLoggedIn">
+          <a class="nav-link" [routerLink]="['/login']">{{"Login" | translate}}</a>
+        </li>
+        <li class="nav-item" *ngIf="!isLoggedIn">
+          <a class="nav-link" [routerLink]="['/registration']">{{"Registration" | translate}}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/about']">{{ 'About FlavorSome' | translate }}</a>
+        </li>
+        <li class="nav-item" *ngIf="isLoggedIn">
+          <a class="nav-link" (click)="logout()">{{"Logout" | translate}}</a>
+        </li>
+      </ul>
+    </div>
   </nav>
-  <div class="fs-full-logo" [ngClass]="(showPlaceSearcher()) ? 'fs-logo-small' : 'fs-logo-big'">
+  <div class="fs-navbar-fixed-filler"></div>
+  <div class="fs-full-logo d-none d-md-block" [ngClass]="(showPlaceSearcher()) ? 'fs-logo-small' : 'fs-logo-big'">
     <img src="assets/ux/logo.svg">
   </div>
   <div class="fs-header-searcher">

@@ -1,7 +1,17 @@
 import { Injectable } from '@angular/core';
+import {Observable} from 'rxjs/Observable';
+import {Place} from '@app/places/models/place';
+import {LatLng} from '@app/shared/models/LatLng.interface';
 
 @Injectable()
 export abstract class MapService {
+  userMarker: any;
+  userCircle: any;
+
+  get isUserPositioned(): boolean {
+    return this.userMarker && this.userCircle;
+  }
+
   /**
    * Retrieves an API provider.
    * @returns {string} API provider class name
@@ -9,20 +19,30 @@ export abstract class MapService {
    */
   abstract get provider(): string
 
-  /**
-   * Returns an object with provider-specific properties and methods.
-   * @returns {object}
-   */
-  abstract get config(): any;
-
   abstract setMap(map: any): void;
 
-  abstract setCenter(pos: any): void;
+  abstract getCenter(): any;
+  abstract setCenter(pos: LatLng): void;
+  abstract followCenter(): Observable<any>;
+  abstract adjustViewBounds(): void;
+
+  abstract showUserPosition(pos: LatLng, radius: number): any;
+  abstract updateUserPosition(pos: LatLng): void;
+  abstract hideUserPosition(): void;
 
   abstract addMarker(pos: any): any;
-  abstract removeMarker(marker: any): void;
+  abstract moveMarker(pos: LatLng, marker?: any): any;
+  abstract removeMarker(marker?: any): void;
 
   abstract drawCircle(center: any, radius: number): any;
-  abstract redrawCircle(circle: any, radius: number): any;
-  abstract removeCircle(circle: any): void;
+  abstract moveCircle(pos: LatLng, circle?: any): any;
+  abstract redrawCircle(radius: number, circle?: any): any;
+  abstract removeCircle(circle?: any): void;
+
+  abstract showPlaceMarkers(places: Place[]): void;
+  abstract removePlaceMarkers(): void;
+
+  preparePlaceData(place: Place): string {
+    return `<a id="${place.vendorPlaceId}" >${place.name}</a>`;
+  }
 }

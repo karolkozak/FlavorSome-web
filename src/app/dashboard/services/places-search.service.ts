@@ -4,26 +4,34 @@ import {CustomTranslateService} from '@app/core/services/custom-translate.servic
 import {ToastrService} from 'ngx-toastr';
 import {PlacesService} from '@app/places/services/places.service';
 import {HttpClient} from '@angular/common/http';
+import {environment} from '@env/environment';
+import {LatLng} from '@app/shared/models/LatLng.interface';
+import {Observable} from 'rxjs/Observable';
+import {PlaceSearchRequest} from '@app/places/models/place-search-request';
+import {Place} from '@app/places/models/place';
+import {MapService} from '@app/core/services/map/map.service';
 
 @Injectable()
 export class PlacesSearchService extends PlacesService {
-  userPosition: BehaviorSubject<google.maps.LatLngLiteral> = new BehaviorSubject(undefined);
-  searchRadius: BehaviorSubject<number> = new BehaviorSubject(undefined);
+  private userPosition: BehaviorSubject<LatLng> = new BehaviorSubject(environment.mapDefaults.coords);
+  userPosition$: Observable<LatLng> = this.userPosition.asObservable();
+  private searchRadius: BehaviorSubject<number> = new BehaviorSubject(environment.mapDefaults.range);
+  searchRadius$: Observable<number> = this.searchRadius.asObservable();
+
+  private places: BehaviorSubject<Place[]> = new BehaviorSubject([]);
+  places$: Observable<Place[]> = this.places.asObservable();
 
   constructor(httpClient: HttpClient,
               private toastr: ToastrService,
-              private customTranslateService: CustomTranslateService) {
+              private customTranslateService: CustomTranslateService,
+              private mapService: MapService) {
     super(httpClient);
   }
 
-  setSearchRadius(radius: number): void {
-    this.searchRadius.next(radius);
-  }
-
   locateUser(): void {
+    // TODO: refactor to return promise
     navigator.geolocation.getCurrentPosition(position => {
       const {latitude: lat, longitude: lng} = position.coords;
-      // const latlng = new google.maps.LatLng(lat, lng);
       const latlng = {lat: lat, lng: lng};
       this.userPosition.next(latlng);
     }, error => {
@@ -43,7 +51,35 @@ export class PlacesSearchService extends PlacesService {
     });
   }
 
+  findPlaces(placeSearchRequest: PlaceSearchRequest): Promise<Place[]> {
+    return new Promise<Place[]>((resolve, reject) => {
+      // TODO: remove mapService related logic
+      this.mapService.removePlaceMarkers();
+      this.getPlaces(placeSearchRequest).subscribe((places: Place[]) => {
+        this.places.next(places);
+
+        this.mapService.showPlaceMarkers(places);
+        this.mapService.adjustViewBounds();
+        resolve(places);
+      }, error => {
+        reject(error);
+      });
+    });
+  }
+
+  setSearchRadius(radius: number): void {
+    this.searchRadius.next(radius);
+  }
+
+  setUserPosition(pos: LatLng): void {
+    this.userPosition.next(pos);
+  }
+
   resetUserPosition(): void {
     this.userPosition.next(undefined);
+  }
+
+  get isLocationDisabled() {
+    return !navigator.geolocation;
   }
 }

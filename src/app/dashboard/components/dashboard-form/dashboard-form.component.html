@@ -3,7 +3,7 @@
     <input matInput type="text" name="query" formControlName="query" placeholder="{{'Search phrase' | translate}}">
   </mat-form-field>
   <div>
-    <mat-button-toggle-group [value]="isLocationDisabled ? 'bounds' : 'locate'">
+    <mat-button-toggle-group [value]="locationValue">
       <mat-button-toggle type="radio" value="locate" [disabled]="isLocationDisabled"
                          (change)="locateUser()"><i class="material-icons">my_location</i> {{'Locate' | translate}}
       </mat-button-toggle>
@@ -14,11 +14,11 @@
   </div>
   <mat-form-field>
     <input matInput formControlName="distance" type="number" placeholder="{{'Range' | translate}}"
-           (change)="updateRange($event)">
+           (change)="updateRange()">
     <span matSuffix>m</span>
   </mat-form-field>
   <div>
-    <button class="btn" type="submit">
+    <button [promiseBtn]="promiseButton" class="btn" type="submit">
       <i class="material-icons">search</i> {{'Find places' | translate}}
     </button>
   </div>

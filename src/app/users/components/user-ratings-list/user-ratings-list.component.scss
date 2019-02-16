@@ -1,0 +1,7 @@
+@import "variables";
+
+:host(fs-user-ratings-list) {
+  .fs-user-ratings {
+    padding-top: $padding-medium;
+  }
+}

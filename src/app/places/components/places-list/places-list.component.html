@@ -1,5 +1,7 @@
-<mat-list>
-  <mat-list-item *ngFor="let place of places" class="fs-mat-list-item">
-    <fs-places-list-item [place]="place"></fs-places-list-item>
-  </mat-list-item>
-</mat-list>
+<div class="row">
+  <div *ngFor="let tile of places" class="{{!columnList ? 'col-lg-4 col-md-6 col-sm-12' : 'col-12'}} fs-place-detail-full">
+    <div class="fs-place-list-item-wrapper">
+        <fs-places-list-item [place]="tile"></fs-places-list-item>
+    </div>
+  </div>
+</div>

@@ -6,8 +6,6 @@ import {Rate} from '@app/places/models/rate';
 import {Pageable} from '@app/places/models/pageable';
 import {PageableParams} from '@app/places/models/pageable-params';
 import {ApiResponseBody} from '@app/security/models/api-response-body';
-import {Subject} from 'rxjs/Subject';
-import {tap} from 'rxjs/operators';
 import {Place} from '@app/places/models/place';
 import {PlaceSearchRequest} from '@app/places/models/place-search-request';
 import {suppressError as suppressErrorHeader} from '@app/core/http-client/headers';
@@ -19,9 +17,6 @@ export class PlacesService {
   constructor(private httpClient: HttpClient) {
     this.baseUrl = environment.flavorSomeMicroserviceUrl + environment.placesPath;
   }
-
-  private userRateAnnounceSource: Subject<Rate> = new Subject<Rate>();
-  public readonly userRateAnnounce: Observable<Rate> = this.userRateAnnounceSource.asObservable();
 
   public getMenu(placeId: string): Observable<StringMap<number>> {
     const endpoint = this.baseUrl + `/${placeId}${environment.menuPath}`;
@@ -41,18 +36,6 @@ export class PlacesService {
   public addRate(placeId: string, rate: Rate): Observable<Rate> {
     const endpoint = this.baseUrl + `/${placeId}${environment.ratingsPath}`;
     return this.httpClient.post<Rate>(endpoint, rate);
-  }
-
-  public editRate(rate: Rate): Observable<Rate> {
-    const endpoint = this.baseUrl + `/${rate.place.vendorPlaceId}${environment.ratingsPath}/${rate.id}`;
-    return this.httpClient.put<Rate>(endpoint, rate).pipe(
-      tap(editedRate => this.userRateAnnounceSource.next(editedRate))
-    );
-  }
-
-  public deleteRate(rate: Rate): Observable<ApiResponseBody> {
-    const endpoint = this.baseUrl + `/${rate.place.vendorPlaceId}${environment.ratingsPath}/${rate.id}`;
-    return this.httpClient.delete<ApiResponseBody>(endpoint);
   }
 
   public visitPlace(placeId: string): Observable<ApiResponseBody> {

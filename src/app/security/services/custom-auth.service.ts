@@ -1,4 +1,4 @@
-import {Injectable, Injector} from '@angular/core';
+import {Injectable} from '@angular/core';
 
 import {AuthenticationService} from './authentication.service';
 import {environment} from '@env/environment';
@@ -8,12 +8,10 @@ import {Observable} from 'rxjs/Observable';
 import {ApiResponseBody} from '@app/security/models/api-response-body';
 
 @Injectable()
-export class CustomAuthService extends AuthenticationService {
-
+export class CustomAuthService {
   private baseUrl: string;
 
-  constructor(injector: Injector, private httpClient: HttpClient) {
-    super(injector);
+  constructor(private authenticationService: AuthenticationService, private httpClient: HttpClient) {
     this.baseUrl = environment.flavorSomeMicroserviceUrl + environment.authPath;
   }
 
@@ -25,6 +23,16 @@ export class CustomAuthService extends AuthenticationService {
   registerUser(userData: any): Observable<string> {
     const endpoint = this.baseUrl + environment.registration;
     return this.makeRequest(userData, endpoint);
+  }
+
+  recoverPassword(recoveryData: any): Observable<ApiResponseBody> {
+    const endpoint = this.baseUrl + environment.passwordRecovery;
+    return this.httpClient.post<ApiResponseBody>(endpoint, recoveryData);
+  }
+
+  resetPassword(resetPasswordData: any): Observable<ApiResponseBody> {
+    const endpoint = this.baseUrl + environment.resetPassword;
+    return this.httpClient.post<ApiResponseBody>(endpoint, resetPasswordData);
   }
 
   confirmRegistration(token: string): Observable<ApiResponseBody> {
@@ -47,7 +55,7 @@ export class CustomAuthService extends AuthenticationService {
 
   private makeRequest(userData: any, endpoint: string): Observable<string> {
     return this.httpClient.post<string>(endpoint, userData, {responseType: 'text'} as any as {}).pipe(
-      tap(response => this.setTokenDataInStorage(response))
+      tap(response => this.authenticationService.setTokenDataInStorage(response))
     );
   }
 }

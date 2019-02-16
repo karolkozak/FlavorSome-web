@@ -1,37 +1,57 @@
-<div class="row">
-  <div class="col-md-12 fs-confirmation">
-    <div *ngIf="!token; else pendingConfirmation">
-      {{ 'Thank You for registration! Please check out your e-mail and click the confirmation link' | translate }}
-    </div>
-    <ng-template #pendingConfirmation>
-      <div *ngIf="!confirmationError; else confirmationTokenError">
-        <div *ngIf="action === 'confirmation'; else deleteAccount">
-          <mat-progress-spinner
-            color="primary"
-            mode="indeterminate">
-          </mat-progress-spinner>
-          {{ 'Please wait for confirmation response' | translate }}
-        </div>
-        <ng-template #deleteAccount>
-          {{ 'Are you sure, that you want to delete this account?' | translate }}
-          <button mat-raised-button
-                  [promiseBtn]="buttonPromise"
-                  [matTooltip]="'Delete account' | translate"
-                  (click)="deleteUserRegistration()">
-            <i class="material-icons">delete</i>{{ 'Delete account' | translate }}
-          </button>
-        </ng-template>
+<div class="row fs-confirmation-component">
+  <div class="col-lg-6 col-md-8 col-sm-10 fs-content">
+    <div class="fs-form">
+      <div class="fs-header">
+        <i class="material-icons">people</i>
       </div>
-      <ng-template #confirmationTokenError>
-        {{ 'Token is invalid or has expired' | translate }}
-        {{ 'You can refresh token by clicking the button.' | translate }}
-        <button mat-raised-button
-                [promiseBtn]="buttonPromise"
-                [matTooltip]="'Refresh token' | translate"
-                (click)="refreshToken()">
-          <i class="material-icons">refresh</i>{{ 'Refresh token' | translate }}
-        </button>
-      </ng-template>
-    </ng-template>
+      <div class="fs-auth-name">
+        <h3><span>{{ 'Register confirmation' | translate }}</span></h3>
+      </div>
+      <div>
+        <div class="fs-confirmation-content">
+          <div *ngIf="!token; else pendingConfirmation">
+            <span>
+              {{ 'Thank You for registration! Please check out your e-mail and click the confirmation link.' | translate }}
+            </span>
+          </div>
+          <ng-template #pendingConfirmation>
+            <div *ngIf="!confirmationError; else confirmationTokenError">
+              <div *ngIf="action === 'confirmation'; else deleteAccount">
+                <div class="progress fs-progress">
+                  <div class="progress-bar progress-bar-striped progress-bar-animated fs-progress-bar"
+                       role="progressbar"></div>
+                </div>
+                <span>{{ 'Please wait for confirmation response' | translate }}</span>
+              </div>
+              <ng-template #deleteAccount>
+                <div>
+                  <span>
+                    {{ 'Are you sure, that you want to delete this account?' | translate }}
+                  </span>
+                  <button class="btn fs-form-button"
+                          [promiseBtn]="promiseButton"
+                          (click)="deleteUserRegistration()">
+                    <i class="material-icons">delete</i>{{ 'Delete account' | translate }}
+                  </button>
+                </div>
+              </ng-template>
+            </div>
+            <ng-template #confirmationTokenError>
+              <div>
+                <span>
+                  {{ 'Token is invalid or has expired.' | translate }}
+                  {{ 'You can refresh token by clicking the button.' | translate }}
+                </span>
+                <button class="btn fs-form-button"
+                        [promiseBtn]="promiseButton"
+                        (click)="refreshToken()">
+                  <i class="material-icons">refresh</i>{{ 'Refresh token' | translate }}
+                </button>
+              </div>
+            </ng-template>
+          </ng-template>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

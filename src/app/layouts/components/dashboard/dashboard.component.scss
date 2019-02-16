@@ -11,6 +11,7 @@
       margin-top: 0;
       margin-left: auto;
       margin-right: auto;
+      margin-bottom: $margin-medium;
       text-align: center;
       background-color: transparent;
 
@@ -23,12 +24,31 @@
         margin-right: auto;
 
         .row {
-          .fs-form {
+          &.fs-dashboard-search {
+            margin-bottom: $margin-small;
+          }
+          .fs-section {
             @media (min-width: 768px) {
               border: $border-width-medium solid $beige;
+              padding-bottom: $padding-small;
             }
 
-            .fs-form-title {
+            &.fs-place-list-wrapper {
+              @media (min-width: 768px) {
+                height: 60vh;
+                overflow-y: scroll;
+                &::-webkit-scrollbar {
+                  width: 0.4em;
+                  height: 0.3em;
+                }
+                &::-webkit-scrollbar-thumb {
+                  background-color: $dirty-green;
+                  border-radius: 3px;
+                }
+              }
+            }
+
+            .fs-section-title {
               font-size: $font-size-header;
               margin: $margin-medium;
             }

@@ -13,11 +13,11 @@ import {
   MatInputModule,
   MatListModule,
   MatMenuModule,
-  MatProgressSpinnerModule,
   MatSelectModule,
   MatTabsModule,
   MatToolbarModule,
-  MatTooltipModule
+  MatTooltipModule,
+  MatGridListModule
 } from '@angular/material';
 import {TranslateModule} from '@ngx-translate/core';
 import {PaginationComponent} from './components/pagination/pagination/pagination.component';
@@ -54,10 +54,10 @@ import {UserPictureComponent} from '@app/shared/components/user-picture/user-pic
     MatListModule,
     MatMenuModule,
     MatTabsModule,
-    MatProgressSpinnerModule,
     MatSelectModule,
     MatToolbarModule,
     MatTooltipModule,
+    MatGridListModule,
     PaginationComponent,
     PlaceSearcherComponent,
     ReactiveFormsModule,

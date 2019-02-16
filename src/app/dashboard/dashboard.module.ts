@@ -5,9 +5,13 @@ import {SharedModule} from '@app/shared/shared.module';
 import { DashboardMapComponent } from './components/dashboard-map/dashboard-map.component';
 import { DashboardFormComponent } from './components/dashboard-form/dashboard-form.component';
 import {PlacesSearchService} from '@app/dashboard/services/places-search.service';
+import {Angular2PromiseButtonModule} from 'angular2-promise-buttons';
 
 @NgModule({
   imports: [
+    Angular2PromiseButtonModule.forRoot({
+      disableBtn: true,
+    }),
     AgmCoreModule,
     CommonModule,
     SharedModule
