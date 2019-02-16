@@ -3,6 +3,7 @@ import {Rate} from '@app/places/models/rate';
 import {PlacesService} from '@app/places/services/places.service';
 import {CustomToastrService} from '@app/core/services/custom-toastr.service';
 import {Place} from '@app/places/models/place';
+import {RatesService} from '@app/places/services/rates.service';
 
 @Component({
   selector: 'fs-user-ratings-list-item',
@@ -17,7 +18,9 @@ export class UserRatingsListItemComponent implements OnInit {
   editing = false;
   placeDetails: Place;
 
-  constructor(private placesService: PlacesService, private customToastrService: CustomToastrService) {
+  constructor(private placesService: PlacesService,
+              private ratesService: RatesService,
+              private customToastrService: CustomToastrService) {
   }
 
   ngOnInit(): void {
@@ -31,7 +34,7 @@ export class UserRatingsListItemComponent implements OnInit {
   }
 
   saveEdited(rate: Rate) {
-    this.placesService.editRate(rate).subscribe(editedRate => {
+    this.ratesService.editRate(rate).subscribe(editedRate => {
       this.customToastrService.showSuccessToastr('Success', 'Rating was successfully saved');
       this.rate = editedRate;
       this.toggleEditForm();

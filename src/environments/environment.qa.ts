@@ -20,12 +20,14 @@ export const environment = {
   placesPath: '/places',
   menuPath: '/menu',
   ratingsPath: '/ratings',
+  search: '/search',
 
   usersPath: '/users',
   current: '/current',
   unrated: '/unrated',
   visit: '/visit',
-  search: '/search',
+
+  ratesPath: '/ratings',
 
   contact: '/contact',
   mail: '/mail',

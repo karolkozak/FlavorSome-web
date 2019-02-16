@@ -1,8 +1,8 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {Rate} from '@app/places/models/rate';
-import {PlacesService} from '@app/places/services/places.service';
 import {PageableParams} from '@app/places/models/pageable-params';
 import {CustomToastrService} from '@app/core/services/custom-toastr.service';
+import {RatesService} from '@app/places/services/rates.service';
 import {RateSortingKey, RatesSorting, ratesSortingOptions} from '@app/places/models/rates-sorting';
 
 @Component({
@@ -19,7 +19,7 @@ export class UserRatingsListComponent implements OnInit, OnChanges {
   sortingOptions: RatesSorting[];
   currentSorting: RatesSorting;
 
-  constructor(private placesService: PlacesService, private customToastrService: CustomToastrService) {
+  constructor(private ratesService: RatesService, private customToastrService: CustomToastrService) {
   }
 
   ngOnInit(): void {
@@ -55,7 +55,7 @@ export class UserRatingsListComponent implements OnInit, OnChanges {
   }
 
   removeRate(rate: Rate) {
-    this.placesService.deleteRate(rate).subscribe(response => {
+    this.ratesService.abandonRate(rate).subscribe(response => {
       this.ratings = this.ratings.filter(r => r.id !== rate.id);
       this.customToastrService.showSuccessToastr('Success', 'Rating was successfully removed');
     });

@@ -4,10 +4,10 @@ import {UserService} from '@app/core/services/user.service';
 import {User, UserRole} from '@app/security/models/user';
 import {Rate} from '@app/places/models/rate';
 import {Subscription} from 'rxjs/Subscription';
-import {PlacesService} from '@app/places/services/places.service';
 import {MatTabChangeEvent} from '@angular/material';
 import {PageableParams} from '@app/places/models/pageable-params';
 import {Pageable} from '@app/places/models/pageable';
+import {RatesService} from '@app/places/services/rates.service';
 
 const userPageTabs = ['User Details', 'Rated places', 'Places to rate', 'Friends'];
 
@@ -28,7 +28,7 @@ export class UserPageComponent implements OnInit, OnDestroy {
   constructor(private router: Router,
               private route: ActivatedRoute,
               private userService: UserService,
-              private placesService: PlacesService) {
+              private ratesService: RatesService) {
   }
 
   ngOnInit() {
@@ -51,7 +51,7 @@ export class UserPageComponent implements OnInit, OnDestroy {
           .indexOf(activeTab);
       }
     });
-    this.subscription = this.placesService.userRateAnnounce.subscribe((rate: Rate) => {
+    this.subscription = this.ratesService.userRateAnnounce.subscribe((rate: Rate) => {
       let updated = false;
       this.ratingsList.content = this.ratingsList.content.map(r => {
         if (r.id === rate.id) {
