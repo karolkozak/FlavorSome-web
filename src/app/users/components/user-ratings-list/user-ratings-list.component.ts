@@ -43,7 +43,8 @@ export class UserRatingsListComponent implements OnInit, OnChanges {
       });
     } else {
       this.sortingOptions = ratesSortingOptions;
-    }this.currentSorting = this.sortingOptions[0];
+    }
+    this.currentSorting = this.sortingOptions[0];
   }
 
   sort(ratesSorting: RatesSorting) {
