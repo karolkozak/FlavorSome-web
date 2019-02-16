@@ -9,3 +9,9 @@ export function squash(obj: {}, keys: any = []): {} {
     );
   }, {});
 }
+
+export function deepCompare(object: any, object2: any): boolean {
+  const first = object ? JSON.stringify(object) : object;
+  const second = object2 ? JSON.stringify(object2) : object2;
+  return first === second;
+}

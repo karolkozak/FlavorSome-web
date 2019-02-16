@@ -5,11 +5,15 @@
         <div class="row fs-dashboard-search">
           <div class="col-12 fs-section ">
             <div class="fs-section-title">{{ 'Search place' | translate }}</div>
-            <fs-dashboard-form [searchPlaces]="searchPlaces()"></fs-dashboard-form>
+            <fs-dashboard-form [placeSearchRequest]="placeSearchRequest"
+                               [locate]="locateUser"
+                               [fetchingPlaces]="fetchingPlacesAnnounce"
+                               [searchPlaces]="searchPlaces()"></fs-dashboard-form>
           </div>
         </div>
         <div class="row">
-          <fs-dashboard-map class="col-lg-9 col-md-8 col-sm-12 fs-content-map"></fs-dashboard-map>
+          <fs-dashboard-map [placeSearchRequest]="placeSearchRequest"
+                            [locate]="locateUser" class="col-lg-9 col-md-8 col-sm-12 fs-content-map"></fs-dashboard-map>
           <div class="col-lg-3 col-md-4 col-sm-12 fs-section fs-place-list-wrapper">
             <div class="fs-section-title">{{ 'List of places' | translate }}</div>
             <div class="alert alert-info" *ngIf="fetchingDone && !places.length">{{'No results' | translate}}</div>

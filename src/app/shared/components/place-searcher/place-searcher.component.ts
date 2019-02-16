@@ -31,8 +31,9 @@ export class PlaceSearcherComponent implements OnInit {
   }
 
   redirectToResults() {
-    // TODO: if logged in, navigate to dashbard and pass there places
-    this.router.navigate(['/places'], {queryParams: {query: this.searchForm.get('searchInput').value}});
+    // TODO: pass also location #174
+    const route = this.authenticationService.isLoggedIn() ? '/dashboard' : 'places';
+    this.router.navigate([route], {queryParams: {query: this.searchForm.get('searchInput').value, distance: 3000}});
   }
 
   private initializeSearch() {

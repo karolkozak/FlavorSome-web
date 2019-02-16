@@ -52,17 +52,22 @@ export class UserService {
   }
 
   getRatings(userId: string, pageable: PageableParams): Observable<Pageable<Rate>> {
-    const params = new HttpParams()
-      .set('page', pageable.page as any as string)
-      .set('size', pageable.size as any as string)
-      .set('sort', `${pageable.sortKey},${pageable.direction}`);
+    const params = this.prepareHeadersForLists(pageable);
     const endpoint = `${this.baseUrl}/${userId}${environment.ratingsPath}`;
     return this.httpClient.get<Pageable<Rate>>(endpoint, {params});
   }
 
-  getUnrated(): Observable<Rate[]> {
+  getUnrated(pageable: PageableParams): Observable<Pageable<Rate>> {
+    const params = this.prepareHeadersForLists(pageable);
     const endpoint = this.baseUrl + environment.unrated;
-    return this.httpClient.get<Rate[]>(endpoint);
+    return this.httpClient.get<Pageable<Rate>>(endpoint, {params});
+  }
+
+  private prepareHeadersForLists(pageable: PageableParams): HttpParams {
+    return new HttpParams()
+      .set('page', pageable.page as any as string)
+      .set('size', pageable.size as any as string)
+      .set('sort', `${pageable.sortKey},${pageable.direction}`);
   }
 
   removeCurrentUser() {
