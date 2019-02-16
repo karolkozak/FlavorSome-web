@@ -20,7 +20,7 @@ export class UserPageComponent implements OnInit, OnDestroy {
   userDetailsTabs: string[];
   user: User;
   ratingsList: Pageable<Rate>;
-  unratedList: Rate[];
+  unratedList: Pageable<Rate>;
   selectedTab: number;
   pageableParams: PageableParams = new PageableParams({isLogged: true});
   private subscription: Subscription;
@@ -63,7 +63,7 @@ export class UserPageComponent implements OnInit, OnDestroy {
       if (!updated) {
         this.ratingsList.content.push(rate);
       }
-      this.unratedList = this.unratedList.filter(r => r.id !== rate.id);
+      this.unratedList.content = this.unratedList.content.filter(r => r.id !== rate.id);
     });
   }
 
@@ -73,9 +73,9 @@ export class UserPageComponent implements OnInit, OnDestroy {
     }
   }
 
-  fetchUnrated() {
+  fetchUnrated(pageableParams: PageableParams = this.pageableParams) {
     if (this.user && this.isCurrentUser) {
-      this.userService.getUnrated().subscribe(unrated => this.unratedList = unrated);
+      this.userService.getUnrated(pageableParams).subscribe(unrated => this.unratedList = {...unrated});
     }
   }
 
@@ -90,10 +90,6 @@ export class UserPageComponent implements OnInit, OnDestroy {
 
   get isVerified(): boolean {
     return this.user.role !== UserRole.UNVERIFIED;
-  }
-
-  get allowEdit(): boolean {
-    return this.isCurrentUser;
   }
 
   ngOnDestroy(): void {
