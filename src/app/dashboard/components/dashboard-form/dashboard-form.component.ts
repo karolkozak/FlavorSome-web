@@ -1,4 +1,4 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ConfigService} from '@app/core/services/config.service';
 import {PlacesSearchService} from '@app/dashboard/services/places-search.service';
@@ -7,7 +7,8 @@ import {environment} from '@env/environment';
 import {MapService} from '@app/core/services/map/map.service';
 import {LatLng} from '@app/shared/models/LatLng.interface';
 import {Subscription} from 'rxjs/Subscription';
-import {ActivatedRoute} from '@angular/router';
+import {Observable} from 'rxjs/Observable';
+import {deepCompare} from '@app/shared/utils/object-utils';
 
 
 @Component({
@@ -15,7 +16,10 @@ import {ActivatedRoute} from '@angular/router';
   templateUrl: './dashboard-form.component.html',
   styleUrls: ['./dashboard-form.component.scss']
 })
-export class DashboardFormComponent implements OnInit, OnDestroy {
+export class DashboardFormComponent implements OnInit, OnChanges, OnDestroy {
+  @Input() placeSearchRequest: PlaceSearchRequest;
+  @Input() locate: boolean;
+  @Input() fetchingPlaces: Observable<string>;
   isLocationDisabled: boolean;
   placeTypes: string[];
   placesSearchForm: FormGroup;
@@ -24,11 +28,10 @@ export class DashboardFormComponent implements OnInit, OnDestroy {
 
   locationSub: Subscription;
   location: LatLng;
-  @Input() searchPlaces = (placeSearchRequest: PlaceSearchRequest): Promise<void> => Promise.resolve();
+  @Input() searchPlaces = (placeSearchRequest: PlaceSearchRequest): void => {};
 
   constructor(private formBuilder: FormBuilder,
               private configService: ConfigService,
-              private route: ActivatedRoute,
               private placesSearchService: PlacesSearchService,
               private mapService: MapService) {
   }
@@ -36,10 +39,10 @@ export class DashboardFormComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.isLocationDisabled = this.placesSearchService.isLocationDisabled;
     this.placeTypes = this.configService.getAvailablePlaceTypes();
-    // TODO: retrieve query param from router, find places and display on map (if any exists). See place-searcher.component.ts
-    const query = this.route.snapshot.queryParamMap.get('query');
-
-    const range = environment.mapDefaults.range;
+    const query = this.placeSearchRequest ? this.placeSearchRequest.query : undefined;
+    const range = this.placeSearchRequest && this.placeSearchRequest.distance
+      ? this.placeSearchRequest.distance
+      : environment.mapDefaults.range;
     const [minRange, maxRange] = environment.mapDefaults.rangeBounds;
 
     this.placesSearchForm = this.formBuilder.group({
@@ -51,17 +54,33 @@ export class DashboardFormComponent implements OnInit, OnDestroy {
         Validators.min(minRange),
         Validators.max(maxRange),
       ])),
-      placeType: new FormControl(''),
     });
     // TODO: add form errors
 
     this.locationSub = this.placesSearchService.userPosition$.subscribe((pos: LatLng) => {
       this.location = pos;
     });
+
+    this.fetchingPlaces.subscribe(() => {
+      this.promiseButton = Promise.resolve();
+    });
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (this.placesSearchForm && changes.placeSearchRequest && changes.placeSearchRequest.currentValue) {
+      const {query, distance} = this.placeSearchRequest;
+      this.placesSearchForm.setValue({query, distance});
+    }
   }
 
   ngOnDestroy() {
     this.locationSub.unsubscribe();
+  }
+
+  get locationValue(): string {
+    return this.locate
+      ? this.isLocationDisabled ? 'bounds' : 'locate'
+      : '';
   }
 
   useBounds(): void {
@@ -73,7 +92,9 @@ export class DashboardFormComponent implements OnInit, OnDestroy {
   }
 
   locateUser(): void {
-    this.mapCenterSub.unsubscribe();
+    if (this.mapCenterSub) {
+      this.mapCenterSub.unsubscribe();
+    }
     this.placesSearchService.resetUserPosition();
     this.placesSearchService.locateUser();
   }
@@ -91,10 +112,12 @@ export class DashboardFormComponent implements OnInit, OnDestroy {
       const {query, distance} = this.placesSearchForm.value;
       const {lat: latitude, lng: longitude} = this.location;
       const placeSearchRequest = new PlaceSearchRequest({latitude, longitude, distance, query});
+      if (deepCompare(this.placeSearchRequest, placeSearchRequest)) {
+        return;
+      }
+      this.placeSearchRequest = placeSearchRequest;
       this.promiseButton = new Promise(undefined);
-      this.searchPlaces(placeSearchRequest).then(() => {
-        this.promiseButton = Promise.resolve();
-      });
+      this.searchPlaces(this.placeSearchRequest);
     }
   }
 }

@@ -157,10 +157,12 @@ export class HereMapService extends MapService {
   }
 
   removePlaceMarkers() {
-    this.ui.getBubbles().forEach(bubble => {
-      this.ui.removeBubble(bubble);
-      bubble.dispose();
-    });
+    if (this.ui) {
+      this.ui.getBubbles().forEach(bubble => {
+        this.ui.removeBubble(bubble);
+        bubble.dispose();
+      });
+    }
     this.placeMarkers.forEach((marker: H.map.Group) => {
       this.map.removeObject(marker);
       marker.dispose();
