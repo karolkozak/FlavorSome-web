@@ -27,6 +27,8 @@ export const environment = {
   unrated: '/unrated',
   visit: '/visit',
 
+  ratesPath: '/ratings',
+
   contact: '/contact',
   mail: '/mail',
 
