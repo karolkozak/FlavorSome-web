@@ -1,15 +1,26 @@
 <form [formGroup]="registrationUserForm" (ngSubmit)="registerUser()">
+  <span *ngIf="formIncorrect()" class="fs-form-error">
+    {{'Some of fields have errors' | translate}}
+  </span>
   <div class="form-group col-12">
-    <input type="text" class="form-control" name="firstName" formControlName="firstName" placeholder="{{'first name' | translate}}" tabindex="1">
-    <input type="text" class="form-control" name="lastName" formControlName="lastName" placeholder="{{'last name' | translate}}" tabindex="1">
-    <input type="email" class="form-control" name="email" formControlName="email" placeholder="{{'email' | translate}}" tabindex="1">
+    <input type="text" class="form-control" name="firstName" formControlName="firstName" placeholder="{{'first name' | translate}}" tabindex="1"
+          [ngClass]="{ 'form-control-invalid': form.firstName.errors && form.firstName.value.length > 0 }">
+    <input type="text" class="form-control" name="lastName" formControlName="lastName" placeholder="{{'last name' | translate}}" tabindex="1"
+          [ngClass]="{ 'form-control-invalid': form.lastName.errors && form.lastName.value.length > 0 }">
+    <input type="email" class="form-control" name="email" formControlName="email" placeholder="{{'email' | translate}}" tabindex="1"
+          [ngClass]="{ 'form-control-invalid': form.email.errors && form.email.value.length > 0 }">
     <div formGroupName="passwordGroup">
-      <input type="password" matTooltip="{{'Minimum 8 signs, at least upper case and digit' | translate}}" [matTooltipPosition]="'right'" class="form-control" formControlName="password" placeholder="{{'password' | translate}}" tabindex="1">
-      <span *ngIf="passwordIncorrect">
+      <input type="password" matTooltip="{{'Minimum 8 signs, at least upper case and digit' | translate}}" [matTooltipPosition]="'right'"
+            class="form-control" formControlName="password" placeholder="{{'password' | translate}}" tabindex="1"
+            [ngClass]="{ 'form-control-invalid': form.passwordGroup['controls'].password.errors && form.passwordGroup['controls'].password.value.length > 0 }">
+      <span *ngIf="form.passwordGroup['controls'].password.errors && form.passwordGroup['controls'].password.value.length > 0"
+            class="fs-form-error">
         {{'Password is incorrect' | translate}}
       </span>
-      <input type="password" class="form-control" formControlName="repeatedPassword" placeholder="{{'repeat password' | translate}}" tabindex="1">
-      <span *ngIf="passwordsNotEquals">
+      <input type="password" class="form-control" formControlName="repeatedPassword" placeholder="{{'repeat password' | translate}}"
+        tabindex="1" [ngClass]="{ 'form-control-invalid': form.passwordGroup.errors && form.passwordGroup['controls'].repeatedPassword.value.length > 0 }">
+      <span *ngIf="form.passwordGroup.errors && form.passwordGroup['controls'].repeatedPassword.value.length > 0"
+            class="fs-form-error">
         {{'Passwords must match' | translate}}
       </span>
     </div>
@@ -17,9 +28,6 @@
   <div class="fs-re-captcha">
     <re-captcha #captchaRef="reCaptcha" (resolved)="captchaResolved($event)" size="invisible" [siteKey]="googleReCaptchaKey"></re-captcha>
   </div>
-  <span *ngIf="formIncorrect">
-    {{'Some of fields have errors' | translate}}
-  </span>
   <button class="btn fs-form-button" type="submit" [promiseBtn]="promiseButton">
     <i class="material-icons">people</i> {{'Create account' | translate}}
   </button>

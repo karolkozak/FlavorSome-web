@@ -8,8 +8,16 @@
   }
 
   @media (min-width: 768px) {
-    mat-form-field {
+    mat-form-field.fs-rate-content {
       width: 25rem;
+    }
+
+    mat-form-field.fs-rate {
+      width: 5rem;
+
+      input.mat-input-element {
+        margin-top: 0.9375em;
+      }
     }
   }
 

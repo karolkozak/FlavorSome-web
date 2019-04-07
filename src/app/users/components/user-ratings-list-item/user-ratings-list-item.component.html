@@ -10,20 +10,21 @@
   </div>
   <div class="fs-rate-details col-md-10 col-sm-12">
     <div class="row">
-      <div class="col-md-7 col-sm-12">
+      <div class="col-md-5 col-sm-12 fs-rated-place-details">
         <a *ngIf="placeDetails" [routerLink]="['/places', placeDetails?.vendorPlaceId]">{{placeDetails?.name}}</a>
         <div>
           <fs-place-address [location]="placeDetails?.location"></fs-place-address>
         </div>
-        <div>
-          {{rate?.comments}}
-        </div>
       </div>
-      <div class="col-md-5 col-sm-12 fs-rate-edit">
+      <div class="col-md-4 col-sm-12 fs-rated-place-details">
+        <div> {{rate?.comments}} </div>
+      </div>
+      <div class="col-md-3 col-sm-12 fs-rate-edit">
         <button mat-raised-button
                 *ngIf="allowEdit"
                 (click)="toggleEditForm()">
-          <i class="material-icons">edit</i>
+          <i class="material-icons" *ngIf="!editing">edit</i>
+          <i class="material-icons" *ngIf="editing">cancel</i>
         </button>
         <button mat-raised-button
                 *ngIf="allowRemove"
