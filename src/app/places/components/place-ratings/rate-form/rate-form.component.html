@@ -1,5 +1,5 @@
 <form [formGroup]="rateForm" (ngSubmit)="addNewRate()" (keyup.enter)="addNewRate()">
-  <mat-form-field>
+  <mat-form-field class="fs-rate">
     <input matInput
            type="number"
            [min]="ratingsConfig.minRateValue"
@@ -8,7 +8,7 @@
            placeholder="{{'rating' | translate}}"
            tabindex="1">
   </mat-form-field>
-  <mat-form-field>
+  <mat-form-field class="fs-rate-content">
     <textarea matInput
               formControlName="comments"
               placeholder="{{'write something...' | translate}}"

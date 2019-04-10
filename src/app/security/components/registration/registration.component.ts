@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnInit, ViewChild, AfterViewChecked} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {CustomAuthService} from '../../services/custom-auth.service';
 import {RegistrationFormValidator} from '../../validators/RegistrationFormValidator';
@@ -7,13 +7,15 @@ import {ApiResponseBody} from '@app/security/models/api-response-body';
 import {environment} from '@env/environment';
 import {CustomToastrService} from '@app/core/services/custom-toastr.service';
 import {RecaptchaComponent} from 'ng-recaptcha';
+import { ChangeDetectorRef } from '@angular/core';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'fs-registration',
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.scss']
 })
-export class RegistrationComponent implements OnInit {
+export class RegistrationComponent implements OnInit, AfterViewChecked {
   @Input() registrationSuccess: () => void;
   @ViewChild(RecaptchaComponent) captchaRef: RecaptchaComponent;
 
@@ -26,12 +28,17 @@ export class RegistrationComponent implements OnInit {
 
   constructor(private customAuthService: CustomAuthService,
               private formBuilder: FormBuilder,
-              private customToastrService: CustomToastrService) {
+              private customToastrService: CustomToastrService,
+              private cdRef: ChangeDetectorRef) {
   }
 
   ngOnInit() {
     this.googleReCaptchaKey = environment.googleReCaptchaKey;
     this.initForm();
+  }
+
+  ngAfterViewChecked() {
+    this.cdRef.detectChanges();
   }
 
   private initForm() {
@@ -61,18 +68,12 @@ export class RegistrationComponent implements OnInit {
     });
   }
 
-  get passwordIncorrect(): boolean {
-    const passwordInputControl = this.registrationUserForm.get('passwordGroup').get('password');
-    return passwordInputControl.invalid && passwordInputControl.dirty;
+  get form() {
+    return this.registrationUserForm.controls;
   }
 
-  get passwordsNotEquals(): boolean {
-    const passwords = this.registrationUserForm.get('passwordGroup');
-    return passwords.invalid && passwords.dirty;
-  }
-
-  get formIncorrect(): boolean {
-    return this.registrationUserForm.invalid && this.registrationUserForm.touched;
+  formIncorrect() {
+    return $('.form-control-invalid').length > 0;
   }
 
   captchaResolved(captchaResponse: string) {
