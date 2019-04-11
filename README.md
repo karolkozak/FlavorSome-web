@@ -5,6 +5,7 @@
 1. Install [nvm](https://github.com/coreybutler/nvm-windows/releases). You can skip this step and install Node.js on your own.
 1. Install Node.js (at least 8.3 version is required). Run in console `nvm install 9.11.1` and then `nvm use 9.11.1`.
 1. Clone this repository to your local directory.
+1. Copy sample files from `src/environments` directory and remove ".sample" from names. Fill props with your own values.
 1. Run in console `npm install -g @angular/cli`;
 1. Run in console `npm install`.
 1. Run in console `npm run start:qa`.
